@@ -14,8 +14,9 @@ jobs:
           ref: 'develop'
       - name: Release and Generate Changelog
         run: |
+          npm install
           npm run release
-          git push -f main
+          git push -f initial-setup
         env:
           DEFAULT_BRANCH: develop
           GITHUB_TOKEN: ${{ secrets.CUSTOM_TOKEN }}
