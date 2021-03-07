@@ -18,7 +18,8 @@ jobs:
           git config --global user.email "prasheelsoni11@gmail.com"
           git config --global user.name "ps011"
           npm run release
-          git push -f initial-setup
+          git checkout -b initial-setup
+          git push --follow-tags origin initial-setup
         env:
           DEFAULT_BRANCH: develop
           GITHUB_TOKEN: ${{ secrets.CUSTOM_TOKEN }}
