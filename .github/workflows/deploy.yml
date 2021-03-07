@@ -1,5 +1,7 @@
 name: Deploy to Heroku
 
+on: push
+
 jobs:
   deploy-to-heroku:
     name: Deploy Code to Heroku
@@ -13,7 +15,7 @@ jobs:
       - name: Release and Generate Changelog
         run: |
           npm run release
-          git push -f master
+          git push -f main
         env:
           DEFAULT_BRANCH: develop
           GITHUB_TOKEN: ${{ secrets.CUSTOM_TOKEN }}
