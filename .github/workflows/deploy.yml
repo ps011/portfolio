@@ -18,9 +18,9 @@ jobs:
           git config --global user.email "prasheelsoni11@gmail.com"
           git config --global user.name "ps011"
           npm run release
-          git push --follow-tags origin initial-setup
+          git push origin initial-setup
         env:
-          DEFAULT_BRANCH: develop
+          DEFAULT_BRANCH: initial-setup
           GITHUB_TOKEN: ${{ secrets.CUSTOM_TOKEN }}
       # - name: Deploy to Heroku
       #   uses: akhileshns/heroku-deploy@v3.4.6
