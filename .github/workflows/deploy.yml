@@ -11,16 +11,16 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
         with: 
-          ref: 'initial-setup'
+          ref: 'master'
       - name: Release and Generate Changelog
         run: |
           npm install
           git config --global user.email "prasheelsoni11@gmail.com"
           git config --global user.name "ps011"
           npm run release
-          git push origin initial-setup
+          git push origin master
         env:
-          DEFAULT_BRANCH: initial-setup
+          DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.CUSTOM_TOKEN }}
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.4.6
