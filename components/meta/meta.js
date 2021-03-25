@@ -30,11 +30,11 @@ const Meta = ({
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="theme-color" content={themeColor} />
     <meta itemProp="image" content={image} />
-    <Link rel="icon" type="image/png" href="/favicon.ico" />
-    <Link rel="apple-touch-icon" href="/favicon.ico" />
-    <Link rel="canonical" href={`${url}`} />
-    <Link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
-    <Link rel="manifest" href={manifest} />
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.ico" />
+    <link rel="canonical" href={`${url}`} />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
+    <link rel="manifest" href={manifest} />
     {
             css.length
             && css.map((c) => <Link rel="stylesheet" href={`${c}`} />)
