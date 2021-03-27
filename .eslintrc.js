@@ -25,5 +25,9 @@ module.exports = {
       html: 'enforce',
       custom: 'enforce',
     }],
+    'jsx-a11y/no-static-element-interactions': [0, 'always'],
+    'jsx-a11y/click-events-have-key-events': [0, 'always'],
+
+
   },
 };

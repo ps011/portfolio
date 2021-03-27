@@ -1,7 +1,9 @@
 /* eslint-disable */
-import '../styles/global.scss'
 import '../styles/argon.scss'
-// This default export is required in a new `pages/_app.js` file.
+import '../styles/global.scss'
+import '../styles/vendor/font-awesome/css/font-awesome.min.css'
+import '../styles/vendor/nucleo/css/nucleo.css'
+
 export default function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
