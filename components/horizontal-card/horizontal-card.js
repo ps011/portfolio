@@ -1,0 +1,49 @@
+import PropTypes from 'prop-types';
+
+const HorizontalCard = ({ title, description, type }) => (title || description) && (type === 'dark'
+  ? (
+    <div className="card shadow shadow-lg--hover" data-aos-offset="300" data-aos="fade-right">
+      <div className="card-body">
+        <div className="d-flex px-3">
+          <div>
+            <div className="icon icon-shape bg-gradient-success rounded-circle text-white">
+              <i className="ni ni-satisfied" />
+            </div>
+          </div>
+          <div className="pl-4">
+            <h5 className="title text-success">{title}</h5>
+            <p>
+              {description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div className="d-flex px-3 mt-5" data-aos-offset="300" data-aos="fade-right">
+      <div>
+        <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-primary">
+          <i className="ni ni-building text-primary" />
+        </div>
+      </div>
+      <div className="pl-4">
+        <h4 className="display-3 text-white">{title}</h4>
+        <p className="text-white">{description}</p>
+      </div>
+    </div>
+  )
+)
+
+HorizontalCard.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  type: PropTypes.oneOf(['dark', 'light']),
+}
+
+HorizontalCard.defaultProps = {
+  title: '',
+  description: '',
+  type: 'dark',
+}
+
+export default HorizontalCard

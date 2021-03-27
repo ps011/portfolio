@@ -35,6 +35,7 @@ const Meta = ({
     <link rel="canonical" href={`${url}`} />
     <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
     <link rel="manifest" href={manifest} />
+    <script src="/js/bootstrap.bundle.min.js" />
     {
             css.length
             && css.map((c) => <Link rel="stylesheet" href={`${c}`} />)

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useEffect } from 'react'
-import s from './banner.module.css'
+import s from './banner.module.scss'
 
 const Banner = ({
   illustration, texts, ctaLabel, ctaUrl,
@@ -77,8 +77,8 @@ const Banner = ({
             <img src={illustration} alt="Banner logo" data-aos="fade-right" className="img-fluid" />
           </div>
           <div className="col-lg-5 mb-5 mb-lg-0">
-            <h4 className={s.static}>Hi, I'm</h4>
-            <h1 className="header-title-text type-animate">
+            <h4 className={s.static}>Hi, I&apos;m</h4>
+            <h1 className={`${s['header-title-text']} type-animate`}>
               <a href="/" id="typewrite" className={s.typewrite} data-period="2000" data-type={JSON.stringify(texts)}>
                 <span className="wrap" />
               </a>
