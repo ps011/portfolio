@@ -4,9 +4,8 @@ import Header from '../components/header/header'
 import Meta from '../components/meta/meta'
 
 export async function getStaticProps() {
-  const res = await fetch('http://localhost:3001/site-data/5e7662160159fc3d220ea3e1')
+  const res = await fetch(`${process.env.BASE_URL}/site-data/${process.env.USER_ID}`)
   const data = await res.json()
-  console.log(data)
 
   if (!data) {
     return {
@@ -14,20 +13,17 @@ export async function getStaticProps() {
     }
   }
   return {
-    props: data, // will be passed to the page component as props
+    props: data,
   }
 }
 
-export default function Home({ meta }) {
-  console.log('====>', meta)
+export default function Home({ meta, header }) {
   return (
     <div>
       <Meta
-        name={meta.name}
-        title={meta.title}
-        desc={meta.desc}
+        {...meta}
       />
-      <Header logoUrl="/images/logos/logo.png" />
+      <Header {...header} />
       <Banner />
       <main />
     </div>
@@ -35,13 +31,13 @@ export default function Home({ meta }) {
 }
 
 Home.propTypes = {
-  meta: {
-    name: PropTypes.string.isRequired,
-  },
+  meta: PropTypes.object,
+  header: PropTypes.object
 }
 
 Home.defaultProps = {
   meta: {},
+  header: {},
 }
 
-// TODO: Make meta and header attributes to be fetched from server/service
+// TODO: Make about and banner attributes to be fetched from server/service
