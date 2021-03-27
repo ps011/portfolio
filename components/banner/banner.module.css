@@ -1,9 +1,13 @@
-a.typewrite{
+.typewrite{
     color: #fff !important;
     font-size: 48px;
   }
   
   .static {
     color: #fff;
+  }
+
+  .fillWhite {
+    fill: #fff;
   }
   
