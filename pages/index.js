@@ -17,14 +17,12 @@ export async function getStaticProps() {
   }
 }
 
-export default function Home({ meta, header }) {
+export default function Home({ meta, header, banner }) {
   return (
     <div>
-      <Meta
-        {...meta}
-      />
+      <Meta {...meta} />
       <Header {...header} />
-      <Banner />
+      <Banner {...banner} />
       <main />
     </div>
   )
@@ -32,12 +30,14 @@ export default function Home({ meta, header }) {
 
 Home.propTypes = {
   meta: PropTypes.object,
-  header: PropTypes.object
+  header: PropTypes.object,
+  banner: PropTypes.object
 }
 
 Home.defaultProps = {
   meta: {},
   header: {},
+  banner: {},
 }
 
 // TODO: Make about and banner attributes to be fetched from server/service
