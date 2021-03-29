@@ -6,6 +6,7 @@ import About from '../sections/about/about'
 import Interests from '../sections/interests/interests'
 import Blog from '../sections/blog/blog'
 import Footer from '../sections/footer/footer'
+import Github from '../components/github/github'
 
 export async function getStaticProps() {
   const siteData = await fetch(`${process.env.BASE_URL}/site-data/${process.env.USER_ID}`)
@@ -28,7 +29,7 @@ export async function getStaticProps() {
 }
 
 export default function Home({
-  meta, header, banner, about, blogs
+  meta, header, banner, about, blogs,
 }) {
   return (
     <div>
@@ -37,6 +38,7 @@ export default function Home({
       <Banner {...banner} />
       <About {...about} />
       <Interests interests={about.interests} />
+      <Github username="ps011" />
       <Blog blogs={blogs} />
       <Footer />
       <main />
