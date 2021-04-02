@@ -30,7 +30,7 @@ const Card = ({
             { tagsArray.length ? tagsArray.map((tag) => <span key={tag} className="badge badge-pill badge-primary">{tag}</span>) : ''}
           </div>
           <Link href={link || `/blog/${_id}`} scroll={false}>
-            <a target="_blank" className="btn btn-primary mt-4">Read more</a>
+            <a className="btn btn-primary mt-4">Read more</a>
           </Link>
         </div>
       </div>

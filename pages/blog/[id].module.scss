@@ -1,0 +1,27 @@
+.postImage {
+    height: 650px;
+    width: 100%;
+    object-fit: cover;
+    margin: 0;
+  }
+  
+  .postHeader {
+    position: relative;
+  }
+  
+  .postTitle {
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    color: white;
+    padding: 48px;
+    border-radius: 0 155px 0 155px;
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,0.75) 50%, rgba(255,255,255,0.75) 100%,);
+  }
+  
+  .listSocial li{
+    display: inline-block;
+    margin: 8px 16px 0 0;
+  }
+  

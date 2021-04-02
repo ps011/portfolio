@@ -1,7 +1,29 @@
 import { useRouter } from 'next/router'
+import PropTypes from 'prop-types'
+import MarkdownRenderer from '../../components/markdown-renderer/markdown-renderer'
+import s from './[id].module.scss'
+
+export async function getStaticProps(context) {
+  let data = await fetch(`${process.env.BASE_URL}/blogs/${context.params.id}`)
+  data = await data.json()
+  return { props: data }
+}
+
+export async function getStaticPaths() {
+  const data = await fetch(`${process.env.BASE_URL}/blogs/ids`)
+  const posts = await data.json()
+  return {
+    paths: posts.map((post) => ({
+      params: {
+        id: post.id,
+      },
+    })),
+    fallback: false,
+  }
+}
 
 const Blog = ({
-  title, banner, profileLink, author, date,
+  title, banner, profileLink, author, date, content,
 }) => {
   const router = useRouter()
   const currentUrl = router.pathName
@@ -13,9 +35,9 @@ const Blog = ({
       <div className="row">
         <div className="col-sm-12">
           <article className="post">
-            <div className="post-header">
-              <img src={banner} alt="Post" className="img-fluid post-image" />
-              <h1 className="post-title">{title}</h1>
+            <div className={s.postHeader}>
+              <img src={banner} alt="Post" className={`img-fluid ${s.postImage}`} />
+              <h1 className={s.postTitle}>{title}</h1>
             </div>
             <div className="container my-4">
               <span className="mx-4">
@@ -27,14 +49,10 @@ const Blog = ({
                 <a href="#">{date}</a>
               </span>
             </div>
-
-            <div className="post-body container">
-              {/* <markdown [src]="blog?.content"></markdown> */}
-            </div>
-
+            <MarkdownRenderer content={content} />
             <div className="share-icon clearfix container">
               <span>Share this Post:</span>
-              <ul className="list-inline list-social">
+              <ul className={`list-inline ${s.listSocial}`}>
                 <li>
                   <a href={fbSharingUrl} rel="noreferrer" target="_blank" className="social-icon social-icon-colored social-icon-facebook">
                     <i className="fa fa-facebook" />
@@ -57,6 +75,15 @@ const Blog = ({
       </div>
     </div>
   )
+}
+
+Blog.propTypes = {
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  banner: PropTypes.string.isRequired,
+  profileLink: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
 }
 
 export default Blog

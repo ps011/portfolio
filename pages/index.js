@@ -7,6 +7,7 @@ import Interests from '../sections/interests/interests'
 import Blog from '../sections/blog/blog'
 import Footer from '../sections/footer/footer'
 import Github from '../components/github/github'
+import Stackoverflow from '../components/stackoverflow/stackoverflow'
 
 export async function getStaticProps() {
   const siteData = await fetch(`${process.env.BASE_URL}/site-datas/`)
@@ -39,6 +40,7 @@ export default function Home({
       <About {...about} />
       <Interests interests={about.interests} />
       <Github username="ps011" />
+      <Stackoverflow />
       <Blog blogs={blogs} />
       <Footer />
       <main />
