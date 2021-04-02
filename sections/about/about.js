@@ -42,12 +42,12 @@ const About = ({
                   </div>
                 </div>
                 <div className="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
-                  <div className="card-profile-actions py-4 mt-lg-0">
-                    <a href="/">
+                  <div className={`${s.actions} card-profile-actions py-4 mt-lg-0`}>
+                    <a href="/" className="btn btn-info btn-sm">
                       <i className="fa fa-linkedin mr-2" />
                       Linkedin
                     </a>
-                    <a href="/">
+                    <a href="/" className="btn btn-default btn-sm">
                       <i className="fa fa-github mr-2" />
                       Github
                     </a>
@@ -56,15 +56,15 @@ const About = ({
                 <div className="col-lg-4 order-lg-1">
                   <div className="card-profile-stats d-flex justify-content-center">
                     <div>
-                      <span className="heading">3+</span>
+                      <span className="heading">4+</span>
                       <span className="description">Years of Experience</span>
                     </div>
                     <div>
-                      <span className="heading">4</span>
+                      <span className="heading">10+</span>
                       <span className="description">Blog Posts</span>
                     </div>
                     <div>
-                      <span className="heading">2</span>
+                      <span className="heading">4</span>
                       <span className="description">Coding Challenges</span>
                     </div>
                   </div>
@@ -75,15 +75,15 @@ const About = ({
                   {name}
                 </h3>
                 <div className="h6 font-weight-300">
-                  <i className="ni location_pin mr-2" />
+                  <i className="fa fa-map-pin mr-2" />
                   {location}
                 </div>
                 <div className="h6 mt-4">
-                  <i className="ni business_briefcase-24 mr-2" />
+                  <i className="fa fa-briefcase mr-2" />
                   {designation}
                 </div>
                 <div>
-                  <i className="ni education_hat mr-2" />
+                  <i className="fa fa-graduation-cap mr-2" />
                   {education}
                 </div>
               </div>

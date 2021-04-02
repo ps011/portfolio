@@ -2,6 +2,10 @@
     height: 184px;
   }
   
+  .actions {
+    display: flex;
+    justify-content: space-between;
+  }
   .company-logo {
     height: 60px;
     width: auto;

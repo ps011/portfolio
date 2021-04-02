@@ -9,28 +9,28 @@ import Footer from '../sections/footer/footer'
 import Github from '../components/github/github'
 
 export async function getStaticProps() {
-  const siteData = await fetch(`${process.env.BASE_URL}/site-data/${process.env.USER_ID}`)
+  const siteData = await fetch(`${process.env.BASE_URL}/site-datas/`)
   const data = await siteData.json()
 
-  const about = await fetch(`${process.env.BASE_URL}/about/id/${process.env.USER_ID}`)
+  const about = await fetch(`${process.env.BASE_URL}/abouts/`)
   const aboutData = await about.json()
 
   const blogs = await fetch(`${process.env.BASE_URL}/blogs`)
   const blogsData = await blogs.json();
-
   if (!data) {
     return {
       notFound: true,
     }
   }
   return {
-    props: { ...data, about: aboutData, blogs: blogsData },
+    props: { data: data[0], about: aboutData[0], blogs: blogsData },
   }
 }
 
 export default function Home({
-  meta, header, banner, about, blogs,
+  data, about, blogs,
 }) {
+  const {meta, banner, header } = data
   return (
     <div>
       <Meta {...meta} />
@@ -47,9 +47,7 @@ export default function Home({
 }
 
 Home.propTypes = {
-  meta: PropTypes.object,
-  header: PropTypes.object,
-  banner: PropTypes.object,
+  data: PropTypes.object,
   about: PropTypes.object,
   blogs: PropTypes.arrayOf(PropTypes.object),
 }

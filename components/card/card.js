@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
+import Link from 'next/link'
 
 const Card = ({
-  _id, thumbnail, title, shortDescription, tags = [],
+  _id, thumbnail, title, shortDescription, tags = [], link,
 }) => {
   let tagsArray
   if (typeof tags === 'string') {
@@ -26,9 +27,11 @@ const Card = ({
           <h6 className="text-primary text-uppercase">{title}</h6>
           <p className="description mt-3">{shortDescription}</p>
           <div>
-            { tagsArray.length ? tagsArray.map((tag) => <span className="badge badge-pill badge-primary">{tag}</span>) : ''}
+            { tagsArray.length ? tagsArray.map((tag) => <span key={tag} className="badge badge-pill badge-primary">{tag}</span>) : ''}
           </div>
-          <a href={`/blog/${_id}`} className="btn btn-primary mt-4">Read more</a>
+          <Link href={link || `/blog/${_id}`} scroll={false}>
+            <a target="_blank" className="btn btn-primary mt-4">Read more</a>
+          </Link>
         </div>
       </div>
     </div>
@@ -41,6 +44,7 @@ Card.propTypes = {
   title: PropTypes.string,
   shortDescription: PropTypes.string,
   tags: PropTypes.string,
+  link: PropTypes.string,
 }
 
 Card.defaultProps = {
@@ -49,6 +53,7 @@ Card.defaultProps = {
   title: undefined,
   shortDescription: undefined,
   tags: undefined,
+  link: undefined,
 }
 
 export default Card
