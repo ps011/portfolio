@@ -1,4 +1,11 @@
 CHANGELOG
+### 0.0.5 (2021-04-03)
+
+
+### Bug Fixes
+
+* **deploy:** add env vars ([193f792](https://github.com/ps011/portfolio/commit/193f792ef6d98efb4b7c3e35abb23c94b4d48ca3))
+
 ### 0.0.4 (2021-04-02)
 
 ### 0.0.3 (2021-04-02)
