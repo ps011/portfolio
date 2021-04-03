@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import s from './banner.module.scss'
 
 const Banner = ({
-  illustration, texts, ctaLabel, ctaUrl,
+  illustration, texts, ctaLabel, ctaUrl, downloadable,
 }) => {
   let toRotate
   let el
@@ -79,13 +79,13 @@ const Banner = ({
           <div className="col-lg-5 mb-5 mb-lg-0">
             <h4 className={s.static}>Hi, I&apos;m</h4>
             <h1 className={`${s['header-title-text']} type-animate`}>
-              <a href="/" id="typewrite" className={s.typewrite} data-period="2000" data-type={JSON.stringify(texts)}>
+              <a href="#" id="typewrite" className={s.typewrite} data-period="2000" data-type={JSON.stringify(texts)}>
                 <span className="wrap" />
               </a>
             </h1>
             <p className="lead text-white mt-4" />
             { ctaLabel && (
-            <a href={ctaUrl} className="btn btn-secondary" type="button">
+            <a href={ctaUrl} download={downloadable} className="btn btn-secondary">
               <span className="btn-inner--text">{ctaLabel}</span>
             </a>
             )}
@@ -106,13 +106,15 @@ Banner.propTypes = {
   texts: PropTypes.arrayOf(PropTypes.string),
   ctaLabel: PropTypes.string,
   ctaUrl: PropTypes.string,
+  downloadable: PropTypes.bool,
 }
 
 Banner.defaultProps = {
   illustration: '/images/illustrations/banner.svg',
   texts: [],
   ctaLabel: undefined,
-  ctaUrl: '/',
+  ctaUrl: '#',
+  downloadable: false,
 }
 
 export default Banner
