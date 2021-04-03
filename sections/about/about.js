@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import s from './about.module.scss';
 
 const About = ({
-  name, about, imageUrl, location, designation, experience, education, skills,
+  name, about, imageUrl, location, designation, experience, education, skills, stats, profiles,
 }) => {
   const aboutTabContent = useRef(null);
   const skillsTabContent = useRef(null);
@@ -43,30 +43,21 @@ const About = ({
                 </div>
                 <div className="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                   <div className={`${s.actions} card-profile-actions py-4 mt-lg-0`}>
-                    <a href="/" className="btn btn-info btn-sm">
-                      <i className="fa fa-linkedin mr-2" />
-                      Linkedin
-                    </a>
-                    <a href="/" className="btn btn-default btn-sm">
-                      <i className="fa fa-github mr-2" />
-                      Github
-                    </a>
+                    { profiles.length && profiles.map((profile) => (
+                      <a href={profile.url} key={profile.name} target="_blank" rel="noreferrer" className={`btn btn-${profile.name} btn-sm`}>
+                        <i className={`fa fa-${profile.name}`} />
+                      </a>
+                    ))}
                   </div>
                 </div>
                 <div className="col-lg-4 order-lg-1">
                   <div className="card-profile-stats d-flex justify-content-center">
-                    <div>
-                      <span className="heading">4+</span>
-                      <span className="description">Years of Experience</span>
-                    </div>
-                    <div>
-                      <span className="heading">10+</span>
-                      <span className="description">Blog Posts</span>
-                    </div>
-                    <div>
-                      <span className="heading">4</span>
-                      <span className="description">Coding Challenges</span>
-                    </div>
+                    { stats.length && stats.map((stat) => (
+                      <div key={stat.label}>
+                        <span className="heading">{stat.count}</span>
+                        <span className="description">{stat.label}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -220,6 +211,8 @@ About.propTypes = {
   location: PropTypes.string,
   designation: PropTypes.string,
   education: PropTypes.string,
+  stats: PropTypes.arrayOf(PropTypes.object),
+  profiles: PropTypes.arrayOf(PropTypes.object),
 }
 
 About.defaultProps = {
@@ -231,6 +224,8 @@ About.defaultProps = {
   location: undefined,
   designation: undefined,
   education: undefined,
+  stats: [],
+  profiles: [],
 }
 
 export default About

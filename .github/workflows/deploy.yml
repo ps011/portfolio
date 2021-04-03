@@ -31,3 +31,6 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "ps11-next"
           heroku_email: "prasheelsoni11@gmail.com"
+        env:
+          BASE_URL: "http://fast-cove-20932.herokuapp.com"
+          USER_ID: "5e7662160159fc3d220ea3e1"
