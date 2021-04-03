@@ -1,4 +1,11 @@
 CHANGELOG
+### 0.0.6 (2021-04-03)
+
+
+### Features
+
+* **analytics:** add google analytics ([e1a1182](https://github.com/ps011/portfolio/commit/e1a11825772158702762658ea25e9a3a0ce9baec))
+
 ### 0.0.5 (2021-04-03)
 
 
