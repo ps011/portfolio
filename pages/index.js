@@ -31,16 +31,22 @@ export async function getStaticProps() {
 export default function Home({
   data, about, blogs,
 }) {
-  const {meta, banner, header } = data
+  const { meta, banner, header } = data
+  const stackoverflow = about.profiles.find((profile) => profile.name === 'stackoverflow')
+  const github = about.profiles.find((profile) => profile.name === 'github')
   return (
-    <div>
+    <div className="theme-dark">
       <Meta {...meta} />
       <Header {...header} />
       <Banner {...banner} />
       <About {...about} />
       <Interests interests={about.interests} />
-      <Github username="ps011" />
-      <Stackoverflow />
+      <Github username={github.username} />
+      <Stackoverflow
+        url={stackoverflow.url}
+        id={stackoverflow.id}
+        name={stackoverflow.username}
+      />
       <Blog blogs={blogs} />
       <Footer />
       <main />
