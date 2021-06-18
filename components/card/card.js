@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Card = ({
   _id, thumbnail, title, shortDescription, tags = [], link,
@@ -11,13 +12,13 @@ const Card = ({
     tagsArray = tags
   }
   return (
-    <div className="col-lg-4" style={{ display: 'inline-block' }}>
+    <div style={{ display: 'inline-block', padding: '8px' }}>
       <div className="card shadow border-0 my-2" data-aos-offset="300" data-aos="flip-right">
         <div className="card-body">
           { thumbnail
             ? (
               <div className="mb-4">
-                <img src={thumbnail} className="img-fluid" alt={`Blog ${title} Description`} />
+                <Image src={thumbnail} className="img-fluid" alt={`Blog ${title} Description`} layout="responsive" width="100%" height="100%" />
               </div>
             ) : (
               <div className="icon icon-shape icon-shape-primary rounded-circle mb-4">
