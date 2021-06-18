@@ -1,4 +1,11 @@
 CHANGELOG
+### 0.0.7 (2021-06-18)
+
+
+### Features
+
+* **blog-carousel:** add carousel feature to blogs ([c7588f2](https://github.com/ps011/portfolio/commit/c7588f2b470c94a9bc97d42f7385e11aa229fffd))
+
 ### 0.0.6 (2021-04-03)
 
 
