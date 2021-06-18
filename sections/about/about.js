@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Image from 'next/image'
 import s from './about.module.scss';
 
 const About = ({
@@ -37,7 +38,11 @@ const About = ({
                 <div className="col-lg-3 order-lg-2">
                   <div className="card-profile-image">
                     <a href="/">
-                      <img src={imageUrl} className="rounded-circle" alt="dp" />
+                      <img
+                        src={imageUrl}
+                        className="rounded-circle"
+                        alt="dp"
+                      />
                     </a>
                   </div>
                 </div>
@@ -132,7 +137,9 @@ const About = ({
                             <div className="row text-center">
                               {
                                 skills.length && skills.map((skill) => (
-                                  <img
+                                  <Image
+                                    height={72}
+                                    width={72}
                                     key={skill.logo}
                                     className={`${s['img-fluid']} text-center col-3 col-sm-2 m-2`}
                                     src={skill.logo}
@@ -152,7 +159,7 @@ const About = ({
                               {experience.length && experience.map((company) => (
                                 <div className={`${s.experience} row`} key={company.logo}>
                                   <div className="col-3">
-                                    <img src={company.logo} alt="Company Logo" className="img-fluid" />
+                                    <Image height="100%" width="100%" layout="responsive" src={company.logo} alt="Company Logo" className="img-fluid" />
                                   </div>
                                   <div className="col-9">
                                     <blockquote className="blockquote text-center mb-0">
