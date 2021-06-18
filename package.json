@@ -20,9 +20,11 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-github-calendar": "^2.0.2",
+    "react-slick": "^0.28.1",
     "remark": "^13.0.0",
     "remark-html": "^13.0.1",
-    "sass": "^1.32.8"
+    "sass": "^1.32.8",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@testing-library/dom": "^7.29.6",
@@ -42,6 +44,9 @@
     "jest-dom": "^4.0.0",
     "standard-version": "^9.1.1"
   },
+  "cacheDirectories": [
+    ".next/cache"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint"

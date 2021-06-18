@@ -3,5 +3,8 @@
     "spellright.documentTypes": [
         "markdown",
         "latex"
-    ]
+    ],
+    "search.exclude": {
+        "**/node_modules": false
+    }
 }
