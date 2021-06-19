@@ -49,7 +49,10 @@ export default function Home({
         id={stackoverflow.id}
         name={stackoverflow.username}
       />
-      <Twitter />
+      <Twitter
+        theme="dark"
+        id={twitter.id}
+       />
       <Blog blogs={blogs} />
       <Footer />
       <main />
