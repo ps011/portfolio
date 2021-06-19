@@ -8,6 +8,7 @@ import Blog from '../sections/blog/blog'
 import Footer from '../sections/footer/footer'
 import Github from '../components/github/github'
 import Stackoverflow from '../components/stackoverflow/stackoverflow'
+import Twitter from '../components/twitter/twitter'
 
 export async function getStaticProps() {
   const siteData = await fetch(`${process.env.BASE_URL}/site-datas/`)
@@ -34,6 +35,7 @@ export default function Home({
   const { meta, banner, header } = data
   const stackoverflow = about.profiles.find((profile) => profile.name === 'stackoverflow')
   const github = about.profiles.find((profile) => profile.name === 'github')
+  const twitter = about.profiles.find((profile) => profile.name === 'twitter')
   return (
     <div className="theme-dark">
       <Meta {...meta} />
@@ -47,6 +49,7 @@ export default function Home({
         id={stackoverflow.id}
         name={stackoverflow.username}
       />
+      <Twitter />
       <Blog blogs={blogs} />
       <Footer />
       <main />
