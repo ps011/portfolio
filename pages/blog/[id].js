@@ -7,7 +7,7 @@ import s from './[id].module.scss'
 export async function getStaticProps(context) {
   let data = await fetch(`${process.env.BASE_URL}/blogs/${context.params.id}`)
   data = await data.json()
-  data.baseUrl = process.env.APP_BASE_URL || null;
+  data.baseUrl = process.env.APP_BASE_URL || 'https://ps11-next.herokuapp.com';
   return { props: data, revalidate: 86400 }
 }
 
@@ -25,7 +25,7 @@ export async function getStaticPaths() {
 }
 
 const Blog = ({
-  title, banner, profileLink, author, date, content, baseUrl, tags,
+  title, banner, profileLink, author, date, content, baseUrl, tags, shortDescription,
 }) => {
   const router = useRouter()
   const currentUrl = router.asPath
@@ -36,7 +36,7 @@ const Blog = ({
     <>
       <Meta
         title={title}
-        desc={title}
+        desc={shortDescription}
         name={author}
         image={banner}
         url={baseUrl}
@@ -99,6 +99,7 @@ Blog.propTypes = {
   date: PropTypes.string.isRequired,
   baseUrl: PropTypes.string,
   tags: PropTypes.string,
+  shortDescription: PropTypes.string.isRequired,
 }
 
 Blog.defaultProps = {
