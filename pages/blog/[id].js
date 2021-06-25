@@ -6,7 +6,7 @@ import s from './[id].module.scss'
 export async function getStaticProps(context) {
   let data = await fetch(`${process.env.BASE_URL}/blogs/${context.params.id}`)
   data = await data.json()
-  data.baseUrl = process.env.APP_BASE_URL;
+  data.baseUrl = process.env.APP_BASE_URL || null;
   return { props: data, revalidate: 86400 }
 }
 
