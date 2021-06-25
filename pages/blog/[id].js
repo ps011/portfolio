@@ -6,7 +6,8 @@ import s from './[id].module.scss'
 export async function getStaticProps(context) {
   let data = await fetch(`${process.env.BASE_URL}/blogs/${context.params.id}`)
   data = await data.json()
-  return { props: data }
+  data.baseUrl = process.env.APP_BASE_URL;
+  return { props: data, revalidate: 86400 }
 }
 
 export async function getStaticPaths() {
@@ -23,13 +24,13 @@ export async function getStaticPaths() {
 }
 
 const Blog = ({
-  title, banner, profileLink, author, date, content,
+  title, banner, profileLink, author, date, content, baseUrl
 }) => {
   const router = useRouter()
-  const currentUrl = router.pathName
-  const fbSharingUrl = `https://www.facebook.com/sharer.php?u=${currentUrl}`
-  const twitterSharingUrl = `https://twitter.com/intent/tweet?&url=${currentUrl}`
-  const linkedinSharingUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}`
+  const currentUrl = router.asPath
+  const fbSharingUrl = `https://www.facebook.com/sharer.php?u=${baseUrl}${currentUrl}`
+  const twitterSharingUrl = `https://twitter.com/intent/tweet?&url=${baseUrl}${currentUrl}`
+  const linkedinSharingUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${baseUrl}${currentUrl}`
   return (
     <div className="content">
       <div className="row">
@@ -84,6 +85,11 @@ Blog.propTypes = {
   profileLink: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
+  baseUrl: PropTypes.string,
+}
+
+Blog.defaultProps = {
+  baseUrl: 'https://ps11-next.herokuapp.com',
 }
 
 export default Blog
