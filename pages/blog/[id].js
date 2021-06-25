@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import MarkdownRenderer from '../../components/markdown-renderer/markdown-renderer'
+import Meta from '../../components/meta/meta'
 import s from './[id].module.scss'
 
 export async function getStaticProps(context) {
@@ -24,7 +25,7 @@ export async function getStaticPaths() {
 }
 
 const Blog = ({
-  title, banner, profileLink, author, date, content, baseUrl
+  title, banner, profileLink, author, date, content, baseUrl, tags,
 }) => {
   const router = useRouter()
   const currentUrl = router.asPath
@@ -32,49 +33,60 @@ const Blog = ({
   const twitterSharingUrl = `https://twitter.com/intent/tweet?&url=${baseUrl}${currentUrl}`
   const linkedinSharingUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${baseUrl}${currentUrl}`
   return (
-    <div className="content">
-      <div className="row">
-        <div className="col-sm-12">
-          <article className="post">
-            <div className={s.postHeader}>
-              <img src={banner} alt="Post" className={`img-fluid ${s.postImage}`} />
-              <h1 className={s.postTitle}>{title}</h1>
-            </div>
-            <div className="container my-4">
-              <span className="mx-4">
-                <i className="fa fa-user mr-2" />
-                <a href={profileLink}>{author}</a>
-              </span>
-              <span className="mx-4">
-                <i className="fa fa-calendar mr-2" />
-                <a href="#">{date}</a>
-              </span>
-            </div>
-            <MarkdownRenderer content={content} />
-            <div className="share-icon clearfix container">
-              <span>Share this Post:</span>
-              <ul className={`list-inline ${s.listSocial}`}>
-                <li>
-                  <a href={fbSharingUrl} rel="noreferrer" target="_blank" className="social-icon social-icon-colored social-icon-facebook">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href={twitterSharingUrl} rel="noreferrer" target="_blank" className="social-icon social-icon-colored social-icon-twitter">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href={linkedinSharingUrl} rel="noreferrer" target="_blank" className="social-icon social-icon-colored social-icon-linkedin">
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </article>
+    <>
+      <Meta
+        title={title}
+        desc={title}
+        name={author}
+        image={banner}
+        url={baseUrl}
+        twitterHandle="@soniprasheel"
+        keywords={tags}
+      />
+      <div className="content">
+        <div className="row">
+          <div className="col-sm-12">
+            <article className="post">
+              <div className={s.postHeader}>
+                <img src={banner} alt="Post" className={`img-fluid ${s.postImage}`} />
+                <h1 className={s.postTitle}>{title}</h1>
+              </div>
+              <div className="container my-4">
+                <span className="mx-4">
+                  <i className="fa fa-user mr-2" />
+                  <a href={profileLink}>{author}</a>
+                </span>
+                <span className="mx-4">
+                  <i className="fa fa-calendar mr-2" />
+                  <a href="#">{date}</a>
+                </span>
+              </div>
+              <MarkdownRenderer content={content} />
+              <div className="share-icon clearfix container">
+                <span>Share this Post:</span>
+                <ul className={`list-inline ${s.listSocial}`}>
+                  <li>
+                    <a href={fbSharingUrl} rel="noreferrer" target="_blank" className="social-icon social-icon-colored social-icon-facebook">
+                      <i className="fa fa-facebook" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href={twitterSharingUrl} rel="noreferrer" target="_blank" className="social-icon social-icon-colored social-icon-twitter">
+                      <i className="fa fa-twitter" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href={linkedinSharingUrl} rel="noreferrer" target="_blank" className="social-icon social-icon-colored social-icon-linkedin">
+                      <i className="fa fa-linkedin" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
@@ -86,10 +98,12 @@ Blog.propTypes = {
   author: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   baseUrl: PropTypes.string,
+  tags: PropTypes.string,
 }
 
 Blog.defaultProps = {
   baseUrl: 'https://ps11-next.herokuapp.com',
+  tags: 'Prasheel, blog, prasheel soni, blogger, developer, full stack engineer',
 }
 
 export default Blog

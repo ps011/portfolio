@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { useEffect } from 'react'
-import s from './banner.module.scss'
 import Image from 'next/image'
+import s from './banner.module.scss'
 
 const Banner = ({
   illustration, texts, ctaLabel, ctaUrl, downloadable,
