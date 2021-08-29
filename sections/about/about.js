@@ -134,20 +134,19 @@ const About = ({
                       <div className="card-body">
                         <div className="tab-content">
                           <div className="tab-pane active" ref={skillsTabContent}>
-                            <div className="row text-center">
-                              {
-                                skills.length && skills.map((skill) => (
-                                  <Image
-                                    height={72}
-                                    width={72}
-                                    key={skill.logo}
-                                    className={`${s['img-fluid']} text-center col-3 col-sm-2 m-2`}
-                                    src={skill.logo}
-                                    alt={skill.name}
-                                  />
-                                ))
-                            }
-                            </div>
+                            {
+                              skills.length && skills.map((skill) => (
+                                <img
+                                  height={84}
+                                  width={84}
+                                  key={skill.logo}
+                                  className={`${s['img-fluid']} text-center col-3 col-sm-2 m-2`}
+                                  src={skill.logo}
+                                  alt={skill.name}
+                                  lazy
+                                />
+                              ))
+                          }
                           </div>
                           <div className="tab-pane" ref={aboutTabContent} onClick={() => activateTab(aboutTabContent)}>
                             <p className="description" ref={aboutRef}>
@@ -159,7 +158,7 @@ const About = ({
                               {experience.length && experience.map((company) => (
                                 <div className={`${s.experience} row`} key={company.logo}>
                                   <div className="col-3">
-                                    <Image height="100%" width="100%" layout="responsive" src={company.logo} alt="Company Logo" className="img-fluid" />
+                                    <Image height="60%" width="100%" layout="responsive" src={company.logo} alt="Company Logo" className="img-fluid" />
                                   </div>
                                   <div className="col-9">
                                     <blockquote className="blockquote text-center mb-0">
@@ -174,6 +173,7 @@ const About = ({
                                         {' '}
                                         <small>
                                           (
+                                          {' '}
                                           {company.from}
                                           {' '}
                                           -
