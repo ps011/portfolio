@@ -17,7 +17,7 @@ const About = ({
   useEffect(() => {
     aboutRef.current.innerHTML = about
   }, [about])
-  const activateTab = (contentRef, tabRef) => {
+  const activateTab = (contentRef, tabRef?) => {
     aboutTabContent.current.classList.remove('active')
     skillsTabContent.current.classList.remove('active')
     experienceTabContent.current.classList.remove('active')
