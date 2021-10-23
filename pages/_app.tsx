@@ -10,15 +10,16 @@ import "slick-carousel/slick/slick-theme.css";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import * as gtag from "../lib/gtag";
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = true //process.env.NODE_ENV === "production";
 export default function MyApp({ Component, pageProps }) {
   const router = useRouter();
   useEffect(() => {
     AOS.init({
       easing: "ease-out-cubic",
-      offset: 50,
+      offset: 0,
     });
     const handleRouteChange = (url) => {
+      console.log(url);
       /* invoke analytics function only for production */
       if (isProduction) gtag.pageview(url);
     };
