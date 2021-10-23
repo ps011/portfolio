@@ -39,14 +39,14 @@ const Blog = ({ blogs }) => {
   return (
     <section className="section section-lg pt-lg-0 mt-5" id="blog-posts">
       <div className="container">
-        { Object.keys(result).length && Object.keys(result).map((sectionName) => (
-          <div style={{ marginTop: '32px' }}>
+        {Object.keys(result).length && Object.keys(result).map((sectionName) => (
+          <div style={{ marginTop: '32px' }} key={sectionName}>
             <h3 className="text-center mb-4 display-3">
               {kebabCaseToSentenceCase(sectionName)}
             </h3>
             <Slider {...settings}>
-              {result[sectionName].length && result[sectionName].map((blog) => {
-                if (!blog.hidden) return <Card key={blog.url} {...blog} />
+              {result[sectionName].length && result[sectionName].map((blog, index) => {
+                if (!blog.hidden) return <Card key={index} {...blog} />
                 return null
               })}
             </Slider>

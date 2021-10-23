@@ -48,7 +48,7 @@ const About = ({
                 </div>
                 <div className="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                   <div className={`${s.actions} card-profile-actions py-4 mt-lg-0`}>
-                    { profiles.length && profiles.map((profile) => (
+                    {profiles.length && profiles.map((profile) => (
                       <a href={profile.url} key={profile.name} target="_blank" rel="noreferrer" className={`btn btn-${profile.name} btn-sm`}>
                         <i className={`fa fa-${profile.name}`} />
                       </a>
@@ -57,7 +57,7 @@ const About = ({
                 </div>
                 <div className="col-lg-4 order-lg-1">
                   <div className="card-profile-stats d-flex justify-content-center">
-                    { stats.length && stats.map((stat) => (
+                    {stats.length && stats.map((stat) => (
                       <div key={stat.label}>
                         <span className="heading">{stat.count}</span>
                         <span className="description">{stat.label}</span>
@@ -140,13 +140,13 @@ const About = ({
                                   height={84}
                                   width={84}
                                   key={skill.logo}
-                                  className={`${s['img-fluid']} text-center col-3 col-sm-2 m-2`}
+                                  className={`${s['img-fluid']} text-center col-4 col-md-2 m-2`}
                                   src={skill.logo}
                                   alt={skill.name}
-                                  lazy
+                                  lazy="true"
                                 />
                               ))
-                          }
+                            }
                           </div>
                           <div className="tab-pane" ref={aboutTabContent} onClick={() => activateTab(aboutTabContent)}>
                             <p className="description" ref={aboutRef}>
