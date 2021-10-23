@@ -140,10 +140,10 @@ const About = ({
                                   height={84}
                                   width={84}
                                   key={skill.logo}
-                                  className={`${s['img-fluid']} text-center col-4 col-md-2 m-2`}
+                                  className={`${s['img-fluid']} text-center col-3 col-sm-2 m-2`}
                                   src={skill.logo}
                                   alt={skill.name}
-                                  lazy="true"
+                                  lazy
                                 />
                               ))
                             }
