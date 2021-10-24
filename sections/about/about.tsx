@@ -92,7 +92,7 @@ const About = ({
                         <li className="nav-item">
                           <a
                             aria-selected="false"
-                            href="#p"
+                            href="#"
                             role="tab"
                             className="mb-sm-3 mb-md-0 active nav-link"
                             ref={skillsTab}
@@ -105,7 +105,7 @@ const About = ({
                         <li className="nav-item">
                           <a
                             aria-selected="true"
-                            href="#pablo"
+                            href="#"
                             role="tab"
                             className="mb-sm-3 mb-md-0 nav-link"
                             ref={aboutTab}
@@ -118,7 +118,7 @@ const About = ({
                         <li className="nav-item">
                           <a
                             aria-selected="false"
-                            href="#pablo"
+                            href="#"
                             role="tab"
                             className="mb-sm-3 mb-md-0 nav-link"
                             ref={experienceTab}
