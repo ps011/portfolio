@@ -1,4 +1,11 @@
 CHANGELOG
+### 0.0.8 (2021-08-29)
+
+
+### Bug Fixes
+
+* **about:** skills images ([5ba9dee](https://github.com/ps011/portfolio/commit/5ba9dee1f23614fbf2ec24fc98e9cc65953fc8d6))
+
 ### 0.0.7 (2021-06-18)
 
 
