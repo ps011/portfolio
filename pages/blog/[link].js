@@ -4,9 +4,12 @@ import MarkdownRenderer from '../../components/markdown-renderer/markdown-render
 import s from './[link].module.scss'
 
 export async function getStaticProps(context) {
-  let data = await fetch(`${process.env.BASE_URL}/blogs/${context.params.link}`)
-  data = await data.json()
-  return { props: data }
+  if (!context.params.link.startsWith('http')) {
+    let data = await fetch(`${process.env.BASE_URL}/blogs/${context.params.link}`)
+    data = await data.json()
+    return { props: data }
+  }
+  return { props: {} };
 }
 
 export async function getStaticPaths() {
