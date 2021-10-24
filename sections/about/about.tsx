@@ -17,7 +17,7 @@ const About = ({
   useEffect(() => {
     aboutRef.current.innerHTML = about
   }, [about])
-  const activateTab = (contentRef, tabRef) => {
+  const activateTab = (contentRef, tabRef?) => {
     aboutTabContent.current.classList.remove('active')
     skillsTabContent.current.classList.remove('active')
     experienceTabContent.current.classList.remove('active')
@@ -92,7 +92,7 @@ const About = ({
                         <li className="nav-item">
                           <a
                             aria-selected="false"
-                            href="#p"
+                            href="#"
                             role="tab"
                             className="mb-sm-3 mb-md-0 active nav-link"
                             ref={skillsTab}
@@ -105,7 +105,7 @@ const About = ({
                         <li className="nav-item">
                           <a
                             aria-selected="true"
-                            href="#pablo"
+                            href="#"
                             role="tab"
                             className="mb-sm-3 mb-md-0 nav-link"
                             ref={aboutTab}
@@ -118,7 +118,7 @@ const About = ({
                         <li className="nav-item">
                           <a
                             aria-selected="false"
-                            href="#pablo"
+                            href="#"
                             role="tab"
                             className="mb-sm-3 mb-md-0 nav-link"
                             ref={experienceTab}
@@ -140,7 +140,7 @@ const About = ({
                                   height={84}
                                   width={84}
                                   key={skill.logo}
-                                  className={`${s['img-fluid']} text-center col-3 col-sm-2 m-2`}
+                                  className={`${s['img-fluid']} text-center col-4 col-md-2 m-2`}
                                   src={skill.logo}
                                   alt={skill.name}
                                 />
