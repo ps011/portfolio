@@ -3,19 +3,31 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const Card = ({
-  _id, thumbnail, title, shortDescription, tags = [], link,
+  thumbnail, title, shortDescription, tags, link,
 }) => {
   let tagsArray
-  if (typeof tags === 'string') {
-    tagsArray = tags.split(',');
+  if (tags) {
+    if (typeof tags === 'string') {
+      tagsArray = tags.split(',');
+    } else {
+      tagsArray = tags
+    }
   } else {
-    tagsArray = tags
+    tagsArray = [];
+  }
+
+  const getLink = (link: string) => {
+    if (link.startsWith("http")) {
+      return link;
+    } else {
+      return `/blog/${link}`
+    }
   }
   return (
     <div style={{ display: 'inline-block', padding: '8px' }}>
-      <div className="card shadow border-0 my-2" data-aos-offset="300" data-aos="flip-right">
+      <div className="card shadow border-0 my-2" data-aos="flip-right">
         <div className="card-body">
-          { thumbnail
+          {thumbnail
             ? (
               <div className="mb-4">
                 <Image src={thumbnail} className="img-fluid" alt={`Blog ${title} Description`} layout="responsive" width="100%" height="100%" />
@@ -28,9 +40,9 @@ const Card = ({
           <h6 className="text-primary text-uppercase">{title}</h6>
           <p className="description mt-3">{shortDescription}</p>
           <div>
-            { tagsArray.length ? tagsArray.map((tag) => <span key={tag} className="badge badge-pill badge-primary">{tag}</span>) : ''}
+            {tagsArray.length ? tagsArray.map((tag) => <span key={tag} className="badge badge-pill badge-primary">{tag}</span>) : ''}
           </div>
-          <Link href={link || `/blog/${_id}`}>
+          <Link href={getLink(link)}>
             <a className="btn btn-primary mt-4">Read more</a>
           </Link>
         </div>
