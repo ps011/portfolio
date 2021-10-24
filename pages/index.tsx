@@ -9,6 +9,7 @@ import Footer from '../sections/footer/footer'
 import Github from '../components/github/github'
 import Stackoverflow from '../components/stackoverflow/stackoverflow'
 
+import { Blog as tBlog } from '../interfaces/blog';
 export async function getStaticProps() {
   const siteData = await fetch(`${process.env.BASE_URL}/site-datas/`)
   const data = await siteData.json()
@@ -17,7 +18,7 @@ export async function getStaticProps() {
   const aboutData = await about.json()
 
   const blogs = await fetch(`${process.env.BASE_URL}/blogs`)
-  const blogsData = await blogs.json();
+  const blogsData: tBlog[] = await blogs.json();
   if (!data) {
     return {
       notFound: true,
