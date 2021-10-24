@@ -1,21 +1,21 @@
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import MarkdownRenderer from '../../components/markdown-renderer/markdown-renderer'
-import s from './[id].module.scss'
+import s from './[link].module.scss'
 
 export async function getStaticProps(context) {
-  let data = await fetch(`${process.env.BASE_URL}/blogs/${context.params.id}`)
+  let data = await fetch(`${process.env.BASE_URL}/blogs/${context.params.link}`)
   data = await data.json()
   return { props: data }
 }
 
 export async function getStaticPaths() {
-  const data = await fetch(`${process.env.BASE_URL}/blogs/ids`)
+  const data = await fetch(`${process.env.BASE_URL}/blogs`)
   const posts = await data.json()
   return {
     paths: posts.map((post) => ({
       params: {
-        id: post.id,
+        link: post.link,
       },
     })),
     fallback: false,
