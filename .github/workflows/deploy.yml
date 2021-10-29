@@ -1,7 +1,7 @@
 name: Deploy to Heroku
 
-on: 
-  push: 
+on:
+  push:
     branches:
       - main
 
@@ -13,13 +13,14 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-        with: 
-          ref: 'main'
+        with:
+          ref: "main"
       - name: Release and Generate Changelog
         run: |
           npm install
           git config --global user.email "prasheelsoni11@gmail.com"
           git config --global user.name "ps011"
+          npm run build
           npm run release
           git push origin main
         env:
@@ -27,7 +28,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.CUSTOM_TOKEN }}
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.4.6
-        with: 
+        with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "ps11-next"
           heroku_email: "prasheelsoni11@gmail.com"

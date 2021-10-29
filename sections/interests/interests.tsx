@@ -12,14 +12,14 @@ const Interests = ({ illustration, interests }) => (
           </div>
         </div>
         <div className="col-lg-6 order-lg-1 mb-5">
-          { interests.length && interests.map((interest, index) => (
+          {interests.length && interests.map((interest, index) => (
             <HorizontalCard
               key={interest.title}
               title={interest.title}
               description={interest.description}
               type={index % 2 === 0 ? 'dark' : 'light'}
             />
-          )) }
+          ))}
         </div>
       </div>
     </div>

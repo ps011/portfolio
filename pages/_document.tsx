@@ -4,7 +4,7 @@ import Document, {
 
 import { GA_TRACKING_ID } from '../lib/gtag';
 
-const isProduction = true //process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV === 'production';
 
 export default class MyDocument extends Document {
   render() {

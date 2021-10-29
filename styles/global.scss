@@ -1,31 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
 
 header {
-    font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
 }
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Comfortaa', cursive;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Comfortaa", cursive;
 }
 
 .slides {
-    position: relative;
-    .slick-prev, .slick-next {
-      position: absolute;
-      top: 40%;
-    }
-    .slick-prev {
-      left: -7%;
-    }
-    .slick-prev::before, .slick-next::before {
-        color: black;
-        font-size: 60px;
-        z-index: 999;
-    }
-    .slick-next {
-      right: -3%;
-    }
+  position: relative;
+  .slick-prev,
+  .slick-next {
+    position: absolute;
+    top: 40%;
   }
-  
+  .slick-prev {
+    left: -7%;
+  }
+  .slick-prev::before,
+  .slick-next::before {
+    color: black;
+    font-size: 60px;
+    z-index: 999;
+  }
+  .slick-next {
+    right: -3%;
+  }
+}
