@@ -26,6 +26,7 @@ export async function getStaticProps() {
   }
   return {
     props: { data: data[0], about: aboutData[0], blogs: blogsData },
+    revalidate: 30 * 60 * 1000,
   }
 }
 
@@ -68,5 +69,3 @@ Home.defaultProps = {
   about: {},
   blogs: [],
 }
-
-// TODO: Make about and banner attributes to be fetched from server/service
