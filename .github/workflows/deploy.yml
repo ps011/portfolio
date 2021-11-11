@@ -26,6 +26,7 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.CUSTOM_TOKEN }}
+          BASE_URL: "http://fast-cove-20932.herokuapp.com"
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.4.6
         with:
