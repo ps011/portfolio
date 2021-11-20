@@ -29,7 +29,7 @@ const Blog = ({
   title, banner, profileLink, author, date, content,
 }) => {
   const router = useRouter()
-  const currentUrl = router.pathName
+  const currentUrl = router.pathname
   const fbSharingUrl = `https://www.facebook.com/sharer.php?u=${currentUrl}`
   const twitterSharingUrl = `https://twitter.com/intent/tweet?&url=${currentUrl}`
   const linkedinSharingUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}`
