@@ -2,7 +2,7 @@ import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
 import { useCallback, useState } from "react";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const photosData = await fetch(`${process.env.BASE_URL}/photo-galleries/`)
     const photos = await photosData.json()
 
