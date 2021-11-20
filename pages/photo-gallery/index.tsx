@@ -12,8 +12,7 @@ export async function getServerSideProps() {
         }
     }
     return {
-        props: { photos },
-        revalidate: 30 * 60 * 1000,
+        props: { photos }
     }
 }
 
