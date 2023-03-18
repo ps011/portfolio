@@ -1,5 +1,4 @@
 import Gallery from "react-photo-gallery";
-import Carousel, { Modal, ModalGateway } from "react-images";
 import { useCallback, useState } from "react";
 
 export async function getStaticProps() {
@@ -33,20 +32,6 @@ const PhotoGallery = ({ photos }) => {
     return (
         <div>
             <Gallery photos={photos} onClick={openLightbox} />
-            <ModalGateway>
-                {viewerIsOpen ? (
-                    <Modal onClose={closeLightbox}>
-                        <Carousel
-                            currentIndex={currentImage}
-                            views={photos.map(x => ({
-                                ...x,
-                                srcset: x.srcSet,
-                                caption: x.caption
-                            }))}
-                        />
-                    </Modal>
-                ) : null}
-            </ModalGateway>
         </div>
     );
 }
