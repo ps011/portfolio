@@ -4,11 +4,11 @@ const HorizontalCard = ({
   title, description, type,
 }) => (title || description) && (type === 'dark'
   ? (
-    <div className="card shadow shadow-lg--hover" data-aos="fade-right">
+    <div className="card shadow shadow-lg--hover my-2" data-aos="fade-right">
       <div className="card-body">
         <div className="d-flex px-3">
           <div className="pl-4">
-            <h5 className="title text-success">{title}</h5>
+            <h5 className="title text-primary font-weight-bold">{title}</h5>
             <p>
               {description}
             </p>

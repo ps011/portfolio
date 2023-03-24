@@ -92,7 +92,6 @@ const About = ({
                         <li className="nav-item">
                           <a
                             aria-selected="false"
-                            href="#"
                             role="tab"
                             className="mb-sm-3 mb-md-0 active nav-link"
                             ref={skillsTab}
@@ -105,7 +104,6 @@ const About = ({
                         <li className="nav-item">
                           <a
                             aria-selected="true"
-                            href="#"
                             role="tab"
                             className="mb-sm-3 mb-md-0 nav-link"
                             ref={aboutTab}
@@ -118,7 +116,6 @@ const About = ({
                         <li className="nav-item">
                           <a
                             aria-selected="false"
-                            href="#"
                             role="tab"
                             className="mb-sm-3 mb-md-0 nav-link"
                             ref={experienceTab}
@@ -130,71 +127,67 @@ const About = ({
                         </li>
                       </ul>
                     </div>
-                    <div className="shadow card">
-                      <div className="card-body">
-                        <div className="tab-content">
-                          <div className="tab-pane active" ref={skillsTabContent}>
-                            {
-                              skills.length && skills.map((skill) => (
-                                <img
-                                  height={84}
-                                  width={84}
-                                  key={skill.logo}
-                                  className={`${s['img-fluid']} text-center col-4 col-md-2 m-2`}
-                                  src={skill.logo}
-                                  alt={skill.name}
-                                />
-                              ))
-                            }
-                          </div>
-                          <div className="tab-pane" ref={aboutTabContent} onClick={() => activateTab(aboutTabContent)}>
-                            <p className="description" ref={aboutRef}>
-                              {about}
-                            </p>
-                          </div>
-                          <div className="tab-pane" ref={experienceTabContent} onClick={() => activateTab(experienceTabContent)}>
-                            <main>
-                              {experience.length && experience.map((company) => (
-                                <div className={`${s.experience} row`} key={company.logo}>
-                                  <div className="col-3">
-                                    <Image height="60%" width="100%" layout="responsive" src={company.logo} alt="Company Logo" className="img-fluid" />
-                                  </div>
-                                  <div className="col-9">
-                                    <blockquote className="blockquote text-center mb-0">
-                                      <h4 className="mb-0">
-                                        {company.designation}
-                                        {' '}
-                                        @
-                                        {' '}
-                                        {company.company}
-                                      </h4>
-                                      <p className="text-muted mb-0">
-                                        {' '}
-                                        <small>
-                                          (
-                                          {' '}
-                                          {company.from}
-                                          {' '}
-                                          -
-                                          {company.to}
-                                          {' '}
-                                          )
-                                        </small>
-                                      </p>
-                                    </blockquote>
-                                    <p className="my-2">
-                                      <i className="ni ni-pin-3 mr-2" />
+                    <div className="tab-content">
+                      <div className="tab-pane active" ref={skillsTabContent}>
+                        {
+                          skills.length && skills.map((skill) => (
+                            <img
+                              height="100%"
+                              width={84}
+                              key={skill.logo}
+                              className={`${s['img-fluid']} text-center col-4 col-md-2 m-2`}
+                              src={skill.logo}
+                              alt={skill.name}
+                            />
+                          ))
+                        }
+                      </div>
+                      <div className="tab-pane" ref={aboutTabContent} onClick={() => activateTab(aboutTabContent)}>
+                        <p className="description" ref={aboutRef}>
+                          {about}
+                        </p>
+                      </div>
+                      <div className="tab-pane" ref={experienceTabContent} onClick={() => activateTab(experienceTabContent)}>
+                        <main>
+                          {experience.length && experience.map((company) => (
+                            <div className={`${s.experience} row`} key={company.logo}>
+                              <div className="col-3">
+                                <Image height="60%" width="100%" layout="responsive" src={company.logo} alt="Company Logo" className="img-fluid" />
+                              </div>
+                              <div className="col-9">
+                                <blockquote className="blockquote text-center mb-0">
+                                  <h4 className="mb-0">
+                                    {company.designation}
+                                    {' '}
+                                    @
+                                    {' '}
+                                    {company.company}
+                                  </h4>
+                                  <p className="text-muted mb-0">
+                                    {' '}
+                                    <small>
+                                      (
                                       {' '}
-                                      {company.location}
-                                    </p>
-                                    <br />
-                                    {company.technologies && company.technologies.map((technology) => <span key={technology} className="badge badge-pill badge-primary mx-1">{technology}</span>)}
-                                  </div>
-                                </div>
-                              ))}
-                            </main>
-                          </div>
-                        </div>
+                                      {company.from}
+                                      {' '}
+                                      -
+                                      {company.to}
+                                      {' '}
+                                      )
+                                    </small>
+                                  </p>
+                                </blockquote>
+                                <p className="my-2">
+                                  <i className="ni ni-pin-3 mr-2" />
+                                  {' '}
+                                  {company.location}
+                                </p>
+                                <br />
+                                {company.technologies && company.technologies.map((technology) => <span key={technology} className="badge badge-pill badge-primary mx-1">{technology}</span>)}
+                              </div>
+                            </div>
+                          ))}
+                        </main>
                       </div>
                     </div>
                   </div>

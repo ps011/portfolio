@@ -43,7 +43,7 @@ const Card = ({
             {tagsArray.length ? tagsArray.map((tag) => <span key={tag} className="badge badge-pill badge-primary">{tag}</span>) : ''}
           </div>
           <Link href={getLink(link)}>
-            <a className="btn btn-primary mt-4">Read more</a>
+            <a className="btn btn-primary mt-4" target="_blank">Read more</a>
           </Link>
         </div>
       </div>

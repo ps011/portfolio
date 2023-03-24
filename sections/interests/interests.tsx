@@ -17,7 +17,7 @@ const Interests = ({ illustration, interests }) => (
               key={interest.title}
               title={interest.title}
               description={interest.description}
-              type={index % 2 === 0 ? 'dark' : 'light'}
+              type="dark"
             />
           ))}
         </div>

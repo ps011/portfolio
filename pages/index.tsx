@@ -6,7 +6,7 @@ import About from '../sections/about/about'
 import Interests from '../sections/interests/interests'
 import Blog from '../sections/blog/blog'
 import Footer from '../sections/footer/footer'
-import Github from '../components/github/github'
+// import Github from '../components/github/github'
 import Stackoverflow from '../components/stackoverflow/stackoverflow'
 
 import { Blog as tBlog } from '../interfaces/blog';
@@ -35,7 +35,7 @@ export default function Home({
 }) {
   const { meta, banner, header } = data
   const stackoverflow = about.profiles.find((profile) => profile.name === 'stackoverflow')
-  const github = about.profiles.find((profile) => profile.name === 'github')
+  // const github = about.profiles.find((profile) => profile.name === 'github')
   return (
     <div className="theme-dark">
       <Meta {...meta} />
@@ -43,7 +43,7 @@ export default function Home({
       <Banner {...banner} />
       <About {...about} />
       <Interests interests={about.interests} />
-      <Github username={github.username} />
+      {/*<Github username={github.username} />*/}
       <Stackoverflow
         url={stackoverflow.url}
         id={stackoverflow.id}
