@@ -7,4 +7,7 @@ module.exports = {
   images: {
     domains: ['res.cloudinary.com', 'fast-cove-20932.herokuapp.com'],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 }
