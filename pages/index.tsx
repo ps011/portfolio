@@ -8,8 +8,11 @@ import Blog from '../sections/blog/blog'
 import Footer from '../sections/footer/footer'
 import Github from '../components/github/github'
 import Stackoverflow from '../components/stackoverflow/stackoverflow'
+import {Map} from "../components/map/map";
 
 import { Blog as tBlog } from '../interfaces/blog';
+
+
 export async function getStaticProps() {
   const siteData = await fetch(`${process.env.BASE_URL}/site-datas/`)
   const data = await siteData.json()
@@ -50,6 +53,7 @@ export default function Home({
         name={stackoverflow.username}
       />
       <Blog blogs={blogs} />
+      <Map countriesVisited={about.countriesVisited}/>
       <Footer />
       <main />
     </div>
