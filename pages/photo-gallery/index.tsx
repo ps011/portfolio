@@ -1,7 +1,8 @@
 const PhotoGallery = () => {
     return (
         <div>
-            Photos will be here soon
+            {/*<Gallery photos={photos} onClick={openLightbox} />*/}
+            <Instagram />
         </div>
     );
 };
