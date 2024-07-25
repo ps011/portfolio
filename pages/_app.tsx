@@ -5,6 +5,8 @@ import '../styles/vendor/font-awesome/css/font-awesome.min.css'
 import '../styles/vendor/nucleo/css/nucleo.css'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import * as gtag from "../lib/gtag";
