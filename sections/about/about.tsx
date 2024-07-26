@@ -149,10 +149,10 @@ const About = ({
                       </div>
                       <div className="tab-pane" ref={experienceTabContent} onClick={() => activateTab(experienceTabContent)}>
                         <main>
-                          {experience.length && experience.map((company) => (
-                            <div className={`${s.experience} row`} key={company.logo}>
+                          {experience.length && experience.map((company, index) => (
+                            <div className={`${s.experience} row`} key={index}>
                               <div className="col-3">
-                                <Image height="60%" width="100%" layout="responsive" src={company.logo} alt="Company Logo" className="img-fluid" />
+                                <Image height={60} width={100} layout="responsive" src={company.logo} alt="Company Logo" className="img-fluid" />
                               </div>
                               <div className="col-9">
                                 <blockquote className="blockquote text-center mb-0">
@@ -212,19 +212,6 @@ About.propTypes = {
   education: PropTypes.string,
   stats: PropTypes.arrayOf(PropTypes.object),
   profiles: PropTypes.arrayOf(PropTypes.object),
-}
-
-About.defaultProps = {
-  about: undefined,
-  skills: [],
-  experience: [],
-  imageUrl: undefined,
-  name: undefined,
-  location: undefined,
-  designation: undefined,
-  education: undefined,
-  stats: [],
-  profiles: [],
 }
 
 export default About

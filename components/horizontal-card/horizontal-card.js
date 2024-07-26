@@ -32,10 +32,4 @@ HorizontalCard.propTypes = {
   type: PropTypes.oneOf(['dark', 'light']),
 }
 
-HorizontalCard.defaultProps = {
-  title: '',
-  description: '',
-  type: 'dark',
-}
-
 export default HorizontalCard

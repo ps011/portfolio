@@ -45,7 +45,7 @@ export default function Home({
       <Header {...header} />
       <Banner {...banner} />
       <About {...about} />
-      <Interests interests={about.interests} />
+      <Interests interests={about.interests} illustration={"/images/illustrations/interests.svg"} />
       <Github username={github.username} />
       <Stackoverflow
         url={stackoverflow.url}
@@ -64,12 +64,4 @@ Home.propTypes = {
   data: PropTypes.object,
   about: PropTypes.object,
   blogs: PropTypes.arrayOf(PropTypes.object),
-}
-
-Home.defaultProps = {
-  meta: {},
-  header: {},
-  banner: {},
-  about: {},
-  blogs: [],
 }

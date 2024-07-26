@@ -18,6 +18,3 @@ Stackoverflow.propTypes = {
   label: PropTypes.string,
 }
 
-Stackoverflow.defaultProps = {
-  label: 'My Stackoverflow Stats',
-}

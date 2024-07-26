@@ -2,7 +2,10 @@ import PropTypes from 'prop-types'
 import HorizontalCard from '../../components/horizontal-card/horizontal-card'
 import s from './interests.module.scss'
 
-const Interests = ({ illustration, interests }) => (
+const Interests = ({ illustration, interests } =  {
+  illustration: '/images/illustrations/interests.svg',
+  interests: [],
+}) => (
   <section className="section pb-0 bg-primary" id="interests">
     <div className="container">
       <div className="row row-grid align-items-center">
@@ -34,11 +37,6 @@ const Interests = ({ illustration, interests }) => (
 Interests.propTypes = {
   illustration: PropTypes.string,
   interests: PropTypes.arrayOf(PropTypes.object),
-}
-
-Interests.defaultProps = {
-  illustration: '/images/illustrations/interests.svg',
-  interests: [],
 }
 
 export default Interests

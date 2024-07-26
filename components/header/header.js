@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import s from './header.module.scss'
 
-const Header = ({ logoUrl, navMap }) => (
+const Header = ({ logoUrl, navMap = [] }) => (
   <div className="bg-primary">
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary header-nav container">
       <a href="/">
@@ -34,10 +34,6 @@ const Header = ({ logoUrl, navMap }) => (
 Header.propTypes = {
   logoUrl: PropTypes.string.isRequired,
   navMap: PropTypes.arrayOf(PropTypes.object),
-}
-
-Header.defaultProps = {
-  navMap: [],
 }
 
 export default Header
