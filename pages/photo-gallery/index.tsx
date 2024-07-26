@@ -1,4 +1,3 @@
-import Gallery from "react-photo-gallery";
 import { useCallback, useState } from "react";
 
 export async function getServerSideProps() {
@@ -30,7 +29,7 @@ const PhotoGallery = ({ photos }) => {
     };
     return (
         <div>
-            <Gallery photos={photos} onClick={openLightbox} />
+            Photos will be here soon
         </div>
     );
 }

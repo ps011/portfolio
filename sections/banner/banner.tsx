@@ -5,6 +5,12 @@ import Image from 'next/image'
 
 const Banner = ({
   illustration, texts, ctaLabel, ctaUrl, downloadable,
+} = {
+  illustration: '/images/illustrations/banner.svg',
+  texts: [],
+  ctaLabel: undefined,
+  ctaUrl: '#',
+  downloadable: false,
 }) => {
   let toRotate
   let el
@@ -75,7 +81,7 @@ const Banner = ({
       <div className="container py-md">
         <div className="row justify-content-between align-items-center">
           <div className="col-lg-6 mb-lg-auto">
-            <Image height="100%" width="100%" layout="responsive" src={illustration} alt="Banner logo" data-aos="fade-right" className="img-fluid" />
+            <Image height="100" width="100" layout="responsive" src={illustration} alt="Banner logo" data-aos="fade-right" className="img-fluid" />
           </div>
           <div className="col-lg-5 mb-5 mb-lg-0">
             <h4 className={s.static}>Hi, I&apos;m</h4>
@@ -108,14 +114,6 @@ Banner.propTypes = {
   ctaLabel: PropTypes.string,
   ctaUrl: PropTypes.string,
   downloadable: PropTypes.bool,
-}
-
-Banner.defaultProps = {
-  illustration: '/images/illustrations/banner.svg',
-  texts: [],
-  ctaLabel: undefined,
-  ctaUrl: '#',
-  downloadable: false,
 }
 
 export default Banner

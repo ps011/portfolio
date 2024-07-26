@@ -34,8 +34,9 @@ const Card = ({
                     className="img-fluid"
                     alt={`Blog ${title} Description`}
                     layout="responsive"
-                    width="100%"
-                    height="100%" />
+                    width={200}
+                    height={200}
+                />
               </div>
             ) : (
               <div className="icon icon-shape icon-shape-primary rounded-circle mb-4">
@@ -52,13 +53,13 @@ const Card = ({
               )
                   : ''}
           </div>
-          <Link href={getLink(link)}>
-            <a className="btn btn-primary mt-4" target="_blank">Read more</a>
+          <Link href={getLink(link)} className="btn btn-primary mt-4" target="_blank">
+            Read more
           </Link>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 Card.propTypes = {

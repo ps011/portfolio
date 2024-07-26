@@ -1,9 +1,20 @@
 import PropTypes from 'prop-types'
 import Head from 'next/head'
 import Link from 'next/link'
+import Script from "next/script";
 
 const Meta = ({
   title, desc, url, image, css, js, name, twitterHandle, manifest, keywords, themeColor,
+} = {
+    css: [],
+    js: [],
+    image: 'https://res.cloudinary.com/designu/image/upload/v1601199790/images/about/profile-image-3.jpg',
+    url: 'https://ps011.github.io',
+    twitterHandle: '@soniprasheel',
+    manifest: undefined,
+    keywords: ['Prasheel Soni', 'web developer', 'freelancer', 'full stack developer', 'full stack web developer', 'web developer', 'React', 'ReactJS', 'Redux', 'AngularJS', 'Angular', 'Stencil', 'Ionic', 'Javascript', 'Node.JS'],
+    // TODO: Change default theme color
+    themeColor: '#ffffff',
 }) => (
   <Head>
     <title>{title}</title>
@@ -35,10 +46,11 @@ const Meta = ({
     <link rel="canonical" href={`${url}`} />
     <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
     <link rel="manifest" href={manifest} />
-    <script src="/js/bootstrap.bundle.min.js" />
-    {
+      <Script src="/js/bootstrap.bundle.min.js" />
+
+      {
             css.length
-            && css.map((c) => <Link rel="stylesheet" href={`${c}`} />)
+            && css.map((c) => <Link rel="stylesheet" href={`${c}`} legacyBehavior />)
         }
     {
             js.length
@@ -59,17 +71,5 @@ Meta.propTypes = {
   manifest: PropTypes.string,
   keywords: PropTypes.arrayOf(PropTypes.string),
   themeColor: PropTypes.string,
-}
-
-Meta.defaultProps = {
-  css: [],
-  js: [],
-  image: 'https://res.cloudinary.com/designu/image/upload/v1601199790/images/about/profile-image-3.jpg',
-  url: 'https://ps011.github.io',
-  twitterHandle: '@soniprasheel',
-  manifest: undefined,
-  keywords: ['Prasheel Soni', 'web developer', 'freelancer', 'full stack developer', 'full stack web developer', 'web developer', 'React', 'ReactJS', 'Redux', 'AngularJS', 'Angular', 'Stencil', 'Ionic', 'Javascript', 'Node.JS'],
-  // TODO: Change default theme color
-  themeColor: '#ffffff',
 }
 export default Meta
