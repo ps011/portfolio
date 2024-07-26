@@ -1,7 +1,7 @@
 import Gallery from "react-photo-gallery";
 import { useCallback, useState } from "react";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const photosData = await fetch(`${process.env.BASE_URL}/photo-galleries/`)
     const photos = await photosData.json()
 
@@ -11,8 +11,7 @@ export async function getStaticProps() {
         }
     }
     return {
-        props: { photos },
-        revalidate: 30 * 60 * 1000,
+        props: { photos }
     }
 }
 
