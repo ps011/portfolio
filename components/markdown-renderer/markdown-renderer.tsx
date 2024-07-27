@@ -1,9 +1,8 @@
 import {useCallback, useEffect, useState} from 'react'
 import remark from 'remark'
 import html from 'remark-html'
-import PropTypes from 'prop-types'
 
-export default function MarkdownRenderer({ content }) {
+export default function MarkdownRenderer({ content }: {content: string}) {
   const [data, setData] = useState('')
 
   const fetchAndSetContent = useCallback(async () => {
@@ -24,8 +23,4 @@ export default function MarkdownRenderer({ content }) {
       />
     </div>
   )
-}
-
-MarkdownRenderer.propTypes = {
-  content: PropTypes.string.isRequired,
 }

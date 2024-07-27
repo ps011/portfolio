@@ -1,11 +1,31 @@
 import { useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import Image from 'next/image'
 import s from './about.module.scss';
 
+interface AboutProps {
+    about: string;
+    skills: { logo: string; name: string }[];
+    experience: {
+        logo: string;
+        designation: string;
+        company: string;
+        from: string;
+        to: string;
+        location: string;
+        technologies: string[];
+    }[];
+    imageUrl: string;
+    name: string;
+    location: string;
+    designation: string;
+    education: string;
+    stats: { count: number; label: string }[];
+    profiles: { name: string; url: string }[];
+
+}
 const About = ({
   name, about, imageUrl, location, designation, experience, education, skills, stats, profiles,
-}) => {
+}: AboutProps) => {
   const aboutTabContent = useRef(null);
   const skillsTabContent = useRef(null);
   const experienceTabContent = useRef(null);
@@ -199,19 +219,6 @@ const About = ({
       </section>
     </main>
   )
-}
-
-About.propTypes = {
-  about: PropTypes.string,
-  skills: PropTypes.arrayOf(PropTypes.object),
-  experience: PropTypes.arrayOf(PropTypes.object),
-  imageUrl: PropTypes.string,
-  name: PropTypes.string,
-  location: PropTypes.string,
-  designation: PropTypes.string,
-  education: PropTypes.string,
-  stats: PropTypes.arrayOf(PropTypes.object),
-  profiles: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default About

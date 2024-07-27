@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import Banner from '../sections/banner/banner'
 import Header from '../components/header/header'
 import Meta from '../components/meta/meta'
@@ -33,9 +32,16 @@ export async function getStaticProps() {
   }
 }
 
+interface HomeProps {
+    data: any;
+    about: any;
+    blogs: tBlog[];
+
+}
+
 export default function Home({
   data, about, blogs,
-}) {
+}: HomeProps) {
   const { meta, banner, header } = data
   const stackoverflow = about.profiles.find((profile) => profile.name === 'stackoverflow')
   const github = about.profiles.find((profile) => profile.name === 'github')
@@ -58,10 +64,4 @@ export default function Home({
       <main />
     </div>
   )
-}
-
-Home.propTypes = {
-  data: PropTypes.object,
-  about: PropTypes.object,
-  blogs: PropTypes.arrayOf(PropTypes.object),
 }
