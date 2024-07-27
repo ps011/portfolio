@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types'
-import s from './header.module.scss'
 
 const Header = ({ logoUrl, navMap = [] }) => (
   <div className="bg-primary">
@@ -19,8 +18,8 @@ const Header = ({ logoUrl, navMap = [] }) => (
         </div>
         <ul className="navbar-nav ml-lg-auto">
           { navMap.length ? navMap.map((item) => (
-            <li className="nav-item" key={item.href}>
-              <a className={`nav-link ${s.navFont}`} href={item.href}>
+            <li className="nav-item mr-4" key={item.href}>
+              <a className="text-white" href={item.href}>
                 {item.label}
               </a>
             </li>

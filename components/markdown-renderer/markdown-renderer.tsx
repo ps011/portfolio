@@ -1,17 +1,22 @@
-import { useEffect, useState } from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import remark from 'remark'
 import html from 'remark-html'
 import PropTypes from 'prop-types'
 
 export default function MarkdownRenderer({ content }) {
   const [data, setData] = useState('')
-  useEffect(async () => {
-    let text = await fetch(content);
-    text = await text.text();
-    text = await remark().use(html).process(text)
-    text = text.toString()
-    setData(text);
-  }, [content])
+
+  const fetchAndSetContent = useCallback(async () => {
+    const response = await fetch(content);
+    const text = await response.text();
+    const vFile = await remark().use(html).process(text)
+    setData(vFile.toString());
+  }, []);
+
+  useEffect(() => {
+    fetchAndSetContent();
+  }, [content]);
+
   return (
     <div className="container">
       <div
