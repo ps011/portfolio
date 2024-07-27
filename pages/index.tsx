@@ -36,7 +36,6 @@ interface HomeProps {
     data: any;
     about: any;
     blogs: tBlog[];
-
 }
 
 export default function Home({

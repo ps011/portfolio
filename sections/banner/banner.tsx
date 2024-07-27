@@ -72,17 +72,11 @@ const Banner = ({
   return (
     <section className="section-shaped">
       <div className="shape shape-style-1 shape-default">
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
       </div>
       <div className="container py-md">
         <div className="row justify-content-between align-items-center">
           <div className="col-lg-6 mb-lg-auto">
-            <Image height="100" width="100" layout="responsive" src={illustration} alt="Banner logo" data-aos="fade-right" className="img-fluid" />
+            <Image height="300" width="300" src={illustration} alt="Banner logo" data-aos="fade-right" className="img-fluid" />
           </div>
           <div className="col-lg-5 mb-5 mb-lg-0">
             <h4 className={s.static}>Hi, I&apos;m</h4>

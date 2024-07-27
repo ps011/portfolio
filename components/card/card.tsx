@@ -39,7 +39,6 @@ const Card = ({
                     src={thumbnail}
                     className="img-fluid"
                     alt={`Blog ${title} Description`}
-                    layout="responsive"
                     width={200}
                     height={200}
                 />
