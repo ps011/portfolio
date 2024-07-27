@@ -45,7 +45,7 @@ export default function Home({
   const stackoverflow = about.profiles.find((profile) => profile.name === "stackoverflow");
   const github = about.profiles.find((profile) => profile.name === "github");
   return (
-    <div className="theme-dark">
+    <div>
       <Meta {...meta} />
       <Header {...header} />
       <Banner {...banner} />
@@ -56,6 +56,7 @@ export default function Home({
         url={stackoverflow.url}
         id={stackoverflow.id}
         name={stackoverflow.username}
+        label="Stackoverflow"
       />
       <Blog blogs={blogs} />
       <Map countriesVisited={about.countriesVisited}/>

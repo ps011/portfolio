@@ -17,7 +17,7 @@ export default function MarkdownRenderer({ content }: {content: string}) {
   }, [content, fetchAndSetContent]);
 
   return (
-    <div className="container">
+    <div className="tw-container tw-mx-auto">
       <div
         dangerouslySetInnerHTML={{ __html: data }}
       />

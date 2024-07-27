@@ -1,8 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url('./vendor/react-tooltip.css');
 
-header {
-  font-family: "Comfortaa", cursive;
-}
 body {
   margin: 0;
   padding: 0;

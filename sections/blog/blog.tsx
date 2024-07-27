@@ -34,11 +34,11 @@ const Blog = ({blogs}: { blogs: any[] }) => {
     const kebabCaseToSentenceCase = (str) => str.split("-").map((word) => word[0].toUpperCase() + word.substring(1)).join(" ");
     const result = groupBy(blogs, (c) => c.type);
     return (
-        <section className="section section-lg pt-lg-0 mt-5" id="blog-posts">
-            <div className="container">
+        <section className="tw-mt-5 tw-container tw-mx-auto" id="blog-posts">
+            <div className="tw-container">
                 {Object.keys(result).length && Object.keys(result).map((sectionName) => (
                     <div style={{marginTop: "32px"}} key={sectionName}>
-                        <h3 className="text-center mb-4 display-3">
+                        <h3 className="tw-text-center tw-mb-4">
                             {kebabCaseToSentenceCase(sectionName)}
                         </h3>
                         <Slider {...settings}>
