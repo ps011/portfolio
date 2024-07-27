@@ -1,17 +1,17 @@
 import { useCallback, useState } from "react";
 
 export async function getServerSideProps() {
-    const photosData = await fetch(`${process.env.BASE_URL}/photo-galleries/`)
-    const photos = await photosData.json()
+    const photosData = await fetch(`${process.env.BASE_URL}/photo-galleries/`);
+    const photos = await photosData.json();
 
     if (!photos) {
         return {
             notFound: true,
-        }
+        };
     }
     return {
-        props: { photos }
-    }
+        props: { photos },
+    };
 }
 
 const PhotoGallery = ({ photos }) => {
@@ -32,6 +32,6 @@ const PhotoGallery = ({ photos }) => {
             Photos will be here soon
         </div>
     );
-}
+};
 
 export default PhotoGallery;

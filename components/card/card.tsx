@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import Image from 'next/image'
+import Link from "next/link";
+import Image from "next/image";
 
 interface CardProps {
   thumbnail: string;
@@ -13,10 +13,10 @@ const Card = ({
 }: CardProps) => {
   let tagsArray = [];
   if (tags) {
-    if (typeof tags === 'string') {
-      tagsArray = tags.split(',');
+    if (typeof tags === "string") {
+      tagsArray = tags.split(",");
     } else {
-      tagsArray = tags
+      tagsArray = tags;
     }
   }
 
@@ -24,12 +24,12 @@ const Card = ({
     if (link.startsWith("http")) {
       return link;
     } else {
-      return `/blog/${link}`
+      return `/blog/${link}`;
     }
-  }
+  };
 
   return (
-    <div style={{ display: 'inline-block', padding: '8px' }}>
+    <div style={{ display: "inline-block", padding: "8px" }}>
       <div className="card shadow border-0 my-2" data-aos="flip-right">
         <div className="card-body">
           {thumbnail
@@ -57,7 +57,7 @@ const Card = ({
                   tagsArray.map(
                   (tag) => <span key={tag} className="badge badge-pill badge-primary">{tag}</span>
               )
-                  : ''}
+                  : ""}
           </div>
           <Link href={getLink(link)} className="btn btn-primary mt-4" target="_blank">
             Read more
@@ -66,6 +66,6 @@ const Card = ({
       </div>
     </div>
   );
-}
+};
 
-export default Card
+export default Card;

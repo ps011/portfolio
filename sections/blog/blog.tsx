@@ -1,5 +1,5 @@
-import Slider from 'react-slick';
-import Card from '../../components/card/card'
+import Slider from "react-slick";
+import Card from "../../components/card/card";
 
 const Blog = ({ blogs }: {blogs: any[]}) => {
   const settings = {
@@ -9,7 +9,7 @@ const Blog = ({ blogs }: {blogs: any[]}) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    className: 'slides',
+    className: "slides",
     responsive: [
       {
         breakpoint: 2560,
@@ -32,28 +32,28 @@ const Blog = ({ blogs }: {blogs: any[]}) => {
   };
   // eslint-disable-next-line
   const groupBy = (xs, f) => xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r),
-    {})
-  const kebabCaseToSentenceCase = (str) => str.split('-').map((word) => word[0].toUpperCase() + word.substring(1)).join(' ')
+    {});
+  const kebabCaseToSentenceCase = (str) => str.split("-").map((word) => word[0].toUpperCase() + word.substring(1)).join(" ");
   const result = groupBy(blogs, (c) => c.type);
   return (
     <section className="section section-lg pt-lg-0 mt-5" id="blog-posts">
       <div className="container">
         {Object.keys(result).length && Object.keys(result).map((sectionName) => (
-          <div style={{ marginTop: '32px' }} key={sectionName}>
+          <div style={{ marginTop: "32px" }} key={sectionName}>
             <h3 className="text-center mb-4 display-3">
               {kebabCaseToSentenceCase(sectionName)}
             </h3>
             <Slider {...settings}>
               {result[sectionName].length && result[sectionName].map((blog, index) => {
-                if (!blog.hidden) return <Card key={index} {...blog} />
-                return null
+                if (!blog.hidden) return <Card key={index} {...blog} />;
+                return null;
               })}
             </Slider>
           </div>
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Blog
+export default Blog;

@@ -1,12 +1,12 @@
 interface HorizontalCardProps {
     title: string;
     description: string;
-    type: 'dark' | 'light';
+    type: "dark" | "light";
 
 }
 const HorizontalCard = ({
   title, description, type,
-}: HorizontalCardProps) => (title || description) && (type === 'dark'
+}: HorizontalCardProps) => (title || description) && (type === "dark"
   ? (
     <div className="card shadow shadow-lg--hover my-2" data-aos="fade-right">
       <div className="card-body">
@@ -28,6 +28,6 @@ const HorizontalCard = ({
       </div>
     </div>
   )
-)
+);
 
-export default HorizontalCard
+export default HorizontalCard;

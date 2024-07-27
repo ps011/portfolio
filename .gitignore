@@ -18,8 +18,9 @@
 # misc
 .DS_Store
 .husky/
-/.idea
-/.vscode
+.idea/
+.vscode/
+.idea/workspace.xml
 
 # debug
 npm-debug.log*
