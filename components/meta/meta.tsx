@@ -1,26 +1,30 @@
+/* eslint-disable react/require-default-props */
 import PropTypes from 'prop-types'
 import Head from 'next/head'
 import Link from 'next/link'
-import Script from "next/script";
+import Script from 'next/script';
 
 const Meta = ({
   title, desc, url, image, css, js, name, twitterHandle, manifest, keywords, themeColor,
 } = {
-    css: [],
-    js: [],
-    image: 'https://res.cloudinary.com/designu/image/upload/v1601199790/images/about/profile-image-3.jpg',
-    url: 'https://ps011.github.io',
-    twitterHandle: '@soniprasheel',
-    manifest: undefined,
-    keywords: ['Prasheel Soni', 'web developer', 'freelancer', 'full stack developer', 'full stack web developer', 'web developer', 'React', 'ReactJS', 'Redux', 'AngularJS', 'Angular', 'Stencil', 'Ionic', 'Javascript', 'Node.JS'],
-    // TODO: Change default theme color
-    themeColor: '#ffffff',
+  css: [],
+  js: [],
+  image: 'https://res.cloudinary.com/designu/image/upload/v1601199790/images/about/profile-image-3.jpg',
+  url: 'https://ps011.github.io',
+  twitterHandle: '@soniprasheel',
+  manifest: undefined,
+  keywords: ['Prasheel Soni', 'web developer', 'freelancer', 'full stack developer', 'full stack web developer', 'web developer', 'React', 'ReactJS', 'Redux', 'AngularJS', 'Angular', 'Stencil', 'Ionic', 'Javascript', 'Node.JS'],
+  // TODO: Change default theme color
+  themeColor: '#ffffff',
+    title: 'Prasheel Soni | Full Stack Developer',
+    desc: 'Prasheel Soni is a full stack developer with experience in React, Angular, Stencil, Ionic, Node.JS, and more.',
+    name: 'Prasheel Soni',
 }) => (
   <Head>
     <title>{title}</title>
     <meta name="description" content={desc} />
     <meta name="author" content="Prasheel Soni" />
-    <meta name="keywords" content={keywords} />
+    <meta name="keywords" content={keywords.toString()} />
     <meta property="og:type" content="website" />
     <meta name="og:title" property="og:title" content={title} />
     <meta name="og:description" property="og:description" content={desc} />
@@ -46,9 +50,9 @@ const Meta = ({
     <link rel="canonical" href={`${url}`} />
     <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
     <link rel="manifest" href={manifest} />
-      <Script src="/js/bootstrap.bundle.min.js" />
+    <Script src="/js/bootstrap.bundle.min.js" />
 
-      {
+    {
             css.length
             && css.map((c) => <Link rel="stylesheet" href={`${c}`} legacyBehavior />)
         }
