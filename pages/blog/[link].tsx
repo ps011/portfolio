@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import PropTypes from 'prop-types'
 import MarkdownRenderer from '../../components/markdown-renderer/markdown-renderer'
 import s from './[link].module.scss'
 
@@ -25,9 +24,17 @@ export async function getStaticPaths() {
   }
 }
 
+interface BlogProps {
+    title: string;
+    banner: string;
+    profileLink: string;
+    author: string;
+    date: string;
+    content: string;
+}
 const Blog = ({
   title, banner, profileLink, author, date, content,
-}) => {
+}: BlogProps) => {
   const router = useRouter()
   const currentUrl = router.pathname
   const fbSharingUrl = `https://www.facebook.com/sharer.php?u=${currentUrl}`
@@ -79,14 +86,4 @@ const Blog = ({
     </div>
   )
 }
-
-Blog.propTypes = {
-  title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  banner: PropTypes.string.isRequired,
-  profileLink: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-}
-
 export default Blog

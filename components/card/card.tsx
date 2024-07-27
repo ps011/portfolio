@@ -1,10 +1,16 @@
-import PropTypes from 'prop-types'
 import Link from 'next/link'
 import Image from 'next/image'
 
+interface CardProps {
+  thumbnail: string;
+  title: string;
+  shortDescription: string;
+  tags: string;
+  link: string;
+}
 const Card = ({
   thumbnail, title, shortDescription, tags, link,
-}) => {
+}: CardProps) => {
   let tagsArray = [];
   if (tags) {
     if (typeof tags === 'string') {
@@ -60,15 +66,6 @@ const Card = ({
       </div>
     </div>
   );
-}
-
-Card.propTypes = {
-  _id: PropTypes.string,
-  thumbnail: PropTypes.string,
-  title: PropTypes.string,
-  shortDescription: PropTypes.string,
-  tags: PropTypes.string,
-  link: PropTypes.string,
 }
 
 export default Card

@@ -1,6 +1,9 @@
-import PropTypes from 'prop-types'
+interface HeaderProps {
+    logoUrl: string;
+    navMap?: Array<{ href: string, label: string }>;
 
-const Header = ({ logoUrl, navMap = [] }) => (
+}
+const Header = ({ logoUrl, navMap = [] }: HeaderProps) => (
   <div className="bg-primary">
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary header-nav container">
       <a href="/">
@@ -29,10 +32,5 @@ const Header = ({ logoUrl, navMap = [] }) => (
     </nav>
   </div>
 )
-
-Header.propTypes = {
-  logoUrl: PropTypes.string.isRequired,
-  navMap: PropTypes.arrayOf(PropTypes.object),
-}
 
 export default Header

@@ -1,17 +1,18 @@
-import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import s from './banner.module.scss'
 import Image from 'next/image'
 
+interface BannerProps {
+    illustration: string;
+    texts: string[];
+    ctaLabel: string;
+    ctaUrl: string;
+    downloadable: boolean;
+
+}
 const Banner = ({
   illustration, texts, ctaLabel, ctaUrl, downloadable,
-} = {
-  illustration: '/images/illustrations/banner.svg',
-  texts: [],
-  ctaLabel: undefined,
-  ctaUrl: '#',
-  downloadable: false,
-}) => {
+}: BannerProps) => {
   let toRotate
   let el
   let loopNum
@@ -106,14 +107,6 @@ const Banner = ({
       </div>
     </section>
   )
-}
-
-Banner.propTypes = {
-  illustration: PropTypes.string,
-  texts: PropTypes.arrayOf(PropTypes.string),
-  ctaLabel: PropTypes.string,
-  ctaUrl: PropTypes.string,
-  downloadable: PropTypes.bool,
 }
 
 export default Banner

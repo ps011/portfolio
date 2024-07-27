@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types'
 import Slider from 'react-slick';
 import Card from '../../components/card/card'
 
-const Blog = ({ blogs }) => {
+const Blog = ({ blogs }: {blogs: any[]}) => {
   const settings = {
     dots: true,
     infinite: false,
@@ -55,10 +54,6 @@ const Blog = ({ blogs }) => {
       </div>
     </section>
   )
-}
-
-Blog.propTypes = {
-  blogs: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 export default Blog
