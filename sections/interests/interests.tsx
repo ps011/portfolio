@@ -1,5 +1,6 @@
-import HorizontalCard from '../../components/horizontal-card/horizontal-card'
-import s from './interests.module.scss'
+import HorizontalCard from "../../components/horizontal-card/horizontal-card";
+import s from "./interests.module.scss";
+import Image from "next/image";
 
 interface InterestsProps {
     illustration: string;
@@ -15,11 +16,11 @@ const Interests = ({ illustration, interests }: InterestsProps) => (
       <div className="row row-grid align-items-center">
         <div className="col-md-6 order-lg-2 ml-lg-auto">
           <div className="position-relative pl-md-3">
-            <img src={illustration} className="img-fluid" alt="Interests" />
+            <Image height={500} width={500} src={illustration} className="img-fluid" alt="Interests" />
           </div>
         </div>
         <div className="col-lg-6 order-lg-1 mb-5">
-          {interests.length && interests.map((interest, index) => (
+          {interests.length && interests.map((interest) => (
             <HorizontalCard
               key={interest.title}
               title={interest.title}
@@ -36,6 +37,6 @@ const Interests = ({ illustration, interests }: InterestsProps) => (
       </svg>
     </div>
   </section>
-)
+);
 
-export default Interests
+export default Interests;

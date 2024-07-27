@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
-import s from './banner.module.scss'
-import Image from 'next/image'
+import { useEffect } from "react";
+import s from "./banner.module.scss";
+import Image from "next/image";
 
 interface BannerProps {
     illustration: string;
@@ -13,62 +13,62 @@ interface BannerProps {
 const Banner = ({
   illustration, texts, ctaLabel, ctaUrl, downloadable,
 }: BannerProps) => {
-  let toRotate
-  let el
-  let loopNum
-  let period
-  let txt
-  let isDeleting
+  let toRotate;
+  let el;
+  let loopNum;
+  let period;
+  let txt;
+  let isDeleting;
   const tick = () => {
-    const i = loopNum % toRotate.length
-    const fullTxt = toRotate[i]
+    const i = loopNum % toRotate.length;
+    const fullTxt = toRotate[i];
     if (isDeleting) {
-      txt = fullTxt.substring(0, txt.length - 1)
+      txt = fullTxt.substring(0, txt.length - 1);
     } else {
-      txt = fullTxt.substring(0, txt.length + 1)
+      txt = fullTxt.substring(0, txt.length + 1);
     }
-    el.innerHTML = `<span className="wrap">${txt}</span>`
-    let delta = 200 - Math.random() * 100
+    el.innerHTML = `<span>${txt}</span>`;
+    let delta = 200 - Math.random() * 100;
     if (isDeleting) {
-      delta /= 2
+      delta /= 2;
     }
     if (!isDeleting && txt === fullTxt) {
-      delta = period
-      isDeleting = true
-    } else if (isDeleting && txt === '') {
-      isDeleting = false
-      loopNum += 1
-      delta = 500
+      delta = period;
+      isDeleting = true;
+    } else if (isDeleting && txt === "") {
+      isDeleting = false;
+      loopNum += 1;
+      delta = 500;
     }
     setTimeout(() => {
-      tick()
-    }, delta)
-  }
+      tick();
+    }, delta);
+  };
 
   const TxtType = (elL, toRotateL, periodL) => {
-    toRotate = toRotateL
-    el = elL
-    loopNum = 0
-    period = parseInt(periodL, 10) || 2000
-    txt = ''
-    tick()
-    isDeleting = false
-  }
+    toRotate = toRotateL;
+    el = elL;
+    loopNum = 0;
+    period = parseInt(periodL, 10) || 2000;
+    txt = "";
+    tick();
+    isDeleting = false;
+  };
 
   useEffect(() => {
-    const elements = document.querySelectorAll('#typewrite');
+    const elements = document.querySelectorAll("#typewrite");
     for (let i = 0; i < elements.length; i += 1) {
-      toRotate = elements[i].getAttribute('data-type');
-      period = elements[i].getAttribute('data-period');
+      toRotate = elements[i].getAttribute("data-type");
+      period = elements[i].getAttribute("data-period");
       if (toRotate) {
         TxtType(elements[i], JSON.parse(toRotate), period);
       }
     }
-    const css = document.createElement('style');
-    css.type = 'text/css';
-    css.innerHTML = '.typewrite > .wrap { border-right: 0.08em solid #fff}';
+    const css = document.createElement("style");
+    css.type = "text/css";
+    css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
     document.body.appendChild(css);
-  }, [])
+  }, []);
   return (
     <section className="section-shaped">
       <div className="shape shape-style-1 shape-default">
@@ -86,7 +86,7 @@ const Banner = ({
           </div>
           <div className="col-lg-5 mb-5 mb-lg-0">
             <h4 className={s.static}>Hi, I&apos;m</h4>
-            <h1 className={`${s['header-title-text']} type-animate`}>
+            <h1 className={`${s["header-title-text"]} type-animate`}>
               <a href="#" id="typewrite" className={s.typewrite} data-period="2000" data-type={JSON.stringify(texts)}>
                 <span className="wrap" />
               </a>
@@ -106,7 +106,7 @@ const Banner = ({
         </svg>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Banner
+export default Banner;

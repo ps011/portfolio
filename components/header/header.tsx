@@ -1,3 +1,6 @@
+import Link from "next/link";
+import Image from "next/image";
+
 interface HeaderProps {
     logoUrl: string;
     navMap?: Array<{ href: string, label: string }>;
@@ -6,16 +9,16 @@ interface HeaderProps {
 const Header = ({ logoUrl, navMap = [] }: HeaderProps) => (
   <div className="bg-primary">
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary header-nav container">
-      <a href="/">
-        <img className="navbar-brand" height="56px" src={logoUrl} alt="Logo" />
-      </a>
+      <Link href="/">
+        <Image className="navbar-brand" height={56} width={250} src={logoUrl} alt="Logo" />
+      </Link>
       <div className="collapse navbar-collapse" id="navbar-primary">
         <div className="navbar-collapse-header">
           <div className="row">
             <div className="col-12 collapse-brand">
-              <a href="/">
-                <img src={logoUrl} alt="Logo" />
-              </a>
+              <Link href="/">
+                <Image height={56} width={250} src={logoUrl} alt="Logo" />
+              </Link>
             </div>
           </div>
         </div>
@@ -26,11 +29,11 @@ const Header = ({ logoUrl, navMap = [] }: HeaderProps) => (
                 {item.label}
               </a>
             </li>
-          )) : '' }
+          )) : "" }
         </ul>
       </div>
     </nav>
   </div>
-)
+);
 
-export default Header
+export default Header;

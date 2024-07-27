@@ -1,6 +1,7 @@
-import { useRef, useEffect } from 'react';
-import Image from 'next/image'
-import s from './about.module.scss';
+import { useRef, useEffect } from "react";
+import Image from "next/image";
+import s from "./about.module.scss";
+import Link from "next/link";
 
 interface AboutProps {
     about: string;
@@ -35,21 +36,21 @@ const About = ({
   const aboutRef = useRef(null);
 
   useEffect(() => {
-    aboutRef.current.innerHTML = about
-  }, [about])
+    aboutRef.current.innerHTML = about;
+  }, [about]);
   const activateTab = (contentRef, tabRef?) => {
-    aboutTabContent.current.classList.remove('active')
-    skillsTabContent.current.classList.remove('active')
-    experienceTabContent.current.classList.remove('active')
-    aboutTab.current.classList.remove('active')
-    skillsTab.current.classList.remove('active')
-    experienceTab.current.classList.remove('active')
-    contentRef.current.classList.add('active')
-    tabRef.current.classList.add('active')
-  }
+    aboutTabContent.current.classList.remove("active");
+    skillsTabContent.current.classList.remove("active");
+    experienceTabContent.current.classList.remove("active");
+    aboutTab.current.classList.remove("active");
+    skillsTab.current.classList.remove("active");
+    experienceTab.current.classList.remove("active");
+    contentRef.current.classList.add("active");
+    tabRef.current.classList.add("active");
+  };
   return (
     <main className="profile-page" id="about">
-      <section className={`${s['section-profile-cover']} section-shaped my-0`} />
+      <section className={`${s["section-profile-cover"]} section-shaped my-0`} />
       <section className="section">
         <div className="container">
           <div className="card card-profile shadow mt--300">
@@ -57,13 +58,15 @@ const About = ({
               <div className="row justify-content-center">
                 <div className="col-lg-3 order-lg-2">
                   <div className="card-profile-image">
-                    <a href="/">
-                      <img
+                    <Link href="/">
+                      <Image
                         src={imageUrl}
                         className="rounded-circle"
                         alt="dp"
+                        width={200}
+                        height={180}
                       />
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
@@ -151,11 +154,11 @@ const About = ({
                       <div className="tab-pane active" ref={skillsTabContent}>
                         {
                           skills.length && skills.map((skill) => (
-                            <img
-                              height="100%"
-                              width={84}
+                            <Image
+                              height="85"
+                              width={100}
                               key={skill.logo}
-                              className={`${s['img-fluid']} text-center col-4 col-md-2 m-2`}
+                              className={`${s["img-fluid"]} text-center col-4 col-md-2 m-2`}
                               src={skill.logo}
                               alt={skill.name}
                             />
@@ -172,34 +175,34 @@ const About = ({
                           {experience.length && experience.map((company, index) => (
                             <div className={`${s.experience} row`} key={index}>
                               <div className="col-3">
-                                <Image height={60} width={100} layout="responsive" src={company.logo} alt="Company Logo" className="img-fluid" />
+                                <Image height={60} width={100} src={company.logo} alt="Company Logo" className="img-fluid" />
                               </div>
                               <div className="col-9">
                                 <blockquote className="blockquote text-center mb-0">
                                   <h4 className="mb-0">
                                     {company.designation}
-                                    {' '}
+                                    {" "}
                                     @
-                                    {' '}
+                                    {" "}
                                     {company.company}
                                   </h4>
                                   <p className="text-muted mb-0">
-                                    {' '}
+                                    {" "}
                                     <small>
                                       (
-                                      {' '}
+                                      {" "}
                                       {company.from}
-                                      {' '}
+                                      {" "}
                                       -
                                       {company.to}
-                                      {' '}
+                                      {" "}
                                       )
                                     </small>
                                   </p>
                                 </blockquote>
                                 <p className="my-2">
                                   <i className="ni ni-pin-3 mr-2" />
-                                  {' '}
+                                  {" "}
                                   {company.location}
                                 </p>
                                 <br />
@@ -218,7 +221,7 @@ const About = ({
         </div>
       </section>
     </main>
-  )
-}
+  );
+};
 
-export default About
+export default About;

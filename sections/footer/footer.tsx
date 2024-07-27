@@ -26,7 +26,7 @@ const Footer = () => (
         <div className="col-md-6">
           <div className="copyright">
             &copy;
-            {' '}
+            {" "}
             {new Date().getFullYear()}
             <a href="https://linkedin.com/in/ps011" target="_blank" rel="noreferrer">Prasheel</a>
             .
@@ -42,6 +42,6 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-)
+);
 
-export default Footer
+export default Footer;

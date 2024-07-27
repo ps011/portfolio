@@ -6,7 +6,7 @@ const Github = ({ username }: {username: string}) => {
             <h3 className="text-center my-4 display-3">My GitHub Calendar</h3>
             <GitHubCalendar username={username} style={{"margin": "auto"}} colorScheme="light"/>
         </div>
-    )
-}
+    );
+};
 
-export default Github
+export default Github;
