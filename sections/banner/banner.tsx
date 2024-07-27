@@ -73,7 +73,7 @@ const Banner = ({
     <section className="section-shaped">
       <div className="shape shape-style-1 shape-default">
       </div>
-      <div className="container py-md">
+      <div className="container py-md tw-h-screen">
         <div className="row justify-content-between align-items-center">
           <div className="col-lg-6 mb-lg-auto">
             <Image height="300" width="300" src={illustration} alt="Banner logo" data-aos="fade-right" className="img-fluid" />

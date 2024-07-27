@@ -1,6 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
-import Script from "next/script";
 
 interface MetaProps {
     title: string;
@@ -50,7 +48,6 @@ const Meta = ({
             <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon"/>
             <link rel="manifest" href={manifest}/>
         </Head>
-        <Script src="/js/bootstrap.bundle.min.js"/>
     </>
 );
 export default Meta;

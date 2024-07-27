@@ -37,10 +37,11 @@ const Card = ({
               <div className="mb-4">
                 <Image
                     src={thumbnail}
-                    className="img-fluid"
                     alt={`Blog ${title} Description`}
-                    width={200}
-                    height={200}
+                    width={0}
+                    height={0}
+                    sizes="40vw"
+                    style={{ width: "100%", height: "350px" }}
                 />
               </div>
             ) : (

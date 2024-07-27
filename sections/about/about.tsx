@@ -1,5 +1,6 @@
 import {useRef, useEffect} from "react";
 import Image from "next/image";
+import Badge from "../../components/tailwind/badge";
 
 interface AboutProps {
     about: string;
@@ -50,8 +51,17 @@ const About = ({
     return (
         <section className="section tw-container tw-mx-auto" id="about">
             <div className="tw-shadow-2xl tw-rounded tw-px-4">
-                <div className="tw-flex tw-justify-between tw-items-center">
-                    <div className="tw-flex-1">
+                <div className="tw-flex tw-flex-col tw-justify-between tw-items-center md:tw-flex-row">
+                    <div className="tw-flex-1 tw-mb-4 md:tw-mb-0 md:tw--mt-12 md:tw-order-2">
+                        <Image
+                            src={imageUrl}
+                            className="tw-rounded-full tw-block tw-mx-auto"
+                            alt="dp"
+                            width={200}
+                            height={180}
+                        />
+                    </div>
+                    <div className="tw-flex-1 md:tw-order-1">
                         <div className="tw-flex">
                             {stats.length && stats.map((stat) => (
                                 <div key={stat.label} className="tw-mx-4 tw-text-center">
@@ -61,16 +71,7 @@ const About = ({
                             ))}
                         </div>
                     </div>
-                    <div className="tw-flex-1 tw--mt-12">
-                        <Image
-                            src={imageUrl}
-                            className="tw-rounded-full tw-block tw-mx-auto"
-                            alt="dp"
-                            width={200}
-                            height={180}
-                        />
-                    </div>
-                    <div className="tw-flex-1">
+                    <div className="tw-flex-1 md:tw-order-3">
                         <div className="tw-py-4 tw-flex tw-justify-around">
                             {profiles.length && profiles.map((profile) => (
                                 <a href={profile.url} key={profile.name} target="_blank" rel="noreferrer"
@@ -99,7 +100,7 @@ const About = ({
                     </div>
                 </div>
                 <div className="tw-mt-3 tw-border-t-2 tw-text-center">
-                    <div className="tw-flex tw-flex-col tw-justify-center tw-mx-8">
+                    <div className="tw-flex tw-flex-col tw-justify-center tw-mx-16">
                         <div className="nav-wrapper">
                             <ul id="tabs-icons-text" role="tablist"
                                 className="nav-fill flex-column flex-md-row nav nav-pills">
@@ -117,18 +118,6 @@ const About = ({
                                 </li>
                                 <li className="nav-item">
                                     <a
-                                        aria-selected="true"
-                                        role="tab"
-                                        className="mb-sm-3 mb-md-0 nav-link"
-                                        ref={aboutTab}
-                                        onClick={() => activateTab(aboutTabContent, aboutTab)}
-                                    >
-                                        <i className="ni ni-circle-08 mr-2"/>
-                                        About
-                                    </a>
-                                </li>
-                                <li className="nav-item">
-                                    <a
                                         aria-selected="false"
                                         role="tab"
                                         className="mb-sm-3 mb-md-0 nav-link"
@@ -139,10 +128,22 @@ const About = ({
                                         Experience
                                     </a>
                                 </li>
+                                <li className="nav-item">
+                                    <a
+                                        aria-selected="true"
+                                        role="tab"
+                                        className="mb-sm-3 mb-md-0 nav-link"
+                                        ref={aboutTab}
+                                        onClick={() => activateTab(aboutTabContent, aboutTab)}
+                                    >
+                                        <i className="ni ni-circle-08 mr-2"/>
+                                        About
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <div className="tab-content tw-mx-12">
-                            <div className="tab-pane active" ref={skillsTabContent}>
+                            <div className="tab-pane active tw-my-4 md:tw-mx-24" ref={skillsTabContent}>
                                 {
                                     skills.length && skills.map((skill) => (
                                         <Image
@@ -156,24 +157,24 @@ const About = ({
                                     ))
                                 }
                             </div>
-                            <div className="tab-pane" ref={aboutTabContent}
+                            <div className="tab-pane tw-my-4 md:tw-mx-24" ref={aboutTabContent}
                                  onClick={() => activateTab(aboutTabContent)}>
                                 <p className="description" ref={aboutRef}>
                                     {about}
                                 </p>
                             </div>
-                            <div className="tab-pane" ref={experienceTabContent}
+                            <div className="tab-pane tw-my-4 md:tw-mx-24" ref={experienceTabContent}
                                  onClick={() => activateTab(experienceTabContent)}>
-                                <main>
+                                <div>
                                     {experience.length && experience.map((company, index) => (
-                                        <div className={"row"} key={index}>
-                                            <div className="col-3">
+                                        <div className="tw-flex tw-justify-between tw-items-center tw-shadow-md tw-rounded-xl tw-p-4 tw-my-8" key={index}>
+                                            <div>
                                                 <Image height={60} width={100} src={company.logo}
-                                                       alt="Company Logo" className="img-fluid"/>
+                                                       alt="Company Logo"/>
                                             </div>
-                                            <div className="col-9">
-                                                <blockquote className="blockquote text-center mb-0">
-                                                    <h4 className="mb-0">
+                                            <div className="tw-flex tw-flex-col tw-flex-1">
+                                                <div>
+                                                    <h4 className="tw-mb-0">
                                                         {company.designation}
                                                         {" "}
                                                         @
@@ -193,20 +194,20 @@ const About = ({
                                                             )
                                                         </small>
                                                     </p>
-                                                </blockquote>
+                                                </div>
                                                 <p className="my-2">
                                                     <i className="ni ni-pin-3 mr-2"/>
                                                     {" "}
                                                     {company.location}
                                                 </p>
-                                                <br/>
+                                                <div>
                                                 {company.technologies && company.technologies.map((technology) =>
-                                                    <span key={technology}
-                                                          className="badge badge-pill badge-primary mx-1">{technology}</span>)}
+                                                    <Badge key={technology} text={technology} className="tw-m-1"/>)}
+                                                </div>
                                             </div>
                                         </div>
                                     ))}
-                                </main>
+                                </div>
                             </div>
                         </div>
                     </div>
