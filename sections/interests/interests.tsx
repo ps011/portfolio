@@ -12,11 +12,11 @@ interface InterestsProps {
 }
 const Interests = ({ illustration, interests }: InterestsProps) => (
   <section className="section pb-0 bg-primary" id="interests">
-    <div className="container">
+    <div className="tw-container">
       <div className="row row-grid align-items-center">
         <div className="col-md-6 order-lg-2 ml-lg-auto">
           <div className="position-relative pl-md-3">
-            <Image height={500} width={500} src={illustration} className="img-fluid" alt="Interests" />
+            <Image height={500} width={500} src={illustration} alt="Interests" />
           </div>
         </div>
         <div className="col-lg-6 order-lg-1 mb-5">
@@ -25,7 +25,6 @@ const Interests = ({ illustration, interests }: InterestsProps) => (
               key={interest.title}
               title={interest.title}
               description={interest.description}
-              type="dark"
             />
           ))}
         </div>

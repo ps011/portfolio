@@ -100,7 +100,7 @@ const About = ({
                     </div>
                 </div>
                 <div className="tw-mt-3 tw-border-t-2 tw-text-center">
-                    <div className="tw-flex tw-flex-col tw-justify-center tw-mx-16">
+                    <div className="tw-flex tw-flex-col tw-justify-center md:tw-mx-16">
                         <div className="nav-wrapper">
                             <ul id="tabs-icons-text" role="tablist"
                                 className="nav-fill flex-column flex-md-row nav nav-pills">
@@ -142,7 +142,7 @@ const About = ({
                                 </li>
                             </ul>
                         </div>
-                        <div className="tab-content tw-mx-12">
+                        <div className="tab-content">
                             <div className="tab-pane active tw-my-4 md:tw-mx-24" ref={skillsTabContent}>
                                 {
                                     skills.length && skills.map((skill) => (

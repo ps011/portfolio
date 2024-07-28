@@ -10,7 +10,6 @@ interface MetaProps {
     manifest?: string;
     keywords?: string[];
     themeColor?: string;
-
 }
 
 const Meta = ({

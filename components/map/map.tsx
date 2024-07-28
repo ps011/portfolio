@@ -9,9 +9,9 @@ import {Tooltip} from "react-tooltip";
 export const Map = ({countriesVisited}) => {
 
     return (
-        <section className="text-center pb-0 bg-primary pt-4 ">
-            <h3 className="text-center my-4 display-3 text-white">How much of the World I&apos;ve seen so far?</h3>
-            <div className="mx-auto my-2 container rounded" style={{background: "#92B4F2FF"}}>
+        <section className="tw-text-center tw-pb-0 tw-bg-primary tw-pt-4">
+            <h3 className="tw-text-center tw-my-4 tw-text-2xl tw-text-white">How much of the World I&apos;ve seen so far?</h3>
+            <div className="tw-my-8 tw-rounded tw-bg-blue-300 tw-container ">
                 <ComposableMap projection="geoMercator">
                     <Geographies geography="https://res.cloudinary.com/designu/raw/upload/v1681593003/data/geo.json">
                         {({geographies}) =>
@@ -37,7 +37,7 @@ export const Map = ({countriesVisited}) => {
                 </ComposableMap>
                 <Tooltip id="my-tooltip"></Tooltip>
             </div>
-            <div className="">
+            <div>
                 <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
                     <polygon style={{fill: "#f4f5f7"}} points="2560 0 2560 100 0 100" />
                 </svg>
