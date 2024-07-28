@@ -49,7 +49,7 @@ const About = ({
         tabRef.current.classList.add("active");
     };
     return (
-        <section className="section tw-container tw-mx-auto" id="about">
+        <section className="tw-container tw-mx-auto" id="about">
             <div className="tw-shadow-2xl tw-rounded tw-px-4">
                 <div className="tw-flex tw-flex-col tw-justify-between tw-items-center md:tw-flex-row">
                     <div className="tw-flex-1 tw-mb-4 md:tw-mb-0 md:tw--mt-12 md:tw-order-2">
@@ -181,7 +181,7 @@ const About = ({
                                                         {" "}
                                                         {company.company}
                                                     </h4>
-                                                    <p className="text-muted mb-0">
+                                                    <p className="text-muted tw-mb-0">
                                                         {" "}
                                                         <small>
                                                             (
@@ -195,8 +195,8 @@ const About = ({
                                                         </small>
                                                     </p>
                                                 </div>
-                                                <p className="my-2">
-                                                    <i className="ni ni-pin-3 mr-2"/>
+                                                <p className="tw-my-2">
+                                                    <i className="ni ni-pin-3 tw-mr-2"/>
                                                     {" "}
                                                     {company.location}
                                                 </p>
