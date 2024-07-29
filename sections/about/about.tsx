@@ -167,8 +167,8 @@ const About = ({
                                  onClick={() => activateTab(experienceTabContent)}>
                                 <div>
                                     {experience.length && experience.map((company, index) => (
-                                        <div className="tw-flex tw-justify-between tw-items-center tw-shadow-md tw-rounded-xl tw-p-4 tw-my-8" key={index}>
-                                            <div>
+                                        <div className="tw-flex tw-flex-col tw-justify-between tw-items-center tw-shadow-md tw-rounded-xl tw-p-4 tw-my-8 md:tw-flex-row" key={index}>
+                                            <div className="tw-mb-8 md:tw-mb-0">
                                                 <Image height={60} width={100} src={company.logo}
                                                        alt="Company Logo"/>
                                             </div>

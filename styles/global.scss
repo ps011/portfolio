@@ -10,24 +10,3 @@ body {
   box-sizing: border-box;
   font-family: "Comfortaa", cursive;
 }
-
-.slides {
-  position: relative;
-  .slick-prev,
-  .slick-next {
-    position: absolute;
-    top: 40%;
-  }
-  .slick-prev {
-    left: -7%;
-  }
-  .slick-prev::before,
-  .slick-next::before {
-    color: black;
-    font-size: 60px;
-    z-index: 999;
-  }
-  .slick-next {
-    right: -3%;
-  }
-}
