@@ -1,6 +1,7 @@
 import {useRef, useEffect} from "react";
 import Image from "next/image";
 import Badge from "../../components/tailwind/badge";
+import Section from "../../components/tailwind/section";
 
 interface AboutProps {
     about: string;
@@ -49,19 +50,20 @@ const About = ({
         tabRef.current.classList.add("active");
     };
     return (
-        <section className="tw-container tw-mx-auto" id="about">
+        <Section container id="about">
             <div className="tw-shadow-2xl tw-rounded tw-px-4">
-                <div className="tw-flex tw-flex-col tw-justify-between tw-items-center md:tw-flex-row">
-                    <div className="tw-flex-1 tw-mb-4 md:tw-mb-0 md:tw--mt-12 md:tw-order-2">
+                <div className="tw-flex tw-flex-col tw-justify-between tw-items-center lg:tw-flex-row">
+                    <div className="tw-flex-1 tw-mb-4 lg:tw-mb-0 tw--mt-12 lg:tw-order-2">
                         <Image
                             src={imageUrl}
-                            className="tw-rounded-full tw-block tw-mx-auto"
+                            className="tw-rounded-full tw-block tw-mx-auto tw-h-48 tw-w-48 tw-min-w-48"
                             alt="dp"
-                            width={200}
-                            height={180}
+                            sizes="100vw"
+                            width={0}
+                            height={0}
                         />
                     </div>
-                    <div className="tw-flex-1 md:tw-order-1">
+                    <div className="tw-flex-1 lg:tw-order-1">
                         <div className="tw-flex">
                             {stats.length && stats.map((stat) => (
                                 <div key={stat.label} className="tw-mx-4 tw-text-center">
@@ -71,8 +73,8 @@ const About = ({
                             ))}
                         </div>
                     </div>
-                    <div className="tw-flex-1 md:tw-order-3">
-                        <div className="tw-py-4 tw-flex tw-justify-around">
+                    <div className="tw-flex-1 lg:tw-order-3">
+                        <div className="tw-py-4 tw-flex tw-justify-center">
                             {profiles.length && profiles.map((profile) => (
                                 <a href={profile.url} key={profile.name} target="_blank" rel="noreferrer"
                                    className={`btn btn-${profile.name} btn-sm tw-mx-4`}>
@@ -100,7 +102,7 @@ const About = ({
                     </div>
                 </div>
                 <div className="tw-mt-3 tw-border-t-2 tw-text-center">
-                    <div className="tw-flex tw-flex-col tw-justify-center md:tw-mx-16">
+                    <div className="tw-flex tw-flex-col tw-justify-center md:tw-mx-8">
                         <div className="nav-wrapper">
                             <ul id="tabs-icons-text" role="tablist"
                                 className="nav-fill flex-column flex-md-row nav nav-pills">
@@ -213,7 +215,7 @@ const About = ({
                     </div>
                 </div>
             </div>
-        </section>
+        </Section>
     );
 };
 

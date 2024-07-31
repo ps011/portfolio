@@ -1,5 +1,7 @@
 import {useEffect} from "react";
 import Image from "next/image";
+import Link from "next/link";
+import Button from "../../components/tailwind/button";
 
 interface BannerProps {
     illustration: string;
@@ -70,7 +72,7 @@ const Banner = ({
         document.body.appendChild(css);
     }, []);
     return (
-        <section className="tw-bg-primary">
+        <section className="tw-bg-primary-100 tw-mb-16">
             <div className="tw-container tw-h-[70vh]">
                 <div className="tw-h-full tw-flex tw-flex-col md:tw-justify-around md:tw-items-center md:tw-flex-row">
                     <div className="tw-flex-1 tw-flex">
@@ -88,9 +90,11 @@ const Banner = ({
                         </div>
                         <div className="tw-flex-1 tw-mt-4">
                             {ctaLabel && (
-                                <a href={ctaUrl} download={downloadable} className="btn btn-secondary">
-                                    <span className="btn-inner--text">{ctaLabel}</span>
-                                </a>
+                                <Button role="secondary">
+                                    <Link href={ctaUrl} download={downloadable} target="_blank">
+                                        <span className="hover:tw-text-black">{ctaLabel}</span>
+                                    </Link>
+                                </Button>
                             )}
                         </div>
                     </div>

@@ -9,7 +9,14 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                primary: "#5e72e4",
+                primary: {
+                    100: "#5E72E4E7",
+                    200: "#5E72E4FF",
+                },
+                secondary: {
+                    100: "#f4f5f7",
+                    200: "#F4F5F7E2",
+                },
             },
         },
         container: {

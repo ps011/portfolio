@@ -1,5 +1,6 @@
 import HorizontalCard from "../../components/horizontal-card/horizontal-card";
 import Image from "next/image";
+import Section from "../../components/tailwind/section";
 
 interface InterestsProps {
     illustration: string;
@@ -10,15 +11,9 @@ interface InterestsProps {
 
 }
 const Interests = ({ illustration, interests }: InterestsProps) => (
-  <section className="pb-0 bg-primary" id="interests">
-    <div className="tw-container">
-      <div className="row row-grid align-items-center">
-        <div className="col-md-6 order-lg-2 ml-lg-auto">
-          <div className="position-relative pl-md-3">
-            <Image height={500} width={500} src={illustration} alt="Interests" />
-          </div>
-        </div>
-        <div className="col-lg-6 order-lg-1 mb-5">
+  <Section background="primary"  id="interests">
+      <div className="tw-flex tw-flex-col-reverse tw-justify-around tw-items-center md:tw-flex-row tw-container">
+        <div className="tw-flex-1">
           {interests.length && interests.map((interest) => (
             <HorizontalCard
               key={interest.title}
@@ -27,9 +22,11 @@ const Interests = ({ illustration, interests }: InterestsProps) => (
             />
           ))}
         </div>
+        <div className="tw-flex-1 tw-pb-4 md:tw-pb-0">
+            <Image height={0} width={0} src={illustration} alt="Interests" className="tw-w-full tw-h-full" />
+        </div>
       </div>
-    </div>
-  </section>
+  </Section>
 );
 
 export default Interests;

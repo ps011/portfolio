@@ -32,6 +32,7 @@
     "@testing-library/dom": "^7.29.6",
     "@testing-library/react": "^11.2.5",
     "@types/react": "^18.3.0",
+    "@types/react-simple-maps": "^3.0.6",
     "@types/react-slick": "^0.23.13",
     "autoprefixer": "^10.4.19",
     "babel-jest": "^29.7.0",
