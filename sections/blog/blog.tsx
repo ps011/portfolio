@@ -39,16 +39,18 @@ const Blog = ({blogs}: { blogs: any[] }) => {
     const kebabCaseToSentenceCase = (str) => str.split("-").map((word) => word[0].toUpperCase() + word.substring(1)).join(" ");
     const result = groupBy(blogs, (c) => c.type);
     return (
-        Object.keys(result).length && Object.keys(result).map((sectionName) => (
+        <>
+            {Object.keys(result).length && Object.keys(result).map((sectionName) => (
             <Section container={true} key={sectionName} id="blog-posts" heading={kebabCaseToSentenceCase(sectionName)}>
-                        <Slider {...settings}>
-                            {result[sectionName].length && result[sectionName].map((blog, index) => {
-                                return blog.hidden ? null : <Card key={index} {...blog} />;
-                            })}
-                        </Slider>
+                <Slider {...settings}>
+                    {result[sectionName].length && result[sectionName].map((blog, index) => {
+                        return blog.hidden ? null : <Card key={index} {...blog} />;
+                    })}
+                </Slider>
 
-                </Section>)
-            )
+            </Section>)
+            )}
+        </>
     );
 };
 
