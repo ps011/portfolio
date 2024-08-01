@@ -6,34 +6,26 @@ interface HeaderProps {
     navMap?: Array<{ href: string, label: string }>;
 
 }
-const Header = ({ logoUrl, navMap = [] }: HeaderProps) => (
-  <div className="bg-primary">
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary header-nav container">
-      <Link href="/">
-        <Image className="navbar-brand" height={56} width={250} src={logoUrl} alt="Logo" />
-      </Link>
-      <div className="collapse navbar-collapse" id="navbar-primary">
-        <div className="navbar-collapse-header">
-          <div className="row">
-            <div className="col-12 collapse-brand">
-              <Link href="/">
-                <Image height={56} width={250} src={logoUrl} alt="Logo" />
-              </Link>
+
+const Header = ({logoUrl, navMap = []}: HeaderProps) => (
+    <div className="tw-bg-primary-200 tw-py-8">
+        <nav className="tw-bg-primary-200 tw-container tw-flex tw-justify-between">
+            <Link href="/">
+                <Image height={56} width={250} src={logoUrl} alt="Logo"/>
+            </Link>
+            <div className="tw-hidden md:tw-flex">
+                <ul className="tw-flex tw-items-center">
+                    {navMap.length ? navMap.map((item) => (
+                        <li className="tw-mr-8 tw-text-white" key={item.href}>
+                            <a href={item.href}>
+                                {item.label}
+                            </a>
+                        </li>
+                    )) : ""}
+                </ul>
             </div>
-          </div>
-        </div>
-        <ul className="navbar-nav ml-lg-auto">
-          { navMap.length ? navMap.map((item) => (
-            <li className="nav-item mr-4" key={item.href}>
-              <a className="text-white" href={item.href}>
-                {item.label}
-              </a>
-            </li>
-          )) : "" }
-        </ul>
-      </div>
-    </nav>
-  </div>
+        </nav>
+    </div>
 );
 
 export default Header;
