@@ -8,7 +8,7 @@ interface StackoverflowProps {
 
 }
 
-export default function Stackoverflow({
+export default function StackoverflowStats({
                                           name, id, url, label,
                                       }: StackoverflowProps) {
     return (

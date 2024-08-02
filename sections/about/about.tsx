@@ -1,7 +1,8 @@
-import {useRef, useEffect} from "react";
 import Image from "next/image";
 import Badge from "../../components/tailwind/badge";
 import Section from "../../components/tailwind/section";
+import Profile from "../../components/profile/profile";
+import Tabs, {TabData} from "../../components/tailwind/tabs";
 
 interface AboutProps {
     about: string;
@@ -28,27 +29,80 @@ interface AboutProps {
 const About = ({
                    name, about, imageUrl, location, designation, experience, education, skills, stats, profiles,
                }: AboutProps) => {
-    const aboutTabContent = useRef(null);
-    const skillsTabContent = useRef(null);
-    const experienceTabContent = useRef(null);
-    const aboutTab = useRef(null);
-    const skillsTab = useRef(null);
-    const experienceTab = useRef(null);
-    const aboutRef = useRef(null);
 
-    useEffect(() => {
-        aboutRef.current.innerHTML = about;
-    }, [about]);
-    const activateTab = (contentRef, tabRef?) => {
-        aboutTabContent.current.classList.remove("active");
-        skillsTabContent.current.classList.remove("active");
-        experienceTabContent.current.classList.remove("active");
-        aboutTab.current.classList.remove("active");
-        skillsTab.current.classList.remove("active");
-        experienceTab.current.classList.remove("active");
-        contentRef.current.classList.add("active");
-        tabRef.current.classList.add("active");
-    };
+    const tabsData: TabData[] = [
+        {
+            name: "Skills",
+            content: (
+                <>
+                    {skills.length && skills.map((skill) => (
+                        <Image
+                            height={85}
+                            width={100}
+                            key={skill.logo}
+                            className="tw-inline-block tw-m-4"
+                            src={skill.logo}
+                            alt={skill.name}
+                        />
+                    ))}
+                </>
+            ),
+        },
+        {
+            name: "Experience",
+            content: (<div className="tw-flex tw-flex-col tw-items-center">
+                            {experience.length && experience.map((company, index) => (
+                        <div className="tw-flex tw-flex-col tw-justify-between tw-items-center tw-shadow-md tw-rounded-xl tw-p-4 tw-my-8 md:tw-flex-row tw-max-w-lg" key={index}>
+                            <div className="tw-mb-8 md:tw-mb-0">
+                                <Image height={60} width={100} src={company.logo}
+                                       alt="Company Logo"/>
+                            </div>
+                            <div className="tw-flex tw-flex-col tw-flex-1">
+                                <div>
+                                    <h4 className="tw-mb-0">
+                                        {company.designation}
+                                        {" "}
+                                        @
+                                        {" "}
+                                        {company.company}
+                                    </h4>
+                                    <p className="text-muted tw-mb-0">
+                                        {" "}
+                                        <small>
+                                            (
+                                            {" "}
+                                            {company.from}
+                                            {" "}
+                                            -
+                                            {company.to}
+                                            {" "}
+                                            )
+                                        </small>
+                                    </p>
+                                </div>
+                                <p className="tw-my-2">
+                                    <i className="ni ni-pin-3 tw-mr-2"/>
+                                    {" "}
+                                    {company.location}
+                                </p>
+                                <div>
+                                {company.technologies && company.technologies.map((technology) =>
+                                    <Badge key={technology} text={technology} className="tw-m-1"/>)}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            ),
+        },
+        {
+            name: "About",
+            content: <div
+                dangerouslySetInnerHTML={{ __html: about }}
+            />,
+        },
+    ];
+
     return (
         <Section container id="about">
             <div className="tw-shadow-2xl tw-rounded tw-px-4">
@@ -76,15 +130,12 @@ const About = ({
                     <div className="tw-flex-1 lg:tw-order-3">
                         <div className="tw-py-4 tw-flex tw-justify-center">
                             {profiles.length && profiles.map((profile) => (
-                                <a href={profile.url} key={profile.name} target="_blank" rel="noreferrer"
-                                   className={`btn btn-${profile.name} btn-sm tw-mx-4`}>
-                                    <i className={`fa fa-${profile.name}`}/>
-                                </a>
+                                <Profile url={profile.url} name={profile.name} key={profile.name}/>
                             ))}
                         </div>
                     </div>
                 </div>
-                <div className="tw-text-center tw-mt-2">
+                <div className="tw-text-center tw-mt-4">
                     <h3 className="tw-text-3xl tw-mb-6">
                         {name}
                     </h3>
@@ -101,117 +152,9 @@ const About = ({
                         {education}
                     </div>
                 </div>
-                <div className="tw-mt-3 tw-border-t-2 tw-text-center">
+                <div className="tw-mt-2 tw-pt-2 tw-border-t-2 tw-text-center">
                     <div className="tw-flex tw-flex-col tw-justify-center md:tw-mx-8">
-                        <div className="nav-wrapper">
-                            <ul id="tabs-icons-text" role="tablist"
-                                className="nav-fill flex-column flex-md-row nav nav-pills">
-                                <li className="nav-item">
-                                    <a
-                                        aria-selected="false"
-                                        role="tab"
-                                        className="mb-sm-3 mb-md-0 active nav-link"
-                                        ref={skillsTab}
-                                        onClick={() => activateTab(skillsTabContent, skillsTab)}
-                                    >
-                                        <i className="ni ni-atom mr-2"/>
-                                        Skills
-                                    </a>
-                                </li>
-                                <li className="nav-item">
-                                    <a
-                                        aria-selected="false"
-                                        role="tab"
-                                        className="mb-sm-3 mb-md-0 nav-link"
-                                        ref={experienceTab}
-                                        onClick={() => activateTab(experienceTabContent, experienceTab)}
-                                    >
-                                        <i className="ni ni-briefcase-24 mr-2"/>
-                                        Experience
-                                    </a>
-                                </li>
-                                <li className="nav-item">
-                                    <a
-                                        aria-selected="true"
-                                        role="tab"
-                                        className="mb-sm-3 mb-md-0 nav-link"
-                                        ref={aboutTab}
-                                        onClick={() => activateTab(aboutTabContent, aboutTab)}
-                                    >
-                                        <i className="ni ni-circle-08 mr-2"/>
-                                        About
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="tab-content">
-                            <div className="tab-pane active tw-my-4 md:tw-mx-24" ref={skillsTabContent}>
-                                {
-                                    skills.length && skills.map((skill) => (
-                                        <Image
-                                            height={85}
-                                            width={100}
-                                            key={skill.logo}
-                                            className="tw-inline-block tw-m-4"
-                                            src={skill.logo}
-                                            alt={skill.name}
-                                        />
-                                    ))
-                                }
-                            </div>
-                            <div className="tab-pane tw-my-4 md:tw-mx-24" ref={aboutTabContent}
-                                 onClick={() => activateTab(aboutTabContent)}>
-                                <p className="description" ref={aboutRef}>
-                                    {about}
-                                </p>
-                            </div>
-                            <div className="tab-pane tw-my-4 md:tw-mx-24" ref={experienceTabContent}
-                                 onClick={() => activateTab(experienceTabContent)}>
-                                <div>
-                                    {experience.length && experience.map((company, index) => (
-                                        <div className="tw-flex tw-flex-col tw-justify-between tw-items-center tw-shadow-md tw-rounded-xl tw-p-4 tw-my-8 md:tw-flex-row" key={index}>
-                                            <div className="tw-mb-8 md:tw-mb-0">
-                                                <Image height={60} width={100} src={company.logo}
-                                                       alt="Company Logo"/>
-                                            </div>
-                                            <div className="tw-flex tw-flex-col tw-flex-1">
-                                                <div>
-                                                    <h4 className="tw-mb-0">
-                                                        {company.designation}
-                                                        {" "}
-                                                        @
-                                                        {" "}
-                                                        {company.company}
-                                                    </h4>
-                                                    <p className="text-muted tw-mb-0">
-                                                        {" "}
-                                                        <small>
-                                                            (
-                                                            {" "}
-                                                            {company.from}
-                                                            {" "}
-                                                            -
-                                                            {company.to}
-                                                            {" "}
-                                                            )
-                                                        </small>
-                                                    </p>
-                                                </div>
-                                                <p className="tw-my-2">
-                                                    <i className="ni ni-pin-3 tw-mr-2"/>
-                                                    {" "}
-                                                    {company.location}
-                                                </p>
-                                                <div>
-                                                {company.technologies && company.technologies.map((technology) =>
-                                                    <Badge key={technology} text={technology} className="tw-m-1"/>)}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
+                        <Tabs tabs={tabsData} className="tw-container"/>
                     </div>
                 </div>
             </div>
