@@ -27,7 +27,7 @@ const Tabs = ({tabs, className}: TabsProps) => {
                 {tabs.map((tab, index) => (
                     <li
                         key={index}
-                        className={`tw-z-30 tw-flex-auto tw-text-center tw-p-2 tw-mx-2 tw-border-2 tw-border-neutral-100 tw-rounded-md ${activeTab === index ? "tw-bg-primary-100 tw-text-white" : "tw-bg-neutral-100"}`}
+                        className={`tw-z-30 tw-flex-auto tw-text-center tw-p-2 tw-m-2 tw-border-2 tw-border-neutral-100 tw-rounded-md ${activeTab === index ? "tw-bg-primary-100 tw-text-white" : "tw-bg-neutral-100"}`}
                         onClick={() => onTabChange(index)}
                         data-tab-index={index}
                     >
