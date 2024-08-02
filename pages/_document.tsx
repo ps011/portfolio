@@ -1,16 +1,20 @@
 import Document, {
   Html, Head, Main, NextScript,
-} from 'next/document';
+} from "next/document";
 
-import { GA_TRACKING_ID } from '../lib/gtag';
+import { GA_TRACKING_ID } from "../lib/gtag";
 
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV === "production";
 
 export default class MyDocument extends Document {
   render() {
     return (
       <Html>
         <Head>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap"
+                  rel="stylesheet" />
           {/* enable analytics script only for production */}
           {isProduction && (
             <>

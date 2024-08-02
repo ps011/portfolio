@@ -1,20 +1,20 @@
-import { useRouter } from 'next/router'
-import PropTypes from 'prop-types'
-import MarkdownRenderer from '../../components/markdown-renderer/markdown-renderer'
-import s from './[link].module.scss'
+import { useRouter } from "next/router";
+import MarkdownRenderer from "../../components/markdown-renderer/markdown-renderer";
+import s from "./[link].module.scss";
+import Image from "next/image";
 
 export async function getStaticProps(context) {
-  if (!context.params.link.startsWith('http')) {
-    let data = await fetch(`${process.env.BASE_URL}/blogs/${context.params.link}`)
-    data = await data.json()
-    return { props: data }
+  if (!context.params.link.startsWith("http")) {
+    let data = await fetch(`${process.env.BASE_URL}/blogs/${context.params.link}`);
+    data = await data.json();
+    return { props: data };
   }
   return { props: {} };
 }
 
 export async function getStaticPaths() {
-  const data = await fetch(`${process.env.BASE_URL}/blogs`)
-  const posts = await data.json()
+  const data = await fetch(`${process.env.BASE_URL}/blogs`);
+  const posts = await data.json();
   return {
     paths: posts.map((post) => ({
       params: {
@@ -22,24 +22,32 @@ export async function getStaticPaths() {
       },
     })),
     fallback: false,
-  }
+  };
 }
 
+interface BlogProps {
+    title: string;
+    banner: string;
+    profileLink: string;
+    author: string;
+    date: string;
+    content: string;
+}
 const Blog = ({
   title, banner, profileLink, author, date, content,
-}) => {
-  const router = useRouter()
-  const currentUrl = router.pathname
-  const fbSharingUrl = `https://www.facebook.com/sharer.php?u=${currentUrl}`
-  const twitterSharingUrl = `https://twitter.com/intent/tweet?&url=${currentUrl}`
-  const linkedinSharingUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}`
+}: BlogProps) => {
+  const router = useRouter();
+  const currentUrl = router.pathname;
+  const fbSharingUrl = `https://www.facebook.com/sharer.php?u=${currentUrl}`;
+  const twitterSharingUrl = `https://twitter.com/intent/tweet?&url=${currentUrl}`;
+  const linkedinSharingUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}`;
   return (
     <div className="content">
       <div className="row">
         <div className="col-sm-12">
           <article className="post">
             <div className={s.postHeader}>
-              <img src={banner} alt="Post" className={`img-fluid ${s.postImage}`} />
+              <Image height={600} width={1200} src={banner} alt="Post" className={`img-fluid ${s.postImage}`} />
               <h1 className={s.postTitle}>{title}</h1>
             </div>
             <div className="container my-4">
@@ -77,16 +85,6 @@ const Blog = ({
         </div>
       </div>
     </div>
-  )
-}
-
-Blog.propTypes = {
-  title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  banner: PropTypes.string.isRequired,
-  profileLink: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-}
-
-export default Blog
+  );
+};
+export default Blog;

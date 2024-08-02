@@ -1,44 +1,32 @@
-import PropTypes from 'prop-types'
-import HorizontalCard from '../../components/horizontal-card/horizontal-card'
-import s from './interests.module.scss'
+import HorizontalCard from "../../components/horizontal-card/horizontal-card";
+import Image from "next/image";
+import Section from "../../components/tailwind/section";
 
-const Interests = ({ illustration, interests }) => (
-  <section className="section pb-0 bg-primary" id="interests">
-    <div className="container">
-      <div className="row row-grid align-items-center">
-        <div className="col-md-6 order-lg-2 ml-lg-auto">
-          <div className="position-relative pl-md-3">
-            <img src={illustration} className="img-fluid" alt="Interests" />
-          </div>
-        </div>
-        <div className="col-lg-6 order-lg-1 mb-5">
-          {interests.length && interests.map((interest, index) => (
+interface InterestsProps {
+    illustration: string;
+    interests: {
+        title: string;
+        description: string;
+    }[];
+
+}
+const Interests = ({ illustration, interests }: InterestsProps) => (
+  <Section background="primary"  id="interests">
+      <div className="tw-flex tw-flex-col-reverse tw-justify-around tw-items-center md:tw-flex-row tw-container">
+        <div className="tw-flex-1">
+          {interests.length && interests.map((interest) => (
             <HorizontalCard
               key={interest.title}
               title={interest.title}
               description={interest.description}
-              type={index % 2 === 0 ? 'dark' : 'light'}
             />
           ))}
         </div>
+        <div className="tw-flex-1 tw-pb-4 md:tw-pb-0">
+            <Image height={0} width={0} src={illustration} alt="Interests" className="tw-w-full tw-h-full" />
+        </div>
       </div>
-    </div>
-    <div className="separator separator-bottom separator-skew zindex-100">
-      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <polygon className={s.fillWhite} points="2560 0 2560 100 0 100" />
-      </svg>
-    </div>
-  </section>
-)
+  </Section>
+);
 
-Interests.propTypes = {
-  illustration: PropTypes.string,
-  interests: PropTypes.arrayOf(PropTypes.object),
-}
-
-Interests.defaultProps = {
-  illustration: '/images/illustrations/interests.svg',
-  interests: [],
-}
-
-export default Interests
+export default Interests;
