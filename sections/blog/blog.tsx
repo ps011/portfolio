@@ -1,23 +1,29 @@
-import Slider from "react-slick";
+import Slider, {Settings} from "react-slick";
 import Card from "../../components/card/card";
+import Section from "../../components/tailwind/section";
 
 const Blog = ({blogs}: { blogs: any[] }) => {
-    const settings = {
+    const settings: Settings = { // TODO: have types here
         dots: true,
         infinite: false,
-        arrows: false,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        className: "slides",
         responsive: [
             {
                 breakpoint: 2560,
                 settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    dots: false,
+                },
+            },
+            {
+                breakpoint: 1280,
+                settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
                     dots: false,
-                    arrows: true,
                 },
             },
             {
@@ -25,7 +31,6 @@ const Blog = ({blogs}: { blogs: any[] }) => {
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    arrows: false,
                     dots: true,
                 },
             }],
@@ -34,23 +39,18 @@ const Blog = ({blogs}: { blogs: any[] }) => {
     const kebabCaseToSentenceCase = (str) => str.split("-").map((word) => word[0].toUpperCase() + word.substring(1)).join(" ");
     const result = groupBy(blogs, (c) => c.type);
     return (
-        <section className="section section-lg pt-lg-0 mt-5" id="blog-posts">
-            <div className="container">
-                {Object.keys(result).length && Object.keys(result).map((sectionName) => (
-                    <div style={{marginTop: "32px"}} key={sectionName}>
-                        <h3 className="text-center mb-4 display-3">
-                            {kebabCaseToSentenceCase(sectionName)}
-                        </h3>
-                        <Slider {...settings}>
-                            {result[sectionName].length && result[sectionName].map((blog, index) => {
-                                if (!blog.hidden) return <Card key={index} {...blog} />;
-                                return null;
-                            })}
-                        </Slider>
-                    </div>
-                ))}
-            </div>
-        </section>
+        <>
+            {Object.keys(result).length && Object.keys(result).map((sectionName) => (
+            <Section container={true} key={sectionName} id="blog-posts" heading={kebabCaseToSentenceCase(sectionName)}>
+                <Slider {...settings}>
+                    {result[sectionName].length && result[sectionName].map((blog, index) => {
+                        return blog.hidden ? null : <Card key={index} {...blog} />;
+                    })}
+                </Slider>
+
+            </Section>)
+            )}
+        </>
     );
 };
 

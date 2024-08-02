@@ -1,24 +1,19 @@
 import Head from "next/head";
-import Link from "next/link";
-import Script from "next/script";
 
 interface MetaProps {
     title: string;
     desc: string;
     name: string;
-    css?: string[];
-    js?: string[];
     image?: string;
     url?: string;
     twitterHandle?: string;
     manifest?: string;
     keywords?: string[];
     themeColor?: string;
-
 }
 
 const Meta = ({
-                  title, desc, url, image, css, js, name, twitterHandle, manifest, keywords, themeColor,
+                  title, desc, url, image, name, twitterHandle, manifest, keywords, themeColor,
               }: MetaProps) => (
     <>
         <Head>
@@ -51,17 +46,7 @@ const Meta = ({
             <link rel="canonical" href={`${url}`}/>
             <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon"/>
             <link rel="manifest" href={manifest}/>
-
-            {
-                css.length
-                && css.map((c, i) => <Link rel="stylesheet" key={i} href={`${c}`} legacyBehavior/>)
-            }
-            {
-                js.length
-                && js.map((j,i) => <script async key={i} type="text/javascript" src={`${j}`}/>)
-            }
         </Head>
-        <Script src="/js/bootstrap.bundle.min.js"/>
     </>
 );
 export default Meta;
