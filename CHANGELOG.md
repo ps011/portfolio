@@ -1,4 +1,38 @@
 CHANGELOG
+### 0.0.16 (2024-08-02)
+
+
+### Features
+
+* **analytics:** add google analytics ([e1a1182](https://github.com/ps011/portfolio/commit/e1a11825772158702762658ea25e9a3a0ce9baec))
+* **animation:** add animation ([147b328](https://github.com/ps011/portfolio/commit/147b32846f20435a0b5fe81caef89d37b6b246b5))
+* **blog-carousel:** add carousel feature to blogs ([c7588f2](https://github.com/ps011/portfolio/commit/c7588f2b470c94a9bc97d42f7385e11aa229fffd))
+* **blog-post:** add page ([0c5348d](https://github.com/ps011/portfolio/commit/0c5348ded2159d52265637678cbc3a32fd888707))
+* **blog:** add page ([45ca371](https://github.com/ps011/portfolio/commit/45ca37162b53fb8d0f5a13c73252568879ef3ebc))
+* **blog:** add section ([db67b19](https://github.com/ps011/portfolio/commit/db67b19086ba73d6185db9dfee1879b12732bd0c))
+* **blog:** convert link.js to tsx ([038361d](https://github.com/ps011/portfolio/commit/038361dde426f8518dd24472b2df0f6ef59cd2b5))
+* **footer:** add section ([edb7b61](https://github.com/ps011/portfolio/commit/edb7b616fe588b52160a5a97a6ab2e9db3f6b97f))
+* **header:** add component ([2c3991b](https://github.com/ps011/portfolio/commit/2c3991b7df6d25914e4855c02fa724a5b93fe562))
+* **interests:** add component ([b37278e](https://github.com/ps011/portfolio/commit/b37278e19655dc18723eeaeb891c46ef95575a44))
+* **meta:** add component ([c637756](https://github.com/ps011/portfolio/commit/c6377560646484efdc05c7dda4da70438cc854ed))
+* migrate to typescript ([612e093](https://github.com/ps011/portfolio/commit/612e093795620ad1e9d4072504f0899b5d748bb8))
+* migrate to typescript ([6195f4f](https://github.com/ps011/portfolio/commit/6195f4fd796efc04ebc1e78bf2eb4c501068f9f6))
+* **photo-gallery:** add caption on image ([515a526](https://github.com/ps011/portfolio/commit/515a526c5ac930d1cadca636deb9a9302a9c9ea1))
+* **photo-gallery:** add package and page ([4630fff](https://github.com/ps011/portfolio/commit/4630fffa9fdda0016412931a928796f80d0299ca))
+* **photos:** made it server side rendered ([de0df1d](https://github.com/ps011/portfolio/commit/de0df1d984d0b022c2b1eb3726be95095b184ecb))
+
+
+### Bug Fixes
+
+* **about:** skills images ([5ba9dee](https://github.com/ps011/portfolio/commit/5ba9dee1f23614fbf2ec24fc98e9cc65953fc8d6))
+* **about:** skills images ([6f6f6d3](https://github.com/ps011/portfolio/commit/6f6f6d31c3288ee36cd5302944efb5d6abc21a59))
+* **about:** skills images ([7f6cb60](https://github.com/ps011/portfolio/commit/7f6cb6073f5934efba31dfb0dfce85bce3dd4713))
+* **deploy:** add env vars ([193f792](https://github.com/ps011/portfolio/commit/193f792ef6d98efb4b7c3e35abb23c94b4d48ca3))
+* **github:** make component configurable ([5d01448](https://github.com/ps011/portfolio/commit/5d01448bf1c6ece755e1f1912a0feb07f95b6a38))
+* image sizing issue on small devices ([f79a6d5](https://github.com/ps011/portfolio/commit/f79a6d5e6f7c91404cda926622794a76538e6c5f))
+* image sizing issue on small devices ([a789be9](https://github.com/ps011/portfolio/commit/a789be905766a48afead71e28776938e30d287a6))
+* initial load animation issue ([e3e5436](https://github.com/ps011/portfolio/commit/e3e5436ae1fa6867086a67bdf68a320ccc286a96))
+
 ### 0.0.15 (2021-11-20)
 
 ### 0.0.14 (2021-11-20)
