@@ -10,7 +10,8 @@
     "lint:fix": "next lint --fix",
     "test": "jest",
     "commit": "cz",
-    "release": "standard-version"
+    "release:current-version": "node ./tooling_scripts/release-get-current-version.js",
+    "release:next-version": "node ./tooling_scripts/release-get-next-version.js"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",

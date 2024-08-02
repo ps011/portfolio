@@ -1,38 +1,75 @@
 name: Deploy to Heroku
 
 on:
-  push:
+  pull_request:
+    types:
+      - labeled
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
-  deploy-to-heroku:
-    name: Deploy Code to Heroku
+  release:
+    name: Create and Publish Release
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
-          ref: "main"
-      - name: Release and Generate Changelog
+          ref: ${{github.head_ref || github.ref}}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          registry-url: "https://npm.pkg.github.com"
+      - name: Setup Git context
         run: |
-          npm install
-          git config --global user.email "prasheelsoni11@gmail.com"
-          git config --global user.name "ps011"
-          npm run build
-          npm run release
-          git push origin main
-        env:
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.CUSTOM_TOKEN }}
-          BASE_URL: "http://fast-cove-20932.herokuapp.com"
-      - name: Deploy to Heroku
-        uses: akhileshns/heroku-deploy@v3.4.6
+          git config --local user.name "Prasheel's BOT"
+          git config --local user.email "prasheelsoni11@gmail.com"
+      - name: Checkout main branch
+        run: |
+          git fetch
+          git checkout main
+      - name: "Bump version number"
+        id: "version"
+        run: |
+          yarn release:next-version
+          echo "version=$(yarn --silent release:current-version)" >> $GITHUB_OUTPUT
+          git stash
+      - name: "Create release/v${{steps.version.outputs.version}}"
+        run: |
+          git checkout -b release/v${{steps.version.outputs.version}}
+      - name: "Merge feature branch"
+        if: github.event_name == 'pull_request'
+        run: |
+          git merge --no-ff ${{github.head_ref}}
+      - name: "Commit package.json"
+        run: |
+          git stash pop
+          git add package.json
+          git commit -m "v${{steps.version.outputs.version}} from Github Actions"
+      - name: "Push changes to origin"
+        run: git push origin +release/v${{steps.version.outputs.version}}:release/v${{steps.version.outputs.version}}
+
+  merge-release:
+    runs-on: ubuntu-latest
+    name: Merge release v${{needs.release.outputs.version}}
+    needs: [release]
+    steps:
+      - uses: actions/checkout@v4
         with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: "ps11-next"
-          heroku_email: "prasheelsoni11@gmail.com"
-        env:
-          BASE_URL: "http://fast-cove-20932.herokuapp.com"
-          USER_ID: "5e7662160159fc3d220ea3e1"
+          fetch-depth: 0
+          ref: release/v${{needs.release.outputs.version}}
+          token: ${{secrets.CUSTOM_TOKEN}}
+      - name: Setup Git context
+        run: |
+          git config --local user.name "Prasheel's BOT"
+          git config --local user.email "prasheelsoni11@gmail.com"
+      - name: "Merge"
+        run: |
+          git fetch
+          git checkout main
+          git pull origin main
+          git merge --no-ff release/v${{needs.release.outputs.version}}
+          git push origin main
+          git tag -a v${{needs.release.outputs.version}} master -m v${{needs.release.outputs.version}}
+          git push origin v${{needs.release.outputs.version}}
