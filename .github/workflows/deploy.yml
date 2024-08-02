@@ -1,4 +1,4 @@
-name: Deploy to Heroku
+name: Release
 
 on:
   pull_request:
