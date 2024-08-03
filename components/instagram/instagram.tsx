@@ -1,8 +1,7 @@
-"use client"
-
 import Image from "next/image";
-import Link from "next/link";
 import {useEffect, useState} from "react";
+import Section from "../tailwind/section";
+import Button from "../tailwind/button";
 
 type InstagramPost = {
     id: string;
@@ -48,7 +47,7 @@ export default function Instagram() {
                 if (prevFeed && prevFeed.data.length > 0) {
                     return {
                         ...feed,
-                        data: [...prevFeed.data, ...feed.data]
+                        data: [...prevFeed.data, ...feed.data],
                     };
                 }
                 return feed;
@@ -74,84 +73,31 @@ export default function Instagram() {
             {error && <p className="text-red-500">{error}</p>}
 
             {instagramFeed && (
-                // <section className="w-full flex flex-col justify-center items-center">
-                //     <h2 className="text-2xl font-semibold">Instagram Feed:</h2>
-                //     <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                //         {instagramFeed.data.map((post: InstagramPost) => (
-                //             <div key={post.id} className="relative group w-full h-[300px]">
-                //                 <Link
-                //                     href={post.permalink}
-                //                 >
-                //                     <a target="_blank"
-                //                        rel="noopener noreferrer"
-                //                        className="relative">
-                //                         {post.media_type === "VIDEO" ? (
-                //                             <video
-                //                                 src={post.media_url}
-                //                                 controls={false}
-                //                                 className="w-full h-full object-cover"
-                //                             />
-                //                         ) : (
-                //                             <Image
-                //                                 src={post.media_url}
-                //                                 alt={post.caption ?? ""}
-                //                                 className="w-full h-full object-cover"
-                //                                 width={300}
-                //                                 height={300}
-                //                             />
-                //                         )}
-                //
-                //                         <div
-                //                             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300 bg-black bg-opacity-50 flex items-center justify-center p-4 w-full h-[300px]">
-                //                             <p className="text-white text-center text-xs truncate">
-                //                                 {post.caption}
-                //                             </p>
-                //                         </div>
-                //                     </a>
-                //                 </Link>
-                //             </div>
-                //         ))}
-                //     </div>
-                //     {after && <button onClick={loadMore}>Load More</button>}
-                // </section>
-                <section className="d-flex flex-column justify-content-center align-items-center w-100">
-                    <h2 className="h2 fw-semibold">Instagram Feed:</h2>
-                    <div className="d-flex flex-wrap">
+                <Section id="photo-gallery" heading="Instagram Feed">
+                    <div className="tw-flex tw-flex-wrap tw-justify-center">
                         {instagramFeed.data.map((post: InstagramPost) => (
-                            <div key={post.id} className="w-100" style={{ height: '300px' }}>
-                                <Link href={post.permalink}>
-                                    <a target="_blank" rel="noopener noreferrer" className="position-relative">
-                                        {post.media_type === "VIDEO" ? (
-                                            <video
-                                                src={post.media_url}
-                                                controls={false}
-                                                className="w-100 h-100 object-cover"
-                                            />
-                                        ) : (
-                                            <Image
-                                                src={post.media_url}
-                                                alt={post.caption ?? ""}
-                                                className="w-100 h-100 object-cover"
-                                                width={300}
-                                                height={300}
-                                            />
-                                        )}
-
-                                        <div
-                                            className="position-absolute top-0 bottom-0 start-0 end-0 opacity-0 group-hover-opacity-100 transition-opacity duration-300 bg-black bg-opacity-50 d-flex align-items-center justify-content-center p-4 w-100"
-                                            style={{ height: '300px' }}
-                                        >
-                                            <p className="text-white text-center small text-truncate">
-                                                {post.caption}
-                                            </p>
-                                        </div>
-                                    </a>
-                                </Link>
+                            <div key={post.id} className="tw-max-h-96 tw-max-w-96 tw-p-4">
+                                {post.media_type === "VIDEO" ? (
+                                    <video
+                                        src={post.media_url}
+                                        controls={false}
+                                        className="tw-w-full tw-h-full object-cover"
+                                    />
+                                ) : (
+                                    <Image
+                                        src={post.media_url}
+                                        alt={post.caption ?? ""}
+                                        className="tw-w-full tw-h-full tw-object-cover  tw-rounded-md"
+                                        width={0}
+                                        height={0}
+                                        sizes="100vw"
+                                    />
+                                )}
                             </div>
                         ))}
                     </div>
-                    {after && <button onClick={loadMore}>Load More</button>}
-                </section>
+                    {after && <Button className="tw-block tw-mx-auto tw-mt-8" role="primary" onClick={loadMore}>Load More</Button>}
+                </Section>
             )}
         </>
     );
