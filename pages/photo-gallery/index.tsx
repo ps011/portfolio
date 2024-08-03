@@ -1,7 +1,9 @@
+import Instagram from "../../components/instagram/instagram";
+
 const PhotoGallery = () => {
     return (
         <div>
-            Photos will be here soon
+            <Instagram />
         </div>
     );
 };
