@@ -73,5 +73,5 @@ jobs:
           git pull origin main
           git merge --no-ff release/v${{needs.release.outputs.version}}
           git push origin main
-          git tag -a v${{needs.release.outputs.version}} master -m v${{needs.release.outputs.version}}
+          git tag -a v${{needs.release.outputs.version}} main -m v${{needs.release.outputs.version}}
           git push origin v${{needs.release.outputs.version}}
