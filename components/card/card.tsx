@@ -33,7 +33,7 @@ const Card = ({
 
     return (
         <div
-            className="tw-flex tw-flex-col tw-shadow-md tw-border-0 tw-m-2 tw-p-4 tw-h-full tw-bg-neutral-100 tw-rounded-md tw-items-stretch"
+            className="tw-flex tw-flex-col tw-shadow-md tw-border-0 tw-m-2 tw-p-4 tw-h-full tw-bg-neutral-100 tw-rounded-md tw-items-stretch dark:tw-bg-gray-600 dark:tw-text-white dark:tw-shadow-gray-900"
             data-aos="flip-right">
             <div>
                 {thumbnail
@@ -60,7 +60,7 @@ const Card = ({
                         {
                             tagsArray.length ?
                                 tagsArray.map(
-                                    (tag) => <Badge text={tag} className="tw-mr-2" key={tag}/>
+                                    (tag) => <Badge text={tag} className="tw-mr-2 dark:tw-bg-dark-primary-300" key={tag}/>
                                 )
                                 : ""}
                     </div>
