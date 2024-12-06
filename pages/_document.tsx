@@ -17,15 +17,15 @@ export default class MyDocument extends Document {
                   rel="stylesheet" />
           {/* enable analytics script only for production */}
           {isProduction && (
-            <>
-              <script
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-              />
-              <script
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{
-                  __html: `
+              <>
+                  <script
+                      async
+                      src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+                  />
+                  <script
+                      // eslint-disable-next-line react/no-danger
+                      dangerouslySetInnerHTML={{
+                          __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -33,13 +33,15 @@ export default class MyDocument extends Document {
               page_path: window.location.pathname,
             });
           `,
-                }}
-              />
-            </>
+                      }}
+                  />
+                  <script
+                      src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.2.10/iframeResizer.min.js" async></script>
+              </>
           )}
         </Head>
-        <body>
-          <Main />
+          <body className="dark:tw-bg-gray-700">
+          <Main/>
           <NextScript />
         </body>
       </Html>

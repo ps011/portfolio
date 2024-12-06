@@ -6,7 +6,6 @@ import Interests from "../sections/interests/interests";
 import Blog from "../sections/blog/blog";
 import Footer from "../sections/footer/footer";
 import GithubCalendar from "../components/github/githubCalendar";
-import StackoverflowStats from "../components/stackoverflowStats/stackoverflowStats";
 import {Map} from "../sections/map/map";
 
 import { Blog as tBlog } from "../interfaces/blog";
@@ -42,7 +41,6 @@ export default function Home({
   data, about, blogs,
 }: HomeProps) {
   const { meta, banner, header } = data;
-  const stackoverflow = about.profiles.find((profile) => profile.name === "stackoverflow");
   const github = about.profiles.find((profile) => profile.name === "github");
   return (
     <div>
@@ -52,12 +50,6 @@ export default function Home({
       <About {...about} />
       <Interests interests={about.interests} illustration={"/images/illustrations/interests.svg"} />
       <GithubCalendar username={github.username} />
-      <StackoverflowStats
-        url={stackoverflow.url}
-        id={stackoverflow.id}
-        name={stackoverflow.username}
-        label="Stackoverflow"
-      />
       <Blog blogs={blogs} />
       <Map countriesVisited={about.countriesVisited}/>
       <Footer profiles={about.profiles}/>

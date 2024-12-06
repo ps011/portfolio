@@ -17,6 +17,11 @@ module.exports = {
                     100: "#f4f5f7",
                     200: "#F4F5F7E2",
                 },
+                "dark-primary": {
+                    100: "#1A202C",
+                    200: "#1A202CFF",
+                    300: "#AFBBFF",
+                },
             },
         },
         container: {

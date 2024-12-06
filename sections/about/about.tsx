@@ -52,13 +52,13 @@ const About = ({
             name: "Experience",
             content: (<div className="tw-flex tw-flex-col tw-items-center">
                             {experience.length && experience.map((company, index) => (
-                        <div className="tw-flex tw-flex-col tw-justify-between tw-items-center tw-shadow-md tw-rounded-xl tw-p-4 tw-my-8 md:tw-flex-row tw-max-w-lg" key={index}>
+                        <div className="tw-flex tw-flex-col tw-justify-between tw-items-center tw-shadow-md tw-rounded-xl tw-p-4 tw-my-4 md:tw-flex-row tw-max-w-lg dark:tw-bg-gray-600" key={index}>
                             <div className="tw-mb-8 md:tw-mb-0">
                                 <Image height={60} width={100} src={company.logo}
                                        alt="Company Logo"/>
                             </div>
                             <div className="tw-flex tw-flex-col tw-flex-1">
-                                <div>
+                                <div className="dark:tw-text-white">
                                     <h4 className="tw-mb-0">
                                         {company.designation}
                                         {" "}
@@ -80,14 +80,14 @@ const About = ({
                                         </small>
                                     </p>
                                 </div>
-                                <p className="tw-my-2">
+                                <p className="tw-my-2 dark:tw-text-white">
                                     <i className="ni ni-pin-3 tw-mr-2"/>
                                     {" "}
                                     {company.location}
                                 </p>
                                 <div>
                                 {company.technologies && company.technologies.map((technology) =>
-                                    <Badge key={technology} text={technology} className="tw-m-1"/>)}
+                                    <Badge key={technology} text={technology} className="tw-m-1 dark:tw-bg-dark-primary-300 tw-text-primary-gray-300"/>)}
                                 </div>
                             </div>
                         </div>
@@ -97,7 +97,7 @@ const About = ({
         },
         {
             name: "About",
-            content: <div
+            content: <div className="dark:tw-text-white"
                 dangerouslySetInnerHTML={{ __html: about }}
             />,
         },
@@ -121,8 +121,8 @@ const About = ({
                         <div className="tw-flex">
                             {stats.length && stats.map((stat) => (
                                 <div key={stat.label} className="tw-mx-4 tw-text-center">
-                                    <span className="tw-font-bold tw-block tw-text-3xl">{stat.count}</span>
-                                    <span className="tw-text-xs tw-text-neutral-500">{stat.label}</span>
+                                    <span className="tw-font-bold tw-block tw-text-3xl  dark:tw-text-white">{stat.count}</span>
+                                    <span className="tw-text-xs tw-text-neutral-500 dark:tw-text-gray-400">{stat.label}</span>
                                 </div>
                             ))}
                         </div>
@@ -136,18 +136,18 @@ const About = ({
                     </div>
                 </div>
                 <div className="tw-text-center tw-mt-4">
-                    <h3 className="tw-text-3xl tw-mb-6">
+                    <h3 className="tw-text-3xl tw-mb-6 dark:tw-text-white">
                         {name}
                     </h3>
                     <div className="tw-font-semibold tw-text-neutral-400">
                         <i className="fa fa-map-pin mr-2"/>
                         {location}
                     </div>
-                    <div>
-                        <i className="fa fa-briefcase mr-2"/>
+                    <div className="dark:tw-text-white">
+                        <i className="fa fa-briefcase mr-2 "/>
                         {designation}
                     </div>
-                    <div>
+                    <div className="dark:tw-text-white">
                         <i className="fa fa-graduation-cap mr-2"/>
                         {education}
                     </div>
