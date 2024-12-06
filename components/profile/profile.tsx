@@ -35,7 +35,7 @@ const Profile = ({url, name, className}: ProfileProps) => {
     };
 
     return <Link href={url} key={name} target="_blank" rel="noreferrer"
-                 className={`${className} tw-max-h-8`}>
+                 className={`${className} tw-max-h-8 dark:tw-text-white`}>
         {getProfileIcon(name)}
     </Link>;
 };
