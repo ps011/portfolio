@@ -1,3 +1,4 @@
+"use client";
 import {useCallback, useEffect, useState} from "react";
 import remark from "remark";
 import html from "remark-html";
@@ -17,10 +18,8 @@ export default function MarkdownRenderer({ content }: {content: string}) {
   }, [content, fetchAndSetContent]);
 
   return (
-    <div className="tw-container tw-mx-auto">
       <div
         dangerouslySetInnerHTML={{ __html: data }}
       />
-    </div>
   );
 }

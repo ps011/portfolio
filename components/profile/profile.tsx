@@ -21,6 +21,7 @@ const Profile = ({url, name, className}: ProfileProps) => {
             case "linkedin":
                 return <Linkedin/>;
             case "twitter":
+            case "x":
                 return <X/>;
             case "facebook":
                 return <Facebook/>;
