@@ -1,3 +1,4 @@
+"use client";
 import {useCallback, useEffect, useState} from "react";
 import remark from "remark";
 import html from "remark-html";
