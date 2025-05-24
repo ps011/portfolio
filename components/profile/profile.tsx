@@ -17,27 +17,36 @@ const Profile = ({url, name, className}: ProfileProps) => {
     const getProfileIcon = (name: string) => {
         switch (name) {
             case "github":
-                return <Github/>;
+                return <Github />;
             case "linkedin":
-                return <Linkedin/>;
+                return <Linkedin />;
             case "twitter":
             case "x":
-                return <X/>;
+                return <X />;
             case "facebook":
-                return <Facebook/>;
+                return <Facebook />;
             case "instagram":
-                return <Instagram/>;
+                return <Instagram />;
             case "stackoverflow":
-                return <Stackoverflow/>;
+                return <Stackoverflow />;
             default:
-                return <Github/>;
+                return <Github />;
         }
     };
 
-    return <Link href={url} key={name} target="_blank" rel="noreferrer"
-                 className={`${className} tw-max-h-8 dark:tw-text-white`}>
-        {getProfileIcon(name)}
-    </Link>;
+    return (
+        <Link 
+            href={url} 
+            key={name} 
+            target="_blank" 
+            rel="noreferrer"
+            className={`${className || ''} dark:text-white inline-block`}
+        >
+            <span className="block w-6 h-6"> 
+                {getProfileIcon(name)}
+            </span>
+        </Link>
+    );
 };
 
 export default Profile;

@@ -63,23 +63,23 @@ const Blog = ({
     return (
         <>
             <title>{title} by {author}</title>
-        <article className="tw-flex tw-flex-col">
-            <div className="tw-mb-8 tw-relative">
-                <Image height={0} width={0} src={banner} alt="Post" className="tw-w-full tw-max-h-[650px] tw-object-cover tw-m-0"
+        <article className="flex flex-col">
+            <div className="mb-8 relative">
+                <Image height={0} width={0} src={banner} alt="Post" className="w-full max-h-[650px] object-cover m-0"
                        sizes="100vw"/>
-                <h1 className="tw-absolute tw-left-0 tw-right-0 tw--bottom-4 tw-text-white tw-p-12 tw-rounded-tl-[155px] tw-bg-gradient-to-t tw-from-black/75 tw-to-white/75">{title}</h1>
+                <h1 className="absolute left-0 right-0 -bottom-4 text-white p-12 rounded-tl-[155px] bg-gradient-to-t from-black/75 to-white/75">{title}</h1>
             </div>
-            <div className="tw-container">
-                <div className="tw-mb-8 tw-text-md">
-                    <a className="tw-text-primary-100" href={profileLink}>{author}</a>
-                    <p className="tw-italic tw-my-2">{new Date(date).toUTCString()}</p>
+            <div className="container">
+                <div className="mb-8 text-md">
+                    <a className="text-primary-100" href={profileLink}>{author}</a>
+                    <p className="italic my-2">{new Date(date).toUTCString()}</p>
                 </div>
                 <MarkdownRenderer content={content}/>
-                <div className="tw-mt-8">
+                <div className="mt-8">
                     <span>Share this Post:</span>
-                    <div className="tw-flex tw-justify-flex-start tw-mt-4">
+                    <div className="flex justify-flex-start mt-4">
                         {shareArticleList.map((share) => (
-                            <Profile key={share.name} url={share.url} name={share.name} className="tw-w-8 tw-mr-4"/>
+                            <Profile key={share.name} url={share.url} name={share.name} className="w-8 mr-4"/>
                         ))}
                     </div>
                 </div>

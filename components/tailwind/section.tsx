@@ -4,7 +4,6 @@ interface SectionProps {
     background?: "primary" | "secondary";
     container?: boolean;
     heading?: string;
-
 }
 
 const Section = ({children, id, background, container, heading}: SectionProps) => {
@@ -12,11 +11,11 @@ const Section = ({children, id, background, container, heading}: SectionProps) =
         <section
             id={id}
             className={`
-            tw-mb-16 tw-p-8
-            ${background === "primary" ? "tw-bg-primary-100" : "tw-bg-white dark:tw-bg-gray-700"}
-            ${container ? "tw-container" : ""}`}
+            mb-16 p-8
+            ${background === "primary" ? "bg-brandMutedYellow-100 dark:bg-neutralGray-800" : "bg-white dark:bg-neutralGray-700"}
+            ${container ? "container" : ""}`.trim().replace(/\s+/g, ' ')}
         >
-            {heading &&  <h3 className="tw-text-center tw-my-4 tw-text-2xl tw-font-weight-600 dark:tw-text-white">{heading}</h3>}
+            {heading &&  <h3 className="text-center my-4 text-2xl font-weight-600 dark:text-white">{heading}</h3>}
             {children}
         </section>
     );

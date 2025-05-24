@@ -1,8 +1,9 @@
 import Image from "next/image";
-import Badge from "../../components/tailwind/badge";
 import Section from "../../components/tailwind/section";
 import Profile from "../../components/profile/profile";
 import Tabs, {TabData} from "../../components/tailwind/tabs";
+import { Text, Title, Group, Timeline, ThemeIcon, Badge as MantineBadge, Box, SimpleGrid } from "@mantine/core";
+import { IconBriefcase, IconMapPin, IconCalendarEvent } from "@tabler/icons-react";
 
 interface AboutProps {
     about: string;
@@ -34,127 +35,123 @@ const About = ({
         {
             name: "Skills",
             content: (
-                <>
-                    {skills.length && skills.map((skill) => (
-                        <Image
-                            height={85}
-                            width={100}
-                            key={skill.logo}
-                            className="tw-inline-block tw-m-4"
-                            src={skill.logo}
-                            alt={skill.name}
-                        />
+                <SimpleGrid
+                    cols={{ base: 2, xs:3, sm: 4, md: 5, lg: 6 }}
+                    spacing={{ base: 'md', sm: 'lg' }}
+                    verticalSpacing={{ base: 'md', sm: 'lg' }}
+                >
+                    {skills.length > 0 && skills.map((skill) => (
+                        <Box key={skill.name} className="text-center flex flex-col items-center">
+                            <Image
+                                height={50}
+                                width={50}
+                                className="mb-1"
+                                src={skill.logo}
+                                alt={skill.name}
+                                style={{ objectFit: "contain" }}
+                            />
+                        </Box>
                     ))}
-                </>
+                </SimpleGrid>
             ),
         },
         {
             name: "Experience",
-            content: (<div className="tw-flex tw-flex-col tw-items-center">
-                            {experience.length && experience.map((company, index) => (
-                        <div className="tw-flex tw-flex-col tw-justify-between tw-items-center tw-shadow-md tw-rounded-xl tw-p-4 tw-my-4 md:tw-flex-row tw-max-w-lg dark:tw-bg-gray-600" key={index}>
-                            <div className="tw-mb-8 md:tw-mb-0">
-                                <Image height={60} width={100} src={company.logo}
-                                       alt="Company Logo"/>
-                            </div>
-                            <div className="tw-flex tw-flex-col tw-flex-1">
-                                <div className="dark:tw-text-white">
-                                    <h4 className="tw-mb-0">
-                                        {company.designation}
-                                        {" "}
-                                        @
-                                        {" "}
-                                        {company.company}
-                                    </h4>
-                                    <p className="text-muted tw-mb-0">
-                                        {" "}
-                                        <small>
-                                            (
-                                            {" "}
-                                            {company.from}
-                                            {" "}
-                                            -
-                                            {company.to}
-                                            {" "}
-                                            )
-                                        </small>
-                                    </p>
-                                </div>
-                                <p className="tw-my-2 dark:tw-text-white">
-                                    <i className="ni ni-pin-3 tw-mr-2"/>
-                                    {" "}
-                                    {company.location}
-                                </p>
-                                <div>
+            content: (
+                <Timeline active={experience.length} bulletSize={24} lineWidth={2} color="brandMutedYellow">
+                    {experience.length && experience.map((company, index) => (
+                        <Timeline.Item 
+                            key={index} 
+                            title={`${company.designation} @ ${company.company}`}
+                            bullet={
+                                <ThemeIcon size={20} variant="filled" color="brandMutedYellow" radius="xl">
+                                    <IconBriefcase size={12} />
+                                </ThemeIcon>
+                            }
+                        >
+                            {company.logo && (
+                                <Image 
+                                    height={30} 
+                                    width={80} 
+                                    src={company.logo} 
+                                    alt={`${company.company} logo`} 
+                                    style={{ marginTop: '8px', marginBottom: '8px' }} 
+                                />
+                            )}
+                            <Text c="dimmed" size="sm">
+                                <IconCalendarEvent size={14} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }} />
+                                {company.from} - {company.to}
+                            </Text>
+                            <Text size="sm" mt={4}>
+                                <IconMapPin size={14} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }} />
+                                {company.location}
+                            </Text>
+                            <Group gap="xs" mt="sm">
                                 {company.technologies && company.technologies.map((technology) =>
-                                    <Badge key={technology} text={technology} className="tw-m-1 dark:tw-bg-dark-primary-300 tw-text-primary-gray-300"/>)}
-                                </div>
-                            </div>
-                        </div>
+                                    <MantineBadge key={technology} variant="light" color="brandMutedYellow">{technology}</MantineBadge>)}
+                            </Group>
+                        </Timeline.Item>
                     ))}
-                </div>
+                </Timeline>
             ),
         },
         {
             name: "About",
-            content: <div className="dark:tw-text-white"
-                dangerouslySetInnerHTML={{ __html: about }}
-            />,
+            content: <Text className="dark:text-white" dangerouslySetInnerHTML={{ __html: about }} />,
         },
     ];
 
     return (
         <Section container id="about">
-            <div className="tw-shadow-2xl tw-rounded tw-px-4">
-                <div className="tw-flex tw-flex-col tw-justify-between tw-items-center lg:tw-flex-row">
-                    <div className="tw-flex-1 tw-mb-4 lg:tw-mb-0 tw--mt-12 lg:tw-order-2">
+            <div className="shadow-2xl rounded px-4 py-8">
+                <div className="flex flex-col justify-between items-center lg:flex-row">
+                    <div className="flex-1 mb-4 lg:mb-0 -mt-12 lg:order-2">
                         <Image
                             src={imageUrl}
-                            className="tw-rounded-full tw-block tw-mx-auto tw-h-48 tw-w-48 tw-min-w-48"
+                            className="rounded-full block mx-auto h-48 w-48 min-w-48 object-cover"
                             alt="dp"
                             sizes="100vw"
                             width={0}
                             height={0}
                         />
                     </div>
-                    <div className="tw-flex-1 lg:tw-order-1">
-                        <div className="tw-flex">
+                    <div className="flex-1 lg:order-1">
+                        <Group justify="center" className="flex">
                             {stats.length && stats.map((stat) => (
-                                <div key={stat.label} className="tw-mx-4 tw-text-center">
-                                    <span className="tw-font-bold tw-block tw-text-3xl  dark:tw-text-white">{stat.count}</span>
-                                    <span className="tw-text-xs tw-text-neutral-500 dark:tw-text-gray-400">{stat.label}</span>
+                                <div key={stat.label} className="mx-4 text-center">
+                                    <Title order={3} className="dark:text-white">{stat.count}</Title> 
+                                    <Text size="xs" className="text-neutralGray-700 dark:text-neutralGray-400">{stat.label}</Text> 
                                 </div>
                             ))}
-                        </div>
+                        </Group>
                     </div>
-                    <div className="tw-flex-1 lg:tw-order-3">
-                        <div className="tw-py-4 tw-flex tw-justify-center">
+                    <div className="flex-1 lg:order-3">
+                        <Group justify="center" className="py-4 flex">
                             {profiles.length && profiles.map((profile) => (
                                 <Profile url={profile.url} name={profile.name} key={profile.name}/>
                             ))}
-                        </div>
+                        </Group>
                     </div>
                 </div>
-                <div className="tw-text-center tw-mt-4">
-                    <h3 className="tw-text-3xl tw-mb-6 dark:tw-text-white">
-                        {name}
-                    </h3>
-                    <div className="tw-font-semibold tw-text-neutral-400">
-                        <i className="fa fa-map-pin mr-2"/>
+                <div className="text-center mt-12">
+                    <Title order={2} className="mb-6 dark:text-white">{name}</Title>
+                    
+                    <Text fw={600} className="text-neutralGray-600 dark:text-neutralGray-300 mt-1">
+                        <IconMapPin size={16} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }} />
                         {location}
-                    </div>
-                    <div className="dark:tw-text-white">
-                        <i className="fa fa-briefcase mr-2 "/>
+                    </Text>
+                    <Text className="mt-1 dark:text-white">
+                        <IconBriefcase size={16} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }} />
                         {designation}
-                    </div>
-                    <div className="dark:tw-text-white">
+                    </Text>
+                    <Text className="mt-1 dark:text-white">
                         <i className="fa fa-graduation-cap mr-2"/>
                         {education}
-                    </div>
+                    </Text>
                 </div>
-                <div className="tw-mt-2 tw-pt-2 tw-border-t-2 tw-text-center">
-                    <div className="tw-flex tw-flex-col tw-justify-center md:tw-mx-8">
-                        <Tabs tabs={tabsData} className="tw-container"/>
+                <div className="mt-10 pt-8 border-t-2 text-center">
+                    <div className="flex flex-col justify-center md:mx-8">
+                        <Tabs tabs={tabsData} className="container"/>
                     </div>
                 </div>
             </div>

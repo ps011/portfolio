@@ -11,6 +11,7 @@ export interface Blog {
   date: string;
   published_at: string;
   updated_at: string;
+  createdAt: string;
   type: BlogType;
   link: string;
   authorEmail: string;

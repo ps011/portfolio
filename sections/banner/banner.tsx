@@ -15,15 +15,16 @@ interface BannerProps {
 const Banner = ({
                     illustration, texts, ctaLabel, ctaUrl, downloadable,
                 }: BannerProps) => {
-    let toRotate;
-    let el;
-    let loopNum;
-    let period;
-    let txt;
-    let isDeleting;
+    let toRotate: string | null;
+    let el: HTMLElement | null;
+    let loopNum: number;
+    let period: string | null;
+    let txt: string;
+    let isDeleting: boolean;
     const tick = () => {
-        const i = loopNum % toRotate.length;
-        const fullTxt = toRotate[i];
+        if (!el || !toRotate) return;
+        const i = loopNum % (JSON.parse(toRotate) as string[]).length;
+        const fullTxt = (JSON.parse(toRotate) as string[])[i];
         if (isDeleting) {
             txt = fullTxt.substring(0, txt.length - 1);
         } else {
@@ -35,7 +36,7 @@ const Banner = ({
             delta /= 2;
         }
         if (!isDeleting && txt === fullTxt) {
-            delta = period;
+            delta = parseInt(period || "2000", 10);
             isDeleting = true;
         } else if (isDeleting && txt === "") {
             isDeleting = false;
@@ -47,52 +48,56 @@ const Banner = ({
         }, delta);
     };
 
-    const TxtType = (elL, toRotateL, periodL) => {
+    const TxtType = (elL: HTMLElement, toRotateL: string, periodL: string | null) => {
         toRotate = toRotateL;
         el = elL;
         loopNum = 0;
-        period = parseInt(periodL, 10) || 2000;
+        period = periodL;
         txt = "";
         tick();
         isDeleting = false;
     };
 
     useEffect(() => {
-        const elements = document.querySelectorAll("#typewrite");
-        for (let i = 0; i < elements.length; i += 1) {
-            toRotate = elements[i].getAttribute("data-type");
-            period = elements[i].getAttribute("data-period");
-            if (toRotate) {
-                TxtType(elements[i], JSON.parse(toRotate), period);
+        const elements = document.querySelectorAll<HTMLElement>("#typewrite");
+        elements.forEach(currentEl => {
+            const dataType = currentEl.getAttribute("data-type");
+            const dataPeriod = currentEl.getAttribute("data-period");
+            if (dataType) {
+                TxtType(currentEl, dataType, dataPeriod);
             }
-        }
+        });
+        
         const css = document.createElement("style");
         css.type = "text/css";
-        css.innerHTML = "#typewrite > .wrap { border-right: 0.08em solid #fff}";
+        css.innerHTML = "#typewrite > span { border-right: 0.08em solid currentColor; }"; 
         document.body.appendChild(css);
+        return () => {
+            document.body.removeChild(css);
+        }
     }, []);
     return (
-        <section className="tw-bg-primary-100 tw-mb-16">
-            <div className="tw-container tw-h-[70vh]">
-                <div className="tw-h-full tw-flex tw-flex-col md:tw-justify-around md:tw-items-center md:tw-flex-row">
-                    <div className="tw-flex-1 tw-flex">
-                        <Image height="0" width="0" src={illustration} alt="Banner logo" data-aos="fade-right"
-                               className="tw-m-auto tw-w-3/6 tw-h-auto"/>
+        <section className="bg-brandMutedYellow-100 mb-16">
+            <div className="container h-[70vh]">
+                <div className="h-full flex flex-col md:justify-around md:items-center md:flex-row">
+                    <div className="flex-1 flex">
+                        <Image height="0" width="0" src={illustration} alt="Banner logo" 
+                               className="m-auto w-3/6 h-auto"/>
                     </div>
-                    <div className="tw-flex-1 tw-flex tw-flex-col tw-mb-5 md:tw-mb-0">
-                        <div className="tw-flex-1 tw-min-h-8 md:tw-min-h-16">
-                            <h4 className="tw-text-white">Hi, I&apos;m</h4>
-                            <h1 className="tw-min-h-20 type-animate">
-                                <a href="#" id="typewrite" className="tw-text-white tw-text-5xl" data-period="2000"
+                    <div className="flex-1 flex flex-col mb-5 md:mb-0">
+                        <div className="flex-1 min-h-8 md:min-h-16">
+                            <h4 className="text-neutralGray-900">Hi, I&apos;m</h4>
+                            <h1 className="min-h-20 type-animate">
+                                <a href="#" id="typewrite" className="text-neutralGray-900 text-5xl" data-period="2000"
                                    data-type={JSON.stringify(texts)}>
                                 </a>
                             </h1>
                         </div>
-                        <div className="tw-flex-1 tw-mt-4">
+                        <div className="flex-1 mt-4">
                             {ctaLabel && (
-                                <Button role="secondary">
+                                <Button variant="filled">
                                     <Link href={ctaUrl} download={downloadable} target="_blank">
-                                        <span className="hover:tw-text-black">{ctaLabel}</span>
+                                        <span>{ctaLabel}</span>
                                     </Link>
                                 </Button>
                             )}

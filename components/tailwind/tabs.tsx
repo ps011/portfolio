@@ -18,35 +18,33 @@ const Tabs = ({tabs, className}: TabsProps) => {
     };
 
     return (
-        <div className={`${className ?? ""} tw-relative tw-right-0`}>
+        <div className={`${className ?? ""} relative right-0`}>
             <ul
-                className="tw-relative tw-flex tw-flex-wrap tw-p-1 tw-list-none tw-rounded-xl"
+                className="relative flex flex-wrap p-1 list-none rounded-xl"
                 data-tabs="tabs"
                 role="list"
             >
                 {tabs.map((tab, index) => (
                     <li
                         key={index}
-                        className={`tw-z-30 tw-flex-auto tw-text-center tw-p-2 tw-m-2 tw-border-neutral-100 tw-rounded-md ${activeTab === index ? "tw-bg-primary-100 tw-text-white dark:tw-bg-dark-primary-300 dark:tw-text-gray-700" : "tw-bg-neutral-100 dark:tw-bg-gray-600 dark:tw-text-white"}`}
+                        className={`z-30 flex-auto text-center p-2 m-1 rounded-md cursor-pointer transition-colors duration-150 ease-in-out ${ 
+                            activeTab === index 
+                                ? "bg-brandMutedYellow-500 text-white shadow-md dark:bg-brandMutedYellow-600 dark:text-white" 
+                                : "bg-neutralGray-200 text-neutralGray-700 hover:bg-neutralGray-100 dark:bg-neutralGray-700 dark:text-neutralGray-300 dark:hover:bg-neutralGray-600"
+                        }`}
                         onClick={() => onTabChange(index)}
                         data-tab-index={index}
                     >
-                        <button
-                            className="tw-z-30 tw-flex tw-items-center tw-justify-center tw-w-full tw-px-0 tw-py-1 tw-mb-0 tw-transition-all tw-ease-in-out tw-border-0 tw-rounded-lg tw-cursor-pointer"
-                            role="tab"
-                            aria-controls={tab.name.toLowerCase()}
-                        >
-                            <span className="tw-ml-1">{tab.name}</span>
-                        </button>
+                        <span className="ml-1 font-bold">{tab.name}</span>
                     </li>
                 ))}
             </ul>
-            <div data-tab-content="" className="tw-p-5">
+            <div data-tab-content="" className="p-5">
                 {tabs.map((tab, index) => (
                     <div
                         key={index}
                         data-tab-content-index={index}
-                        className={`${activeTab === index ? "tw-block" : "tw-hidden"}`}
+                        className={`${activeTab === index ? "block" : "hidden"}`}
                         id={tab.name.toLowerCase()}
                         role="tabpanel"
                     >

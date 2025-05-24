@@ -1,19 +1,20 @@
+import { Text, Title } from "@mantine/core";
+
 interface HorizontalCardProps {
     title: string;
     description: string;
-
 }
 
 const HorizontalCard = ({
                             title, description,
                         }: HorizontalCardProps) => (
-    <div className="tw-bg-white tw-shadow-md tw-my-2 tw-rounded-xl dark:tw-bg-gray-600 dark:tw-text-white" data-aos="fade-right">
-        <div className="tw-flex tw-p-8">
-            <div className="tw-pl-4">
-                <h5 className="tw-text-xl tw-text-primary-100 tw-font-bold tw-mb-4 dark:tw-text-dark-primary-300">{title}</h5>
-                <p>
+    <div className="bg-white shadow-md my-2 rounded-xl dark:bg-neutralGray-700" data-aos="fade-right">
+        <div className="flex p-8">
+            <div className="pl-4">
+                <Title order={5} className="text-brandMutedYellow-700 dark:text-brandMutedYellow-200 mb-4">{title}</Title>
+                <Text className="dark:text-white"> 
                     {description}
-                </p>
+                </Text>
             </div>
         </div>
     </div>

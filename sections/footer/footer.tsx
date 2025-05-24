@@ -1,20 +1,20 @@
 import Profile from "../../components/profile/profile";
 
 const Footer = ({profiles}) => (
-    <footer className="tw-container">
-        <div className="tw-flex tw-flex-col md:tw-flex-row tw-justify-between tw-py-4 tw-w-full">
-            <div className="tw-flex tw-flex-col tw-w-full">
-                <h3 className="tw-text-primary-100 tw-text-2xl tw-font-light tw-mb-2 dark:tw-text-dark-primary-300">Thank you for stopping by!</h3>
-                <h4 className="tw-mb-4 md:tw-mb-0 tw-font-light dark:tw-text-white">Let&apos;s get in touch on any of these platforms.</h4>
+    <footer className="container">
+        <div className="flex flex-col md:flex-row justify-between py-4 w-full">
+            <div className="flex flex-col w-full">
+                <h3 className="text-primary-100 text-2xl font-light mb-2 dark:text-dark-primary-300">Thank you for stopping by!</h3>
+                <h4 className="mb-4 md:mb-0 font-light dark:text-white">Let&apos;s get in touch on any of these platforms.</h4>
             </div>
-            <div className="tw-flex tw-justify-end">
+            <div className="flex justify-end">
                 {profiles.length && profiles.map((profile) => (
-                    <Profile url={profile.url} name={profile.name} key={profile.name} className="tw-mr-4"/>
+                    <Profile url={profile.url} name={profile.name} key={profile.name} className="mr-4"/>
                 ))}
             </div>
         </div>
-        <hr className="tw-py-4"/>
-        <div className="tw-flex tw-justify-between tw-py-4 dark:tw-text-white">
+        <hr className="py-4"/>
+        <div className="flex justify-between py-4 dark:text-white">
             <span>
                 &copy;
                 {" "}

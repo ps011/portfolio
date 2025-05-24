@@ -12,8 +12,8 @@ interface InterestsProps {
 }
 const Interests = ({ illustration, interests }: InterestsProps) => (
   <Section background="primary"  id="interests">
-      <div className="tw-flex tw-flex-col-reverse tw-justify-around tw-items-center md:tw-flex-row tw-container">
-        <div className="tw-flex-1">
+      <div className="flex flex-col-reverse justify-around items-center md:flex-row container">
+        <div className="flex-1">
           {interests.length && interests.map((interest) => (
             <HorizontalCard
               key={interest.title}
@@ -22,8 +22,8 @@ const Interests = ({ illustration, interests }: InterestsProps) => (
             />
           ))}
         </div>
-        <div className="tw-flex-1 tw-pb-4 md:tw-pb-0">
-            <Image height={0} width={0} src={illustration} alt="Interests" className="tw-w-full tw-h-full" />
+        <div className="flex-1 pb-4 md:pb-0">
+            <Image height={0} width={0} src={illustration} alt="Interests" className="w-full h-full" />
         </div>
       </div>
   </Section>
