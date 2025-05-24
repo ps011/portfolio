@@ -1,9 +1,10 @@
-import { Carousel } from '@mantine/carousel';
-import { useMediaQuery } from '@mantine/hooks';
-import { useMantineTheme } from '@mantine/core';
+import { Carousel } from "@mantine/carousel";
+import { useMediaQuery } from "@mantine/hooks";
+import { useMantineTheme } from "@mantine/core";
 import Card from "../../components/card/card";
 import Section from "../../components/tailwind/section";
-import { Blog as BlogType } from '../../interfaces/blog';
+import { Blog as BlogType } from "../../interfaces/blog";
+import { useEffect, useState } from "react";
 
 const Blog = ({blogs}: { blogs: BlogType[] }) => {
     const theme = useMantineTheme();
@@ -56,18 +57,18 @@ const Blog = ({blogs}: { blogs: BlogType[] }) => {
                     <Section container={true} key={sectionName} id={`blog-posts-${sectionName}`} heading={kebabCaseToSentenceCase(sectionName)}>
                         <Carousel
                             slideSize={{
-                                base: '100%', 
-                                xs: '50%',
-                                sm: '50%',   
-                                md: '33.333333%', 
-                                lg: '25%',    
-                                xl: '20%',
+                                base: "100%", 
+                                xs: "50%",
+                                sm: "50%",   
+                                md: "33.333333%", 
+                                lg: "25%",    
+                                xl: "20%",
                             }}
-                            slideGap={{ base: 0, sm: 'md' }}
+                            slideGap={{ base: 0, sm: "md" }}
                             emblaOptions={{ 
-                                loop: true, // Or loop: slidesInSection > visibleSlides if strict looping is preferred
-                                align: 'center',
-                                slidesToScroll: slidesToScrollValue
+                                loop: true, 
+                                align: "center",
+                                slidesToScroll: slidesToScrollValue,
                             }}
                             withIndicators={showIndicators} 
                             withControls={showControls}
@@ -75,7 +76,7 @@ const Blog = ({blogs}: { blogs: BlogType[] }) => {
                             {result[sectionName]?.length > 0 && result[sectionName].map((blog, index) => {
                                 return blog.hidden ? null : (
                                     <Carousel.Slide key={index}>
-                                        <Card {...blog} tags={Array.isArray(blog.tags) ? blog.tags.join(', ') : blog.tags} />
+                                        <Card {...blog} tags={Array.isArray(blog.tags) ? blog.tags.join(", ") : blog.tags} />
                                     </Carousel.Slide>
                                 );
                             })}

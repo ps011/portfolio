@@ -14,16 +14,16 @@ const Footer = ({profiles}) => (
             </div>
         </div>
         <hr className="py-4"/>
-        <div className="flex justify-between py-4 dark:text-white">
+        <div className="flex justify-between py-4 text-neutralGray-900 dark:text-white">
             <span>
                 &copy;
                 {" "}
                 {new Date().getFullYear()}
                 {" "}
-                <a href="https://linkedin.com/in/ps011" target="_blank" rel="noreferrer">Prasheel</a>
+                <a href="https://linkedin.com/in/ps011" target="_blank" rel="noreferrer" className="dark:text-white">Prasheel</a>
             </span>
 
-            <a href="https://github.com/ps011/ps11/LICENSE.md" target="_blank" rel="noreferrer">License</a>
+            <a href="https://github.com/ps011/ps11/LICENSE.md" target="_blank" rel="noreferrer" className="dark:text-white">License</a>
 
         </div>
     </footer>

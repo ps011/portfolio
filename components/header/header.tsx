@@ -4,14 +4,14 @@ import { useState } from "react";
 import { Burger, Box, Paper } from "@mantine/core";
 import Button from "../tailwind/button";
 
-interface HeaderProps {
+export interface HeaderProps {
     logoUrl: string;
     navMap?: Array<{ href: string, label: string }>;
 }
 
-const Header: React.FC<HeaderProps> = ({logoUrl, navMap = []}) => {
+export const Header: React.FC<HeaderProps> = ({logoUrl, navMap = []}) => {
     const [opened, setOpened] = useState(false);
-    const title = opened ? 'Close navigation' : 'Open navigation';
+    const title = opened ? "Close navigation" : "Open navigation";
 
     return (
         <Box component="header" className="bg-brandMutedYellow-600 py-4 md:py-8 relative">
@@ -69,5 +69,3 @@ const Header: React.FC<HeaderProps> = ({logoUrl, navMap = []}) => {
         </Box>
     );
 };
-
-export default Header;

@@ -37,8 +37,8 @@ const About = ({
             content: (
                 <SimpleGrid
                     cols={{ base: 2, xs:3, sm: 4, md: 5, lg: 6 }}
-                    spacing={{ base: 'md', sm: 'lg' }}
-                    verticalSpacing={{ base: 'md', sm: 'lg' }}
+                    spacing={{ base: "md", sm: "lg" }}
+                    verticalSpacing={{ base: "md", sm: "lg" }}
                 >
                     {skills.length > 0 && skills.map((skill) => (
                         <Box key={skill.name} className="text-center flex flex-col items-center">
@@ -58,52 +58,54 @@ const About = ({
         {
             name: "Experience",
             content: (
-                <Timeline active={experience.length} bulletSize={24} lineWidth={2} color="brandMutedYellow">
-                    {experience.length && experience.map((company, index) => (
-                        <Timeline.Item 
-                            key={index} 
-                            title={`${company.designation} @ ${company.company}`}
-                            bullet={
-                                <ThemeIcon size={20} variant="filled" color="brandMutedYellow" radius="xl">
-                                    <IconBriefcase size={12} />
-                                </ThemeIcon>
-                            }
-                        >
-                            {company.logo && (
-                                <Image 
-                                    height={30} 
-                                    width={80} 
-                                    src={company.logo} 
-                                    alt={`${company.company} logo`} 
-                                    style={{ marginTop: '8px', marginBottom: '8px' }} 
-                                />
-                            )}
-                            <Text c="dimmed" size="sm">
-                                <IconCalendarEvent size={14} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }} />
-                                {company.from} - {company.to}
-                            </Text>
-                            <Text size="sm" mt={4}>
-                                <IconMapPin size={14} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }} />
-                                {company.location}
-                            </Text>
-                            <Group gap="xs" mt="sm">
-                                {company.technologies && company.technologies.map((technology) =>
-                                    <MantineBadge key={technology} variant="light" color="brandMutedYellow">{technology}</MantineBadge>)}
-                            </Group>
-                        </Timeline.Item>
-                    ))}
-                </Timeline>
+                <div className="dark:text-white">
+                    <Timeline active={experience.length} bulletSize={24} lineWidth={2} color="brandMutedYellow">
+                        {experience.length && experience.map((company, index) => (
+                            <Timeline.Item 
+                                key={index} 
+                                title={<span className="dark:text-white">{`${company.designation} @ ${company.company}`}</span>}
+                                bullet={
+                                    <ThemeIcon size={20} variant="filled" color="brandMutedYellow" radius="xl">
+                                        <IconBriefcase size={12} />
+                                    </ThemeIcon>
+                                }
+                            >
+                                {company.logo && (
+                                    <Image 
+                                        height={30} 
+                                        width={80} 
+                                        src={company.logo} 
+                                        alt={`${company.company} logo`} 
+                                        style={{ marginTop: "8px", marginBottom: "8px" }} 
+                                    />
+                                )}
+                                <Text c="dimmed" size="sm" className="dark:text-white">
+                                    <IconCalendarEvent size={14} style={{ display: "inline-block", verticalAlign: "middle", marginRight: "4px" }} />
+                                    {company.from} - {company.to}
+                                </Text>
+                                <Text size="sm" mt={4} className="dark:text-white">
+                                    <IconMapPin size={14} style={{ display: "inline-block", verticalAlign: "middle", marginRight: "4px" }} />
+                                    {company.location}
+                                </Text>
+                                <Group gap="xs" mt="sm">
+                                    {company.technologies && company.technologies.map((technology) =>
+                                        <MantineBadge key={technology} variant="light" color="brandMutedYellow">{technology}</MantineBadge>)}
+                                </Group>
+                            </Timeline.Item>
+                        ))}
+                    </Timeline>
+                </div>
             ),
         },
         {
             name: "About",
-            content: <Text className="dark:text-white" dangerouslySetInnerHTML={{ __html: about }} />,
+            content: <div className="dark:text-white" dangerouslySetInnerHTML={{ __html: about }} />
         },
     ];
 
     return (
         <Section container id="about">
-            <div className="shadow-2xl rounded px-4 py-8">
+            <div className="shadow-2xl rounded px-4 py-8 dark:text-white">
                 <div className="flex flex-col justify-between items-center lg:flex-row">
                     <div className="flex-1 mb-4 lg:mb-0 -mt-12 lg:order-2">
                         <Image
@@ -137,11 +139,11 @@ const About = ({
                     <Title order={2} className="mb-6 dark:text-white">{name}</Title>
                     
                     <Text fw={600} className="text-neutralGray-600 dark:text-neutralGray-300 mt-1">
-                        <IconMapPin size={16} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }} />
+                        <IconMapPin size={16} style={{ display: "inline-block", verticalAlign: "middle", marginRight: "4px" }} />
                         {location}
                     </Text>
                     <Text className="mt-1 dark:text-white">
-                        <IconBriefcase size={16} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }} />
+                        <IconBriefcase size={16} style={{ display: "inline-block", verticalAlign: "middle", marginRight: "4px" }} />
                         {designation}
                     </Text>
                     <Text className="mt-1 dark:text-white">

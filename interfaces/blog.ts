@@ -1,3 +1,5 @@
+import type { About } from "./about";
+
 export interface Blog {
   title: string;
   shortDescription: string;
@@ -6,16 +8,13 @@ export interface Blog {
   author: string;
   profileLink: string;
   hidden: boolean;
-  tags: string[];
+  tags: string;
   content: string;
   date: string;
-  published_at: string;
-  updated_at: string;
-  createdAt: string;
-  type: BlogType;
+  published_at?: string;
+  updated_at?: string;
+  createdAt?: string;
+  type: string;
   link: string;
-  authorEmail: string;
-  user: string;
+  user: About;
 }
-
-export type BlogType = "blogs" | "hobby-projects" | "coding-challenge";
