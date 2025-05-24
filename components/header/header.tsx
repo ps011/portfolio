@@ -13,6 +13,13 @@ export const Header: React.FC<HeaderProps> = ({logoUrl, navMap = []}) => {
     const [opened, setOpened] = useState(false);
     const title = opened ? "Close navigation" : "Open navigation";
 
+    const getHref = (href: string) => {
+        if (href.startsWith("/")) {
+            return href;
+        }
+        return `/${href}`;
+    }
+
     return (
         <Box component="header" className="bg-brandMutedYellow-600 py-4 md:py-8 relative">
             <Box className="container flex justify-between items-center">
@@ -23,7 +30,7 @@ export const Header: React.FC<HeaderProps> = ({logoUrl, navMap = []}) => {
                 <Box className="hidden md:flex md:items-center space-x-2">
                     {navMap.length > 0 && navMap.map((item) => (
                         <Button variant="filled" key={item.href}>
-                            <Link href={item.href} passHref legacyBehavior>
+                            <Link href={getHref(item.href)} passHref legacyBehavior>
                                 <a className="text-white no-underline hover:text-gray-200 px-3 py-2 rounded-md text-sm font-bold">
                                     {item.label}
                                 </a>

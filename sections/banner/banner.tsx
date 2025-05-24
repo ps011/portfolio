@@ -2,6 +2,7 @@ import {useEffect} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../../components/tailwind/button";
+import Profile from "../../components/profile/profile";
 
 interface BannerProps {
     illustration: string;
@@ -15,7 +16,6 @@ interface BannerProps {
 const Banner = ({
                     illustration, texts, ctaLabel, ctaUrl, downloadable,
                 }: BannerProps) => {
-                    console.log(illustration, texts, ctaLabel, ctaUrl, downloadable);
                     
     let toRotate: string | null;
     let el: HTMLElement | null;

@@ -54,7 +54,7 @@ const Blog = ({blogs}: { blogs: BlogType[] }) => {
                 const showControls = !mobile && slidesInSection > visibleSlides;
 
                 return (
-                    <Section container={true} key={sectionName} id={`blog-posts-${sectionName}`} heading={kebabCaseToSentenceCase(sectionName)}>
+                    <Section container={true} key={sectionName} id="blog-posts" heading={kebabCaseToSentenceCase(sectionName)}>
                         <Carousel
                             slideSize={{
                                 base: "100%", 

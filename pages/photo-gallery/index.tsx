@@ -1,6 +1,4 @@
-"use client";
 import Gallery from "../../components/instagram/gallery";
-import Instagram from "../../components/instagram/instagram";
 
 export async function getStaticProps() {
   const siteDataRes = await fetch(`${process.env.BASE_URL}/site-datas/`);
@@ -9,8 +7,19 @@ export async function getStaticProps() {
   const aboutRes = await fetch(`${process.env.BASE_URL}/abouts/`);
   const aboutDataArray = await aboutRes.json();
 
-  // Placeholder for photo gallery items if fetched server-side
-  const photoGalleryItems = []; 
+  // Fetch photo galleries and flatten images
+  const photoGalleriesRes = await fetch(`${process.env.BASE_URL}/photo-galleries/`);
+  const photoGalleries = await photoGalleriesRes.json();
+  const galleryItems = photoGalleries.flatMap((gallery) =>
+    (gallery.images || []).map((img, idx) => ({
+      id: `${gallery.title}-${idx}`,
+      src: img.src,
+      thumb: img.src,
+      caption: img.caption,
+      category: gallery.title,
+      location: gallery.location,
+    }))
+  );
 
   if (!siteDataArray || siteDataArray.length === 0 || !siteDataArray[0]) {
     console.error("PhotoGalleryPage: Error fetching site data.");
@@ -20,32 +29,27 @@ export async function getStaticProps() {
 
   if (!aboutDataArray || aboutDataArray.length === 0 || !aboutDataArray[0]) {
     console.error("PhotoGalleryPage: Error fetching about data.");
-    return { notFound: true }; 
+    return { notFound: true };
   }
   const about = aboutDataArray[0];
 
   return {
     props: {
-      // Props for _app.tsx and Layout.tsx
       siteData: site,
       aboutData: about,
-      // Props for the PhotoGalleryPage component itself
-      galleryItems: photoGalleryItems, 
+      galleryItems,
     },
-    revalidate: 3600, 
+    revalidate: 3600,
   };
 }
 
 interface PhotoGalleryPageProps {
-  galleryItems: any[]; 
-  // siteData and aboutData are used by _app/Layout, not directly needed here
+  galleryItems: any[];
 }
 
 const PhotoGalleryPage = ({ galleryItems }: PhotoGalleryPageProps) => {
-  // If Gallery component needs to be a client component for interactivity,
-  // ensure "use client"; is at the top of the Gallery.tsx file itself.
   return (
-    <Gallery />
+    <Gallery galleryItems={galleryItems} />
   );
 };
 

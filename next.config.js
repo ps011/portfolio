@@ -5,7 +5,7 @@ module.exports = {
     includePaths: [path.join(__dirname, "styles")],
   },
   images: {
-    domains: ["res.cloudinary.com", "stackoverflow.com", "scontent-hel3-1.cdninstagram.com", "cdn.hashnode.com"],
+    domains: ["res.cloudinary.com", "cdn.hashnode.com"],
   },
   eslint: {
     dirs: ["sections", "components", "pages", "interfaces", "lib"],

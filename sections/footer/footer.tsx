@@ -4,7 +4,7 @@ const Footer = ({profiles}) => (
     <footer className="container">
         <div className="flex flex-col md:flex-row justify-between py-4 w-full">
             <div className="flex flex-col w-full">
-                <h3 className="text-primary-100 text-2xl font-light mb-2 dark:text-dark-primary-300">Thank you for stopping by!</h3>
+                <h3 className="text-primary-100 text-2xl font-light mb-2 dark:text-white">Thank you for stopping by!</h3>
                 <h4 className="mb-4 md:mb-0 font-light dark:text-white">Let&apos;s get in touch on any of these platforms.</h4>
             </div>
             <div className="flex justify-end">
