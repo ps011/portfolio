@@ -17,50 +17,48 @@ const Banner = ({
                     illustration, texts, ctaLabel, ctaUrl, downloadable,
                 }: BannerProps) => {
                     
-    let toRotate: string | null;
-    let el: HTMLElement | null;
-    let loopNum: number;
-    let period: string | null;
-    let txt: string;
-    let isDeleting: boolean;
-    const tick = () => {
-        if (!el || !toRotate) return;
-        const i = loopNum % (JSON.parse(toRotate) as string[]).length;
-        const fullTxt = (JSON.parse(toRotate) as string[])[i];
-        if (isDeleting) {
-            txt = fullTxt.substring(0, txt.length - 1);
-        } else {
-            txt = fullTxt.substring(0, txt.length + 1);
-        }
-        el.innerHTML = `<span>${txt}</span>`;
-        let delta = 200 - Math.random() * 100;
-        if (isDeleting) {
-            delta /= 2;
-        }
-        if (!isDeleting && txt === fullTxt) {
-            delta = parseInt(period || "2000", 10);
-            isDeleting = true;
-        } else if (isDeleting && txt === "") {
-            isDeleting = false;
-            loopNum += 1;
-            delta = 500;
-        }
-        setTimeout(() => {
-            tick();
-        }, delta);
-    };
-
-    const TxtType = (elL: HTMLElement, toRotateL: string, periodL: string | null) => {
-        toRotate = toRotateL;
-        el = elL;
-        loopNum = 0;
-        period = periodL;
-        txt = "";
-        tick();
-        isDeleting = false;
-    };
-
     useEffect(() => {
+        let toRotate: string | null;
+        let el: HTMLElement | null;
+        let loopNum: number;
+        let period: string | null;
+        let txt: string;
+        let isDeleting: boolean;
+        const tick = () => {
+            if (!el || !toRotate) return;
+            const i = loopNum % (JSON.parse(toRotate) as string[]).length;
+            const fullTxt = (JSON.parse(toRotate) as string[])[i];
+            if (isDeleting) {
+                txt = fullTxt.substring(0, txt.length - 1);
+            } else {
+                txt = fullTxt.substring(0, txt.length + 1);
+            }
+            el.innerHTML = `<span>${txt}</span>`;
+            let delta = 200 - Math.random() * 100;
+            if (isDeleting) {
+                delta /= 2;
+            }
+            if (!isDeleting && txt === fullTxt) {
+                delta = parseInt(period || "2000", 10);
+                isDeleting = true;
+            } else if (isDeleting && txt === "") {
+                isDeleting = false;
+                loopNum += 1;
+                delta = 500;
+            }
+            setTimeout(() => {
+                tick();
+            }, delta);
+        };
+        const TxtType = (elL: HTMLElement, toRotateL: string, periodL: string | null) => {
+            toRotate = toRotateL;
+            el = elL;
+            loopNum = 0;
+            period = periodL;
+            txt = "";
+            tick();
+            isDeleting = false;
+        };
         const elements = document.querySelectorAll<HTMLElement>("#typewrite");
         elements.forEach(currentEl => {
             const dataType = currentEl.getAttribute("data-type");
@@ -69,10 +67,9 @@ const Banner = ({
                 TxtType(currentEl, dataType, dataPeriod);
             }
         });
-        
         const css = document.createElement("style");
         css.type = "text/css";
-        css.innerHTML = "#typewrite > span { border-right: 0.08em solid currentColor; }"; 
+        css.innerHTML = "#typewrite > span { border-right: 0.08em solid currentColor; }";
         document.body.appendChild(css);
         return () => {
             document.body.removeChild(css);
