@@ -40,7 +40,7 @@ const Profile = ({url, name, className}: ProfileProps) => {
             key={name} 
             target="_blank" 
             rel="noreferrer"
-            className={`${className || ''} dark:text-white inline-block`}
+            className={`${className || ""} dark:text-white inline-block`}
         >
             <span className="block w-6 h-6"> 
                 {getProfileIcon(name)}

@@ -1,9 +1,10 @@
-import { Carousel } from '@mantine/carousel';
-import { useMediaQuery } from '@mantine/hooks';
-import { useMantineTheme } from '@mantine/core';
+import { Carousel } from "@mantine/carousel";
+import { useMediaQuery } from "@mantine/hooks";
+import { useMantineTheme } from "@mantine/core";
 import Card from "../../components/card/card";
 import Section from "../../components/tailwind/section";
-import { Blog as BlogType } from '../../interfaces/blog';
+import { Blog as BlogType } from "../../interfaces/blog";
+import { useEffect, useState } from "react";
 
 const Blog = ({blogs}: { blogs: BlogType[] }) => {
     const theme = useMantineTheme();
@@ -13,7 +14,9 @@ const Blog = ({blogs}: { blogs: BlogType[] }) => {
     const isLargeScreen = useMediaQuery(`(min-width: ${theme.breakpoints.lg})`);
     const isXLargeScreen = useMediaQuery(`(min-width: ${theme.breakpoints.xl})`);
 
-    const sortedBlogs = [...blogs].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    const sortedBlogs = blogs
+        .filter(blog => !blog.hidden)
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     const groupBy = (xs: BlogType[], f: (item: BlogType) => string) => 
         xs.reduce((r, v) => {
@@ -53,29 +56,29 @@ const Blog = ({blogs}: { blogs: BlogType[] }) => {
                 const showControls = !mobile && slidesInSection > visibleSlides;
 
                 return (
-                    <Section container={true} key={sectionName} id={`blog-posts-${sectionName}`} heading={kebabCaseToSentenceCase(sectionName)}>
+                    <Section container={true} key={sectionName} id="blog-posts" heading={kebabCaseToSentenceCase(sectionName)}>
                         <Carousel
                             slideSize={{
-                                base: '100%', 
-                                xs: '50%',
-                                sm: '50%',   
-                                md: '33.333333%', 
-                                lg: '25%',    
-                                xl: '20%',
+                                base: "100%", 
+                                xs: "50%",
+                                sm: "50%",   
+                                md: "33.333333%", 
+                                lg: "25%",    
+                                xl: "20%",
                             }}
-                            slideGap={{ base: 0, sm: 'md' }}
+                            slideGap={{ base: 0, sm: "md" }}
                             emblaOptions={{ 
-                                loop: true, // Or loop: slidesInSection > visibleSlides if strict looping is preferred
-                                align: 'center',
-                                slidesToScroll: slidesToScrollValue
+                                loop: true, 
+                                align: "center",
+                                slidesToScroll: slidesToScrollValue,
                             }}
                             withIndicators={showIndicators} 
                             withControls={showControls}
                         >
                             {result[sectionName]?.length > 0 && result[sectionName].map((blog, index) => {
-                                return blog.hidden ? null : (
+                                return (
                                     <Carousel.Slide key={index}>
-                                        <Card {...blog} tags={Array.isArray(blog.tags) ? blog.tags.join(', ') : blog.tags} />
+                                        <Card {...blog} tags={Array.isArray(blog.tags) ? blog.tags.join(", ") : blog.tags} />
                                     </Carousel.Slide>
                                 );
                             })}

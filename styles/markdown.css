@@ -1,0 +1,32 @@
+@layer components {
+  .markdown-body h1, .markdown-body h2, .markdown-body h3 {
+    @apply font-bold mt-8 mb-4 text-2xl dark:text-white;
+  }
+  .markdown-body h4, .markdown-body h5, .markdown-body h6 {
+    @apply font-semibold mt-6 mb-2 text-xl dark:text-white;
+  }
+  .markdown-body p {
+    @apply mb-4 leading-relaxed;
+  }
+  .markdown-body ul, .markdown-body ol {
+    @apply pl-6 mb-4;
+  }
+  .markdown-body li {
+    @apply list-disc;
+  }
+  .markdown-body a {
+    @apply text-brandMutedYellow-700 underline hover:text-brandMutedYellow-900 dark:text-brandMutedYellow-300 dark:hover:text-brandMutedYellow-100;
+  }
+  .markdown-body img {
+    @apply my-4 rounded max-w-full h-auto;
+  }
+  .markdown-body blockquote {
+    @apply border-l-4 border-brandMutedYellow-500 pl-4 italic text-neutralGray-700 dark:text-neutralGray-300 mb-4;
+  }
+  .markdown-body pre {
+    @apply bg-neutralGray-100 dark:bg-neutralGray-800 p-4 rounded mb-4 overflow-x-auto;
+  }
+  .markdown-body code {
+    @apply bg-neutralGray-200 dark:bg-neutralGray-700 px-1 py-0.5 rounded;
+  }
+} 

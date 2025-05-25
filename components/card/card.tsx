@@ -17,7 +17,7 @@ const Card = ({
               }: CardProps) => {
     let tagsArray: string[] = [];
     if (tags) {
-        tagsArray = Array.isArray(tags) ? tags : tags.split(',').map(tag => tag.trim());
+        tagsArray = Array.isArray(tags) ? tags : tags.split(",").map(tag => tag.trim());
     }
 
     const getLink = (link: string) => {
@@ -28,15 +28,15 @@ const Card = ({
         }
     };
 
-    const heightWithThumbnail = '430px';
-    const heightWithoutThumbnail = '280px';
+    const heightWithThumbnail = "430px";
+    const heightWithoutThumbnail = "280px";
 
     return (
         <Box
-            className="flex flex-col shadow-md border-0 m-2 p-4 bg-neutral-100 rounded-md dark:bg-gray-600 dark:text-white dark:shadow-gray-900"
+            className="flex flex-col shadow-md border-0 m-2 p-4 bg-neutral-100 rounded-md dark:bg-neutralGray-700 dark:text-white dark:shadow-gray-900"
             style={{ height: thumbnail ? heightWithThumbnail : heightWithoutThumbnail }}
         >
-            <Box style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+            <Box style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
                 {thumbnail && (
                     <div className="mb-4">
                         <Image
@@ -49,7 +49,7 @@ const Card = ({
                         />
                     </div>
                 )}
-                <Box style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' /* minHeight removed as parent has fixed height now */ }}>
+                <Box style={{ flexGrow: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" /* minHeight removed as parent has fixed height now */ }}>
                     <div>
                         <Title order={6} className="text-primary uppercase" mb="xs">{title}</Title>
                         <Text size="sm" lineClamp={3} mb="sm">{shortDescription}</Text>
