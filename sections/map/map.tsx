@@ -4,17 +4,16 @@ import {
     Geographies,
     Geography,
 } from "react-simple-maps";
-import { Tooltip } from '@mantine/core';
+import { Tooltip } from "@mantine/core";
 import Section from "../../components/tailwind/section";
 
 export const Map = ({countriesVisited}) => {
-
     return (
         <Section id="map" background="primary" container={false}>
             <div className="container">
-                <h3 className="text-center my-4 text-2xl text-white">How much of the World I&apos;ve seen so
+                <h3 className="text-center my-4 text-2xl text-neutralGray-900 dark:text-white">How much of the World I&apos;ve seen so
                     far?</h3>
-                <div className="my-8 rounded bg-blue-300 md:w-4/5 mx-auto">
+                <div className="my-8 rounded bg-transparent md:w-4/5 mx-auto">
                     <ComposableMap projection="geoMercator" projectionConfig={{
                         center: [0, 40],
                         scale: 130,

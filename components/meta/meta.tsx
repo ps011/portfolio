@@ -1,14 +1,16 @@
 import Head from "next/head";
 
-interface MetaProps {
+export interface MetaProps {
     title: string;
     desc: string;
     name: string;
+    css?: any; // JSON type, can be refined
+    js?: any; // JSON type, can be refined
     image?: string;
     url?: string;
     twitterHandle?: string;
     manifest?: string;
-    keywords?: string[];
+    keywords?: any; // JSON type, can be string[] or any
     themeColor?: string;
 }
 
