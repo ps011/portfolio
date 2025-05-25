@@ -140,7 +140,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                                     height={300}
                                     className="w-full h-60 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
                                     onLoad={() => handleImageLoad(image.id)}
-                                    style={imageLoading[image.id] !== false ? { visibility: 'hidden' } : {}}
+                                    style={imageLoading[image.id] !== false ? { visibility: "hidden" } : {}}
                                 />
                                 <div className="p-3">
                                     <p className="text-sm font-medium text-neutralGray-900 dark:text-white truncate" title={image.caption}>

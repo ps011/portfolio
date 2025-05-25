@@ -18,7 +18,7 @@ export const Header: React.FC<HeaderProps> = ({logoUrl, navMap = []}) => {
             return href;
         }
         return `/${href}`;
-    }
+    };
 
     return (
         <Box component="header" className="bg-brandMutedYellow-600 py-4 md:py-8 relative">

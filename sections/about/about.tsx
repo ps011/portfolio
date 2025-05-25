@@ -99,7 +99,7 @@ const About = ({
         },
         {
             name: "About",
-            content: <div className="dark:text-white" dangerouslySetInnerHTML={{ __html: about }} />
+            content: <div className="dark:text-white" dangerouslySetInnerHTML={{ __html: about }} />,
         },
     ];
 
