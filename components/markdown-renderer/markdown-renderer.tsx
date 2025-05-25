@@ -1,25 +1,55 @@
 "use client";
-import {useCallback, useEffect, useState} from "react";
-import remark from "remark";
-import html from "remark-html";
+import React, { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+import Image from "next/image";
 
-export default function MarkdownRenderer({ content }: {content: string}) {
-  const [data, setData] = useState("");
-
-  const fetchAndSetContent = useCallback(async () => {
-    const response = await fetch(content);
-    const text = await response.text();
-    const vFile = await remark().use(html).process(text);
-    setData(vFile.toString());
-  }, [content]);
+export default function MarkdownRenderer({ content }: { content: string }) {
+  const [markdown, setMarkdown] = useState<string>("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetchAndSetContent();
-  }, [content, fetchAndSetContent]);
+    setLoading(true);
+    setError(false);
+    fetch(content)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch markdown");
+        return res.text();
+      })
+      .then((text) => {
+        setMarkdown(text);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError(true);
+        setLoading(false);
+      });
+  }, [content]);
+
+  if (loading) return <div className="text-center py-8">Loading...</div>;
+  if (error) return <div className="text-center py-8 text-red-500">Failed to load content.</div>;
 
   return (
-      <div
-        dangerouslySetInnerHTML={{ __html: data }}
-      />
+    <div className="markdown-body text-neutralGray-900 dark:text-white">
+      <ReactMarkdown
+        rehypePlugins={[rehypeRaw]}
+        components={{
+          img: ({node, ...props}) => (
+            <span className="block my-4">
+              <Image
+                src={props.src || ""}
+                alt={props.alt || ""}
+                width={800}
+                height={400}
+                className="rounded max-w-full h-auto"
+              />
+            </span>
+          ),
+        }}
+      >
+        {markdown}
+      </ReactMarkdown>
+    </div>
   );
 }

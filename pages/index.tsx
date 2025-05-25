@@ -64,7 +64,6 @@ export default function IndexPage({
       {bannerData && <Banner {...bannerData} />}
       {pageSpecificAboutData && <About {...pageSpecificAboutData} />}
       {interests && <Interests interests={interests} illustration={"/images/illustrations/interests.svg"} />}
-      {githubUsername && <GithubCalendar username={githubUsername} />}
       {blogs && <BlogSection blogs={blogs} />}
       {countriesVisited && <Map countriesVisited={countriesVisited} />}
     </>

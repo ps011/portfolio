@@ -14,7 +14,9 @@ const Blog = ({blogs}: { blogs: BlogType[] }) => {
     const isLargeScreen = useMediaQuery(`(min-width: ${theme.breakpoints.lg})`);
     const isXLargeScreen = useMediaQuery(`(min-width: ${theme.breakpoints.xl})`);
 
-    const sortedBlogs = [...blogs].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    const sortedBlogs = blogs
+        .filter(blog => !blog.hidden)
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     const groupBy = (xs: BlogType[], f: (item: BlogType) => string) => 
         xs.reduce((r, v) => {
@@ -74,7 +76,7 @@ const Blog = ({blogs}: { blogs: BlogType[] }) => {
                             withControls={showControls}
                         >
                             {result[sectionName]?.length > 0 && result[sectionName].map((blog, index) => {
-                                return blog.hidden ? null : (
+                                return (
                                     <Carousel.Slide key={index}>
                                         <Card {...blog} tags={Array.isArray(blog.tags) ? blog.tags.join(", ") : blog.tags} />
                                     </Carousel.Slide>

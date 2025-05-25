@@ -20,6 +20,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [modalImageDetails, setModalImageDetails] = useState({ src: "", caption: "" });
     const [imageLoading, setImageLoading] = useState<{ [id: string]: boolean }>({});
+    const [modalImageLoading, setModalImageLoading] = useState(false);
 
     // Update filtered images when activeFilter or galleryItems change
     useEffect(() => {
@@ -38,6 +39,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
             caption: filteredImages[index].caption,
         });
         setIsModalOpen(true);
+        setModalImageLoading(true);
     }, [filteredImages]);
 
     // Function to close the modal
@@ -181,13 +183,20 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                                 <CloseIcon />
                             </button>
                         </div>
-                        <div className="py-4 text-center">
+                        <div className="py-4 text-center relative">
+                            {modalImageLoading && (
+                                <div className="absolute inset-0 flex items-center justify-center bg-white/60 dark:bg-neutralGray-800/60 z-10">
+                                    <div className="w-8 h-8 border-4 border-brandMutedYellow-500 border-t-transparent rounded-full animate-spin"></div>
+                                </div>
+                            )}
                             <Image
                                 src={modalImageDetails.src}
                                 alt={modalImageDetails.caption}
                                 width={800}
                                 height={600}
                                 className="rounded-md mx-auto object-contain max-w-full max-h-[75vh]"
+                                onLoad={() => setModalImageLoading(false)}
+                                style={modalImageLoading ? { visibility: "hidden" } : {}}
                             />
                             <p className="text-neutralGray-700 dark:text-neutralGray-300 text-sm mt-3">{modalImageDetails.caption}</p>
                             {filteredImages[currentImageIndex]?.location && (

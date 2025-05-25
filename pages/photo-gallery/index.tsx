@@ -1,4 +1,5 @@
 import Gallery from "../../components/instagram/gallery";
+import Head from "next/head";
 
 export async function getStaticProps() {
   const siteDataRes = await fetch(`${process.env.BASE_URL}/site-datas/`);
@@ -49,7 +50,12 @@ interface PhotoGalleryPageProps {
 
 const PhotoGalleryPage = ({ galleryItems }: PhotoGalleryPageProps) => {
   return (
-    <Gallery galleryItems={galleryItems} />
+    <>
+      <Head>
+        <title>Photo Gallery | Prasheel Soni</title>
+      </Head>
+      <Gallery galleryItems={galleryItems} />
+    </>
   );
 };
 
