@@ -14,8 +14,6 @@ export async function getStaticProps() {
 
   const blogsRes = await fetch(`${process.env.BASE_URL}/blogs`);
   const allBlogsData: tBlog[] = await blogsRes.json();
-  // Only pass first 6 blogs to reduce homepage data size
-  const blogsData = allBlogsData.slice(0, 6);
 
   if (!siteDataArray || siteDataArray.length === 0 || !siteDataArray[0]) {
     console.error("HomePage: Error fetching site data or siteData[0] is missing.");
@@ -38,7 +36,7 @@ export async function getStaticProps() {
       // Props for the IndexPage component itself
       bannerData: site.banner, 
       pageSpecificAboutData: about, // Renaming to avoid confusion if 'aboutData' is also a direct prop
-      blogs: blogsData,
+      blogs: allBlogsData,
     },
     revalidate: 3600, // Revalidate once per hour
   };
