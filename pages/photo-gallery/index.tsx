@@ -19,7 +19,7 @@ export async function getStaticProps() {
       caption: img.caption,
       category: gallery.title,
       location: gallery.location,
-    }))
+    })),
   );
 
   if (!siteDataArray || siteDataArray.length === 0 || !siteDataArray[0]) {

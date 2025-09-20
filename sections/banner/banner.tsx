@@ -2,7 +2,6 @@ import {useEffect} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../../components/tailwind/button";
-import Profile from "../../components/profile/profile";
 
 interface BannerProps {
     illustration: string;

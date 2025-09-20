@@ -1,15 +1,14 @@
 import { ReactNode } from "react";
-import { Button as MantineButton, MantineColor, ButtonVariant } from "@mantine/core";
+import { Button as MantineButton, ButtonVariant } from "@mantine/core";
 
 interface ButtonProps {
     children: ReactNode;
     variant: ButtonVariant;
     fullWidth?: boolean;
-    className?: string;
     onClick?: () => void;
 }
 
-export default function Button({ children, variant, fullWidth, className, onClick }: ButtonProps) {
+export default function Button({ children, variant, fullWidth, onClick }: ButtonProps) {
     return (
         <MantineButton
             variant={variant}

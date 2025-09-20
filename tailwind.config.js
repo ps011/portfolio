@@ -4,9 +4,9 @@ const { theme: mantineColorsTheme } = require("./styles/theme"); // Import your 
 function mantineToTailwindColors(mantineColorArray, defaultShadeIndex = 5) {
   const colors = {};
   if (mantineColorArray && mantineColorArray.length > 0) {
-    colors['DEFAULT'] = mantineColorArray[defaultShadeIndex];
+    colors["DEFAULT"] = mantineColorArray[defaultShadeIndex];
     mantineColorArray.forEach((color, index) => {
-      colors[index === 0 ? '50' : index * 100] = color;
+      colors[index === 0 ? "50" : index * 100] = color;
     });
   }
   return colors;
@@ -43,7 +43,7 @@ module.exports = {
                 // Your Mantine theme uses "Inter, sans-serif"
                 // Tailwind's default sans-serif stack is usually pretty good and includes Inter if available
                 // If you want to strictly use what's in Mantine:
-                sans: mantineColorsTheme.fontFamily.split(',').map(f => f.trim()),
+                sans: mantineColorsTheme.fontFamily.split(",").map(f => f.trim()),
                 // Add other font families if defined in your Mantine theme
                 // headings: mantineColorsTheme.headings.fontFamily.split(',').map(f => f.trim()),
             },

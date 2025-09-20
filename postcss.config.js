@@ -1,9 +1,9 @@
 module.exports = {
   plugins: {
-    'tailwindcss/nesting': {},
-    'tailwindcss': {},
-    'postcss-preset-mantine': {},
-    'postcss-simple-vars': {
+    "tailwindcss/nesting": {},
+    "tailwindcss": {},
+    "postcss-preset-mantine": {},
+    "postcss-simple-vars": {
       variables: {
         // Optional: define Mantine breakpoints here if needed by your setup,
         // though with Mantine v7+ CSS variables, this might be less critical.
@@ -14,6 +14,6 @@ module.exports = {
         // 'mantine-breakpoint-xl': '88em',
       },
     },
-    'autoprefixer': {},
+    "autoprefixer": {},
   },
 };

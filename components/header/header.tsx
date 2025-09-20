@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Burger, Box, Paper } from "@mantine/core";
 import Button from "../tailwind/button";
 
