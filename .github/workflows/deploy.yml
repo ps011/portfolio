@@ -19,6 +19,7 @@ jobs:
         with:
           ref: ${{github.head_ref || github.ref}}
           fetch-depth: 0
+          token: ${{secrets.GITHUB_TOKEN}}
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
@@ -27,6 +28,7 @@ jobs:
         run: |
           git config --local user.name "Prasheel's BOT"
           git config --local user.email "prasheelsoni11@gmail.com"
+          git config --local url."https://${{secrets.GITHUB_TOKEN}}@github.com/".insteadOf "https://github.com/"
       - name: Checkout main branch
         run: |
           git fetch
@@ -76,11 +78,12 @@ jobs:
         with:
           fetch-depth: 0
           ref: release/v${{needs.release.outputs.version}}
-          token: ${{secrets.CUSTOM_TOKEN}}
+          token: ${{secrets.GITHUB_TOKEN}}
       - name: Setup Git context
         run: |
           git config --local user.name "Prasheel's BOT"
           git config --local user.email "prasheelsoni11@gmail.com"
+          git config --local url."https://${{secrets.GITHUB_TOKEN}}@github.com/".insteadOf "https://github.com/"
       - name: "Merge"
         run: |
           git fetch
