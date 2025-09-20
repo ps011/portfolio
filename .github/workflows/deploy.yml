@@ -33,8 +33,19 @@ jobs:
           git checkout main
       - name: "Install dependencies"
         run: npm install --frozen-lockfile
+      - name: "Set environment variables"
+        run: |
+          echo "BASE_URL=https://portfolio-backend-x1gd.onrender.com" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_BASE_URL=https://portfolio-backend-x1gd.onrender.com" >> $GITHUB_ENV
       - name: "Build project"
         run: npm run build
+      - name: "Check build output"
+        run: |
+          if [ ! -d ".next" ]; then
+            echo "Build failed: .next directory not found"
+            exit 1
+          fi
+          echo "Build successful: .next directory created"
       - name: "Bump version number"
         id: "version"
         run: |
