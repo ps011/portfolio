@@ -57,7 +57,7 @@ const Card = ({
                             {
                                 tagsArray.length ?
                                     tagsArray.map(
-                                        (tag) => <Badge text={tag} className="mr-2 dark:bg-dark-primary-300" key={tag}/>
+                                        (tag) => <Badge text={tag} className="mr-2 dark:bg-dark-primary-300" key={tag}/>,
                                     )
                                     : ""}
                         </div>

@@ -4,7 +4,6 @@ import { useMantineTheme } from "@mantine/core";
 import Card from "../../components/card/card";
 import Section from "../../components/tailwind/section";
 import { Blog as BlogType } from "../../interfaces/blog";
-import { useEffect, useState } from "react";
 
 const Blog = ({blogs}: { blogs: BlogType[] }) => {
     const theme = useMantineTheme();
@@ -18,7 +17,8 @@ const Blog = ({blogs}: { blogs: BlogType[] }) => {
         .filter(blog => !blog.hidden)
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-    const groupBy = (xs: BlogType[], f: (item: BlogType) => string) => 
+    // eslint-disable-next-line no-unused-vars
+    const groupBy = (xs: BlogType[], f: (blog: BlogType) => string) => 
         xs.reduce((r, v) => {
             const k = f(v);
             (r[k] || (r[k] = [])).push(v);

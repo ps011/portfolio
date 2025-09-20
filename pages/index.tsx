@@ -2,7 +2,6 @@ import Banner from "../sections/banner/banner";
 import About from "../sections/about/about";
 import Interests from "../sections/interests/interests";
 import BlogSection from "../sections/blog/blog"; 
-import GithubCalendar from "../components/github/githubCalendar";
 import { Map } from "../sections/map/map";
 import { Blog as tBlog } from "../interfaces/blog";
 
@@ -55,7 +54,6 @@ export default function IndexPage({
   pageSpecificAboutData,
   blogs,
 }: IndexPageProps) {
-  const githubUsername = pageSpecificAboutData?.profiles?.find((profile) => profile.name === "github")?.username;
   const interests = pageSpecificAboutData?.interests;
   const countriesVisited = pageSpecificAboutData?.countriesVisited;
 

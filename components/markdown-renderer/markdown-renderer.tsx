@@ -35,7 +35,7 @@ export default function MarkdownRenderer({ content }: { content: string }) {
       <ReactMarkdown
         rehypePlugins={[rehypeRaw]}
         components={{
-          img: ({node, ...props}) => (
+          img: ({...props}) => (
             <span className="block my-4">
               <Image
                 src={props.src || ""}

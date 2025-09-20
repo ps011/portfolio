@@ -5,7 +5,7 @@ import { GA_TRACKING_ID } from "../lib/gtag";
 
 const isProduction = process.env.NODE_ENV === "production";
 
-export default function Document(props: any) {
+export default function Document() {
   return (
     <Html {...mantineHtmlProps}>
       <Head>
@@ -22,7 +22,7 @@ export default function Document(props: any) {
                     src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
                 />
                 <script
-                    // eslint-disable-next-line react/no-danger
+                     
                     dangerouslySetInnerHTML={{
                         __html: `
           window.dataLayer = window.dataLayer || [];
