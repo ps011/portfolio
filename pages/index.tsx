@@ -13,7 +13,8 @@ export async function getStaticProps() {
   const aboutRes = await fetch(`${process.env.BASE_URL}/abouts/`);
   const aboutDataArray = await aboutRes.json();
 
-  const blogsRes = await fetch(`${process.env.BASE_URL}/blogs`);
+  // Only fetch latest 3 blogs for homepage to reduce data size
+  const blogsRes = await fetch(`${process.env.BASE_URL}/blogs?_limit=3&_sort=createdAt:DESC`);
   const blogsData: tBlog[] = await blogsRes.json();
 
   if (!siteDataArray || siteDataArray.length === 0 || !siteDataArray[0]) {
@@ -28,6 +29,13 @@ export async function getStaticProps() {
   }
   const about = aboutDataArray[0]; // This object contains .profiles, .interests etc.
 
+  // Optimize data by only passing essential fields
+  const optimizedAbout = {
+    profiles: about.profiles,
+    interests: about.interests,
+    countriesVisited: about.countriesVisited,
+  };
+
   return {
     props: {
       // Props for _app.tsx and Layout.tsx
@@ -36,7 +44,7 @@ export async function getStaticProps() {
       
       // Props for the IndexPage component itself
       bannerData: site.banner, 
-      pageSpecificAboutData: about, // Renaming to avoid confusion if 'aboutData' is also a direct prop
+      pageSpecificAboutData: optimizedAbout, // Only essential about data
       blogs: blogsData,
     },
     revalidate: 3600, // Revalidate once per hour
