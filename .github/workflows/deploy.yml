@@ -79,3 +79,40 @@ jobs:
           git push origin main
           git tag -a v${{needs.release.outputs.version}} main -m v${{needs.release.outputs.version}}
           git push origin v${{needs.release.outputs.version}}
+
+  cleanup-on-failure:
+    runs-on: ubuntu-latest
+    name: Remove label on failure
+    if: failure() && github.event_name == 'pull_request'
+    needs: [release, merge-release]
+    steps:
+      - name: Remove trigger label
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const { data: labels } = await github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number
+            });
+            
+            // Find the trigger label (you can customize this label name)
+            const triggerLabel = labels.find(label => 
+              label.name === 'ready-for-release' || 
+              label.name === 'release' ||
+              label.name === 'deploy'
+            );
+            
+            if (triggerLabel) {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                name: triggerLabel.name
+              });
+              
+              console.log(`Removed label: ${triggerLabel.name}`);
+            } else {
+              console.log('No trigger label found to remove');
+            }
