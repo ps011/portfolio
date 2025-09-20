@@ -32,14 +32,14 @@ jobs:
           git fetch
           git checkout main
       - name: "Install dependencies"
-        run: yarn install --frozen-lockfile
+        run: npm install --frozen-lockfile
       - name: "Build project"
-        run: yarn build
+        run: npm run build
       - name: "Bump version number"
         id: "version"
         run: |
-          yarn release:next-version
-          echo "version=$(yarn --silent release:current-version)" >> $GITHUB_OUTPUT
+          npm run release:next-version
+          echo "version=$(npm run --silent release:current-version)" >> $GITHUB_OUTPUT
           git stash
       - name: "Create release/v${{steps.version.outputs.version}}"
         run: |
