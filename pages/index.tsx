@@ -13,7 +13,7 @@ export async function getStaticProps() {
   const aboutDataArray = await aboutRes.json();
 
   const blogsRes = await fetch(`${process.env.BASE_URL}/blogs`);
-  const allBlogsData: tBlog[] = await blogsRes.json();
+  const blogsData: tBlog[] = await blogsRes.json();
 
   if (!siteDataArray || siteDataArray.length === 0 || !siteDataArray[0]) {
     console.error("HomePage: Error fetching site data or siteData[0] is missing.");
@@ -36,7 +36,7 @@ export async function getStaticProps() {
       // Props for the IndexPage component itself
       bannerData: site.banner, 
       pageSpecificAboutData: about, // Renaming to avoid confusion if 'aboutData' is also a direct prop
-      blogs: allBlogsData,
+      blogs: blogsData,
     },
     revalidate: 3600, // Revalidate once per hour
   };
