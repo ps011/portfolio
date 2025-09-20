@@ -7,6 +7,9 @@ import {
 import { Tooltip } from "@mantine/core";
 import Section from "../../components/tailwind/section";
 
+// Type assertion to fix React 19 compatibility
+const ComposableMapComponent = ComposableMap as React.ComponentType<any>;
+
 export const Map = ({countriesVisited}) => {
     return (
         <Section id="map" background="primary" container={false}>
@@ -14,7 +17,7 @@ export const Map = ({countriesVisited}) => {
                 <h3 className="text-center my-4 text-2xl text-neutralGray-900 dark:text-white">How much of the World I&apos;ve seen so
                     far?</h3>
                 <div className="my-8 rounded bg-transparent md:w-4/5 mx-auto">
-                    <ComposableMap projection="geoMercator" projectionConfig={{
+                    <ComposableMapComponent projection="geoMercator" projectionConfig={{
                         center: [0, 40],
                         scale: 130,
                     }}>
@@ -40,7 +43,7 @@ export const Map = ({countriesVisited}) => {
                                 ))
                             }
                         </Geographies>
-                    </ComposableMap>
+                    </ComposableMapComponent>
                 </div>
             </div>
         </Section>
