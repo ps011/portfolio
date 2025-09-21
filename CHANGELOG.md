@@ -1,4 +1,20 @@
 CHANGELOG
+### [0.5.2](https://github.com/ps011/portfolio/compare/v0.6.0...v0.5.2) (2025-09-21)
+
+
+### Features
+
+* integrate automatic changelog generation in deploy workflow ([8a79b78](https://github.com/ps011/portfolio/commit/8a79b78ed6248cd9f7e9dda8bb7d02a2bf315cc8))
+
+
+### Bug Fixes
+
+* **deploy:** use npm ci ([6c22056](https://github.com/ps011/portfolio/commit/6c220565153cd92985d094e59a81cbc80d9a9730))
+* reorder workflow steps to prevent merge conflicts ([81c146b](https://github.com/ps011/portfolio/commit/81c146b18bd496d1d0fea6331b2ac1d2b3ccd6cf))
+* resolve merge conflicts in deploy workflow ([b678247](https://github.com/ps011/portfolio/commit/b678247b0f18a2117fd719b8ea330f170b3a2375))
+
+### [0.5.1](https://github.com/ps011/portfolio/compare/v0.5.0...v0.5.1) (2025-09-21)
+
 ### 0.0.16 (2024-08-02)
 
 
