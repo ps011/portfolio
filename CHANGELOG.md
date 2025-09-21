@@ -1,4 +1,11 @@
 CHANGELOG
+### [0.5.3](https://github.com/ps011/portfolio/compare/v0.5.2...v0.5.3) (2025-09-21)
+
+
+### Features
+
+* enhance interests section with interactive CTAs ([9a7630c](https://github.com/ps011/portfolio/commit/9a7630c078efcb9807ab77f8bd1c28ab1577eaa0))
+
 ### [0.5.2](https://github.com/ps011/portfolio/compare/v0.6.0...v0.5.2) (2025-09-21)
 
 
