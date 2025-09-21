@@ -1,5 +1,8 @@
 name: Release
 
+# This workflow automatically generates changelogs from conventional commits
+# and creates GitHub releases when triggered by PR labels or manual dispatch
+
 on:
   pull_request:
     types:
@@ -48,11 +51,17 @@ jobs:
             exit 1
           fi
           echo "Build successful: .next directory created"
-      - name: "Bump version number"
+      - name: "Generate changelog and bump version"
         id: "version"
         run: |
-          npm run release:next-version
-          echo "version=$(npm run --silent release:current-version)" >> $GITHUB_OUTPUT
+          # Generate changelog and bump version using standard-version
+          npx standard-version --no-verify
+          # Extract the new version from package.json
+          echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+          # Show the generated changelog for this release
+          echo "=== Generated Changelog ==="
+          head -20 CHANGELOG.md
+          echo "=========================="
           git stash
       - name: "Create release/v${{steps.version.outputs.version}}"
         run: |
@@ -61,11 +70,11 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           git merge --no-ff ${{github.head_ref}}
-      - name: "Commit package.json"
+      - name: "Commit version and changelog changes"
         run: |
           git stash pop
-          git add package.json
-          git commit -m "v${{steps.version.outputs.version}} from Github Actions"
+          git add package.json package-lock.json CHANGELOG.md
+          git commit -m "chore(release): v${{steps.version.outputs.version}}"
       - name: "Push changes to origin"
         run: git push origin +release/v${{steps.version.outputs.version}}:release/v${{steps.version.outputs.version}}
 
@@ -93,6 +102,16 @@ jobs:
           git push origin main
           git tag -a v${{needs.release.outputs.version}} main -m v${{needs.release.outputs.version}}
           git push origin v${{needs.release.outputs.version}}
+      - name: "Create GitHub Release"
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          tag_name: v${{needs.release.outputs.version}}
+          release_name: Release v${{needs.release.outputs.version}}
+          body_path: CHANGELOG.md
+          draft: false
+          prerelease: false
 
   cleanup-on-failure:
     runs-on: ubuntu-latest
