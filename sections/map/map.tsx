@@ -14,7 +14,7 @@ export const Map = ({countriesVisited}) => {
     return (
         <Section id="map" background="primary" container={false}>
             <div className="container">
-                <h3 className="text-center my-4 text-2xl text-neutralGray-900 dark:text-white">How much of the World I&apos;ve seen so
+                <h3 className="text-center my-4 text-2xl text-tertiary-900 dark:text-white">How much of the World I&apos;ve seen so
                     far?</h3>
                 <div className="my-8 rounded bg-transparent md:w-4/5 mx-auto">
                     <ComposableMapComponent projection="geoMercator" projectionConfig={{
@@ -32,10 +32,10 @@ export const Map = ({countriesVisited}) => {
                                             stroke="#000000"
                                             style={{
                                                 default: {
-                                                    fill: countriesVisited.includes(geo.id) ? "#e76b53" : "#f4f6f4",
+                                                    fill: countriesVisited.includes(geo.id) ? "var(--theme-primary-500)" : "var(--theme-tertiary-100)",
                                                 },
                                                 hover: {
-                                                    fill: countriesVisited.includes(geo.id) ? "#e76b53" : "#bde0c2",
+                                                    fill: countriesVisited.includes(geo.id) ? "var(--theme-primary-600)" : "var(--theme-tertiary-300)",
                                                 },
                                             }}
                                         />

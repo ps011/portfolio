@@ -33,8 +33,11 @@ const Card = ({
 
     return (
         <Box
-            className="flex flex-col shadow-md border-0 m-2 p-4 bg-neutral-100 rounded-md dark:bg-neutralGray-700 dark:text-white dark:shadow-gray-900"
-            style={{ height: thumbnail ? heightWithThumbnail : heightWithoutThumbnail }}
+            className="flex flex-col shadow-md border-0 m-2 p-4 rounded-md dark:text-white dark:shadow-gray-900"
+            style={{ 
+                backgroundColor: 'var(--theme-tertiary-100)',
+                height: thumbnail ? heightWithThumbnail : heightWithoutThumbnail 
+            }}
         >
             <Box style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
                 {thumbnail && (
@@ -57,7 +60,7 @@ const Card = ({
                             {
                                 tagsArray.length ?
                                     tagsArray.map(
-                                        (tag) => <Badge text={tag} className="mr-2 dark:bg-dark-primary-300" key={tag}/>,
+                                        (tag) => <Badge text={tag} className="mr-2" key={tag}/>,
                                     )
                                     : ""}
                         </div>

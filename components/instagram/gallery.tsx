@@ -92,11 +92,11 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
     };
 
     return (
-        <div className="bg-brandMutedYellow-100 dark:bg-brandMutedYellow-800 min-h-screen">
+        <div className="bg-primary-100 dark:bg-primary-800 min-h-screen">
             <main className="container mx-auto px-6 py-12">
                 <header className="text-center mb-12">
-                    <h1 className="text-4xl sm:text-5xl font-bold text-neutralGray-900 dark:text-white mb-4">My Photo Book</h1>
-                    <p className="text-lg text-neutralGray-700 dark:text-neutralGray-300 max-w-2xl mx-auto">
+                    <h1 className="text-4xl sm:text-5xl font-bold text-tertiary-900 dark:text-white mb-4">My Photo Book</h1>
+                    <p className="text-lg text-tertiary-700 dark:text-tertiary-300 max-w-2xl mx-auto">
                         A collection of moments and memories captured during my journeys around the world.
                     </p>
                 </header>
@@ -109,8 +109,8 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                             onClick={() => setActiveFilter(filter.key)}
                             className={`px-4 py-2 rounded-lg font-medium text-sm sm:text-base transition-colors duration-150
                                 ${activeFilter === filter.key
-                                    ? "bg-brandMutedYellow-500 text-neutralGray-900 border border-brandMutedYellow-500 dark:bg-brandMutedYellow-700 dark:text-white"
-                                    : "bg-white text-neutralGray-900 border border-neutralGray-300 hover:bg-brandMutedYellow-100 hover:border-brandMutedYellow-500 dark:bg-neutralGray-800 dark:text-white dark:border-neutralGray-700 dark:hover:bg-brandMutedYellow-800 dark:hover:border-brandMutedYellow-700"
+                                    ? "bg-primary-500 text-tertiary-900 border border-primary-500 dark:bg-primary-700 dark:text-white"
+                                    : "bg-white text-tertiary-900 border border-tertiary-300 hover:bg-primary-100 hover:border-primary-500 dark:bg-tertiary-800 dark:text-white dark:border-tertiary-700 dark:hover:bg-primary-800 dark:hover:border-primary-700"
                                 }`}
                         >
                             {filter.label}
@@ -124,13 +124,13 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                         filteredImages.map((image, index) => (
                             <div
                                 key={image.id || index}
-                                className="group cursor-pointer overflow-hidden rounded-lg shadow-sm bg-white dark:bg-neutralGray-800 relative"
+                                className="group cursor-pointer overflow-hidden rounded-lg shadow-sm bg-white dark:bg-tertiary-800 relative"
                                 onClick={() => openModal(index)}
                             >
                                 {/* Loading spinner */}
                                 {imageLoading[image.id] !== false && (
-                                    <div className="absolute inset-0 flex items-center justify-center bg-white/60 dark:bg-neutralGray-800/60 z-10">
-                                        <div className="w-8 h-8 border-4 border-brandMutedYellow-500 border-t-transparent rounded-full animate-spin"></div>
+                                    <div className="absolute inset-0 flex items-center justify-center bg-white/60 dark:bg-tertiary-800/60 z-10">
+                                        <div className="w-8 h-8 border-4 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
                                     </div>
                                 )}
                                 <Image
@@ -143,15 +143,15 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                                     style={imageLoading[image.id] !== false ? { visibility: "hidden" } : {}}
                                 />
                                 <div className="p-3">
-                                    <p className="text-sm font-medium text-neutralGray-900 dark:text-white truncate" title={image.caption}>
+                                    <p className="text-sm font-medium text-tertiary-900 dark:text-white truncate" title={image.caption}>
                                         {image.caption}
                                     </p>
-                                    <p className="text-xs text-neutralGray-700 dark:text-neutralGray-300 capitalize">{image.category}</p>
+                                    <p className="text-xs text-tertiary-700 dark:text-tertiary-300 capitalize">{image.category}</p>
                                 </div>
                             </div>
                         ))
                     ) : (
-                        <p className="col-span-full text-center text-neutralGray-700 dark:text-neutralGray-300">
+                        <p className="col-span-full text-center text-tertiary-700 dark:text-tertiary-300">
                             No photos found for this category. More coming soon!
                         </p>
                     )}
@@ -168,16 +168,16 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                     aria-labelledby="modalTitle"
                 >
                     <div
-                        className="mx-auto p-4 sm:p-6 bg-white dark:bg-neutralGray-800 rounded-lg shadow-xl w-11/12 md:w-3/4 lg:w-1/2 relative transform transition-all duration-300 ease-out max-h-[90vh]"
+                        className="mx-auto p-4 sm:p-6 bg-white dark:bg-tertiary-800 rounded-lg shadow-xl w-11/12 md:w-3/4 lg:w-1/2 relative transform transition-all duration-300 ease-out max-h-[90vh]"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <div className="flex justify-between items-center pb-3 border-b border-neutralGray-200 dark:border-neutralGray-700">
-                            <h3 id="modalTitle" className="text-xl font-semibold text-neutralGray-900 dark:text-white truncate max-w-[calc(100%-3rem)]">
+                        <div className="flex justify-between items-center pb-3 border-b border-tertiary-200 dark:border-tertiary-700">
+                            <h3 id="modalTitle" className="text-xl font-semibold text-tertiary-900 dark:text-white truncate max-w-[calc(100%-3rem)]">
                                 {modalImageDetails.caption || "Image Preview"}
                             </h3>
                             <button
                                 onClick={closeModal}
-                                className="text-neutralGray-400 hover:text-neutralGray-600 dark:text-neutralGray-500 dark:hover:text-neutralGray-300 transition-colors p-1 rounded-full"
+                                className="text-tertiary-400 hover:text-tertiary-600 dark:text-tertiary-500 dark:hover:text-tertiary-300 transition-colors p-1 rounded-full"
                                 aria-label="Close modal"
                             >
                                 <CloseIcon />
@@ -185,8 +185,8 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                         </div>
                         <div className="py-4 text-center relative">
                             {modalImageLoading && (
-                                <div className="absolute inset-0 flex items-center justify-center bg-white/60 dark:bg-neutralGray-800/60 z-10">
-                                    <div className="w-8 h-8 border-4 border-brandMutedYellow-500 border-t-transparent rounded-full animate-spin"></div>
+                                <div className="absolute inset-0 flex items-center justify-center bg-white/60 dark:bg-tertiary-800/60 z-10">
+                                    <div className="w-8 h-8 border-4 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
                                 </div>
                             )}
                             <Image
@@ -198,22 +198,22 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                                 onLoad={() => setModalImageLoading(false)}
                                 style={modalImageLoading ? { visibility: "hidden" } : {}}
                             />
-                            <p className="text-neutralGray-700 dark:text-neutralGray-300 text-sm mt-3">{modalImageDetails.caption}</p>
+                            <p className="text-tertiary-700 dark:text-tertiary-300 text-sm mt-3">{modalImageDetails.caption}</p>
                             {filteredImages[currentImageIndex]?.location && (
-                                <p className="text-xs text-neutralGray-600 dark:text-neutralGray-400 mt-1">{filteredImages[currentImageIndex].location}</p>
+                                <p className="text-xs text-tertiary-600 dark:text-tertiary-400 mt-1">{filteredImages[currentImageIndex].location}</p>
                             )}
                         </div>
-                        <div className="flex justify-between items-center pt-3 border-t border-neutralGray-200 dark:border-neutralGray-700">
+                        <div className="flex justify-between items-center pt-3 border-t border-tertiary-200 dark:border-tertiary-700">
                             <button
                                 onClick={showPrevImage}
-                                className="bg-brandMutedYellow-500 text-neutralGray-900 dark:bg-brandMutedYellow-700 dark:text-white px-4 py-2 rounded-lg hover:bg-brandMutedYellow-600 dark:hover:bg-brandMutedYellow-800 transition-colors text-sm font-medium"
+                                className="bg-primary-500 text-tertiary-900 dark:bg-primary-700 dark:text-white px-4 py-2 rounded-lg hover:bg-primary-600 dark:hover:bg-primary-800 transition-colors text-sm font-medium"
                                 aria-label="Previous image"
                             >
                                 &larr; Previous
                             </button>
                             <button
                                 onClick={showNextImage}
-                                className="bg-brandMutedYellow-500 text-neutralGray-900 dark:bg-brandMutedYellow-700 dark:text-white px-4 py-2 rounded-lg hover:bg-brandMutedYellow-600 dark:hover:bg-brandMutedYellow-800 transition-colors text-sm font-medium"
+                                className="bg-primary-500 text-tertiary-900 dark:bg-primary-700 dark:text-white px-4 py-2 rounded-lg hover:bg-primary-600 dark:hover:bg-primary-800 transition-colors text-sm font-medium"
                                 aria-label="Next image"
                             >
                                 Next &rarr;

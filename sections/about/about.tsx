@@ -87,7 +87,7 @@ const About = ({
                                 <Text fw={600} size="sm" className="dark:text-white">
                                     {company.designation}
                                 </Text>
-                                <Text size="xs" c="dimmed" className="dark:text-neutralGray-400">
+                                <Text size="xs" c="dimmed" className="dark:text-tertiary-400">
                                     {company.company} • {company.from} - {company.to}
                                 </Text>
                             </div>
@@ -105,13 +105,13 @@ const About = ({
 
     const ExperienceExpanded = () => (
                 <div className="dark:text-white">
-                    <Timeline active={experience.length} bulletSize={24} lineWidth={2} color="brandMutedYellow">
+                    <Timeline active={experience.length} bulletSize={24} lineWidth={2} color="primary">
                 {experience.map((company, index) => (
                             <Timeline.Item 
                                 key={index}
                                 title={<span className="dark:text-white">{`${company.designation} @ ${company.company}`}</span>}
                                 bullet={
-                                    <ThemeIcon size={20} variant="filled" color="brandMutedYellow" radius="xl">
+                                    <ThemeIcon size={20} variant="filled" color="primary" radius="xl">
                                         <IconBriefcase size={12} />
                                     </ThemeIcon>
                                 }
@@ -135,7 +135,7 @@ const About = ({
                                 </Text>
                                 <Group gap="xs" mt="sm">
                                     {company.technologies && company.technologies.map((technology) =>
-                                        <MantineBadge key={technology} variant="light" color="brandMutedYellow">{technology}</MantineBadge>)}
+                                        <MantineBadge key={technology} variant="light" color="primary">{technology}</MantineBadge>)}
                                 </Group>
                             </Timeline.Item>
                         ))}
@@ -159,7 +159,7 @@ const About = ({
                             alt={skill.name}
                             style={{ objectFit: "contain" }}
                         />
-                        <Text size="xs" className="text-neutralGray-600 dark:text-neutralGray-400">
+                        <Text size="xs" className="text-tertiary-600 dark:text-tertiary-400">
                             {skill.name}
                         </Text>
                     </Box>
@@ -190,7 +190,7 @@ const About = ({
                             alt={skill.name}
                             style={{ objectFit: "contain" }}
                         />
-                        <Text size="xs" className="text-neutralGray-600 dark:text-neutralGray-400 text-center">
+                        <Text size="xs" className="text-tertiary-600 dark:text-tertiary-400 text-center">
                             {skill.name}
                         </Text>
                     </Box>
@@ -219,7 +219,7 @@ const About = ({
                             {stats.length && stats.map((stat) => (
                                 <div key={stat.label} className="mx-4 text-center">
                                     <Title order={3} className="dark:text-white">{stat.count}</Title> 
-                                    <Text size="xs" className="text-neutralGray-700 dark:text-neutralGray-400">{stat.label}</Text> 
+                                    <Text size="xs" className="text-tertiary-700 dark:text-tertiary-400">{stat.label}</Text> 
                                 </div>
                             ))}
                         </Group>
@@ -237,7 +237,7 @@ const About = ({
                 <div className="text-center mt-12">
                     <Title order={2} className="mb-6 dark:text-white">{name}</Title>
                     
-                    <Text fw={600} className="text-neutralGray-600 dark:text-neutralGray-300 mt-1">
+                    <Text fw={600} className="text-tertiary-600 dark:text-tertiary-300 mt-1">
                         <IconMapPin size={16} style={{ display: "inline-block", verticalAlign: "middle", marginRight: "4px" }} />
                         {location}
                     </Text>
@@ -261,15 +261,19 @@ const About = ({
                             {expandedCard === "about" && (
                                 <Card 
                                     padding="lg" 
-                                    className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 cursor-pointer transition-all duration-300 hover:shadow-lg ring-2 ring-blue-500 dark:ring-blue-400 transform hover:scale-[1.02]"
+                                    className="cursor-pointer transition-all duration-300 hover:shadow-lg ring-2 transform hover:scale-[1.02]"
+                                    style={{
+                                        background: 'linear-gradient(to bottom right, var(--theme-primary-50), var(--theme-primary-100))',
+                                        ringColor: 'var(--theme-primary-500)'
+                                    }}
                                     onClick={() => toggleCard("about")}
                                 >
                                     <div className="flex items-center justify-between mb-4">
                                         <div className="flex items-center">
-                                            <IconUser size={20} className="mr-2 text-blue-600 dark:text-blue-400" />
+                                            <IconUser size={20} className="mr-2 text-primary-600 dark:text-primary-400" />
                                             <Title order={4} className="dark:text-white">About Me</Title>
                                         </div>
-                                        <IconChevronUp size={20} className="text-blue-600 dark:text-blue-400" />
+                                        <IconChevronUp size={20} className="text-primary-600 dark:text-primary-400" />
                                     </div>
                                     <div className="transition-all duration-500 ease-in-out">
                                         <AboutExpanded />
@@ -280,15 +284,19 @@ const About = ({
                             {expandedCard === "experience" && (
                                 <Card 
                                     padding="lg" 
-                                    className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-700 cursor-pointer transition-all duration-300 hover:shadow-lg ring-2 ring-green-500 dark:ring-green-400 transform hover:scale-[1.02]"
+                                    className="cursor-pointer transition-all duration-300 hover:shadow-lg ring-2 transform hover:scale-[1.02]"
+                                    style={{
+                                        background: 'linear-gradient(to bottom right, var(--theme-secondary-50), var(--theme-secondary-100))',
+                                        ringColor: 'var(--theme-secondary-500)'
+                                    }}
                                     onClick={() => toggleCard("experience")}
                                 >
                                     <div className="flex items-center justify-between mb-4">
                                         <div className="flex items-center">
-                                            <IconBriefcase size={20} className="mr-2 text-green-600 dark:text-green-400" />
+                                            <IconBriefcase size={20} className="mr-2 text-secondary-600 dark:text-secondary-400" />
                                             <Title order={4} className="dark:text-white">Experience</Title>
                                         </div>
-                                        <IconChevronUp size={20} className="text-green-600 dark:text-green-400" />
+                                        <IconChevronUp size={20} className="text-secondary-600 dark:text-secondary-400" />
                                     </div>
                                     <div className="transition-all duration-500 ease-in-out">
                                         <ExperienceExpanded />
@@ -299,15 +307,19 @@ const About = ({
                             {expandedCard === "skills" && (
                                 <Card 
                                     padding="lg" 
-                                    className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-800 dark:to-gray-700 cursor-pointer transition-all duration-300 hover:shadow-lg ring-2 ring-purple-500 dark:ring-purple-400 transform hover:scale-[1.02]"
+                                    className="cursor-pointer transition-all duration-300 hover:shadow-lg ring-2 transform hover:scale-[1.02]"
+                                    style={{
+                                        background: 'linear-gradient(to bottom right, var(--theme-tertiary-50), var(--theme-tertiary-100))',
+                                        ringColor: 'var(--theme-tertiary-500)'
+                                    }}
                                     onClick={() => toggleCard("skills")}
                                 >
                                     <div className="flex items-center justify-between mb-4">
                                         <div className="flex items-center">
-                                            <IconCode size={20} className="mr-2 text-purple-600 dark:text-purple-400" />
+                                            <IconCode size={20} className="mr-2 text-tertiary-600 dark:text-tertiary-400" />
                                             <Title order={4} className="dark:text-white">Skills</Title>
                                         </div>
-                                        <IconChevronUp size={20} className="text-purple-600 dark:text-purple-400" />
+                                        <IconChevronUp size={20} className="text-tertiary-600 dark:text-tertiary-400" />
                                     </div>
                                     <div className="transition-all duration-500 ease-in-out">
                                         <SkillsExpanded />
@@ -327,15 +339,18 @@ const About = ({
                             }`}>
                                     <Card 
                                         padding="lg" 
-                                        className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 cursor-pointer transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] hover:-translate-y-1 h-80 flex flex-col"
+                                        className="cursor-pointer transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] hover:-translate-y-1 h-80 flex flex-col"
+                                        style={{
+                                            background: 'linear-gradient(to bottom right, var(--theme-primary-50), var(--theme-primary-100))'
+                                        }}
                                         onClick={() => toggleCard("about")}
                                     >
                                         <div className="flex items-center justify-between mb-4">
                                             <div className="flex items-center">
-                                                <IconUser size={20} className="mr-2 text-blue-600 dark:text-blue-400" />
+                                                <IconUser size={20} className="mr-2 text-primary-600 dark:text-primary-400" />
                                                 <Title order={4} className="dark:text-white">About Me</Title>
                                             </div>
-                                            <IconChevronDown size={20} className="text-blue-600 dark:text-blue-400" />
+                                            <IconChevronDown size={20} className="text-primary-600 dark:text-primary-400" />
                                         </div>
                                         <div className="transition-all duration-300 ease-in-out flex-1 flex flex-col justify-between">
                                             <AboutPreview />
@@ -351,15 +366,18 @@ const About = ({
                             }`}>
                                     <Card 
                                         padding="lg" 
-                                        className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-700 cursor-pointer transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] hover:-translate-y-1 h-80 flex flex-col"
+                                        className="cursor-pointer transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] hover:-translate-y-1 h-80 flex flex-col"
+                                        style={{
+                                            background: 'linear-gradient(to bottom right, var(--theme-secondary-50), var(--theme-secondary-100))'
+                                        }}
                                         onClick={() => toggleCard("experience")}
                                     >
                                         <div className="flex items-center justify-between mb-4">
                                             <div className="flex items-center">
-                                                <IconBriefcase size={20} className="mr-2 text-green-600 dark:text-green-400" />
+                                                <IconBriefcase size={20} className="mr-2 text-secondary-600 dark:text-secondary-400" />
                                                 <Title order={4} className="dark:text-white">Experience</Title>
                                             </div>
-                                            <IconChevronDown size={20} className="text-green-600 dark:text-green-400" />
+                                            <IconChevronDown size={20} className="text-secondary-600 dark:text-secondary-400" />
                                         </div>
                                         <div className="transition-all duration-300 ease-in-out flex-1 flex flex-col justify-between">
                                             <ExperiencePreview />
@@ -375,15 +393,18 @@ const About = ({
                             }`}>
                                     <Card 
                                         padding="lg" 
-                                        className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-800 dark:to-gray-700 cursor-pointer transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] hover:-translate-y-1 h-80 flex flex-col"
+                                        className="cursor-pointer transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] hover:-translate-y-1 h-80 flex flex-col"
+                                        style={{
+                                            background: 'linear-gradient(to bottom right, var(--theme-tertiary-50), var(--theme-tertiary-100))'
+                                        }}
                                         onClick={() => toggleCard("skills")}
                                     >
                                         <div className="flex items-center justify-between mb-4">
                                             <div className="flex items-center">
-                                                <IconCode size={20} className="mr-2 text-purple-600 dark:text-purple-400" />
+                                                <IconCode size={20} className="mr-2 text-tertiary-600 dark:text-tertiary-400" />
                                                 <Title order={4} className="dark:text-white">Skills</Title>
                                             </div>
-                                            <IconChevronDown size={20} className="text-purple-600 dark:text-purple-400" />
+                                            <IconChevronDown size={20} className="text-tertiary-600 dark:text-tertiary-400" />
                                         </div>
                                         <div className="transition-all duration-300 ease-in-out flex-1 flex flex-col justify-between">
                                             <SkillsPreview />
