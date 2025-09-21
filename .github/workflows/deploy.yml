@@ -44,7 +44,7 @@ jobs:
         run: |
           git merge --no-ff ${{github.head_ref}}
       - name: "Install dependencies"
-        run: npm install --frozen-lockfile
+        run: npm ci
       - name: "Set environment variables"
         run: |
           echo "BASE_URL=https://portfolio-backend-x1gd.onrender.com" >> $GITHUB_ENV
