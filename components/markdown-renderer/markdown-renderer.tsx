@@ -31,7 +31,7 @@ export default function MarkdownRenderer({ content }: { content: string }) {
   if (error) return <div className="text-center py-8 text-red-500">Failed to load content.</div>;
 
   return (
-    <div className="markdown-body text-neutralGray-900 dark:text-white">
+    <div className="markdown-body text-tertiary-900 dark:text-white">
       <ReactMarkdown
         rehypePlugins={[rehypeRaw]}
         components={{

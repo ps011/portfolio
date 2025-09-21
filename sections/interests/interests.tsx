@@ -34,7 +34,8 @@ const Interests = ({ illustration, interests }: InterestsProps) => {
                 return (
                     <Link 
                         href="/blog" 
-                        className="inline-block bg-brandMutedYellow-500 text-white px-6 py-2 rounded-lg hover:bg-brandMutedYellow-600 transition-colors text-sm font-medium w-full text-center"
+                        className="inline-block text-white px-6 py-2 rounded-lg transition-colors text-sm font-medium w-full text-center"
+                        style={{ backgroundColor: 'var(--theme-primary-500)' }}
                     >
                         📝 View My Blog Posts
                     </Link>
@@ -43,7 +44,8 @@ const Interests = ({ illustration, interests }: InterestsProps) => {
                 return (
                     <Link 
                         href="/photo-gallery" 
-                        className="inline-block bg-brandMutedYellow-500 text-white px-6 py-2 rounded-lg hover:bg-brandMutedYellow-600 transition-colors text-sm font-medium w-full text-center"
+                        className="inline-block text-white px-6 py-2 rounded-lg transition-colors text-sm font-medium w-full text-center"
+                        style={{ backgroundColor: 'var(--theme-primary-500)' }}
                     >
                         📸 Explore Photo Gallery
                     </Link>
@@ -54,7 +56,8 @@ const Interests = ({ illustration, interests }: InterestsProps) => {
                         href="https://github.com/ps011" 
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-block bg-brandMutedYellow-500 text-white px-6 py-2 rounded-lg hover:bg-brandMutedYellow-600 transition-colors text-sm font-medium w-full text-center"
+                        className="inline-block text-white px-6 py-2 rounded-lg transition-colors text-sm font-medium w-full text-center"
+                        style={{ backgroundColor: 'var(--theme-primary-500)' }}
                     >
                         💻 View My GitHub
                     </Link>
@@ -62,7 +65,8 @@ const Interests = ({ illustration, interests }: InterestsProps) => {
             default:
                 return (
                     <button 
-                        className="inline-block bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors text-sm font-medium w-full text-center cursor-not-allowed opacity-60"
+                        className="inline-block text-white px-6 py-2 rounded-lg transition-colors text-sm font-medium w-full text-center cursor-not-allowed opacity-60"
+                        style={{ backgroundColor: 'var(--theme-tertiary-500)' }}
                         disabled
                     >
                         🔗 Coming Soon
@@ -78,12 +82,13 @@ const Interests = ({ illustration, interests }: InterestsProps) => {
                     {interests.length && interests.map((interest) => (
                         <div key={interest.title} className="mb-4">
                             <div 
-                                className="bg-white shadow-md rounded-xl dark:bg-neutralGray-800 dark:text-white transition-all duration-300 hover:shadow-lg"
+                                className="shadow-md rounded-xl dark:text-white transition-all duration-300 hover:shadow-lg"
+                                style={{ backgroundColor: 'var(--theme-tertiary-50)' }}
                                 data-aos="fade-right"
                             >
                                 <div className="flex p-8">
                                     <div className="pl-4 flex-1">
-                                        <h3 className="text-brandMutedYellow-700 dark:text-brandMutedYellow-200 mb-4 text-xl font-semibold">
+                                        <h3 className="mb-4 text-xl font-semibold" style={{ color: 'var(--theme-primary-700)' }}>
                                             {interest.title}
                                         </h3>
                                         <p className="dark:text-white mb-6">

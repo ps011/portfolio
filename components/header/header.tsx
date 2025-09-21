@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { Burger, Box, Paper } from "@mantine/core";
 import Button from "../tailwind/button";
+import ThemeSwitcher from "../theme-switcher/ThemeSwitcher";
 
 export interface HeaderProps {
     logoUrl: string;
@@ -21,7 +22,7 @@ export const Header: React.FC<HeaderProps> = ({logoUrl, navMap = []}) => {
     };
 
     return (
-        <Box component="header" className="bg-brandMutedYellow-600 py-4 md:py-8 relative">
+        <Box component="header" className="py-4 md:py-8 relative" style={{ backgroundColor: "var(--theme-primary-600)" }}>
             <Box className="container flex justify-between items-center">
                 <Link href="/">
                     <Image height={56} width={250} src={logoUrl} alt="Logo" priority />
@@ -37,6 +38,7 @@ export const Header: React.FC<HeaderProps> = ({logoUrl, navMap = []}) => {
                             </Link>
                         </Button>
                     ))}
+                        <ThemeSwitcher variant="both" size="md" />
                 </Box>
 
                 <Box className="md:hidden ml-4">
@@ -52,7 +54,7 @@ export const Header: React.FC<HeaderProps> = ({logoUrl, navMap = []}) => {
             {opened && (
                 <Paper 
                     className="md:hidden absolute top-full left-0 right-0 z-20 shadow-lg"
-                    bg="brandMutedYellow.6"
+                    bg="primary.6"
                     p="md" 
                     withBorder
                     radius={0}
@@ -70,6 +72,9 @@ export const Header: React.FC<HeaderProps> = ({logoUrl, navMap = []}) => {
                                 </Link>
                             </li>
                         ))}
+                        <li className="px-3 py-2">
+                            <ThemeSwitcher variant="both" size="sm" />
+                        </li>
                     </ul>
                 </Paper>
             )}

@@ -15,18 +15,18 @@
     @apply list-disc;
   }
   .markdown-body a {
-    @apply text-brandMutedYellow-700 underline hover:text-brandMutedYellow-900 dark:text-brandMutedYellow-300 dark:hover:text-brandMutedYellow-100;
+    @apply text-primary-700 underline hover:text-primary-900 dark:text-primary-300 dark:hover:text-primary-100;
   }
   .markdown-body img {
     @apply my-4 rounded max-w-full h-auto;
   }
   .markdown-body blockquote {
-    @apply border-l-4 border-brandMutedYellow-500 pl-4 italic text-neutralGray-700 dark:text-neutralGray-300 mb-4;
+    @apply border-l-4 border-primary-500 pl-4 italic text-tertiary-700 dark:text-tertiary-300 mb-4;
   }
   .markdown-body pre {
-    @apply bg-neutralGray-100 dark:bg-neutralGray-800 p-4 rounded mb-4 overflow-x-auto;
+    @apply bg-tertiary-100 dark:bg-tertiary-800 p-4 rounded mb-4 overflow-x-auto;
   }
   .markdown-body code {
-    @apply bg-neutralGray-200 dark:bg-neutralGray-700 px-1 py-0.5 rounded;
+    @apply bg-tertiary-200 dark:bg-tertiary-700 px-1 py-0.5 rounded;
   }
 } 

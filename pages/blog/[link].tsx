@@ -96,16 +96,16 @@ const SingleBlogPage = ({ blogPost }: SingleBlogPageProps) => {
             <article className="flex flex-col">
                 <div className="mb-8 relative">
                     <Image height={0} width={0} src={banner} alt={`Banner for ${title}`} className="w-full max-h-[650px] object-cover m-0" sizes="100vw"/>
-                    <h1 className=" text-4xl font-bold absolute left-0 right-0 -bottom-4 text-white p-12 rounded-tl-[155px] bg-gradient-to-t from-black/75 to-white/75">{title}</h1>
+                    <h1 className="text-4xl font-bold absolute left-0 right-0 -bottom-4 text-white p-12 rounded-tl-[155px]" style={{ background: 'linear-gradient(to top, var(--theme-primary-800), var(--theme-primary-600))' }}>{title}</h1>
                 </div>
                 <div className="container">
                     <div className="mb-8 text-md">
-                        <a className="text-neutralGray-900 dark:text-white" href={profileLink} target="_blank" rel="noopener noreferrer">{author}</a>
-                        <p className="italic my-2 text-neutralGray-900 dark:text-white">{new Date(date).toUTCString()}</p>
+                        <a className="text-tertiary-900 dark:text-white" href={profileLink} target="_blank" rel="noopener noreferrer">{author}</a>
+                        <p className="italic my-2 text-tertiary-900 dark:text-white">{new Date(date).toUTCString()}</p>
                     </div>
                     <MarkdownRenderer content={content}/>
                     <div className="mt-8">
-                        <span className="text-neutralGray-900 dark:text-white">Share this Post:</span>
+                        <span className="text-tertiary-900 dark:text-white">Share this Post:</span>
                         <div className="flex justify-flex-start mt-4">
                             {shareArticleList.map((share) => (
                                 <Profile key={share.name} url={share.url} name={share.name} className="w-8 mr-4"/>

@@ -1,0 +1,149 @@
+/* Dynamic Theme CSS Variables */
+:root {
+  /* Warm Theme (Default) - Light Mode */
+  --theme-primary-50: #FEF6E8;
+  --theme-primary-100: #FCEFDB;
+  --theme-primary-200: #F9E7CE;
+  --theme-primary-300: #F5DEC0;
+  --theme-primary-400: #F1D6B1;
+  --theme-primary-500: #DAB88B;
+  --theme-primary-600: #C3A07A;
+  --theme-primary-700: #AC8A69;
+  --theme-primary-800: #957558;
+  --theme-primary-900: #7E6147;
+
+  --theme-secondary-50: #EAF0F7;
+  --theme-secondary-100: #DDE4EE;
+  --theme-secondary-200: #CED8E5;
+  --theme-secondary-300: #BAC6DC;
+  --theme-secondary-400: #A6B4D3;
+  --theme-secondary-500: #8F9FC9;
+  --theme-secondary-600: #778DA9;
+  --theme-secondary-700: #657A94;
+  --theme-secondary-800: #54677F;
+  --theme-secondary-900: #43546A;
+
+  --theme-tertiary-50: #FFFFFF;
+  --theme-tertiary-100: #F8F9FA;
+  --theme-tertiary-200: #F1F3F5;
+  --theme-tertiary-300: #E9ECEF;
+  --theme-tertiary-400: #DEE2E6;
+  --theme-tertiary-500: #CED4DA;
+  --theme-tertiary-600: #ADB5BD;
+  --theme-tertiary-700: #868E96;
+  --theme-tertiary-800: #495057;
+  --theme-tertiary-900: #343A40;
+}
+
+/* Dark Mode - Warm Theme */
+[data-mantine-color-scheme="dark"] {
+  --theme-primary-50: #7E6147;
+  --theme-primary-100: #957558;
+  --theme-primary-200: #AC8A69;
+  --theme-primary-300: #C3A07A;
+  --theme-primary-400: #DAB88B;
+  --theme-primary-500: #F1D6B1;
+  --theme-primary-600: #F5DEC0;
+  --theme-primary-700: #F9E7CE;
+  --theme-primary-800: #FCEFDB;
+  --theme-primary-900: #FEF6E8;
+
+  --theme-secondary-50: #43546A;
+  --theme-secondary-100: #54677F;
+  --theme-secondary-200: #657A94;
+  --theme-secondary-300: #778DA9;
+  --theme-secondary-400: #8F9FC9;
+  --theme-secondary-500: #A6B4D3;
+  --theme-secondary-600: #BAC6DC;
+  --theme-secondary-700: #CED8E5;
+  --theme-secondary-800: #DDE4EE;
+  --theme-secondary-900: #EAF0F7;
+
+  --theme-tertiary-50: #343A40;
+  --theme-tertiary-100: #495057;
+  --theme-tertiary-200: #868E96;
+  --theme-tertiary-300: #ADB5BD;
+  --theme-tertiary-400: #CED4DA;
+  --theme-tertiary-500: #DEE2E6;
+  --theme-tertiary-600: #E9ECEF;
+  --theme-tertiary-700: #F1F3F5;
+  --theme-tertiary-800: #F8F9FA;
+  --theme-tertiary-900: #FFFFFF;
+}
+
+[data-theme="cosmic"] {
+  /* Cosmic Theme - Light Mode */
+  --theme-primary-50: #fff5f8;
+  --theme-primary-100: #ffebf2;
+  --theme-primary-200: #ffe0eb;
+  --theme-primary-300: #ffd6e4;
+  --theme-primary-400: #ffcbdd;
+  --theme-primary-500: #ff70a2;
+  --theme-primary-600: #ff1467;
+  --theme-primary-700: #b80040;
+  --theme-primary-800: #5c0020;
+  --theme-primary-900: #000000;
+
+  --theme-secondary-50: #fedbdc;
+  --theme-secondary-100: #feb7b8;
+  --theme-secondary-200: #fd9395;
+  --theme-secondary-300: #fc6f71;
+  --theme-secondary-400: #fb4b4e;
+  --theme-secondary-500: #fa0b0f;
+  --theme-secondary-600: #c00407;
+  --theme-secondary-700: #800305;
+  --theme-secondary-800: #400102;
+  --theme-secondary-900: #000000;
+
+  --theme-tertiary-50: #fff5f8;
+  --theme-tertiary-100: #ffebf2;
+  --theme-tertiary-200: #ffe0eb;
+  --theme-tertiary-300: #ffd6e4;
+  --theme-tertiary-400: #ffcbdd;
+  --theme-tertiary-500: #ff70a2;
+  --theme-tertiary-600: #ff1467;
+  --theme-tertiary-700: #b80040;
+  --theme-tertiary-800: #5c0020;
+  --theme-tertiary-900: #000000;
+}
+
+/* Dark Mode - Cosmic Theme */
+[data-theme="cosmic"][data-mantine-color-scheme="dark"] {
+  --theme-primary-50: #000000;
+  --theme-primary-100: #5c0020;
+  --theme-primary-200: #b80040;
+  --theme-primary-300: #ff1467;
+  --theme-primary-400: #ff70a2;
+  --theme-primary-500: #ffcbdd;
+  --theme-primary-600: #ffd6e4;
+  --theme-primary-700: #ffe0eb;
+  --theme-primary-800: #ffebf2;
+  --theme-primary-900: #fff5f8;
+
+  --theme-secondary-50: #000000;
+  --theme-secondary-100: #400102;
+  --theme-secondary-200: #800305;
+  --theme-secondary-300: #c00407;
+  --theme-secondary-400: #fa0b0f;
+  --theme-secondary-500: #fb4b4e;
+  --theme-secondary-600: #fc6f71;
+  --theme-secondary-700: #fd9395;
+  --theme-secondary-800: #feb7b8;
+  --theme-secondary-900: #fedbdc;
+
+  --theme-tertiary-50: #000000;
+  --theme-tertiary-100: #5c0020;
+  --theme-tertiary-200: #b80040;
+  --theme-tertiary-300: #ff1467;
+  --theme-tertiary-400: #ff70a2;
+  --theme-tertiary-500: #ffcbdd;
+  --theme-tertiary-600: #ffd6e4;
+  --theme-tertiary-700: #ffe0eb;
+  --theme-tertiary-800: #ffebf2;
+  --theme-tertiary-900: #fff5f8;
+}
+
+/* Theme transition animations */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

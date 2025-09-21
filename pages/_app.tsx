@@ -4,8 +4,7 @@ import "@mantine/carousel/styles.css";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import * as gtag from "../lib/gtag";
-import { MantineProvider } from "@mantine/core";
-import { theme } from "../styles/theme";
+import { ThemeProvider } from "../contexts/ThemeContext";
 import Layout from "../components/layout/Layout";
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -25,13 +24,13 @@ export default function Portfolio({ Component, pageProps }) {
   const { siteData, aboutData, ...restPageProps } = pageProps;
 
   return (
-    <MantineProvider theme={theme}>
+    <ThemeProvider>
       <Layout 
         data={siteData}
         about={aboutData}
       >
         <Component {...restPageProps} />
       </Layout>
-    </MantineProvider>
+    </ThemeProvider>
   );
 }

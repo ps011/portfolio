@@ -75,7 +75,7 @@ const Banner = ({
         };
     }, []);
     return (
-        <section className="bg-brandMutedYellow-100 dark:bg-brandMutedYellow-800 mb-16">
+        <section className="mb-16" style={{ backgroundColor: 'var(--theme-primary-100)' }}>
             <div className="container h-[70vh]">
                 <div className="h-full flex flex-col md:justify-around md:items-center md:flex-row">
                     <div className="flex-1 flex">
@@ -84,9 +84,9 @@ const Banner = ({
                     </div>
                     <div className="flex-1 flex flex-col mb-5 md:mb-0">
                         <div className="flex-1 min-h-8 md:min-h-16">
-                            <h4 className="text-neutralGray-900 dark:text-white">Hi, I&apos;m</h4>
+                            <h4 style={{ color: 'var(--theme-tertiary-900)' }}>Hi, I&apos;m</h4>
                             <h1 className="min-h-20 type-animate">
-                                <a href="#" id="typewrite" className="text-neutralGray-900 dark:text-white text-5xl" data-period="2000"
+                                <a href="#" id="typewrite" className="text-5xl" style={{ color: 'var(--theme-tertiary-900)' }} data-period="2000"
                                    data-type={JSON.stringify(texts)}>
                                 </a>
                             </h1>

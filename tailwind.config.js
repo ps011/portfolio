@@ -1,4 +1,4 @@
-const { theme: mantineColorsTheme } = require("./styles/theme"); // Import your Mantine theme
+const { themes: mantineThemes } = require("./styles/theme"); // Import your Mantine themes
 
 // Helper function to convert Mantine color array to Tailwind format
 function mantineToTailwindColors(mantineColorArray, defaultShadeIndex = 5) {
@@ -14,10 +14,12 @@ function mantineToTailwindColors(mantineColorArray, defaultShadeIndex = 5) {
 
 /** @type {import("tailwindcss").Config} */
 module.exports = {
+    darkMode: ["class", "[data-mantine-color-scheme=\"dark\"]"],
     content: [
         "./components/**/*.*",
         "./sections/**/*.*",
         "./pages/**/*.*",
+        "./contexts/**/*.*",
     ],
     theme: {
         container: {
@@ -32,26 +34,27 @@ module.exports = {
         },
         extend: { // It's often better to extend the default Tailwind theme
             colors: {
-                brandMutedYellow: mantineToTailwindColors(mantineColorsTheme.colors.brandMutedYellow, 5),
-                accentSlateBlue: mantineToTailwindColors(mantineColorsTheme.colors.accentSlateBlue, 6), // Assuming shade 6 is the DEFAULT for this one
-                neutralGray: mantineToTailwindColors(mantineColorsTheme.colors.neutralGray, 7), // Assuming shade 7 (mid-gray) is DEFAULT
+                // Warm theme colors (default)
+                primary: mantineToTailwindColors(mantineThemes.warm.colors.primary, 5),
+                secondary: mantineToTailwindColors(mantineThemes.warm.colors.secondary, 6),
+                tertiary: mantineToTailwindColors(mantineThemes.warm.colors.tertiary, 7),
                 // You can add white and black if needed, or they might come from Tailwind's defaults
-                // white: mantineColorsTheme.white,
-                // black: mantineColorsTheme.black,
+                // white: mantineThemes.warm.white,
+                // black: mantineThemes.warm.black,
             },
             fontFamily: {
                 // Your Mantine theme uses "Inter, sans-serif"
                 // Tailwind's default sans-serif stack is usually pretty good and includes Inter if available
                 // If you want to strictly use what's in Mantine:
-                sans: mantineColorsTheme.fontFamily.split(",").map(f => f.trim()),
+                sans: mantineThemes.warm.fontFamily.split(",").map(f => f.trim()),
                 // Add other font families if defined in your Mantine theme
-                // headings: mantineColorsTheme.headings.fontFamily.split(',').map(f => f.trim()),
+                // headings: mantineThemes.warm.headings.fontFamily.split(',').map(f => f.trim()),
             },
             // You can also map other theme values like fontSize, spacing, borderRadius
             // For example, for heading font sizes (this is a simplified example):
             // fontSize: {
-            //   'h1-mantine': mantineColorsTheme.headings.sizes.h1.fontSize,
-            //   'h2-mantine': mantineColorsTheme.headings.sizes.h2.fontSize,
+            //   'h1-mantine': mantineThemes.warm.headings.sizes.h1.fontSize,
+            //   'h2-mantine': mantineThemes.warm.headings.sizes.h2.fontSize,
             //   // ... and so on
             // },
         },

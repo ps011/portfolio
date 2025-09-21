@@ -39,7 +39,7 @@ export default function Document() {
             </>
         )}
       </Head>
-        <body className="dark:bg-neutralGray-800">
+        <body className="dark:bg-tertiary-800">
         <Main/>
         <NextScript />
       </body>

@@ -14,7 +14,7 @@ const Footer = ({profiles}) => (
             </div>
         </div>
         <hr className="py-4"/>
-        <div className="flex justify-between py-4 text-neutralGray-900 dark:text-white">
+        <div className="flex justify-between py-4 text-tertiary-900 dark:text-white">
             <span>
                 &copy;
                 {" "}
