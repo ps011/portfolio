@@ -51,30 +51,31 @@ jobs:
             exit 1
           fi
           echo "Build successful: .next directory created"
+      - name: "Create release branch"
+        run: |
+          git checkout -b release/temp
+      - name: "Merge feature branch"
+        if: github.event_name == 'pull_request'
+        run: |
+          git merge --no-ff ${{github.head_ref}}
       - name: "Generate changelog and bump version"
         id: "version"
         run: |
-          # Generate changelog and bump version using standard-version
-          npx standard-version --no-verify
+          # Generate changelog and bump version using standard-version (skip auto-commit)
+          npx standard-version --no-verify --skip.commit
           # Extract the new version from package.json
           echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
           # Show the generated changelog for this release
           echo "=== Generated Changelog ==="
           head -20 CHANGELOG.md
           echo "=========================="
-          git stash
-      - name: "Create release/v${{steps.version.outputs.version}}"
-        run: |
-          git checkout -b release/v${{steps.version.outputs.version}}
-      - name: "Merge feature branch"
-        if: github.event_name == 'pull_request'
-        run: |
-          git merge --no-ff ${{github.head_ref}}
       - name: "Commit version and changelog changes"
         run: |
-          git stash pop
           git add package.json package-lock.json CHANGELOG.md
           git commit -m "chore(release): v${{steps.version.outputs.version}}"
+      - name: "Rename release branch"
+        run: |
+          git branch -m release/v${{steps.version.outputs.version}}
       - name: "Push changes to origin"
         run: git push origin +release/v${{steps.version.outputs.version}}:release/v${{steps.version.outputs.version}}
 
