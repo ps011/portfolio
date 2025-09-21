@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "version": "0.6.0",
+  "version": "0.5.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,8 +10,14 @@
     "lint:fix": "eslint --fix .",
     "test": "jest",
     "commit": "cz",
+    "cm": "cz",
+    "add": "cz",
+    "commitlint": "commitlint --edit",
+    "release": "standard-version",
+    "release:dry": "standard-version --dry-run",
     "release:current-version": "node ./tooling_scripts/release-get-current-version.js",
-    "release:next-version": "node ./tooling_scripts/release-get-next-version.js"
+    "release:next-version": "node ./tooling_scripts/release-get-next-version.js",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -35,6 +41,8 @@
     "sass": "^1.32.8"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@eslint/eslintrc": "^3.3.1",
     "@testing-library/dom": "^7.29.6",
     "@testing-library/react": "^11.2.5",
@@ -60,11 +68,6 @@
   "cacheDirectories": [
     ".next/cache"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
