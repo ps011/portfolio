@@ -1,7 +1,7 @@
-import nextVitals from "eslint-config-next/core-web-vitals";
-import prettier from "eslint-config-prettier";
+const nextVitals = require("eslint-config-next/core-web-vitals");
+const prettier = require("eslint-config-prettier");
 
-const eslintConfig = [
+module.exports = [
   ...nextVitals,
   prettier,
   {
@@ -26,5 +26,3 @@ const eslintConfig = [
     },
   },
 ];
-
-export default eslintConfig;

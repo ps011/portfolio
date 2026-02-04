@@ -17,7 +17,7 @@ const Blog = ({blogs}: { blogs: BlogType[] }) => {
         .filter(blog => !blog.hidden)
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-    // eslint-disable-next-line no-unused-vars
+     
     const groupBy = (xs: BlogType[], f: (blog: BlogType) => string) => 
         xs.reduce((r, v) => {
             const k = f(v);

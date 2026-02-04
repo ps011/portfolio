@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next";
-import GitHubCalendar from "react-github-calendar";
+import { GitHubCalendar } from "react-github-calendar";
 import Head from "next/head";
 
 export const getStaticProps: GetStaticProps = async () => {
