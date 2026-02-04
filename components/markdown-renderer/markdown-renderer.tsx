@@ -38,7 +38,7 @@ export default function MarkdownRenderer({ content }: { content: string }) {
           img: ({...props}) => (
             <span className="block my-4">
               <Image
-                src={props.src || ""}
+                src={typeof props.src === "string" ? props.src : ""}
                 alt={props.alt || ""}
                 width={800}
                 height={400}

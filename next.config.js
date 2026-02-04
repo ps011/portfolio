@@ -5,10 +5,16 @@ module.exports = {
     includePaths: [path.join(__dirname, "styles")],
   },
   images: {
-    domains: ["res.cloudinary.com", "cdn.hashnode.com"],
-  },
-  eslint: {
-    dirs: ["sections", "components", "pages", "interfaces", "lib"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.hashnode.com",
+      },
+    ],
   },
   compiler: {
     emotion: false,

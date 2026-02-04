@@ -1,4 +1,4 @@
-const { theme: mantineColorsTheme } = require("./styles/theme"); // Import your Mantine theme
+const { themeValues: mantineColorsTheme } = require("./styles/theme-values");
 
 // Helper function to convert Mantine color array to Tailwind format
 function mantineToTailwindColors(mantineColorArray, defaultShadeIndex = 5) {
