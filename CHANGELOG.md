@@ -1,4 +1,6 @@
 CHANGELOG
+### [0.5.7](https://github.com/ps011/portfolio/compare/v0.5.6...v0.5.7) (2026-02-14)
+
 ### [0.5.6](https://github.com/ps011/portfolio/compare/v0.5.5...v0.5.6) (2026-02-14)
 
 ### [0.5.5](https://github.com/ps011/portfolio/compare/v0.5.4...v0.5.5) (2026-02-04)
