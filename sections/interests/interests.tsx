@@ -30,7 +30,7 @@ const item = {
 
 const Interests = ({ illustration, interests }: InterestsProps) => {
   const getInterestType = (
-    title: string
+    title: string,
   ): "blogging" | "photography" | "coding" | "other" => {
     const lowerTitle = title.toLowerCase();
     if (lowerTitle.includes("blog") || lowerTitle.includes("writing"))

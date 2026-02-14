@@ -18,7 +18,7 @@ function SheetOverlay({
     <SheetPrimitive.Overlay
       className={cn(
         "fixed inset-0 z-50 bg-black/60 transition-opacity duration-300 data-[state=closed]:opacity-0 data-[state=open]:opacity-100",
-        className
+        className,
       )}
       {...props}
     />
@@ -48,14 +48,14 @@ function SheetContent({
         className={cn(
           "fixed z-50 flex flex-col gap-4 bg-background p-6 shadow-shadow transition-transform duration-300 ease-in-out",
           sideClasses[side],
-          className
+          className,
         )}
         {...props}
       >
         {children}
         <SheetPrimitive.Close
           className={cn(
-            "absolute right-4 top-4 rounded-base border-2 border-border bg-main p-2 text-main-foreground shadow-shadow transition-colors hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none min-h-[44px] min-w-[44px]"
+            "absolute right-4 top-4 rounded-base border-2 border-border bg-main p-2 text-main-foreground shadow-shadow transition-colors hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none min-h-[44px] min-w-[44px]",
           )}
           aria-label="Close"
         >
@@ -80,7 +80,7 @@ function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       className={cn(
         "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
-        className
+        className,
       )}
       {...props}
     />
