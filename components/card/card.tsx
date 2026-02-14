@@ -1,76 +1,92 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { Text, Title, Box } from "@mantine/core";
-import Badge from "../tailwind/badge";
-import Button from "../tailwind/button";
+import { motion } from "framer-motion";
+import {
+  Card as UICard,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 interface CardProps {
-    thumbnail: string;
-    title: string;
-    shortDescription: string;
-    tags: string;
-    link: string;
+  thumbnail: string;
+  title: string;
+  shortDescription: string;
+  tags: string;
+  link: string;
 }
 
 const Card = ({
-                  thumbnail, title, shortDescription, tags, link,
-              }: CardProps) => {
-    let tagsArray: string[] = [];
-    if (tags) {
-        tagsArray = Array.isArray(tags) ? tags : tags.split(",").map(tag => tag.trim());
-    }
+  thumbnail,
+  title,
+  shortDescription,
+  tags,
+  link,
+}: CardProps) => {
+  const tagsArray: string[] = tags
+    ? Array.isArray(tags)
+      ? (tags as unknown as string[])
+      : (tags as string).split(",").map((tag) => (tag as string).trim())
+    : [];
 
-    const getLink = (link: string) => {
-        if (link.startsWith("http")) {
-            return link;
-        } else {
-            return `/blog/${link}`;
-        }
-    };
+  const getLink = (href: string) =>
+    href.startsWith("http") ? href : `/blog/${href}`;
 
-    const heightWithThumbnail = "430px";
-    const heightWithoutThumbnail = "280px";
-
-    return (
-        <Box
-            className="flex flex-col shadow-md border-0 m-2 p-4 bg-neutral-100 rounded-md dark:bg-neutralGray-700 dark:text-white dark:shadow-gray-900"
-            style={{ height: thumbnail ? heightWithThumbnail : heightWithoutThumbnail }}
-        >
-            <Box style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
-                {thumbnail && (
-                    <div className="mb-4">
-                        <Image
-                            src={thumbnail}
-                            alt={`Blog ${title} Description`}
-                            width={0}
-                            height={0}
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            className="w-full h-48 rounded-md object-cover"
-                        />
-                    </div>
-                )}
-                <Box style={{ flexGrow: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" /* minHeight removed as parent has fixed height now */ }}>
-                    <div>
-                        <Title order={6} className="text-primary uppercase" mb="xs">{title}</Title>
-                        <Text size="sm" lineClamp={3} mb="sm">{shortDescription}</Text>
-                        <div>
-                            {
-                                tagsArray.length ?
-                                    tagsArray.map(
-                                        (tag) => <Badge text={tag} className="mr-2 dark:bg-dark-primary-300" key={tag}/>,
-                                    )
-                                    : ""}
-                        </div>
-                    </div>
-                    <Button variant="filled" fullWidth>
-                        <Link href={getLink(link)} target="_blank">
-                            Read more
-                        </Link>
-                    </Button>
-                </Box>
-            </Box>
-        </Box>
-    );
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ duration: 0.3 }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      className="h-full"
+    >
+      <UICard className="flex h-full flex-col transition-shadow hover:shadow-none hover:translate-x-boxShadowX hover:translate-y-boxShadowY">
+        {thumbnail ? (
+          <div className="relative h-48 w-full overflow-hidden rounded-t-base">
+            <Image
+              src={thumbnail}
+              alt={`${title} thumbnail`}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover"
+            />
+          </div>
+        ) : null}
+        <CardHeader className="flex-1">
+          <CardTitle className="line-clamp-2 text-base uppercase tracking-wide">
+            {title}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="flex-1 space-y-2 pt-0">
+          <p className="line-clamp-3 text-sm text-foreground">
+            {shortDescription}
+          </p>
+          {tagsArray.length > 0 && (
+            <div className="flex flex-wrap gap-1">
+              {tagsArray.map((tag) => (
+                <Badge key={tag} variant="neutral" className="text-xs">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          )}
+        </CardContent>
+        <CardFooter className="pt-0">
+          <Button variant="default" size="default" className="w-full" asChild>
+            <Link href={getLink(link)} target="_blank" className="no-underline">
+              Read more
+            </Link>
+          </Button>
+        </CardFooter>
+      </UICard>
+    </motion.div>
+  );
 };
 
 export default Card;

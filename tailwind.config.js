@@ -18,6 +18,8 @@ module.exports = {
         "./components/**/*.*",
         "./sections/**/*.*",
         "./pages/**/*.*",
+        "./lib/**/*.*",
+        "./styles/**/*.scss",
     ],
     theme: {
         container: {
@@ -49,11 +51,53 @@ module.exports = {
             },
             // You can also map other theme values like fontSize, spacing, borderRadius
             // For example, for heading font sizes (this is a simplified example):
-            // fontSize: {
-            //   'h1-mantine': mantineColorsTheme.headings.sizes.h1.fontSize,
-            //   'h2-mantine': mantineColorsTheme.headings.sizes.h2.fontSize,
-            //   // ... and so on
-            // },
+            borderRadius: {
+                base: "5px",
+            },
+            borderWidth: {
+                "3": "3px",
+            },
+            boxShadow: {
+                shadow: "4px 4px 0px 0px #000",
+                "shadow-sm": "2px 2px 0px 0px #000",
+            },
+            translate: {
+                boxShadowX: "4px",
+                boxShadowY: "4px",
+                reverseBoxShadowX: "-4px",
+                reverseBoxShadowY: "-4px",
+            },
+            colors: {
+                main: "var(--main)",
+                "main-foreground": "var(--main-foreground)",
+                border: "var(--border)",
+                foreground: "var(--foreground)",
+                background: "var(--background)",
+                "secondary-background": "var(--secondary-background)",
+                ring: "var(--ring)",
+                "muted-foreground": "var(--muted-foreground)",
+            },
+            fontWeight: {
+                base: "500",
+                heading: "700",
+            },
+            fontFamily: {
+                heading: ["var(--font-space-grotesk)", "var(--font-sans)", "sans-serif"],
+            },
+            keyframes: {
+                "accordion-down": {
+                    from: { height: "0" },
+                    to: { height: "var(--radix-accordion-content-height)" },
+                },
+                "accordion-up": {
+                    from: { height: "var(--radix-accordion-content-height)" },
+                    to: { height: "0" },
+                },
+            },
+            animation: {
+                "accordion-down": "accordion-down 0.2s ease-out",
+                "accordion-up": "accordion-up 0.2s ease-out",
+            },
         },
     },
     plugins: [],

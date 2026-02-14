@@ -1,8 +1,7 @@
 module.exports = {
   plugins: {
     "tailwindcss/nesting": {},
-    "tailwindcss": {},
-    "postcss-preset-mantine": {},
+    tailwindcss: {},
     "postcss-simple-vars": {
       variables: {
         // Optional: define Mantine breakpoints here if needed by your setup,

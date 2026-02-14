@@ -35,6 +35,10 @@ const Profile = ({url, name, className}: ProfileProps) => {
     };
 
     return (
+        <span
+        key={name}
+        className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-base border-2 border-border bg-main p-2 shadow-shadow transition-shadow hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+      >
         <Link 
             href={url} 
             key={name} 
@@ -46,6 +50,7 @@ const Profile = ({url, name, className}: ProfileProps) => {
                 {getProfileIcon(name)}
             </span>
         </Link>
+        </span>
     );
 };
 

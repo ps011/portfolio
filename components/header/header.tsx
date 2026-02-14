@@ -1,78 +1,92 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState } from "react";
-import { Burger, Box, Paper } from "@mantine/core";
-import Button from "../tailwind/button";
+import React from "react";
+import { Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 export interface HeaderProps {
-    logoUrl: string;
-    navMap?: Array<{ href: string, label: string }>;
+  logoUrl: string;
+  navMap?: Array<{ href: string; label: string }>;
 }
 
-export const Header: React.FC<HeaderProps> = ({logoUrl, navMap = []}) => {
-    const [opened, setOpened] = useState(false);
-    const title = opened ? "Close navigation" : "Open navigation";
+export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
+  const getHref = (href: string) => {
+    if (href.startsWith("/")) return href;
+    return `/${href}`;
+  };
 
-    const getHref = (href: string) => {
-        if (href.startsWith("/")) {
-            return href;
-        }
-        return `/${href}`;
-    };
+  const navLinks = (
+    <>
+      {navMap.length > 0 &&
+        navMap.map((item) => (
+          <Button key={item.href} variant="neutral" size="default" asChild>
+            <Link href={getHref(item.href)} className="no-underline">
+              {item.label}
+            </Link>
+          </Button>
+        ))}
+    </>
+  );
 
-    return (
-        <Box component="header" className="bg-brandMutedYellow-600 py-4 md:py-8 relative">
-            <Box className="container flex justify-between items-center">
-                <Link href="/">
-                    <Image height={56} width={250} src={logoUrl} alt="Logo" priority />
-                </Link>
+  return (
+    <header className="sticky top-0 z-40 w-full border-b-2 border-border bg-main py-4 shadow-shadow md:py-6">
+      <div className="container flex justify-between items-center">
+        <Link href="/" className="flex-shrink-0">
+          <Image
+            height={56}
+            width={250}
+            src={logoUrl}
+            alt="Logo"
+            priority
+            className="h-10 w-auto md:h-14"
+          />
+        </Link>
 
-                <Box className="hidden md:flex md:items-center space-x-2">
-                    {navMap.length > 0 && navMap.map((item) => (
-                        <Button variant="filled" key={item.href}>
-                            <Link href={getHref(item.href)} passHref legacyBehavior>
-                                <a className="text-white no-underline hover:text-gray-200 px-3 py-2 rounded-md text-sm font-bold">
-                                    {item.label}
-                                </a>
-                            </Link>
-                        </Button>
-                    ))}
-                </Box>
+        <nav className="hidden md:flex md:items-center gap-2">{navLinks}</nav>
 
-                <Box className="md:hidden ml-4">
-                    <Burger
-                        opened={opened}
-                        onClick={() => setOpened((o) => !o)}
-                        title={title}
-                        color="white"
-                    />
-                </Box>
-            </Box>
-
-            {opened && (
-                <Paper 
-                    className="md:hidden absolute top-full left-0 right-0 z-20 shadow-lg"
-                    bg="brandMutedYellow.6"
-                    p="md" 
-                    withBorder
-                    radius={0}
-                >
-                    <ul className="flex flex-col space-y-2">
-                        {navMap.length > 0 && navMap.map((item) => (
-                            <li key={item.href}>
-                                <Link href={item.href} passHref legacyBehavior>
-                                    <a 
-                                        className="block text-white no-underline hover:text-gray-200 px-3 py-2 rounded-md text-base font-medium"
-                                        onClick={() => setOpened(false)}
-                                    >
-                                        {item.label}
-                                    </a>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </Paper>
-            )}
-        </Box>
-    );
+        <div className="flex md:hidden">
+          <Sheet>
+            <SheetTrigger
+              asChild
+              aria-label="Open navigation menu"
+              className="min-h-[44px] min-w-[44px] rounded-base border-2 border-border bg-main-foreground p-2.5 text-main shadow-shadow hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            >
+              <button type="button">
+                <Menu className="size-6" />
+              </button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[min(100vw-2rem,320px)]">
+              <SheetHeader>
+                <SheetTitle className="text-left">Menu</SheetTitle>
+              </SheetHeader>
+              <ul className="mt-6 flex flex-col gap-2">
+                {navMap.length > 0 &&
+                  navMap.map((item) => (
+                    <li key={item.href}>
+                      <Button
+                        variant="neutral"
+                        size="default"
+                        className="w-full justify-start text-left"
+                        asChild
+                      >
+                        <Link href={getHref(item.href)}>{item.label}</Link>
+                      </Button>
+                    </li>
+                  ))}
+              </ul>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
+    </header>
+  );
 };
