@@ -1,7 +1,8 @@
 import Banner from "../sections/banner/banner";
 import About from "../sections/about/about";
+import Experience from "../sections/experience/experience";
 import Interests from "../sections/interests/interests";
-import BlogSection from "../sections/blog/blog"; 
+import BlogSection from "../sections/blog/blog";
 import { Map } from "../sections/map/map";
 import { Blog as tBlog } from "../interfaces/blog";
 
@@ -60,10 +61,15 @@ export default function IndexPage({
   return (
     <>
       {bannerData && <Banner {...bannerData} />}
-      {pageSpecificAboutData && <About {...pageSpecificAboutData} />}
+      <div className="mt-12">
+        {pageSpecificAboutData && <About {...pageSpecificAboutData} />}
+      {pageSpecificAboutData?.experience?.length > 0 && (
+        <Experience experience={pageSpecificAboutData.experience} />
+      )}
       {interests && <Interests interests={interests} illustration={"/images/illustrations/interests.svg"} />}
       {blogs && <BlogSection blogs={blogs} />}
       {countriesVisited && <Map countriesVisited={countriesVisited} />}
+      </div>
     </>
   );
 }

@@ -2,35 +2,31 @@ import React from "react";
 import { Header } from "../header/header";
 import Footer from "../../sections/footer/footer";
 import Meta from "../meta/meta";
+import { SmoothScroll } from "../smooth-scroll";
 
 interface LayoutProps {
   children: React.ReactNode;
   data: {
-    meta?: any;    // Make meta optional on data if it can sometimes be missing
-    header?: any;  // Make header optional on data if it can sometimes be missing
+    meta?: any;
+    header?: any;
   };
-  about: { // Expecting an object that contains a profiles property
-    profiles?: any[]; // Make profiles optional on about if it can sometimes be missing
+  about: {
+    profiles?: any[];
   };
 }
 
-const Layout: React.FC<LayoutProps> = ({
-  children,
-  data,
-  about,
-}) => {
-  // Destructure with safety for potentially undefined props
+const Layout: React.FC<LayoutProps> = ({ children, data, about }) => {
   const meta = data?.meta;
   const header = data?.header;
   const profiles = about?.profiles;
 
   return (
-    <>
+    <SmoothScroll>
       {meta && <Meta {...meta} />}
       {header && <Header {...header} />}
       <main>{children}</main>
       {profiles && <Footer profiles={profiles} />}
-    </>
+    </SmoothScroll>
   );
 };
 

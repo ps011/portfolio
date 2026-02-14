@@ -8,19 +8,26 @@ interface SectionProps {
     heading?: string;
 }
 
-const Section = ({children, id, background, container, heading}: SectionProps) => {
-    return (
-        <section
-            id={id}
-            className={`
-            mb-16 p-8
-            ${background === "primary" ? "bg-brandMutedYellow-100 dark:bg-brandMutedYellow-800" : "bg-white dark:bg-neutralGray-800"}
-            ${container ? "container" : ""}`.trim().replace(/\s+/g, " ")}
-        >
-            {heading &&  <h3 className="text-center my-4 text-2xl font-weight-600 dark:text-white">{heading}</h3>}
-            {children}
-        </section>
-    );
+const Section = ({ children, id, background, container, heading }: SectionProps) => {
+  return (
+    <section
+      id={id}
+      className={[
+        "mb-16 p-4 md:p-8",
+        background === "primary" ? "bg-secondary-background" : "bg-background",
+        container ? "container" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      {heading && (
+        <h3 className="font-heading my-4 text-center text-2xl font-bold text-foreground">
+          {heading}
+        </h3>
+      )}
+      {children}
+    </section>
+  );
 };
 
 export default Section;

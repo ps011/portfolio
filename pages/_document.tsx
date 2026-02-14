@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from "next/document";
-import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
 
 import { GA_TRACKING_ID } from "../lib/gtag";
 
@@ -7,9 +6,8 @@ const isProduction = process.env.NODE_ENV === "production";
 
 export default function Document() {
   return (
-    <Html {...mantineHtmlProps}>
+    <Html lang="en">
       <Head>
-          <ColorSchemeScript defaultColorScheme="auto" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap"
@@ -37,7 +35,7 @@ export default function Document() {
             </>
         )}
       </Head>
-        <body className="dark:bg-neutralGray-800">
+        <body className="bg-background text-foreground antialiased overflow-x-hidden">
         <Main/>
         <NextScript />
       </body>
