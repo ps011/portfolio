@@ -34,8 +34,6 @@ export default function Document() {
         `,
                     }}
                 />
-                <script
-                    src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.2.10/iframeResizer.min.js" async></script>
             </>
         )}
       </Head>
