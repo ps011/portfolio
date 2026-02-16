@@ -1,6 +1,10 @@
 CHANGELOG
+### [0.5.9](https://github.com/ps011/portfolio/compare/v0.5.8...v0.5.9) (2026-02-16)
 
----
+
+### Chore
+
+* **changelog:** update .versionrc.js to include new changelog types ([5318e99](https://github.com/ps011/portfolio/commit/5318e99b650adf5e21c775c7bfed0aa2e0854c0e))
 
 ### [0.5.8](https://github.com/ps011/portfolio/compare/v0.5.7...v0.5.8) (2026-02-16)
 
