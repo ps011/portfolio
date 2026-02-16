@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -70,6 +70,6 @@
     }
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=24.0.0"
   }
 }
