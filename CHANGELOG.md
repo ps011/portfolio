@@ -1,20 +1,55 @@
 CHANGELOG
+### [0.5.9](https://github.com/ps011/portfolio/compare/v0.5.8...v0.5.9) (2026-02-16)
+
+
+### Chore
+
+* **changelog:** update .versionrc.js to include new changelog types ([5318e99](https://github.com/ps011/portfolio/commit/5318e99b650adf5e21c775c7bfed0aa2e0854c0e))
+
 ### [0.5.8](https://github.com/ps011/portfolio/compare/v0.5.7...v0.5.8) (2026-02-16)
+
+### Chore
+
+* **node:** update Node.js version requirement to 24.0.0 in package files ([6b21ffc](https://github.com/ps011/portfolio/commit/6b21ffcdc5c3cf1b0ab17fa45b569b5d24b8c1cd))
 
 ### [0.5.7](https://github.com/ps011/portfolio/compare/v0.5.6...v0.5.7) (2026-02-14)
 
+### Styles
+
+* **portfolio:** revamp UI/UX and move to neobrutalism ([3bc4ac1](https://github.com/ps011/portfolio/commit/3bc4ac1375641b875b7378b3ab8771cc57aad4c1))
+
+### Chore
+
+* **package-lock:** update package-lock ([10ee4da](https://github.com/ps011/portfolio/commit/10ee4dafcac4e3fa1dcd751c219991c07ebf7bbb))
+
 ### [0.5.6](https://github.com/ps011/portfolio/compare/v0.5.5...v0.5.6) (2026-02-14)
+
+### Chore
+
+* **portfolio:** cleanup ([3757888](https://github.com/ps011/portfolio/commit/3757888b3e257049da65676ca8ebfd31476e4ada))
 
 ### [0.5.5](https://github.com/ps011/portfolio/compare/v0.5.4...v0.5.5) (2026-02-04)
 
+### Chore
+
+* refactor GitHubCalendar import and update dependencies; remove ESLint config file; update React and related packages to latest versions ([0e53e8e](https://github.com/ps011/portfolio/commit/0e53e8e28dfa94d53f76afc41963e23ef904d125))
+* update project dependencies ([f674886](https://github.com/ps011/portfolio/commit/f6748868776c464121d4e143f4f7a0a2a0925104))
+
 ### [0.5.4](https://github.com/ps011/portfolio/compare/v0.5.3...v0.5.4) (2026-02-04)
 
-### [0.5.3](https://github.com/ps011/portfolio/compare/v0.5.2...v0.5.3) (2025-09-21)
+### Chore
 
+* remove ESLint configuration files ([b7904f7](https://github.com/ps011/portfolio/commit/b7904f7535ef46328133dc90410a1d7e9f390170))
+
+### [0.5.3](https://github.com/ps011/portfolio/compare/v0.5.2...v0.5.3) (2025-09-21)
 
 ### Features
 
 * enhance interests section with interactive CTAs ([9a7630c](https://github.com/ps011/portfolio/commit/9a7630c078efcb9807ab77f8bd1c28ab1577eaa0))
+
+### Chore
+
+* remove Jest testing dependencies ([de5e788](https://github.com/ps011/portfolio/commit/de5e788b42434289ad9a41d6ae7ea5658030c96a))
 
 ### [0.5.2](https://github.com/ps011/portfolio/compare/v0.6.0...v0.5.2) (2025-09-21)
 
