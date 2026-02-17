@@ -1,4 +1,16 @@
 CHANGELOG
+### [0.5.10](https://github.com/ps011/portfolio/compare/v0.5.9...v0.5.10) (2026-02-17)
+
+
+### Bug Fixes
+
+* **theme-switcher:** correct syntax error in theme option class assignment ([dfd1098](https://github.com/ps011/portfolio/commit/dfd10986cff7e0ff48016904457a1ed9333f8ec3))
+
+
+### Styles
+
+* **theme:** update theme handling and improve component styles ([3ba8093](https://github.com/ps011/portfolio/commit/3ba8093a444ce166a27ef281d655184d4680d938))
+
 ### [0.5.9](https://github.com/ps011/portfolio/compare/v0.5.8...v0.5.9) (2026-02-16)
 
 
