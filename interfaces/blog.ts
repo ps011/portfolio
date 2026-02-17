@@ -18,3 +18,14 @@ export interface Blog {
   link: string;
   user: About;
 }
+
+export interface BlogCard {
+  title: string;
+  shortDescription: string;
+  thumbnail: string;
+  tags: string;
+  link: string;
+  hidden: boolean;
+  date: string;
+  type: string;
+}

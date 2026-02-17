@@ -98,7 +98,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
         <div className="bg-brandMutedYellow-100 dark:bg-brandMutedYellow-800 min-h-screen">
             <main className="container mx-auto px-6 py-12">
                 <header className="mb-12 text-center">
-                    <h1 className="mb-4 font-heading text-2xl font-bold text-foreground md:text-4xl lg:text-5xl">
+                    <h1 className="mb-4 text-2xl font-bold text-foreground md:text-4xl lg:text-5xl">
                         My Photo Book
                     </h1>
                     <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
@@ -173,7 +173,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                         onClick={(e) => e.stopPropagation()}
                     >
                         <div className="flex shrink-0 items-center justify-between border-b-2 border-border pb-3">
-                            <h3 id="modalTitle" className="truncate text-xl font-heading font-semibold text-foreground" style={{ maxWidth: "calc(100% - 3rem)" }}>
+                            <h3 id="modalTitle" className="truncate text-xl font-semibold text-foreground" style={{ maxWidth: "calc(100% - 3rem)" }}>
                                 {modalImageDetails.caption || "Image Preview"}
                             </h3>
                             <button

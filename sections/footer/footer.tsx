@@ -17,7 +17,7 @@ const Footer = ({
   >
     <div className="flex flex-col justify-between gap-6 md:flex-row md:items-center">
       <div className="flex flex-col">
-        <h3 className="font-heading mb-2 text-2xl font-bold text-foreground">
+        <h3 className="mb-2 text-2xl font-bold text-foreground">
           Thank you for stopping by!
         </h3>
         <p className="mb-4 text-foreground md:mb-0">
