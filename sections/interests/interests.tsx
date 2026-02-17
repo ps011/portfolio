@@ -106,7 +106,7 @@ const Interests = ({ illustration, interests }: InterestsProps) => {
               <motion.div key={interest.title} variants={item}>
                 <Card className="transition-shadow hover:shadow-none hover:translate-x-boxShadowX hover:translate-y-boxShadowY">
                   <CardHeader>
-                    <CardTitle className="text-xl font-heading">
+                    <CardTitle className="text-xl font-bold">
                       {interest.title}
                     </CardTitle>
                   </CardHeader>

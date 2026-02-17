@@ -1,17 +1,3 @@
-const { themeValues: mantineColorsTheme } = require("./styles/theme-values");
-
-// Helper function to convert Mantine color array to Tailwind format
-function mantineToTailwindColors(mantineColorArray, defaultShadeIndex = 5) {
-  const colors = {};
-  if (mantineColorArray && mantineColorArray.length > 0) {
-    colors["DEFAULT"] = mantineColorArray[defaultShadeIndex];
-    mantineColorArray.forEach((color, index) => {
-      colors[index === 0 ? "50" : index * 100] = color;
-    });
-  }
-  return colors;
-}
-
 /** @type {import("tailwindcss").Config} */
 module.exports = {
     content: [
@@ -32,25 +18,7 @@ module.exports = {
                 "2xl": "6rem",
             },
         },
-        extend: { // It's often better to extend the default Tailwind theme
-            colors: {
-                brandMutedYellow: mantineToTailwindColors(mantineColorsTheme.colors.brandMutedYellow, 5),
-                accentSlateBlue: mantineToTailwindColors(mantineColorsTheme.colors.accentSlateBlue, 6), // Assuming shade 6 is the DEFAULT for this one
-                neutralGray: mantineToTailwindColors(mantineColorsTheme.colors.neutralGray, 7), // Assuming shade 7 (mid-gray) is DEFAULT
-                // You can add white and black if needed, or they might come from Tailwind's defaults
-                // white: mantineColorsTheme.white,
-                // black: mantineColorsTheme.black,
-            },
-            fontFamily: {
-                // Your Mantine theme uses "Inter, sans-serif"
-                // Tailwind's default sans-serif stack is usually pretty good and includes Inter if available
-                // If you want to strictly use what's in Mantine:
-                sans: mantineColorsTheme.fontFamily.split(",").map(f => f.trim()),
-                // Add other font families if defined in your Mantine theme
-                // headings: mantineColorsTheme.headings.fontFamily.split(',').map(f => f.trim()),
-            },
-            // You can also map other theme values like fontSize, spacing, borderRadius
-            // For example, for heading font sizes (this is a simplified example):
+        extend: {
             borderRadius: {
                 base: "5px",
             },
@@ -58,8 +26,8 @@ module.exports = {
                 "3": "3px",
             },
             boxShadow: {
-                shadow: "4px 4px 0px 0px #000",
-                "shadow-sm": "2px 2px 0px 0px #000",
+                shadow: "4px 4px 0px 0px #000000",
+                "shadow-sm": "2px 2px 0px 0px #000000",
             },
             translate: {
                 boxShadowX: "4px",
@@ -82,7 +50,8 @@ module.exports = {
                 heading: "700",
             },
             fontFamily: {
-                heading: ["var(--font-space-grotesk)", "var(--font-sans)", "sans-serif"],
+                sans: ["var(--font-sans)"],
+                heading: ["var(--font-sans)"],
             },
             keyframes: {
                 "accordion-down": {

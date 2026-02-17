@@ -21,7 +21,7 @@ const Section = ({ children, id, background, container, heading }: SectionProps)
         .join(" ")}
     >
       {heading && (
-        <h3 className="font-heading my-4 text-center text-2xl font-bold text-foreground">
+        <h3 className="my-4 text-center text-2xl font-bold text-foreground">
           {heading}
         </h3>
       )}

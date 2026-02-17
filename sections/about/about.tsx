@@ -85,7 +85,7 @@ const About = ({
             <div className="flex gap-6">
               {stats.map((stat) => (
                 <div key={stat.label} className="text-center">
-                  <div className="font-heading text-2xl font-bold">{stat.count}</div>
+                  <div className="text-2xl font-bold">{stat.count}</div>
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
@@ -106,7 +106,7 @@ const About = ({
         </div>
 
         <div className="mt-12 text-center">
-          <h2 className="mb-6 font-heading text-2xl font-bold">{name}</h2>
+          <h2 className="mb-6 text-2xl font-bold">{name}</h2>
           <p className="mt-1 flex items-center justify-center gap-1.5 text-sm font-medium text-muted-foreground">
             <MapPin className="size-4 shrink-0" />
             {location}

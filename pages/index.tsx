@@ -4,7 +4,20 @@ import Experience from "../sections/experience/experience";
 import Interests from "../sections/interests/interests";
 import BlogSection from "../sections/blog/blog";
 import { Map } from "../sections/map/map";
-import { Blog as tBlog } from "../interfaces/blog";
+import { Blog as tBlog, BlogCard } from "../interfaces/blog";
+
+function toBlogCard(blog: tBlog): BlogCard {
+  return {
+    title: blog.title ?? "",
+    shortDescription: blog.shortDescription ?? "",
+    thumbnail: blog.thumbnail ?? "",
+    tags: blog.tags ?? "",
+    link: blog.link ?? "",
+    hidden: Boolean(blog.hidden),
+    date: blog.date ?? "",
+    type: blog.type ?? "",
+  };
+}
 
 export async function getStaticProps() {
   const siteDataRes = await fetch(`${process.env.BASE_URL}/site-datas/`);
@@ -20,51 +33,46 @@ export async function getStaticProps() {
     console.error("HomePage: Error fetching site data or siteData[0] is missing.");
     return { notFound: true };
   }
-  const site = siteDataArray[0]; // This object contains .meta, .header, .banner
+  const site = siteDataArray[0];
 
   if (!aboutDataArray || aboutDataArray.length === 0 || !aboutDataArray[0]) {
     console.error("HomePage: Error fetching about data or aboutData[0] is missing.");
     return { notFound: true };
   }
-  const about = aboutDataArray[0]; // This object contains .profiles, .interests etc.
+  const about = aboutDataArray[0];
 
   return {
     props: {
-      // Props for _app.tsx and Layout.tsx
-      siteData: site,    // Passed as 'data' to Layout (contains meta, header)
-      aboutData: about,  // Passed as 'about' to Layout (contains profiles)
-      
-      // Props for the IndexPage component itself
-      bannerData: site.banner, 
-      pageSpecificAboutData: about, // Renaming to avoid confusion if 'aboutData' is also a direct prop
-      blogs: blogsData,
+      siteData: site,
+      aboutData: about,
+      bannerData: site.banner,
+      blogs: blogsData.map(toBlogCard),
     },
-    revalidate: 3600, // Revalidate once per hour
+    revalidate: 3600,
   };
 }
 
 interface IndexPageProps {
-  // siteData and aboutData are primarily for _app/Layout, not directly destructured here unless needed
   bannerData: any;
-  pageSpecificAboutData: any; 
-  blogs: tBlog[];
+  aboutData: any;
+  blogs: BlogCard[];
 }
 
 export default function IndexPage({
   bannerData,
-  pageSpecificAboutData,
+  aboutData,
   blogs,
 }: IndexPageProps) {
-  const interests = pageSpecificAboutData?.interests;
-  const countriesVisited = pageSpecificAboutData?.countriesVisited;
+  const interests = aboutData?.interests;
+  const countriesVisited = aboutData?.countriesVisited;
 
   return (
     <>
       {bannerData && <Banner {...bannerData} />}
       <div className="mt-12">
-        {pageSpecificAboutData && <About {...pageSpecificAboutData} />}
-      {pageSpecificAboutData?.experience?.length > 0 && (
-        <Experience experience={pageSpecificAboutData.experience} />
+        {aboutData && <About {...aboutData} />}
+      {aboutData?.experience?.length > 0 && (
+        <Experience experience={aboutData.experience} />
       )}
       {interests && <Interests interests={interests} illustration={"/images/illustrations/interests.svg"} />}
       {blogs && <BlogSection blogs={blogs} />}

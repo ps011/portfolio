@@ -9,19 +9,19 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Blog as BlogType } from "../../interfaces/blog";
+import { BlogCard } from "../../interfaces/blog";
 
-const Blog = ({ blogs }: { blogs: BlogType[] }) => {
+const Blog = ({ blogs }: { blogs: BlogCard[] }) => {
   const sortedBlogs = blogs
     .filter((blog) => !blog.hidden)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  const groupBy = (xs: BlogType[], f: (blog: BlogType) => string) =>
+  const groupBy = (xs: BlogCard[], f: (blog: BlogCard) => string) =>
     xs.reduce((r, v) => {
       const k = f(v);
       (r[k] || (r[k] = [])).push(v);
       return r;
-    }, {} as Record<string, BlogType[]>);
+    }, {} as Record<string, BlogCard[]>);
 
   const kebabCaseToSentenceCase = (str: string) =>
     str

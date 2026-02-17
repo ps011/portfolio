@@ -39,7 +39,7 @@ const Experience = ({ experience }: ExperienceProps) => {
               {experience.map((entry, index) => (
                 <AccordionItem key={index} value={`item-${index}`} className="border-3 w-full mb-4 px-4 bg-main border-b-8 border-r-8">
                   <AccordionTrigger className="w-full hover:no-underline">
-                    <div className="grid w-full grid-cols-[5rem_1fr] items-center gap-4 text-left max-md:grid-cols-[4rem_1fr] max-md:gap-3">
+                    <div className="text-main-foreground grid w-full grid-cols-[5rem_1fr] items-center gap-4 text-left max-md:grid-cols-[4rem_1fr] max-md:gap-3">
                       <div className="flex h-16 w-20 shrink-0 items-center max-md:h-8 max-md:w-16">
                         {entry.logo ? (
                           <Image
@@ -50,14 +50,14 @@ const Experience = ({ experience }: ExperienceProps) => {
                             className="max-h-10 w-full object-contain object-left max-md:max-h-8"
                           />
                         ) : (
-                          <span className="text-muted-foreground">—</span>
+                          <span className="">—</span>
                         )}
                       </div>
                       <div className="min-w-0">
-                        <span className="block truncate font-heading font-bold">
+                        <span className="block truncate font-bold">
                           {entry.designation} @ {entry.company}
                         </span>
-                        <span className="mt-0.5 block text-sm text-muted-foreground">
+                        <span className="mt-0.5 block text-sm">
                           {entry.from} – {entry.to}
                         </span>
                       </div>
