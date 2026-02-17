@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import React from "react";
 import { Menu } from "lucide-react";
+import { ThemeSwitcher } from "@/components/theme-switcher/theme-switcher";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -51,7 +51,10 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
           />
         </Link>
 
-        <nav className="hidden md:flex md:items-center gap-2">{navLinks}</nav>
+        <nav className="hidden md:flex md:items-center gap-2">
+          {navLinks}
+          <ThemeSwitcher className="hidden sm:block" />
+        </nav>
 
         <div className="flex md:hidden">
           <Sheet>
@@ -83,6 +86,9 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
                     </li>
                   ))}
               </ul>
+              <div className="mt-4 sm:hidden">
+                <ThemeSwitcher />
+              </div>
             </SheetContent>
           </Sheet>
         </div>

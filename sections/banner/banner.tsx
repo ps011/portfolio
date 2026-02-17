@@ -87,12 +87,12 @@ const Banner = ({
   return (
     <motion.section
       id="banner"
-      className="flex min-h-[80vh] flex-col items-center justify-center overflow-x-hidden border-b-2 border-black py-16 md:py-24"
+      className="flex min-h-[80vh] flex-col items-center justify-center overflow-x-hidden border-b-2 border-border py-16 md:py-24"
       style={{
-        backgroundColor: "#E0EDFE",
+        backgroundColor: "var(--banner-bg)",
         backgroundImage: `
-          linear-gradient(to right, rgba(0,0,0,0.06) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(0,0,0,0.06) 1px, transparent 1px)
+          linear-gradient(to right, var(--banner-grid) 1px, transparent 1px),
+          linear-gradient(to bottom, var(--banner-grid) 1px, transparent 1px)
         `,
         backgroundSize: "24px 24px",
       }}
@@ -107,16 +107,16 @@ const Banner = ({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
         >
-          <h1 className="font-heading text-2xl font-bold leading-tight text-black md:text-4xl lg:text-5xl">
+          <h1 className="text-2xl font-bold leading-tight text-foreground md:text-4xl lg:text-5xl">
             Hi, I&apos;m{" "}
             <span className="relative inline-block">
               <span
-                className="relative z-10 inline-block border-2 border-black bg-[#BEE3F8] px-2 py-0.5 md:px-3 md:py-1"
-                style={{ boxShadow: "2px 2px 0px 0px #000" }}
+                className="relative z-10 inline-block border-2 border-border bg-main px-2 py-0.5 text-main-foreground shadow-shadow md:px-3 md:py-1"
+                style={{ boxShadow: "2px 2px 0px 0px #000000" }}
               >
                 <span
                   id="typewrite"
-                  className="text-black"
+                  className="text-main-foreground"
                   data-period="2000"
                   data-type={JSON.stringify(texts)}
                 />
