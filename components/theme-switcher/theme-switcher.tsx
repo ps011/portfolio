@@ -59,7 +59,7 @@ export function ThemeSwitcher({ className }: { className?: string }) {
                     "w-full px-3 py-2 text-left text-sm font-medium transition-colors",
                     themeId === opt.id
                       ? "bg-main text-main-foreground"
-                      : "text-foreground hover:bg-secondary-background"
+                      : "text-foreground hover:bg-secondary-background",
                   )}
                 >
                   {opt.name}
