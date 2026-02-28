@@ -53,7 +53,7 @@ describe("Interests", () => {
       <Interests
         illustration="/interests.svg"
         interests={[{ title: "Writing", description: "Essays" }]}
-      />
+      />,
     );
     expect(screen.getByRole("link", { name: /View My Blog Posts/i })).toBeInTheDocument();
   });
@@ -63,7 +63,7 @@ describe("Interests", () => {
       <Interests
         illustration="/interests.svg"
         interests={[{ title: "Camera", description: "DSLR" }]}
-      />
+      />,
     );
     expect(screen.getByRole("link", { name: /Explore Photo Gallery/i })).toBeInTheDocument();
   });
@@ -73,7 +73,7 @@ describe("Interests", () => {
       <Interests
         illustration="/interests.svg"
         interests={[{ title: "Programming", description: "Code" }]}
-      />
+      />,
     );
     expect(screen.getByRole("link", { name: /View My GitHub/i })).toBeInTheDocument();
   });

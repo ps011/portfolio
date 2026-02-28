@@ -35,7 +35,7 @@ describe("Map", () => {
     expect(
       screen.getByRole("heading", {
         name: /How much of the World I've seen so far\?/i,
-      })
+      }),
     ).toBeInTheDocument();
   });
 
