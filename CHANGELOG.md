@@ -1,4 +1,11 @@
 CHANGELOG
+### [0.5.11](https://github.com/ps011/portfolio/compare/v0.5.10...v0.5.11) (2026-02-28)
+
+
+### Bug Fixes
+
+* **tests:** correct syntax in Interests and Map component tests ([231b0a2](https://github.com/ps011/portfolio/commit/231b0a28e21d8628cbb0080f35a56df637057e25))
+
 ### [0.5.10](https://github.com/ps011/portfolio/compare/v0.5.9...v0.5.10) (2026-02-17)
 
 
