@@ -4,6 +4,7 @@ import type { GalleryImage } from "../../interfaces/photo-gallery";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "../ui/badge";
+import { useUIConfig } from "../../lib/ui-context";
 
 interface PhotoGalleryProps {
     galleryItems: GalleryImage[];
@@ -17,6 +18,7 @@ const CloseIcon = () => (
 );
 
 export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
+    const ui = useUIConfig();
     const [activeFilter, setActiveFilter] = useState("all");
     const [filteredImages, setFilteredImages] = useState<GalleryImage[]>(galleryItems);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -85,7 +87,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
 
     // Update filterCategories dynamically from galleryImages
     const dynamicCategories = [
-        { key: "all", label: "All" },
+        { key: "all", label: ui.gallery.allFilterLabel },
         ...Array.from(new Set(galleryItems.map(img => img.category))).map(cat => ({ key: cat, label: cat })),
     ];
 
@@ -99,10 +101,10 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
             <main className="container mx-auto px-6 py-12">
                 <header className="mb-12 text-center">
                     <h1 className="mb-4 text-2xl font-bold text-foreground md:text-4xl lg:text-5xl">
-                        My Photo Book
+                        {ui.gallery.heading}
                     </h1>
                     <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-                        A collection of moments and memories captured during my journeys around the world.
+                        {ui.gallery.description}
                     </p>
                 </header>
 
@@ -153,7 +155,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                         ))
                     ) : (
                         <p className="col-span-full text-center text-neutralGray-700 dark:text-neutralGray-300">
-                            No photos found for this category. More coming soon!
+                            {ui.gallery.emptyStateMessage}
                         </p>
                     )}
                 </div>
@@ -174,7 +176,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                     >
                         <div className="flex shrink-0 items-center justify-between border-b-2 border-border pb-3">
                             <h3 id="modalTitle" className="truncate text-xl font-semibold text-foreground" style={{ maxWidth: "calc(100% - 3rem)" }}>
-                                {modalImageDetails.caption || "Image Preview"}
+                                {modalImageDetails.caption || ui.gallery.imagePreviewFallback}
                             </h3>
                             <button
                                 onClick={closeModal}
@@ -206,10 +208,10 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                         </div>
                         <div className="flex shrink-0 items-center justify-between border-t-2 border-border pt-3">
                             <Button variant="default" size="sm" onClick={showPrevImage} aria-label="Previous image">
-                                &larr; Previous
+                                {ui.gallery.prevLabel}
                             </Button>
                             <Button variant="default" size="sm" onClick={showNextImage} aria-label="Next image">
-                                Next &rarr;
+                                {ui.gallery.nextLabel}
                             </Button>
                         </div>
                     </div>

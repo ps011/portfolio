@@ -9,6 +9,7 @@ import {
 import { motion } from "framer-motion";
 import Section from "../../components/tailwind/section";
 import { Card } from "@/components/ui/card";
+import { useUIConfig } from "../../lib/ui-context";
 
 const ComposableMapComponent = ComposableMap as React.ComponentType<{
   projection?: string;
@@ -17,8 +18,10 @@ const ComposableMapComponent = ComposableMap as React.ComponentType<{
 }>;
 
 const Map = ({ countriesVisited }: { countriesVisited: string[] }) => {
+  const ui = useUIConfig();
+
   return (
-    <Section id="map" container heading="How much of the World I've seen so far?">
+    <Section id="map" container heading={ui.map.heading}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -29,28 +32,28 @@ const Map = ({ countriesVisited }: { countriesVisited: string[] }) => {
           <ComposableMapComponent
             projection="geoMercator"
             projectionConfig={{
-              center: [0, 40],
-              scale: 130,
+              center: ui.map.projectionCenter as [number, number],
+              scale: ui.map.projectionScale,
             }}
           >
-            <Geographies geography="https://res.cloudinary.com/designu/raw/upload/v1681593003/data/geo.json">
+            <Geographies geography={ui.map.geoUrl}>
               {({ geographies }) =>
                 geographies.map((geo) => (
                   <g key={geo.rsmKey}>
                     <title>{geo.properties.name}</title>
                     <Geography
                       geography={geo}
-                      stroke="#000000"
+                      stroke={ui.map.borderColor}
                       style={{
                         default: {
                           fill: countriesVisited.includes(geo.id)
-                            ? "#e76b53"
-                            : "#f4f6f4",
+                            ? ui.map.visitedColor
+                            : ui.map.unvisitedColor,
                         },
                         hover: {
                           fill: countriesVisited.includes(geo.id)
-                            ? "#e76b53"
-                            : "#bde0c2",
+                            ? ui.map.hoverVisitedColor
+                            : ui.map.hoverUnvisitedColor,
                         },
                       }}
                     />

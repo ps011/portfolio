@@ -21,6 +21,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useUIConfig } from "../../lib/ui-context";
 
 interface AboutProps {
   about: string;
@@ -45,6 +46,7 @@ const About = ({
   stats,
   profiles,
 }: AboutProps) => {
+  const ui = useUIConfig();
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
 
   const toggleCard = (cardType: string) => {
@@ -61,9 +63,9 @@ const About = ({
   };
 
   const cardTypes = [
-    { id: "about", icon: User, label: "About Me" },
-    { id: "skills", icon: Code, label: "Skills" },
-  ] as const;
+    { id: "about", icon: User, label: ui.about.heading },
+    { id: "skills", icon: Code, label: ui.about.skillsHeading },
+  ];
 
   return (
     <Section container id="about">
@@ -140,7 +142,7 @@ const About = ({
                     <CardHeader className="flex flex-row items-center justify-between">
                       <CardTitle className="flex items-center gap-2 text-lg">
                         <User className="size-5" />
-                        About Me
+                        {ui.about.heading}
                       </CardTitle>
                       <ChevronUp className="size-5" />
                     </CardHeader>
@@ -160,7 +162,7 @@ const About = ({
                     <CardHeader className="flex flex-row items-center justify-between">
                       <CardTitle className="flex items-center gap-2 text-lg">
                         <Code className="size-5" />
-                        Skills
+                        {ui.about.skillsHeading}
                       </CardTitle>
                       <ChevronUp className="size-5" />
                     </CardHeader>
@@ -229,7 +231,7 @@ const About = ({
                             }}
                           />
                           <p className="mt-2 text-sm text-muted-foreground">
-                            Click to read more
+                            {ui.about.clickToReadMore}
                           </p>
                         </>
                       )}
@@ -256,7 +258,7 @@ const About = ({
                           </div>
                           {skills.length > 8 && (
                             <p className="mt-2 text-center text-sm text-muted-foreground">
-                              +{skills.length - 8} more. Click to see all
+                              +{skills.length - 8} {ui.about.moreSkillsSuffix}
                             </p>
                           )}
                         </>

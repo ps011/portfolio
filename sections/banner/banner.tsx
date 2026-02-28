@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useUIConfig } from "../../lib/ui-context";
 
 interface BannerProps {
   illustration: string;
@@ -20,6 +21,7 @@ const Banner = ({
   ctaUrl,
   downloadable,
 }: BannerProps) => {
+  const ui = useUIConfig();
   useEffect(() => {
     let toRotate: string | null;
     let el: HTMLElement | null;
@@ -108,7 +110,7 @@ const Banner = ({
           transition={{ duration: 0.4, delay: 0.2 }}
         >
           <h1 className="text-2xl font-bold leading-tight text-foreground md:text-4xl lg:text-5xl">
-            Hi, I&apos;m{" "}
+            {ui.banner.greeting}{" "}
             <span className="relative inline-block">
               <span
                 className="relative z-10 inline-block border-2 border-border bg-main px-2 py-0.5 text-main-foreground shadow-shadow md:px-3 md:py-1"

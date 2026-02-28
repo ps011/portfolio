@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Sample Blog Post",
+    "shortDescription": "A sample blog post demonstrating the JSON data source.",
+    "thumbnail": "/images/blog/sample.jpg",
+    "banner": "/images/blog/sample.jpg",
+    "author": "Prasheel Soni",
+    "profileLink": "https://linkedin.com/in/ps011",
+    "tags": "sample,technology",
+    "link": "sample-post",
+    "hidden": false,
+    "date": "2024-01-01",
+    "type": "article"
+  }
+]

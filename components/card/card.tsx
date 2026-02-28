@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useUIConfig } from "../../lib/ui-context";
 
 interface CardProps {
   thumbnail: string;
@@ -28,6 +29,7 @@ const Card = ({
   tags,
   link,
 }: CardProps) => {
+  const ui = useUIConfig();
   const tagsArray: string[] = tags
     ? Array.isArray(tags)
       ? (tags as unknown as string[])
@@ -80,7 +82,7 @@ const Card = ({
         <CardFooter className="pt-0">
           <Button variant="default" size="default" className="w-full" asChild>
             <Link href={getLink(link)} target="_blank" className="no-underline">
-              Read more
+              {ui.card.readMoreLabel}
             </Link>
           </Button>
         </CardFooter>

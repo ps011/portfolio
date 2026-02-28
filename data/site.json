@@ -1,0 +1,28 @@
+{
+  "header": {
+    "logoUrl": "https://ps011.vercel.app/_next/image?url=%2Fimages%2Flogos%2Flogo.png&w=640&q=75",
+    "navMap": [
+      { "href": "/photo-gallery", "label": "Photo Gallery" },
+      { "href": "#blog-posts", "label": "Blogs" }
+    ]
+  },
+  "meta": {
+    "title": "Prasheel Soni | Portfolio",
+    "desc": "Personal portfolio of Prasheel Soni - Software Engineer",
+    "name": "Prasheel Soni Portfolio",
+    "url": "https://prasheelsoni.com",
+    "image": "/images/profile/banner.jpg",
+    "twitterHandle": "@soniprasheel",
+    "manifest": "/manifest.json",
+    "keywords": ["software", "engineer", "portfolio", "react", "nextjs"],
+    "themeColor": "#ffffff"
+  },
+  "banner": {
+    "illustration": "/images/illustrations/interests.svg",
+    "texts": ["Prasheel Soni", "a Software Engineer", "a Developer"],
+    "ctaLabel": "Download Resume",
+    "ctaUrl": "/resume.pdf",
+    "downloadable": true
+  },
+  "name": "Prasheel Soni"
+}

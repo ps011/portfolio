@@ -12,6 +12,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useUIConfig } from "../../lib/ui-context";
 
 export interface HeaderProps {
   logoUrl: string;
@@ -19,6 +20,7 @@ export interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
+  const ui = useUIConfig();
   const getHref = (href: string) => {
     if (href.startsWith("/")) return href;
     return `/${href}`;
@@ -69,7 +71,7 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
             </SheetTrigger>
             <SheetContent side="right" className="w-[min(100vw-2rem,320px)]">
               <SheetHeader>
-                <SheetTitle className="text-left">Menu</SheetTitle>
+                <SheetTitle className="text-left">{ui.header.menuLabel}</SheetTitle>
               </SheetHeader>
               <ul className="mt-6 flex flex-col gap-2">
                 {navMap.length > 0 &&
