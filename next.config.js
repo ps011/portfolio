@@ -14,6 +14,10 @@ module.exports = {
         protocol: "https",
         hostname: "cdn.hashnode.com",
       },
+      {
+        protocol: "https",
+        hostname: "ps011.vercel.app",
+      },
     ],
   },
   compiler: {

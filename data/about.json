@@ -1,0 +1,38 @@
+{
+  "name": "Prasheel Soni",
+  "imageUrl": "https://res.cloudinary.com/designu/image/upload/v1771310980/images/about/DP.jpg",
+  "about": "<p>A passionate software engineer with experience building modern web applications.</p>",
+  "resumeUrl": "/resume.pdf",
+  "location": "San Francisco, CA",
+  "designation": "Software Engineer",
+  "education": "B.Tech in Computer Science",
+  "skills": [
+    { "logo": "/images/logos/react.svg", "name": "React" },
+    { "logo": "/images/logos/nextjs.svg", "name": "Next.js" },
+    { "logo": "/images/logos/typescript.svg", "name": "TypeScript" }
+  ],
+  "experience": [],
+  "profiles": [
+    { "name": "github", "url": "https://github.com/ps011" },
+    { "name": "linkedin", "url": "https://linkedin.com/in/ps011" }
+  ],
+  "interests": [
+    {
+      "title": "Blogging",
+      "description": "Writing about technology, software engineering, and life experiences."
+    },
+    {
+      "title": "Photography",
+      "description": "Capturing moments and memories from travels around the world."
+    },
+    {
+      "title": "Coding",
+      "description": "Building open source projects and exploring new technologies."
+    }
+  ],
+  "stats": [
+    { "count": 5, "label": "Years Experience" }
+  ],
+  "countriesVisited": ["IN", "US", "GB", "DE", "FR"],
+  "blogs": []
+}

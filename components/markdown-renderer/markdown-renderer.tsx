@@ -3,13 +3,24 @@ import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import Image from "next/image";
+import { useUIConfig } from "../../lib/ui-context";
 
 export default function MarkdownRenderer({ content }: { content: string }) {
+  const ui = useUIConfig();
   const [markdown, setMarkdown] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const isUrl =
+    content.startsWith("http") || content.startsWith("/");
+
   useEffect(() => {
+    if (!isUrl) {
+      // Content is already markdown text (JSON mode) — use directly
+      setMarkdown(content);
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     setError(false);
     fetch(content)
@@ -25,10 +36,16 @@ export default function MarkdownRenderer({ content }: { content: string }) {
         setError(true);
         setLoading(false);
       });
-  }, [content]);
+  }, [content, isUrl]);
 
-  if (loading) return <div className="text-center py-8">Loading...</div>;
-  if (error) return <div className="text-center py-8 text-red-500">Failed to load content.</div>;
+  if (loading)
+    return <div className="text-center py-8">{ui.markdownRenderer.loadingLabel}</div>;
+  if (error)
+    return (
+      <div className="text-center py-8 text-red-500">
+        {ui.markdownRenderer.errorLabel}
+      </div>
+    );
 
   return (
     <div className="markdown-body text-neutralGray-900 dark:text-white">

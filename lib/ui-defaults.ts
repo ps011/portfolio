@@ -1,0 +1,64 @@
+import type { UIConfig } from "../interfaces/ui-config";
+
+export const DEFAULT_UI_CONFIG: UIConfig = {
+  banner: { greeting: "Hi, I'm" },
+  about: {
+    heading: "About Me",
+    skillsHeading: "Skills",
+    clickToReadMore: "Click to read more",
+    moreSkillsSuffix: "more. Click to see all",
+  },
+  footer: {
+    heading: "Thank you for stopping by!",
+    subheading: "Let's get in touch on any of these platforms.",
+    ownerName: "Prasheel",
+    ownerUrl: "https://linkedin.com/in/ps011",
+    licenseLabel: "License",
+    licenseUrl: "https://github.com/ps011/ps11/LICENSE.md",
+  },
+  interests: {
+    blogCta: "View My Blog Posts",
+    photoCta: "Explore Photo Gallery",
+    githubCta: "View My GitHub",
+    githubUrl: "https://github.com/ps011",
+    comingSoon: "Coming Soon",
+  },
+  map: {
+    heading: "How much of the World I've seen so far?",
+    geoUrl:
+      "https://res.cloudinary.com/designu/raw/upload/v1681593003/data/geo.json",
+    visitedColor: "#e76b53",
+    unvisitedColor: "#f4f6f4",
+    hoverVisitedColor: "#e76b53",
+    hoverUnvisitedColor: "#bde0c2",
+    borderColor: "#000000",
+    projectionCenter: [0, 40],
+    projectionScale: 130,
+  },
+  header: { menuLabel: "Menu" },
+  card: { readMoreLabel: "Read more" },
+  gallery: {
+    heading: "My Photo Book",
+    description:
+      "A collection of moments and memories captured during my journeys around the world.",
+    allFilterLabel: "All",
+    emptyStateMessage:
+      "No photos found for this category. More coming soon!",
+    prevLabel: "← Previous",
+    nextLabel: "Next →",
+    imagePreviewFallback: "Image Preview",
+    pageTitle: "Photo Gallery | Prasheel Soni",
+  },
+  blog: {
+    shareLabel: "Share this Post:",
+    loadingLabel: "Loading blog post...",
+  },
+  meta: {
+    author: "Prasheel Soni",
+    twitterCreator: "@soniprasheel",
+  },
+  markdownRenderer: {
+    loadingLabel: "Loading...",
+    errorLabel: "Failed to load content.",
+  },
+};

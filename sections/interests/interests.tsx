@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Section from "../../components/tailwind/section";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useUIConfig } from "../../lib/ui-context";
 
 interface InterestsProps {
   illustration: string;
@@ -13,6 +14,7 @@ interface InterestsProps {
     title: string;
     description: string;
   }[];
+  profiles?: { name: string; url: string }[];
 }
 
 const container = {
@@ -28,7 +30,11 @@ const item = {
   show: { opacity: 1, x: 0 },
 };
 
-const Interests = ({ illustration, interests }: InterestsProps) => {
+const Interests = ({ illustration, interests, profiles = [] }: InterestsProps) => {
+  const ui = useUIConfig();
+  const githubUrl =
+    profiles.find((p) => p.name === "github")?.url ?? ui.interests.githubUrl;
+
   const getInterestType = (
     title: string,
   ): "blogging" | "photography" | "coding" | "other" => {
@@ -57,7 +63,7 @@ const Interests = ({ illustration, interests }: InterestsProps) => {
         return (
           <Button variant="default" size="default" asChild>
             <Link href="/blog" className="no-underline">
-              View My Blog Posts
+              {ui.interests.blogCta}
             </Link>
           </Button>
         );
@@ -65,7 +71,7 @@ const Interests = ({ illustration, interests }: InterestsProps) => {
         return (
           <Button variant="default" size="default" asChild>
             <Link href="/photo-gallery" className="no-underline">
-              Explore Photo Gallery
+              {ui.interests.photoCta}
             </Link>
           </Button>
         );
@@ -73,19 +79,19 @@ const Interests = ({ illustration, interests }: InterestsProps) => {
         return (
           <Button variant="default" size="default" asChild>
             <Link
-              href="https://github.com/ps011"
+              href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="no-underline"
             >
-              View My GitHub
+              {ui.interests.githubCta}
             </Link>
           </Button>
         );
       default:
         return (
           <Button variant="neutral" size="default" disabled>
-            Coming Soon
+            {ui.interests.comingSoon}
           </Button>
         );
     }

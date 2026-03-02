@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import * as gtag from "../lib/gtag";
 import { ThemeProvider } from "../lib/theme-context";
+import { UIConfigProvider } from "../lib/ui-context";
+import { DEFAULT_UI_CONFIG } from "../lib/ui-defaults";
 import Layout from "../components/layout/Layout";
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -19,13 +21,15 @@ export default function Portfolio({ Component, pageProps }) {
     };
   }, [router.events]);
 
-  const { siteData, aboutData, ...restPageProps } = pageProps;
+  const { siteData, aboutData, uiConfig, ...restPageProps } = pageProps;
 
   return (
     <ThemeProvider>
-      <Layout data={siteData} about={aboutData}>
-        <Component {...restPageProps} aboutData={aboutData} />
-      </Layout>
+      <UIConfigProvider value={uiConfig ?? DEFAULT_UI_CONFIG}>
+        <Layout data={siteData} about={aboutData}>
+          <Component {...restPageProps} aboutData={aboutData} />
+        </Layout>
+      </UIConfigProvider>
     </ThemeProvider>
   );
 }

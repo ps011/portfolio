@@ -11,7 +11,8 @@ interface LayoutProps {
     header?: any;
   };
   about: {
-    profiles?: any[];
+    name?: string;
+    profiles?: { name: string; url: string }[];
   };
 }
 
@@ -20,9 +21,22 @@ const Layout: React.FC<LayoutProps> = ({ children, data, about }) => {
   const header = data?.header;
   const profiles = about?.profiles;
 
+  const twitterProfile = profiles?.find(
+    (p) => p.name === "twitter" || p.name === "x",
+  );
+  const twitterHandle = twitterProfile
+    ? `@${twitterProfile.url.split("/").filter(Boolean).pop()}`
+    : undefined;
+
   return (
     <SmoothScroll>
-      {meta && <Meta {...meta} />}
+      {meta && (
+        <Meta
+          {...meta}
+          author={about?.name}
+          twitterHandle={twitterHandle}
+        />
+      )}
       {header && <Header {...header} />}
       <main>{children}</main>
       {profiles && <Footer profiles={profiles} />}
