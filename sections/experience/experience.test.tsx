@@ -36,8 +36,10 @@ describe("Experience", () => {
 
   it("renders all experience entries", () => {
     render(<Experience experience={mockExperience} />);
-    expect(screen.getByText(/Senior Engineer @ Acme Corp/)).toBeInTheDocument();
-    expect(screen.getByText(/Junior Dev @ Startup/)).toBeInTheDocument();
+    expect(screen.getByText("Senior Engineer")).toBeInTheDocument();
+    expect(screen.getByText("Junior Dev")).toBeInTheDocument();
+    expect(screen.getAllByText(/Acme Corp/)[0]).toBeInTheDocument();
+    expect(screen.getAllByText(/Startup/)[0]).toBeInTheDocument();
   });
 
   it("renders date ranges", () => {
