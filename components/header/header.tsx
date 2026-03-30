@@ -51,12 +51,12 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
           />
         </Link>
 
-        <nav className="hidden md:flex md:items-center gap-2">
+        <nav className="hidden lg:flex lg:items-center gap-2">
           {navLinks}
           <ThemeSwitcher />
         </nav>
 
-        <div className="flex md:hidden">
+        <div className="flex lg:hidden">
           <Sheet>
             <SheetTrigger
               asChild

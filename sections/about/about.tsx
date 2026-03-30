@@ -1,25 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import {
-  Briefcase,
-  MapPin,
-  Code,
-  User,
-  ChevronDown,
-  ChevronUp,
-  GraduationCap,
-} from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Briefcase, MapPin, GraduationCap } from "lucide-react";
+import { motion } from "framer-motion";
 import Section from "../../components/tailwind/section";
 import Profile from "../../components/profile/profile";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface AboutProps {
@@ -41,236 +25,85 @@ const About = ({
   location,
   designation,
   education,
-  skills,
   stats,
   profiles,
 }: AboutProps) => {
-  const [expandedCard, setExpandedCard] = useState<string | null>(null);
-
-  const toggleCard = (cardType: string) => {
-    setExpandedCard(expandedCard === cardType ? null : cardType);
-  };
-
-  const handleCardKeyDown = (e: React.KeyboardEvent, id: string) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      toggleCard(id);
-    }
-  };
-
-  const cardTypes = [
-    { id: "about", icon: User, label: "About Me" },
-    { id: "skills", icon: Code, label: "Skills" },
-  ] as const;
-
   return (
     <Section container id="about">
       <motion.div
-        className="rounded-base border-2 border-border bg-background px-4 py-8 shadow-shadow"
+        className="rounded-base border-2 border-border bg-background shadow-shadow"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.4 }}
       >
-        <div className="flex flex-col items-center justify-between text-foreground lg:flex-row">
-          <div className="-mt-16 mb-4 flex-1 lg:order-2 lg:mb-0">
-            <Avatar className="mx-auto h-48 w-48 min-h-48 min-w-48">
-              <AvatarImage src={imageUrl} alt="Profile" />
-              <AvatarFallback>Profile</AvatarFallback>
-            </Avatar>
+        {/* Top stripe: avatar + identity + social */}
+        <div className="flex flex-col items-center gap-3 border-b-2 border-border px-6 py-5 sm:flex-row sm:gap-5">
+          <Avatar className="h-48 w-48 shrink-0 border-2 border-border shadow-[2px_2px_0px_0px_#000000]">
+            <AvatarImage src={imageUrl} alt={name} />
+            <AvatarFallback className="text-xl font-bold">
+              {name?.charAt(0)}
+            </AvatarFallback>
+          </Avatar>
+
+          <div className="flex min-w-0 flex-1 flex-col items-center gap-2 sm:items-start">
+            <h2 className="text-xl font-bold text-foreground">{name}</h2>
+            <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs text-muted-foreground sm:justify-start">
+              {designation && (
+                <span className="flex items-center gap-1">
+                  <Briefcase className="size-3 shrink-0" />
+                  {designation}
+                </span>
+              )}
+              {location && (
+                <span className="flex items-center gap-1">
+                  <MapPin className="size-3 shrink-0" />
+                  {location}
+                </span>
+              )}
+              {education && (
+                <span className="flex items-center gap-1">
+                  <GraduationCap className="size-3 shrink-0" />
+                  {education}
+                </span>
+              )}
+            </div>
+            {profiles?.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {profiles.map((profile) => (
+                  <Profile key={profile.name} url={profile.url} name={profile.name} />
+                ))}
+              </div>
+            )}
           </div>
-          <div className="flex flex-1 justify-center lg:order-1">
-            <div className="flex gap-6">
+
+          {/* Stats */}
+          {stats?.length > 0 && (
+            <div className="flex shrink-0 gap-2">
               {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="text-2xl font-bold">{stat.count}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div
+                  key={stat.label}
+                  className="rounded-base border-2 border-border bg-main px-3 py-2 text-center shadow-[2px_2px_0px_0px_#000000]"
+                >
+                  <div className="text-lg font-bold leading-none text-main-foreground">
+                    {stat.count}
+                  </div>
+                  <div className="mt-0.5 text-[10px] text-main-foreground opacity-80">
+                    {stat.label}
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
-          <div className="flex flex-1 justify-center py-4 lg:order-3">
-            <div className="flex gap-4">
-              {profiles.map((profile) => (
-                <Profile
-                  url={profile.url}
-                  name={profile.name}
-                  key={profile.name}
-                  className="text-foreground"
-                />
-              ))}
-            </div>
-          </div>
+          )}
         </div>
 
-        <div className="mt-12 text-center">
-          <h2 className="mb-6 text-2xl font-bold">{name}</h2>
-          <p className="mt-1 flex items-center justify-center gap-1.5 text-sm font-medium text-muted-foreground">
-            <MapPin className="size-4 shrink-0" />
-            {location}
-          </p>
-          <p className="mt-1 flex items-center justify-center gap-1.5 text-sm">
-            <Briefcase className="size-4 shrink-0" />
-            {designation}
-          </p>
-          <p className="mt-1 flex items-center justify-center gap-1.5 text-sm">
-            <GraduationCap className="size-4 shrink-0" />
-            {education}
-          </p>
-        </div>
-
-        <div className="mt-12 space-y-6">
-          <AnimatePresence mode="wait">
-            {expandedCard && (
-              <motion.div
-                key={`expanded-${expandedCard}`}
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="overflow-hidden"
-              >
-                {expandedCard === "about" && (
-                  <Card
-                    className="cursor-pointer transition-shadow hover:shadow-none hover:translate-x-boxShadowX hover:translate-y-boxShadowY"
-                    onClick={() => toggleCard("about")}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => handleCardKeyDown(e, "about")}
-                  >
-                    <CardHeader className="flex flex-row items-center justify-between">
-                      <CardTitle className="flex items-center gap-2 text-lg">
-                        <User className="size-5" />
-                        About Me
-                      </CardTitle>
-                      <ChevronUp className="size-5" />
-                    </CardHeader>
-                    <CardContent>
-                      <div
-                        className="prose prose-sm max-w-none text-foreground dark:prose-invert"
-                        dangerouslySetInnerHTML={{ __html: about }}
-                      />
-                    </CardContent>
-                  </Card>
-                )}
-                {expandedCard === "skills" && (
-                  <Card
-                    className="cursor-pointer transition-shadow hover:shadow-none hover:translate-x-boxShadowX hover:translate-y-boxShadowY"
-                    onClick={() => toggleCard("skills")}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => handleCardKeyDown(e, "skills")}
-                  >
-                    <CardHeader className="flex flex-row items-center justify-between">
-                      <CardTitle className="flex items-center gap-2 text-lg">
-                        <Code className="size-5" />
-                        Skills
-                      </CardTitle>
-                      <ChevronUp className="size-5" />
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
-                        {skills.map((skill) => (
-                          <div
-                            key={skill.name}
-                            className="flex flex-col items-center text-center"
-                          >
-                            <Image
-                              height={50}
-                              width={50}
-                              className="mb-2 object-contain transition-transform hover:scale-110"
-                              src={skill.logo}
-                              alt={skill.name}
-                            />
-                            <span className="text-xs text-muted-foreground">
-                              {skill.name}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                )}
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {cardTypes.map(({ id, icon: Icon, label }) => {
-              if (expandedCard === id) return null;
-              return (
-                <motion.div
-                  key={id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Card
-                    className="flex h-80 cursor-pointer flex-col transition-shadow hover:shadow-none hover:translate-x-boxShadowX hover:translate-y-boxShadowY"
-                    onClick={() => toggleCard(id)}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => handleCardKeyDown(e, id)}
-                  >
-                    <CardHeader className="flex flex-row items-center justify-between">
-                      <CardTitle className="flex items-center gap-2 text-lg">
-                        <Icon className="size-5" />
-                        {label}
-                      </CardTitle>
-                      <ChevronDown className="size-5" />
-                    </CardHeader>
-                    <CardContent className="flex flex-1 flex-col justify-between">
-                      {id === "about" && (
-                        <>
-                          <div
-                            className="prose prose-sm max-w-none text-foreground dark:prose-invert"
-                            dangerouslySetInnerHTML={{
-                              __html:
-                                about?.length > 200
-                                  ? about.substring(0, 200) + "..."
-                                  : about,
-                            }}
-                          />
-                          <p className="mt-2 text-sm text-muted-foreground">
-                            Click to read more
-                          </p>
-                        </>
-                      )}
-                      {id === "skills" && (
-                        <>
-                          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-                            {skills.slice(0, 8).map((skill) => (
-                              <div
-                                key={skill.name}
-                                className="flex flex-col items-center text-center"
-                              >
-                                <Image
-                                  height={40}
-                                  width={40}
-                                  className="mb-1 object-contain"
-                                  src={skill.logo}
-                                  alt={skill.name}
-                                />
-                                <span className="text-xs text-muted-foreground">
-                                  {skill.name}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                          {skills.length > 8 && (
-                            <p className="mt-2 text-center text-sm text-muted-foreground">
-                              +{skills.length - 8} more. Click to see all
-                            </p>
-                          )}
-                        </>
-                      )}
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
+        {/* About text */}
+        {about && (
+          <div
+            className="prose prose-sm max-w-none px-6 py-5 text-foreground"
+            dangerouslySetInnerHTML={{ __html: about }}
+          />
+        )}
       </motion.div>
     </Section>
   );
