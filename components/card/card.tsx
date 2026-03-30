@@ -79,7 +79,7 @@ const Card = ({
         </CardContent>
         <CardFooter className="pt-0">
           <Button variant="default" size="default" className="w-full" asChild>
-            <Link href={getLink(link)} target="_blank" className="no-underline">
+            <Link href={getLink(link)} target="_blank" rel="noopener noreferrer" className="no-underline">
               Read more
             </Link>
           </Button>

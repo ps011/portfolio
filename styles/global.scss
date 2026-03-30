@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+#typewrite > span {
+  border-right: 0.08em solid currentColor;
+}
+
 @layer base {
   :root {
     --font-sans: "DM Sans", sans-serif;

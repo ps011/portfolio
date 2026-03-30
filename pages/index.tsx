@@ -20,14 +20,17 @@ function toBlogCard(blog: tBlog): BlogCard {
 }
 
 export async function getStaticProps() {
-  const siteDataRes = await fetch(`${process.env.BASE_URL}/site-datas/`);
-  const siteDataArray = await siteDataRes.json();
+  const [siteDataRes, aboutRes, blogsRes] = await Promise.all([
+    fetch(`${process.env.BASE_URL}/site-datas/`),
+    fetch(`${process.env.BASE_URL}/abouts/`),
+    fetch(`${process.env.BASE_URL}/blogs`),
+  ]);
 
-  const aboutRes = await fetch(`${process.env.BASE_URL}/abouts/`);
-  const aboutDataArray = await aboutRes.json();
-
-  const blogsRes = await fetch(`${process.env.BASE_URL}/blogs`);
-  const blogsData: tBlog[] = await blogsRes.json();
+  const [siteDataArray, aboutDataArray, blogsData] = await Promise.all([
+    siteDataRes.json(),
+    aboutRes.json(),
+    blogsRes.json() as Promise<tBlog[]>,
+  ]);
 
   if (!siteDataArray || siteDataArray.length === 0 || !siteDataArray[0]) {
     console.error("HomePage: Error fetching site data or siteData[0] is missing.");

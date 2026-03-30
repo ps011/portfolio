@@ -22,9 +22,15 @@ const Layout: React.FC<LayoutProps> = ({ children, data, about }) => {
 
   return (
     <SmoothScroll>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-[9999] focus:rounded-base focus:border-2 focus:border-border focus:bg-main focus:px-4 focus:py-2 focus:text-main-foreground focus:shadow-shadow"
+      >
+        Skip to main content
+      </a>
       {meta && <Meta {...meta} />}
       {header && <Header {...header} />}
-      <main>{children}</main>
+      <main id="main-content">{children}</main>
       {profiles && <Footer profiles={profiles} />}
     </SmoothScroll>
   );

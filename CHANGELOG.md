@@ -1,4 +1,18 @@
 CHANGELOG
+### [0.5.12](https://github.com/ps011/portfolio/compare/v0.5.11...v0.5.12) (2026-03-30)
+
+
+### Features
+
+* **blog:** Embla carousel with dot nav and inline prev/next controls ([2c6eb3d](https://github.com/ps011/portfolio/commit/2c6eb3d0b05ffba21a65d85550c3e79580b3dd30))
+
+
+### Bug Fixes
+
+* **a11y:** add skip-to-main-content link ([e2a5e34](https://github.com/ps011/portfolio/commit/e2a5e3474f2bee05b55332fd0c16248b2b0e3bb6))
+* **ux:** accessibility, theme-aware map, and React best practices ([528df7c](https://github.com/ps011/portfolio/commit/528df7c73ed0e04d939124551b4f3b3918dbaa53))
+* **ux:** redesign about/experience sections, fix navbar breakpoint ([19b5e59](https://github.com/ps011/portfolio/commit/19b5e593653a0868f2a65e91ed25ad3f2e850793))
+
 ### [0.5.11](https://github.com/ps011/portfolio/compare/v0.5.10...v0.5.11) (2026-02-28)
 
 

@@ -28,54 +28,61 @@ interface ExperienceProps {
 const Experience = ({ experience }: ExperienceProps) => {
   return (
     <Section container id="experience" heading="Experience">
-      <motion.div
-        className="container w-full max-w-full rounded-base border-2 border-border bg-background p-8 shadow-shadow"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.4 }}
-      >
-            <Accordion type="single" collapsible className="w-full m-4">
-              {experience.map((entry, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-3 w-full mb-4 px-4 bg-main border-b-8 border-r-8">
-                  <AccordionTrigger className="w-full hover:no-underline">
-                    <div className="text-main-foreground grid w-full grid-cols-[5rem_1fr] items-center gap-4 text-left max-md:grid-cols-[4rem_1fr] max-md:gap-3">
-                      <div className="flex h-16 w-20 shrink-0 items-center max-md:h-8 max-md:w-16">
-                        {entry.logo ? (
-                          <Image
-                            height={40}
-                            width={80}
-                            src={entry.logo}
-                            alt={`${entry.company} logo`}
-                            className="max-h-10 w-full object-contain object-left max-md:max-h-8"
-                          />
-                        ) : (
-                          <span className="">—</span>
-                        )}
-                      </div>
-                      <div className="min-w-0">
-                        <span className="block truncate font-bold">
-                          {entry.designation} @ {entry.company}
-                        </span>
-                        <span className="mt-0.5 block text-sm">
-                          {entry.from} – {entry.to}
-                        </span>
-                      </div>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <div className="flex flex-wrap gap-1.5">
-                      {entry.technologies?.map((tech) => (
-                        <Badge key={tech} variant="neutral">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-      </motion.div>
+      <Accordion type="single" collapsible className="w-full space-y-3">
+        {experience.map((entry, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-20px" }}
+            transition={{ duration: 0.3, delay: index * 0.05 }}
+          >
+            <AccordionItem
+              value={`item-${index}`}
+              className="rounded-base border-2 border-border bg-main shadow-shadow transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            >
+              <AccordionTrigger className="px-5 py-4 hover:no-underline [&>svg]:text-main-foreground">
+                <div className="grid w-full grid-cols-[4rem_1fr] items-center gap-4 text-left text-main-foreground sm:grid-cols-[5rem_1fr]">
+                  <div className="flex h-10 w-full shrink-0 items-center">
+                    {entry.logo ? (
+                      <Image
+                        height={40}
+                        width={80}
+                        src={entry.logo}
+                        alt={`${entry.company} logo`}
+                        className="max-h-10 w-full object-contain object-left brightness-0 invert"
+                      />
+                    ) : (
+                      <span className="text-lg font-bold">—</span>
+                    )}
+                  </div>
+                  <div className="min-w-0">
+                    <span className="block truncate font-bold">
+                      {entry.designation}
+                      <span className="font-normal opacity-80"> @ {entry.company}</span>
+                    </span>
+                    <span className="mt-0.5 block text-sm opacity-80">
+                      {entry.from} – {entry.to}
+                      {entry.location && (
+                        <span className="ml-3">{entry.location}</span>
+                      )}
+                    </span>
+                  </div>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="px-5">
+                <div className="flex flex-wrap gap-1.5 pb-1">
+                  {entry.technologies?.map((tech) => (
+                    <Badge key={tech} variant="default" className="border-main-foreground bg-main-foreground text-main">
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </motion.div>
+        ))}
+      </Accordion>
     </Section>
   );
 };
