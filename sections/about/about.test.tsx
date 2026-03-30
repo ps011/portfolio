@@ -60,41 +60,8 @@ describe("About", () => {
     expect(screen.getByTestId("profile-linkedin")).toBeInTheDocument();
   });
 
-  it("renders About Me and Skills cards when collapsed", () => {
+  it("renders about text directly without interaction", () => {
     render(<About {...defaultProps} />);
-    expect(screen.getByText("About Me")).toBeInTheDocument();
-    expect(screen.getByText("Skills")).toBeInTheDocument();
-  });
-
-  it("expands About Me card on click and shows full content", async () => {
-    const user = userEvent.setup({ delay: null });
-    render(<About {...defaultProps} />);
-    const aboutCard = screen.getAllByText("About Me")[0];
-    await user.click(aboutCard.closest("[class*='cursor-pointer']")!);
     expect(screen.getByText("I am a software engineer.")).toBeInTheDocument();
-  });
-
-  it("expands Skills card on click and shows all skills", async () => {
-    const user = userEvent.setup({ delay: null });
-    render(<About {...defaultProps} />);
-    const skillsCard = screen.getAllByText("Skills")[0];
-    await user.click(skillsCard.closest("[class*='cursor-pointer']")!);
-    expect(screen.getByAltText("React")).toBeInTheDocument();
-    expect(screen.getByAltText("TypeScript")).toBeInTheDocument();
-  });
-
-  it("truncates long about text in collapsed card", () => {
-    const longAbout = "a".repeat(250);
-    render(<About {...defaultProps} about={longAbout} />);
-    expect(screen.getByText(/a{200}\.\.\./)).toBeInTheDocument();
-  });
-
-  it("shows +N more for skills when more than 8", () => {
-    const manySkills = Array.from({ length: 10 }, (_, i) => ({
-      logo: `/logo-${i}.svg`,
-      name: `Skill${i}`,
-    }));
-    render(<About {...defaultProps} skills={manySkills} />);
-    expect(screen.getByText("+2 more. Click to see all")).toBeInTheDocument();
   });
 });

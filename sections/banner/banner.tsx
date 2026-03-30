@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
@@ -20,6 +20,8 @@ const Banner = ({
   ctaUrl,
   downloadable,
 }: BannerProps) => {
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   useEffect(() => {
     let toRotate: string | null;
     let el: HTMLElement | null;
@@ -49,9 +51,7 @@ const Banner = ({
         loopNum += 1;
         delta = 500;
       }
-      setTimeout(() => {
-        tick();
-      }, delta);
+      timeoutRef.current = setTimeout(tick, delta);
     };
     const TxtType = (
       elL: HTMLElement,
@@ -74,13 +74,8 @@ const Banner = ({
         TxtType(currentEl, dataType, dataPeriod);
       }
     });
-    const css = document.createElement("style");
-    css.type = "text/css";
-    css.innerHTML =
-      "#typewrite > span { border-right: 0.08em solid currentColor; }";
-    document.body.appendChild(css);
     return () => {
-      document.body.removeChild(css);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
   }, []);
 
@@ -100,16 +95,19 @@ const Banner = ({
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="container flex min-h-[80vh] flex-col items-center justify-center gap-6 text-center md:min-h-[80vh] md:gap-8">
+      <div className="container flex flex-col items-center justify-center gap-6 text-center md:gap-8">
         <motion.div
           className="flex flex-col items-center gap-4 md:gap-6"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
         >
-          <h1 className="text-2xl font-bold leading-tight text-foreground md:text-4xl lg:text-5xl">
+          <h1
+            className="text-2xl font-bold leading-tight text-foreground md:text-4xl lg:text-5xl"
+            aria-label={`Hi, I'm ${texts[0]}`}
+          >
             Hi, I&apos;m{" "}
-            <span className="relative inline-block">
+            <span className="relative inline-block" aria-hidden="true">
               <span
                 className="relative z-10 inline-block border-2 border-border bg-main px-2 py-0.5 text-main-foreground shadow-shadow md:px-3 md:py-1"
                 style={{ boxShadow: "2px 2px 0px 0px #000000" }}

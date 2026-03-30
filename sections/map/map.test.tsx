@@ -34,7 +34,7 @@ describe("Map", () => {
     render(<Map countriesVisited={["USA"]} />);
     expect(
       screen.getByRole("heading", {
-        name: /How much of the World I've seen so far\?/i,
+        name: /How much of the World I've seen\?/i,
       }),
     ).toBeInTheDocument();
   });
