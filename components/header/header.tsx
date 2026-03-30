@@ -53,7 +53,7 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
 
         <nav className="hidden md:flex md:items-center gap-2">
           {navLinks}
-          <ThemeSwitcher className="hidden sm:block" />
+          <ThemeSwitcher />
         </nav>
 
         <div className="flex md:hidden">
@@ -86,7 +86,7 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
                     </li>
                   ))}
               </ul>
-              <div className="mt-4 sm:hidden">
+              <div className="mt-4">
                 <ThemeSwitcher />
               </div>
             </SheetContent>

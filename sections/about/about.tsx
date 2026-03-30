@@ -48,15 +48,13 @@ const About = ({
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
 
   const toggleCard = (cardType: string) => {
-    const newExpandedCard = expandedCard === cardType ? null : cardType;
-    setExpandedCard(newExpandedCard);
-    if (newExpandedCard) {
-      setTimeout(() => {
-        const aboutSection = document.getElementById("about");
-        if (aboutSection) {
-          aboutSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }, 100);
+    setExpandedCard(expandedCard === cardType ? null : cardType);
+  };
+
+  const handleCardKeyDown = (e: React.KeyboardEvent, id: string) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggleCard(id);
     }
   };
 
@@ -136,6 +134,9 @@ const About = ({
                   <Card
                     className="cursor-pointer transition-shadow hover:shadow-none hover:translate-x-boxShadowX hover:translate-y-boxShadowY"
                     onClick={() => toggleCard("about")}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => handleCardKeyDown(e, "about")}
                   >
                     <CardHeader className="flex flex-row items-center justify-between">
                       <CardTitle className="flex items-center gap-2 text-lg">
@@ -156,6 +157,9 @@ const About = ({
                   <Card
                     className="cursor-pointer transition-shadow hover:shadow-none hover:translate-x-boxShadowX hover:translate-y-boxShadowY"
                     onClick={() => toggleCard("skills")}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => handleCardKeyDown(e, "skills")}
                   >
                     <CardHeader className="flex flex-row items-center justify-between">
                       <CardTitle className="flex items-center gap-2 text-lg">
@@ -191,11 +195,7 @@ const About = ({
             )}
           </AnimatePresence>
 
-          <div
-            className={`grid gap-4 transition-all duration-500 ${
-              expandedCard ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1 md:grid-cols-2"
-            }`}
-          >
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {cardTypes.map(({ id, icon: Icon, label }) => {
               if (expandedCard === id) return null;
               return (
@@ -208,6 +208,9 @@ const About = ({
                   <Card
                     className="flex h-80 cursor-pointer flex-col transition-shadow hover:shadow-none hover:translate-x-boxShadowX hover:translate-y-boxShadowY"
                     onClick={() => toggleCard(id)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => handleCardKeyDown(e, id)}
                   >
                     <CardHeader className="flex flex-row items-center justify-between">
                       <CardTitle className="flex items-center gap-2 text-lg">

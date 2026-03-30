@@ -35,18 +35,15 @@ const Profile = ({url, name, className}: ProfileProps) => {
     };
 
     return (
-        <span
-        key={name}
-        className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-base border-2 border-border bg-main p-2 shadow-shadow transition-shadow hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
-      >
-        <Link 
-            href={url} 
-            key={name} 
-            target="_blank" 
-            rel="noreferrer"
+        <span className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-base border-2 border-border bg-main p-2 shadow-shadow transition-shadow hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none">
+        <Link
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${name} profile`}
             className={`${className || ""} text-main-foreground inline-block`}
         >
-            <span className="block w-6 h-6"> 
+            <span className="block w-6 h-6" aria-hidden="true">
                 {getProfileIcon(name)}
             </span>
         </Link>
