@@ -1,12 +1,17 @@
 "use client";
 
-import React, { memo, useState, useEffect, useCallback } from "react";
+import React, { memo, useRef, useState, useEffect, useCallback } from "react";
 import {
   ComposableMap,
   Geographies,
   Geography,
 } from "react-simple-maps";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
 import Section from "../../components/tailwind/section";
 
 const ComposableMapComponent = ComposableMap as React.ComponentType<{
@@ -27,6 +32,19 @@ interface TooltipState {
 }
 
 const Map = ({ countriesVisited }: { countriesVisited: string[] }) => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const prefersReduced = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["-0.2 1", "0.15 1"],
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 1], prefersReduced ? [1, 1] : [0.95, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 1], prefersReduced ? [1, 1] : [0, 1]);
+  const blur = useTransform(scrollYProgress, [0, 1], prefersReduced ? [0, 0] : [4, 0]);
+  const filterBlur = useTransform(blur, (v) => `blur(${v}px)`);
+
   const [tooltip, setTooltip] = useState<TooltipState>({
     visible: false,
     x: 0,
@@ -78,10 +96,8 @@ const Map = ({ countriesVisited }: { countriesVisited: string[] }) => {
   return (
     <Section id="map" container>
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.4 }}
+        ref={sectionRef}
+        style={{ opacity, scale, filter: filterBlur }}
       >
         {/* Header row */}
         <div className="mb-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">

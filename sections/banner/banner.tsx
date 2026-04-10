@@ -2,7 +2,12 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -21,6 +26,19 @@ const Banner = ({
   downloadable,
 }: BannerProps) => {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const prefersReduced = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Parallax: grid moves at 50% speed
+  const bgY = useTransform(scrollYProgress, [0, 1], prefersReduced ? [0, 0] : [0, 150]);
+  // Text fades out and shifts up as you scroll past
+  const textOpacity = useTransform(scrollYProgress, [0, 0.6], prefersReduced ? [1, 1] : [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 0.6], prefersReduced ? [0, 0] : [0, -50]);
 
   useEffect(() => {
     let toRotate: string | null;
@@ -81,21 +99,34 @@ const Banner = ({
 
   return (
     <motion.section
+      ref={sectionRef}
       id="banner"
-      className="flex min-h-[80vh] flex-col items-center justify-center overflow-x-hidden border-b-2 border-border py-16 md:py-24"
+      className="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden border-b-2 border-border py-16 md:py-24"
       style={{
         backgroundColor: "var(--banner-bg)",
-        backgroundImage: `
-          linear-gradient(to right, var(--banner-grid) 1px, transparent 1px),
-          linear-gradient(to bottom, var(--banner-grid) 1px, transparent 1px)
-        `,
-        backgroundSize: "24px 24px",
       }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="container flex flex-col items-center justify-center gap-6 text-center md:gap-8">
+      {/* Parallax grid background */}
+      <motion.div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, var(--banner-grid) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--banner-grid) 1px, transparent 1px)
+          `,
+          backgroundSize: "24px 24px",
+          y: bgY,
+        }}
+      />
+
+      {/* Text content with scroll-linked fade */}
+      <motion.div
+        className="container relative z-10 flex flex-col items-center justify-center gap-6 text-center md:gap-8"
+        style={{ opacity: textOpacity, y: textY }}
+      >
         <motion.div
           className="flex flex-col items-center gap-4 md:gap-6"
           initial={{ opacity: 0, y: 10 }}
@@ -144,7 +175,7 @@ const Banner = ({
             </Button>
           )}
         </motion.div>
-      </div>
+      </motion.div>
     </motion.section>
   );
 };
