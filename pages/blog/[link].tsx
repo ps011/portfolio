@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Profile from "../../components/profile/profile";
 import { useRouter } from "next/router";
+import { useTranslations } from "next-intl";
 
 const MarkdownRenderer = dynamic(() => import("../../components/markdown-renderer/markdown-renderer"), { ssr: true });
 
@@ -43,6 +44,7 @@ export async function getStaticProps(context) {
             aboutData: about,
             // Prop for the SingleBlogPage component
             blogPost: blogPostData,
+            messages: (await import(`../../messages/${context.locale}.json`)).default,
         },
         revalidate: 3600, 
     };
@@ -74,8 +76,9 @@ interface SingleBlogPageProps {
 
 const SingleBlogPage = ({ blogPost }: SingleBlogPageProps) => {
     const router = useRouter();
+    const t = useTranslations("blog");
     if (!blogPost || Object.keys(blogPost).length === 0) { // Robust check for blogPost
-        return <p>Loading blog post...</p>; 
+        return <p>{t("loading")}</p>;
     }
 
     const { title, banner, profileLink, author, date, content } = blogPost;
@@ -105,7 +108,7 @@ const SingleBlogPage = ({ blogPost }: SingleBlogPageProps) => {
                     </div>
                     <MarkdownRenderer content={content}/>
                     <div className="mt-8">
-                        <span className="text-neutralGray-900 dark:text-white">Share this Post:</span>
+                        <span className="text-neutralGray-900 dark:text-white">{t("sharePost")}</span>
                         <div className="flex justify-flex-start mt-4">
                             {shareArticleList.map((share) => (
                                 <Profile key={share.name} url={share.url} name={share.name} className="w-8 mr-4"/>

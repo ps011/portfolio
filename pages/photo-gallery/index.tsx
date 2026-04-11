@@ -1,7 +1,7 @@
 import Gallery from "../../components/instagram/gallery";
 import Head from "next/head";
 
-export async function getStaticProps() {
+export async function getStaticProps(context) {
   const siteDataRes = await fetch(`${process.env.BASE_URL}/site-datas/`);
   const siteDataArray = await siteDataRes.json();
 
@@ -39,6 +39,7 @@ export async function getStaticProps() {
       siteData: site,
       aboutData: about,
       galleryItems,
+      messages: (await import(`../../messages/${context.locale}.json`)).default,
     },
     revalidate: 3600,
   };

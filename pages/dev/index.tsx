@@ -2,7 +2,7 @@ import { GetStaticProps } from "next";
 import { GitHubCalendar } from "react-github-calendar";
 import Head from "next/head";
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const siteDataRes = await fetch(`${process.env.BASE_URL}/site-datas/`);
   const siteDataArray = await siteDataRes.json();
 
@@ -25,6 +25,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       siteData: site,
       aboutData: about,
+      messages: (await import(`../../messages/${context.locale}.json`)).default,
     },
     revalidate: 3600,
   };

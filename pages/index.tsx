@@ -19,7 +19,7 @@ function toBlogCard(blog: tBlog): BlogCard {
   };
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(context) {
   const [siteDataRes, aboutRes, blogsRes] = await Promise.all([
     fetch(`${process.env.BASE_URL}/site-datas/`),
     fetch(`${process.env.BASE_URL}/abouts/`),
@@ -50,6 +50,7 @@ export async function getStaticProps() {
       aboutData: about,
       bannerData: site.banner,
       blogs: blogsData.map(toBlogCard),
+      messages: (await import(`../messages/${context.locale}.json`)).default,
     },
     revalidate: 3600,
   };

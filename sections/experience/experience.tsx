@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Section from "../../components/tailwind/section";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -26,8 +27,9 @@ interface ExperienceProps {
 }
 
 const Experience = ({ experience }: ExperienceProps) => {
+  const t = useTranslations("experience");
   return (
-    <Section container id="experience" heading="Experience">
+    <Section container id="experience" heading={t("title")}>
       <Accordion type="single" collapsible className="w-full space-y-3">
         {experience.map((entry, index) => (
           <motion.div

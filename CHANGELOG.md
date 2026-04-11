@@ -1,4 +1,35 @@
 CHANGELOG
+### [0.5.13](https://github.com/ps011/portfolio/compare/v0.5.12...v0.5.13) (2026-04-11)
+
+
+### Features
+
+* add scroll-linked animations using Lenis + Framer Motion ([c817dad](https://github.com/ps011/portfolio/commit/c817dad9522d24551fcfbb1cbef0abfe7e30894f))
+* **i18n:** add LanguageSwitcher component in footer ([8036d02](https://github.com/ps011/portfolio/commit/8036d0237504f6fce9281825e1068970f8bfe14f))
+* **i18n:** create en.json messages and wire up NextIntlClientProvider ([73a7519](https://github.com/ps011/portfolio/commit/73a7519ac4d3ce34353e710ae6386c02beb3d47b))
+* **i18n:** install next-intl and configure i18n routing ([7b33d32](https://github.com/ps011/portfolio/commit/7b33d326a7ab0ddba7dadf32abcc40453ff5de0a))
+* **i18n:** load locale messages in all getStaticProps ([87a012a](https://github.com/ps011/portfolio/commit/87a012a989adf01e75eb6e5381e822c1d41aca8a))
+* **i18n:** replace hardcoded strings in banner, experience, and interests ([e036762](https://github.com/ps011/portfolio/commit/e0367623ce89ced157983d08ec764a4a232185b4))
+* **i18n:** replace hardcoded strings in blog section, blog page, and footer ([ce5bf13](https://github.com/ps011/portfolio/commit/ce5bf131fd4152bc3c8dbaa09bc44983770676c7))
+* **i18n:** replace hardcoded strings in layout, header, and card ([ffeb49e](https://github.com/ps011/portfolio/commit/ffeb49e09870d1fffad3b4c15feef05bd7ac8ec4))
+
+
+### Bug Fixes
+
+* **i18n:** add next-intl Jest mock and fix test compatibility ([f669639](https://github.com/ps011/portfolio/commit/f66963925c1e429a9c16fe40ed5ffeed1042318f))
+* **i18n:** fallback to default messages for pages without getStaticProps ([ecbbfd8](https://github.com/ps011/portfolio/commit/ecbbfd80a3f4200048a2ce29e1e9f60df791b145))
+* **tests:** mock Web Animations API for Framer Motion scroll hooks ([8cd71b7](https://github.com/ps011/portfolio/commit/8cd71b76afbc9eeb8628e21a9716e10cf65b6b43))
+
+
+### Chore
+
+* add .worktrees/ to gitignore ([9509127](https://github.com/ps011/portfolio/commit/950912754242adc42fda317539b4f302816efcbc))
+
+
+### Refactors
+
+* rename card component to blog-card ([ce52e9a](https://github.com/ps011/portfolio/commit/ce52e9a44ba199d63123d22512cfb0db9b898be9))
+
 ### [0.5.12](https://github.com/ps011/portfolio/compare/v0.5.11...v0.5.12) (2026-03-30)
 
 

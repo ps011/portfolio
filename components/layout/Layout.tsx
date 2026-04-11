@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslations } from "next-intl";
 import { Header } from "../header/header";
 import Footer from "../../sections/footer/footer";
 import Meta from "../meta/meta";
@@ -16,6 +17,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, data, about }) => {
+  const t = useTranslations("common");
   const meta = data?.meta;
   const header = data?.header;
   const profiles = about?.profiles;
@@ -26,7 +28,7 @@ const Layout: React.FC<LayoutProps> = ({ children, data, about }) => {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-[9999] focus:rounded-base focus:border-2 focus:border-border focus:bg-main focus:px-4 focus:py-2 focus:text-main-foreground focus:shadow-shadow"
       >
-        Skip to main content
+        {t("skipToMain")}
       </a>
       {meta && <Meta {...meta} />}
       {header && <Header {...header} />}

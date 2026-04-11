@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Menu } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { ThemeSwitcher } from "@/components/theme-switcher/theme-switcher";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,6 +20,7 @@ export interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
+  const t = useTranslations("common");
   const getHref = (href: string) => {
     if (href.startsWith("/")) return href;
     return `/${href}`;
@@ -60,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
           <Sheet>
             <SheetTrigger
               asChild
-              aria-label="Open navigation menu"
+              aria-label={t("openNav")}
               className="min-h-[44px] min-w-[44px] rounded-base border-2 border-border bg-main-foreground p-2.5 text-main shadow-shadow hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
             >
               <button type="button">
@@ -69,7 +71,7 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
             </SheetTrigger>
             <SheetContent side="right" className="w-[min(100vw-2rem,320px)]">
               <SheetHeader>
-                <SheetTitle className="text-left">Menu</SheetTitle>
+                <SheetTitle className="text-left">{t("menu")}</SheetTitle>
               </SheetHeader>
               <ul className="mt-6 flex flex-col gap-2">
                 {navMap.length > 0 &&
