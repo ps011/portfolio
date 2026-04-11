@@ -1,4 +1,26 @@
 CHANGELOG
+### [0.5.14](https://github.com/ps011/portfolio/compare/v0.5.13...v0.5.14) (2026-04-11)
+
+
+### Features
+
+* add JSON-only data access layer with tests ([47c43c0](https://github.com/ps011/portfolio/commit/47c43c0be0214f18bf1e0bdaf4f4903f391e9f4c))
+* add UIConfig system with types, defaults, and context ([086ad05](https://github.com/ps011/portfolio/commit/086ad05a8cbad1b0d299aba910148bfc994465af))
+* **i18n:** enable Hindi locale ([f2d54b2](https://github.com/ps011/portfolio/commit/f2d54b23190477522dbafd9abf53522d5deedb13))
+* **i18n:** move data strings to translation messages for en/hi ([088bc83](https://github.com/ps011/portfolio/commit/088bc83656cb4181c2deabcabd994959d7e2290c))
+* replace CMS API with local JSON data, adopt i18n for strings ([4823cb5](https://github.com/ps011/portfolio/commit/4823cb506bfdb70761b019c16cf0fd3d8437d869))
+
+
+### Bug Fixes
+
+* correct themeColor and resume URL in site data ([892b35e](https://github.com/ps011/portfolio/commit/892b35ec108a3a3efb7e87c07c0620a7f4b7cf40))
+
+
+### Chore
+
+* add local JSON data files from CMS API ([4ca0f22](https://github.com/ps011/portfolio/commit/4ca0f226d22c1b6b96dc6e4d725de347524f4080))
+* remove unused fields from data files and env ([5a91a0d](https://github.com/ps011/portfolio/commit/5a91a0da7bc98082e1005a334ab3dec82e1316db))
+
 ### [0.5.13](https://github.com/ps011/portfolio/compare/v0.5.12...v0.5.13) (2026-04-11)
 
 
