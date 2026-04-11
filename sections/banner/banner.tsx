@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 interface BannerProps {
   illustration: string;
@@ -25,6 +26,7 @@ const Banner = ({
   ctaUrl,
   downloadable,
 }: BannerProps) => {
+  const t = useTranslations("banner");
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReduced = useReducedMotion();
@@ -135,9 +137,9 @@ const Banner = ({
         >
           <h1
             className="text-2xl font-bold leading-tight text-foreground md:text-4xl lg:text-5xl"
-            aria-label={`Hi, I'm ${texts[0]}`}
+            aria-label={`${t("greeting")} ${texts[0]}`}
           >
-            Hi, I&apos;m{" "}
+            {t("greeting")}{" "}
             <span className="relative inline-block" aria-hidden="true">
               <span
                 className="relative z-10 inline-block border-2 border-border bg-main px-2 py-0.5 text-main-foreground shadow-shadow md:px-3 md:py-1"
