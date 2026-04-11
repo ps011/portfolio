@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import Card from "../../components/card/card";
+import BlogCard from "../../components/blog-card";
 import Section from "../../components/tailwind/section";
 import {
   Carousel,
@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { BlogCard } from "../../interfaces/blog";
+import { BlogCard as BlogCardData } from "../../interfaces/blog";
 
 const kebabCaseToSentenceCase = (str: string) =>
   str
@@ -20,17 +20,17 @@ const kebabCaseToSentenceCase = (str: string) =>
     .map((word) => word[0].toUpperCase() + word.substring(1))
     .join(" ");
 
-const groupBy = (xs: BlogCard[], f: (blog: BlogCard) => string) =>
+const groupBy = (xs: BlogCardData[], f: (blog: BlogCardData) => string) =>
   xs.reduce(
     (r, v) => {
       const k = f(v);
       (r[k] || (r[k] = [])).push(v);
       return r;
     },
-    {} as Record<string, BlogCard[]>,
+    {} as Record<string, BlogCardData[]>,
   );
 
-function BlogCarousel({ blogs }: { blogs: BlogCard[] }) {
+function BlogCarousel({ blogs }: { blogs: BlogCardData[] }) {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -65,7 +65,7 @@ function BlogCarousel({ blogs }: { blogs: BlogCard[] }) {
               key={blog.link ?? index}
               className="md:basis-1/2 lg:basis-1/5"
             >
-              <Card
+              <BlogCard
                 {...blog}
                 tags={Array.isArray(blog.tags) ? blog.tags.join(", ") : blog.tags}
               />
@@ -118,7 +118,7 @@ function BlogCarousel({ blogs }: { blogs: BlogCard[] }) {
   );
 }
 
-const Blog = ({ blogs }: { blogs: BlogCard[] }) => {
+const Blog = ({ blogs }: { blogs: BlogCardData[] }) => {
   const sortedBlogs = blogs
     .filter((blog) => !blog.hidden)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

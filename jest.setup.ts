@@ -36,3 +36,25 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
   unobserve: jest.fn(),
   disconnect: jest.fn(),
 }));
+
+// Framer Motion's useScroll/useTransform uses the Web Animations API
+Element.prototype.animate = jest.fn().mockImplementation(() => ({
+  finished: Promise.resolve(),
+  cancel: jest.fn(),
+  pause: jest.fn(),
+  play: jest.fn(),
+  reverse: jest.fn(),
+  finish: jest.fn(),
+  onfinish: null,
+  oncancel: null,
+  currentTime: 0,
+  playState: "finished",
+  effect: null,
+  timeline: null,
+  commitStyles: jest.fn(),
+  persist: jest.fn(),
+  addEventListener: jest.fn(),
+  removeEventListener: jest.fn(),
+  dispatchEvent: jest.fn(),
+  updatePlaybackRate: jest.fn(),
+}));

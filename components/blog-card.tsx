@@ -13,7 +13,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-interface CardProps {
+interface BlogCardProps {
   thumbnail: string;
   title: string;
   shortDescription: string;
@@ -21,13 +21,13 @@ interface CardProps {
   link: string;
 }
 
-const Card = ({
+const BlogCard = ({
   thumbnail,
   title,
   shortDescription,
   tags,
   link,
-}: CardProps) => {
+}: BlogCardProps) => {
   const tagsArray: string[] = tags
     ? Array.isArray(tags)
       ? (tags as unknown as string[])
@@ -89,4 +89,4 @@ const Card = ({
   );
 };
 
-export default Card;
+export default BlogCard;
