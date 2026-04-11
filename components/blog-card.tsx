@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import {
   Card as UICard,
   CardContent,
@@ -28,6 +29,7 @@ const BlogCard = ({
   tags,
   link,
 }: BlogCardProps) => {
+  const t = useTranslations("common");
   const tagsArray: string[] = tags
     ? Array.isArray(tags)
       ? (tags as unknown as string[])
@@ -80,7 +82,7 @@ const BlogCard = ({
         <CardFooter className="pt-0">
           <Button variant="default" size="default" className="w-full" asChild>
             <Link href={getLink(link)} target="_blank" rel="noopener noreferrer" className="no-underline">
-              Read more
+              {t("readMore")}
             </Link>
           </Button>
         </CardFooter>
