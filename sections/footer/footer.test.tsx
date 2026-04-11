@@ -1,6 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import Footer from "./footer";
 
+jest.mock("next/router", () => ({
+  useRouter: () => ({
+    locales: ["en"],
+    locale: "en",
+    asPath: "/",
+  }),
+}));
+
 jest.mock("../../components/profile/profile", () => ({
   __esModule: true,
   default: ({ name, url }: { name: string; url: string }) => (
