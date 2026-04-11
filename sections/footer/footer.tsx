@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import Profile from "../../components/profile/profile";
 import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "../../components/language-switcher/language-switcher";
 
 const Footer = ({
   profiles,
@@ -55,7 +56,7 @@ const Footer = ({
         </div>
       </div>
       <hr className="my-6 border-border" />
-      <div className="flex flex-col gap-2 text-sm text-foreground sm:flex-row sm:justify-between">
+      <div className="flex flex-col gap-2 text-sm text-foreground sm:flex-row sm:justify-between sm:items-center">
         <span>
           &copy; {new Date().getFullYear()}{" "}
           <a
@@ -67,14 +68,17 @@ const Footer = ({
             Prasheel
           </a>
         </span>
-        <a
-          href="https://github.com/ps011/ps11/LICENSE.md"
-          target="_blank"
-          rel="noreferrer"
-          className="underline hover:no-underline"
-        >
-          {t("license")}
-        </a>
+        <div className="flex items-center gap-4">
+          <LanguageSwitcher />
+          <a
+            href="https://github.com/ps011/ps11/LICENSE.md"
+            target="_blank"
+            rel="noreferrer"
+            className="underline hover:no-underline"
+          >
+            {t("license")}
+          </a>
+        </div>
       </div>
     </motion.footer>
   );
