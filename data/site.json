@@ -36,7 +36,7 @@
       "react",
       "nextjs"
     ],
-    "themeColor": "#000000",
+    "themeColor": "#ffffff",
     "manifest": "/manifest.json",
     "url": "https://ps011.vercel.app",
     "image": "https://res.cloudinary.com/designu/image/upload/v1771310980/images/about/DP.jpg"
@@ -51,7 +51,7 @@
       "Living in Estonia 🇪🇪"
     ],
     "ctaLabel": "Resume",
-    "ctaUrl": "https://res.cloudinary.com/designu/image/upload/v1617438926/docs/Prasheel_Soni_CV.pdf",
+    "ctaUrl": "https://res.cloudinary.com/designu/image/upload/v1722684947/docs/Prasheel%20Soni%20Resume.pdf",
     "downloadable": true
   },
   "name": "Prasheel"
