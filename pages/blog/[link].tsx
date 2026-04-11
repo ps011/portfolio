@@ -43,6 +43,7 @@ export async function getStaticProps(context) {
             aboutData: about,
             // Prop for the SingleBlogPage component
             blogPost: blogPostData,
+            messages: (await import(`../../messages/${context.locale}.json`)).default,
         },
         revalidate: 3600, 
     };
