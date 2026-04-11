@@ -7,8 +7,6 @@ import type { SiteData } from "../interfaces/site-data";
 import type { About } from "../interfaces/about";
 import type { Blog, BlogCard } from "../interfaces/blog";
 import type { GalleryImage } from "../interfaces/photo-gallery";
-import type { UIConfig } from "../interfaces/ui-config";
-import { DEFAULT_UI_CONFIG } from "./ui-defaults";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 
@@ -67,21 +65,3 @@ export async function getGalleryItems(): Promise<GalleryImage[]> {
   return readJsonFile<GalleryImage[]>("gallery.json");
 }
 
-export async function getUIConfig(): Promise<UIConfig> {
-  const filePath = path.join(DATA_DIR, "ui.json");
-  let raw: string;
-  try {
-    raw = fs.readFileSync(filePath, "utf-8");
-  } catch (err: any) {
-    if (err.code === "ENOENT") {
-      console.warn("[data] ui.json not found, using default UI config");
-      return DEFAULT_UI_CONFIG;
-    }
-    throw err;
-  }
-  try {
-    return JSON.parse(raw) as UIConfig;
-  } catch (err: any) {
-    throw new Error(`[data] Malformed JSON in ${filePath}: ${err.message}`);
-  }
-}

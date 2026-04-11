@@ -1,4 +1,4 @@
-import { getSiteData, getAboutData, getBlogs, getBlogByLink, getGalleryItems, getUIConfig } from "../../lib/data";
+import { getSiteData, getAboutData, getBlogs, getBlogByLink, getGalleryItems } from "../../lib/data";
 
 describe("lib/data", () => {
   describe("getSiteData", () => {
@@ -62,12 +62,4 @@ describe("lib/data", () => {
     });
   });
 
-  describe("getUIConfig", () => {
-    it("returns UIConfig from data/ui.json", async () => {
-      const config = await getUIConfig();
-      expect(config).toBeDefined();
-      expect(config.banner.greeting).toBeDefined();
-      expect(config.footer.heading).toBeDefined();
-    });
-  });
 });

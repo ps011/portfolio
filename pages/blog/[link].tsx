@@ -3,58 +3,53 @@ import Image from "next/image";
 import Profile from "../../components/profile/profile";
 import { useRouter } from "next/router";
 import { useTranslations } from "next-intl";
+import { getSiteData, getAboutData, getBlogs, getBlogByLink } from "../../lib/data";
 
 const MarkdownRenderer = dynamic(() => import("../../components/markdown-renderer/markdown-renderer"), { ssr: true });
 
 export async function getStaticProps(context) {
-    const siteDataRes = await fetch(`${process.env.BASE_URL}/site-datas/`);
-    const siteDataArray = await siteDataRes.json();
+    const link = context.params.link as string;
 
-    const aboutRes = await fetch(`${process.env.BASE_URL}/abouts/`);
-    const aboutDataArray = await aboutRes.json();
-
-    let blogPostData = {};
-    if (context.params.link && !context.params.link.startsWith("http")) {
-        const blogPostRes = await fetch(`${process.env.BASE_URL}/blogs/${context.params.link}`);
-        blogPostData = await blogPostRes.json();
-        if (Object.keys(blogPostData).length === 0) { // Check if blogPostData is empty
-             console.error(`Blog [${context.params.link}]: Blog post not found or empty.`);
-            return { notFound: true };
-        }
-    } else {
-        return { notFound: true }; // Invalid link
-    }
-
-    if (!siteDataArray || siteDataArray.length === 0 || !siteDataArray[0]) {
-        console.error(`Blog [${context.params.link}]: Error fetching site data.`);
+    if (!link || link.startsWith("http")) {
         return { notFound: true };
     }
-    const site = siteDataArray[0];
 
-    if (!aboutDataArray || aboutDataArray.length === 0 || !aboutDataArray[0]) {
-        console.error(`Blog [${context.params.link}]: Error fetching about data.`);
-        return { notFound: true }; 
+    const [siteData, aboutData, blogPost] = await Promise.all([
+        getSiteData(),
+        getAboutData(),
+        getBlogByLink(link),
+    ]);
+
+    if (!blogPost || Object.keys(blogPost).length === 0) {
+        console.error(`Blog [${link}]: Blog post not found or empty.`);
+        return { notFound: true };
     }
-    const about = aboutDataArray[0];
+
+    if (!siteData) {
+        console.error(`Blog [${link}]: Error fetching site data.`);
+        return { notFound: true };
+    }
+
+    if (!aboutData) {
+        console.error(`Blog [${link}]: Error fetching about data.`);
+        return { notFound: true };
+    }
 
     return {
         props: {
-            // Props for _app.tsx and Layout.tsx
-            siteData: site,
-            aboutData: about,
-            // Prop for the SingleBlogPage component
-            blogPost: blogPostData,
+            siteData,
+            aboutData,
+            blogPost,
             messages: (await import(`../../messages/${context.locale}.json`)).default,
         },
-        revalidate: 3600, 
+        revalidate: 3600,
     };
 }
 
 export async function getStaticPaths() {
-    const dataRes = await fetch(`${process.env.BASE_URL}/blogs`);
-    const posts = await dataRes.json();
+    const posts = await getBlogs();
     const validPaths = posts
-        .filter(post => post.link && !post.link.startsWith("http"))
+        .filter((post) => post.link && !post.link.startsWith("http"))
         .map((post) => ({ params: { link: post.link } }));
     return {
         paths: validPaths,

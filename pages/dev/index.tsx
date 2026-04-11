@@ -1,30 +1,28 @@
 import { GetStaticProps } from "next";
 import { GitHubCalendar } from "react-github-calendar";
 import Head from "next/head";
+import { getSiteData, getAboutData } from "../../lib/data";
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const siteDataRes = await fetch(`${process.env.BASE_URL}/site-datas/`);
-  const siteDataArray = await siteDataRes.json();
+  const [siteData, aboutData] = await Promise.all([
+    getSiteData(),
+    getAboutData(),
+  ]);
 
-  const aboutRes = await fetch(`${process.env.BASE_URL}/abouts/`);
-  const aboutDataArray = await aboutRes.json();
-
-  if (!siteDataArray || siteDataArray.length === 0 || !siteDataArray[0]) {
+  if (!siteData) {
     console.error("DevPage: Error fetching site data.");
     return { notFound: true };
   }
-  const site = siteDataArray[0];
 
-  if (!aboutDataArray || aboutDataArray.length === 0 || !aboutDataArray[0]) {
+  if (!aboutData) {
     console.error("DevPage: Error fetching about data.");
     return { notFound: true };
   }
-  const about = aboutDataArray[0];
 
   return {
     props: {
-      siteData: site,
-      aboutData: about,
+      siteData,
+      aboutData,
       messages: (await import(`../../messages/${context.locale}.json`)).default,
     },
     revalidate: 3600,

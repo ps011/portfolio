@@ -9,7 +9,15 @@ export default function MarkdownRenderer({ content }: { content: string }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const isUrl =
+    content.startsWith("http") || content.startsWith("/");
+
   useEffect(() => {
+    if (!isUrl) {
+      setMarkdown(content);
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     setError(false);
     fetch(content)
@@ -25,7 +33,7 @@ export default function MarkdownRenderer({ content }: { content: string }) {
         setError(true);
         setLoading(false);
       });
-  }, [content]);
+  }, [content, isUrl]);
 
   if (loading) return <div className="text-center py-8">Loading...</div>;
   if (error) return <div className="text-center py-8 text-red-500">Failed to load content.</div>;

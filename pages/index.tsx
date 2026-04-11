@@ -4,52 +4,32 @@ import Experience from "../sections/experience/experience";
 import Interests from "../sections/interests/interests";
 import BlogSection from "../sections/blog/blog";
 import { Map } from "../sections/map/map";
-import { Blog as tBlog, BlogCard } from "../interfaces/blog";
-
-function toBlogCard(blog: tBlog): BlogCard {
-  return {
-    title: blog.title ?? "",
-    shortDescription: blog.shortDescription ?? "",
-    thumbnail: blog.thumbnail ?? "",
-    tags: blog.tags ?? "",
-    link: blog.link ?? "",
-    hidden: Boolean(blog.hidden),
-    date: blog.date ?? "",
-    type: blog.type ?? "",
-  };
-}
+import type { BlogCard } from "../interfaces/blog";
+import { getSiteData, getAboutData, getBlogs } from "../lib/data";
 
 export async function getStaticProps(context) {
-  const [siteDataRes, aboutRes, blogsRes] = await Promise.all([
-    fetch(`${process.env.BASE_URL}/site-datas/`),
-    fetch(`${process.env.BASE_URL}/abouts/`),
-    fetch(`${process.env.BASE_URL}/blogs`),
+  const [siteData, aboutData, blogs] = await Promise.all([
+    getSiteData(),
+    getAboutData(),
+    getBlogs(),
   ]);
 
-  const [siteDataArray, aboutDataArray, blogsData] = await Promise.all([
-    siteDataRes.json(),
-    aboutRes.json(),
-    blogsRes.json() as Promise<tBlog[]>,
-  ]);
-
-  if (!siteDataArray || siteDataArray.length === 0 || !siteDataArray[0]) {
-    console.error("HomePage: Error fetching site data or siteData[0] is missing.");
+  if (!siteData) {
+    console.error("HomePage: Error fetching site data.");
     return { notFound: true };
   }
-  const site = siteDataArray[0];
 
-  if (!aboutDataArray || aboutDataArray.length === 0 || !aboutDataArray[0]) {
-    console.error("HomePage: Error fetching about data or aboutData[0] is missing.");
+  if (!aboutData) {
+    console.error("HomePage: Error fetching about data.");
     return { notFound: true };
   }
-  const about = aboutDataArray[0];
 
   return {
     props: {
-      siteData: site,
-      aboutData: about,
-      bannerData: site.banner,
-      blogs: blogsData.map(toBlogCard),
+      siteData,
+      aboutData,
+      bannerData: siteData.banner,
+      blogs,
       messages: (await import(`../messages/${context.locale}.json`)).default,
     },
     revalidate: 3600,
