@@ -2,7 +2,6 @@
   "name": "Prasheel",
   "about": "<b>Hey there! Welcome to my world!! </b>  <p>I’m Prasheel. I’m a Software Engineer by profession and a Traveller & Photographer by passion. </p> <p>I’ve worked with many multi-national companies and currently I’m working with Bolt, which is headquartered in Tallinn, Estonia, which is where I live. Since I have this job and the privilege to live in Europe for an extended period of time, I often take advantage of this and travel across Europe in different countries. Until now, I have travelled to 21 countries in total and I plan to do more of it. I like photography as well, but I’ve started to learn it.</p>",
   "imageUrl": "https://res.cloudinary.com/designu/image/upload/v1771310980/images/about/DP.jpg",
-  "resumeUrl": "https://res.cloudinary.com/designu/image/upload/v1722684947/docs/Prasheel%20Soni%20Resume.pdf",
   "location": "Tallinn, Estonia",
   "designation": "Senior Software Engineer",
   "education": "Bachelor of Engineering",
@@ -251,6 +250,5 @@
     "BEL",
     "DNK",
     "TUR"
-  ],
-  "email": "prasheelsoni11@gmail.com"
+  ]
 }

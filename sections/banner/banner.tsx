@@ -13,16 +13,11 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 
 interface BannerProps {
-  illustration: string;
-  texts: string[];
-  ctaLabel: string;
   ctaUrl: string;
   downloadable: boolean;
 }
 
 const Banner = ({
-  texts,
-  ctaLabel,
   ctaUrl,
   downloadable,
 }: BannerProps) => {
