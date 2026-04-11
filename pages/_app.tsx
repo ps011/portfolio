@@ -1,6 +1,8 @@
 import "../styles/global.scss";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { NextIntlClientProvider } from "next-intl";
+import defaultMessages from "../messages/en.json";
 import * as gtag from "../lib/gtag";
 import { ThemeProvider } from "../lib/theme-context";
 import Layout from "../components/layout/Layout";
@@ -19,13 +21,15 @@ export default function Portfolio({ Component, pageProps }) {
     };
   }, [router.events]);
 
-  const { siteData, aboutData, ...restPageProps } = pageProps;
+  const { siteData, aboutData, messages, ...restPageProps } = pageProps;
 
   return (
-    <ThemeProvider>
-      <Layout data={siteData} about={aboutData}>
-        <Component {...restPageProps} aboutData={aboutData} />
-      </Layout>
-    </ThemeProvider>
+    <NextIntlClientProvider locale={router.locale} messages={messages ?? defaultMessages}>
+      <ThemeProvider>
+        <Layout data={siteData} about={aboutData}>
+          <Component {...restPageProps} aboutData={aboutData} />
+        </Layout>
+      </ThemeProvider>
+    </NextIntlClientProvider>
   );
 }

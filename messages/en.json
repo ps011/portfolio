@@ -1,0 +1,32 @@
+{
+  "common": {
+    "readMore": "Read more",
+    "skipToMain": "Skip to main content",
+    "menu": "Menu",
+    "openNav": "Open navigation menu",
+    "comingSoon": "Coming Soon"
+  },
+  "banner": {
+    "greeting": "Hi, I'm"
+  },
+  "experience": {
+    "title": "Experience"
+  },
+  "interests": {
+    "viewBlog": "View My Blog Posts",
+    "viewGallery": "Explore Photo Gallery",
+    "viewGithub": "View My GitHub"
+  },
+  "blog": {
+    "sharePost": "Share this Post:",
+    "loading": "Loading blog post...",
+    "prevSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "goToSlide": "Go to slide {number}"
+  },
+  "footer": {
+    "thanks": "Thank you for stopping by!",
+    "getInTouch": "Let's get in touch on any of these platforms.",
+    "license": "License"
+  }
+}

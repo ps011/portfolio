@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Section from "../../components/tailwind/section";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -29,6 +30,8 @@ const item = {
 };
 
 const Interests = ({ illustration, interests }: InterestsProps) => {
+  const t = useTranslations("interests");
+  const tc = useTranslations("common");
   const getInterestType = (
     title: string,
   ): "blogging" | "photography" | "coding" | "other" => {
@@ -57,7 +60,7 @@ const Interests = ({ illustration, interests }: InterestsProps) => {
         return (
           <Button variant="default" size="default" asChild>
             <Link href="/blog" className="no-underline">
-              View My Blog Posts
+              {t("viewBlog")}
             </Link>
           </Button>
         );
@@ -65,7 +68,7 @@ const Interests = ({ illustration, interests }: InterestsProps) => {
         return (
           <Button variant="default" size="default" asChild>
             <Link href="/photo-gallery" className="no-underline">
-              Explore Photo Gallery
+              {t("viewGallery")}
             </Link>
           </Button>
         );
@@ -78,14 +81,14 @@ const Interests = ({ illustration, interests }: InterestsProps) => {
               rel="noopener noreferrer"
               className="no-underline"
             >
-              View My GitHub
+              {t("viewGithub")}
             </Link>
           </Button>
         );
       default:
         return (
           <Button variant="neutral" size="default" disabled>
-            Coming Soon
+            {tc("comingSoon")}
           </Button>
         );
     }

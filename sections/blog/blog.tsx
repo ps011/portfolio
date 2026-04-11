@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import BlogCard from "../../components/blog-card";
 import Section from "../../components/tailwind/section";
@@ -31,6 +32,7 @@ const groupBy = (xs: BlogCardData[], f: (blog: BlogCardData) => string) =>
   );
 
 function BlogCarousel({ blogs }: { blogs: BlogCardData[] }) {
+  const t = useTranslations("blog");
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -82,7 +84,7 @@ function BlogCarousel({ blogs }: { blogs: BlogCardData[] }) {
             size="icon"
             onClick={() => api?.scrollPrev()}
             disabled={!canScrollPrev}
-            aria-label="Previous slide"
+            aria-label={t("prevSlide")}
             className="h-9 w-9 shrink-0 rounded-base border-2 border-border disabled:opacity-40"
           >
             <ArrowLeft className="size-4" />
@@ -93,7 +95,7 @@ function BlogCarousel({ blogs }: { blogs: BlogCardData[] }) {
               <button
                 key={i}
                 onClick={() => api?.scrollTo(i)}
-                aria-label={`Go to slide ${i + 1}`}
+                aria-label={t("goToSlide", { number: i + 1 })}
                 className={cn(
                   "h-2.5 rounded-full border-2 border-border shadow-[1px_1px_0px_0px_#000000] transition-all duration-200",
                   i === current ? "w-6 bg-main" : "w-2.5 bg-secondary-background",
@@ -107,7 +109,7 @@ function BlogCarousel({ blogs }: { blogs: BlogCardData[] }) {
             size="icon"
             onClick={() => api?.scrollNext()}
             disabled={!canScrollNext}
-            aria-label="Next slide"
+            aria-label={t("nextSlide")}
             className="h-9 w-9 shrink-0 rounded-base border-2 border-border disabled:opacity-40"
           >
             <ArrowRight className="size-4" />
