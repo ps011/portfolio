@@ -8,6 +8,7 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import Profile from "../../components/profile/profile";
+import { useTranslations } from "next-intl";
 
 const Footer = ({
   profiles,
@@ -16,6 +17,7 @@ const Footer = ({
 }) => {
   const footerRef = useRef<HTMLElement>(null);
   const prefersReduced = useReducedMotion();
+  const t = useTranslations("footer");
 
   const { scrollYProgress } = useScroll({
     target: footerRef,
@@ -34,10 +36,10 @@ const Footer = ({
       <div className="flex flex-col justify-between gap-6 md:flex-row md:items-center">
         <div className="flex flex-col">
           <h3 className="mb-2 text-2xl font-bold text-foreground">
-            Thank you for stopping by!
+            {t("thanks")}
           </h3>
           <p className="mb-4 text-foreground md:mb-0">
-            Let&apos;s get in touch on any of these platforms.
+            {t("getInTouch")}
           </p>
         </div>
         <div className="flex gap-4">
@@ -71,7 +73,7 @@ const Footer = ({
           rel="noreferrer"
           className="underline hover:no-underline"
         >
-          License
+          {t("license")}
         </a>
       </div>
     </motion.footer>
