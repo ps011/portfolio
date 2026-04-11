@@ -1,0 +1,256 @@
+{
+  "name": "Prasheel",
+  "about": "<b>Hey there! Welcome to my world!! </b>  <p>I’m Prasheel. I’m a Software Engineer by profession and a Traveller & Photographer by passion. </p> <p>I’ve worked with many multi-national companies and currently I’m working with Bolt, which is headquartered in Tallinn, Estonia, which is where I live. Since I have this job and the privilege to live in Europe for an extended period of time, I often take advantage of this and travel across Europe in different countries. Until now, I have travelled to 21 countries in total and I plan to do more of it. I like photography as well, but I’ve started to learn it.</p>",
+  "imageUrl": "https://res.cloudinary.com/designu/image/upload/v1771310980/images/about/DP.jpg",
+  "resumeUrl": "https://res.cloudinary.com/designu/image/upload/v1722684947/docs/Prasheel%20Soni%20Resume.pdf",
+  "location": "Tallinn, Estonia",
+  "designation": "Senior Software Engineer",
+  "education": "Bachelor of Engineering",
+  "skills": [
+    {
+      "name": "HTML",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1601193709/logos/html5-logo.png"
+    },
+    {
+      "name": "CSS",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1601193708/logos/css3-logo.svg"
+    },
+    {
+      "name": "Javascript",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1601193708/logos/js-logo.png"
+    },
+    {
+      "name": "Typescript",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1679176386/logos/Typescript.png"
+    },
+    {
+      "name": "Angular",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1601193708/logos/angular-logo.svg"
+    },
+    {
+      "name": "React",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1601193965/logos/react-logo.webp"
+    },
+    {
+      "name": "NextJS",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1617439457/logos/nextjs.png"
+    },
+    {
+      "name": "EmberJS",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1630253138/logos/ember-logo.svg"
+    },
+    {
+      "name": "StencilJS",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1601193709/logos/stencil-logo.jpg"
+    },
+    {
+      "name": "NodeJS",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1601193708/logos/node-logo.png"
+    },
+    {
+      "name": "GIT",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1601193962/logos/git-logo.png"
+    },
+    {
+      "name": "Jenkins",
+      "logo": "https://res.cloudinary.com/designu/image/upload/c_fit,h_600,w_600/v1601201237/logos/jenkins-logo.png"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Bolt OÜ ",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1630253408/logos/bolt.png",
+      "from": "November 2025",
+      "to": "Present",
+      "technologies": [
+        "People Management",
+        "Leadership",
+        "Agile",
+        "Delivery optimisation"
+      ],
+      "designation": "Team Lead - New Bets",
+      "location": "Tallinn, Estonia"
+    },
+    {
+      "company": "Bolt OÜ ",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1630253408/logos/bolt.png",
+      "from": "July 2023",
+      "to": "November 2025",
+      "technologies": [
+        "React",
+        "Ember",
+        "HTML",
+        "CSS",
+        "Javascript",
+        "Typescript",
+        "Microservices",
+        "NodeJS",
+        "SQL"
+      ],
+      "designation": "Senior Software Engineer - Business",
+      "location": "Tallinn, Estonia"
+    },
+    {
+      "company": "Bolt OÜ ",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1630253408/logos/bolt.png",
+      "from": "August 2021",
+      "to": "July 2023",
+      "technologies": [
+        "React",
+        "Ember",
+        "HTML",
+        "CSS",
+        "Javascript",
+        "Typescript",
+        "Microservices",
+        "NodeJS",
+        "SQL"
+      ],
+      "designation": "Software Engineer - Business",
+      "location": "Tallinn, Estonia"
+    },
+    {
+      "company": "Paytm Insider",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1617397378/logos/insider.png",
+      "from": "February 2021",
+      "to": "August 2021",
+      "technologies": [
+        "React",
+        "Next",
+        "HTML",
+        "CSS",
+        "Javascript"
+      ],
+      "designation": "Senior Software Engineer",
+      "location": "Mumbai, India"
+    },
+    {
+      "company": "Mastercard",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1601194213/logos/mastercard.png",
+      "from": "June 2019",
+      "to": "February. 2021",
+      "technologies": [
+        "Angular",
+        "Stencil",
+        "React",
+        "HTML",
+        "CSS",
+        "Javascript",
+        "Springboot",
+        "Adobe Experience Manager"
+      ],
+      "designation": "Software Engineer",
+      "location": "Pune, India"
+    },
+    {
+      "company": "Zensar Technologies",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1601194214/logos/zensar.png",
+      "from": "June 2018",
+      "to": "June 2019",
+      "technologies": [
+        "Angular",
+        "Stencil",
+        "React",
+        "HTML",
+        "CSS",
+        "Javascript",
+        "Springboot",
+        "Adobe Experience Manager"
+      ],
+      "designation": "Software Engineer",
+      "location": "Pune, India"
+    },
+    {
+      "company": "HotWax Systems",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1601194211/logos/hotwax.png",
+      "from": "July 2017",
+      "to": "June 2018",
+      "technologies": [
+        "Angular",
+        "Ionic",
+        "HTML",
+        "CSS",
+        "Javascript",
+        "Android",
+        "Raspberry Pi"
+      ],
+      "designation": "Enterprise Software Engineer",
+      "location": "Indore, India"
+    }
+  ],
+  "profiles": [
+    {
+      "name": "github",
+      "url": "https://github.com/ps011"
+    },
+    {
+      "name": "twitter",
+      "url": "https://twitter.com/soniprasheel"
+    },
+    {
+      "name": "linkedin",
+      "url": "https://www.linkedin.com/in/ps011/"
+    },
+    {
+      "name": "facebook",
+      "url": "https://www.facebook.com/prasheelsoni11"
+    },
+    {
+      "name": "instagram",
+      "url": "https://instagram.com/ps.11"
+    },
+    {
+      "name": "stackoverflow",
+      "url": "https://stackoverflow.com/users/5189578/prasheel"
+    }
+  ],
+  "interests": [
+    {
+      "title": "Travelling & Photography",
+      "description": "Travelling is something that I am fond of since I was a child. I believe that travelling allows an individual to expand it's horizon. Travelling allows me to explore different cultures, meet new people, visit new places and above all this, it helps me to become a better human being."
+    },
+    {
+      "title": "Coding",
+      "description": "Obviously, I love it. That's why I opted for this profession😉. I was introduced to programming in the early days of my college. Since then I've been switching and hopping between different frameworks and languages be it Android, C#, Java and what not; but now It's all around Javascript."
+    },
+    {
+      "title": "Blogging",
+      "description": "Not much to elaborate on this. I'm an avid blogger and still learning to nurture my writing skills"
+    }
+  ],
+  "stats": [
+    {
+      "count": "8+",
+      "label": "Years of Experience"
+    },
+    {
+      "count": "21",
+      "label": "Countries travelled"
+    },
+    {
+      "count": "10+",
+      "label": "Projects delivered"
+    }
+  ],
+  "countriesVisited": [
+    "IND",
+    "THA",
+    "EST",
+    "POL",
+    "DEU",
+    "LVA",
+    "LTU",
+    "AUT",
+    "SWE",
+    "FIN",
+    "ITA",
+    "FRA",
+    "CZE",
+    "HUN",
+    "SVK",
+    "BEL",
+    "DNK",
+    "TUR"
+  ],
+  "email": "prasheelsoni11@gmail.com"
+}

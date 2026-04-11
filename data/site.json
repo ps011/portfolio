@@ -1,0 +1,58 @@
+{
+  "header": {
+    "logoUrl": "/images/logos/logo.png",
+    "navMap": [
+      {
+        "label": "About",
+        "href": "#about"
+      },
+      {
+        "label": "Experience",
+        "href": "#experience"
+      },
+      {
+        "label": "Interests",
+        "href": "#interests"
+      },
+      {
+        "label": "Blogs",
+        "href": "#blog-posts"
+      },
+      {
+        "label": "Photography",
+        "href": "/photo-gallery"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Prasheel - Full Stack Engineer",
+    "desc": "Full Stack Engineer",
+    "name": "Prasheel Soni",
+    "twitterHandle": "@soniprasheel",
+    "keywords": [
+      "software",
+      "engineer",
+      "portfolio",
+      "react",
+      "nextjs"
+    ],
+    "themeColor": "#000000",
+    "manifest": "/manifest.json",
+    "url": "https://ps011.vercel.app",
+    "image": "https://res.cloudinary.com/designu/image/upload/v1771310980/images/about/DP.jpg"
+  },
+  "banner": {
+    "illustration": "https://res.cloudinary.com/designu/image/upload/v1630252769/images/about/banner-2.gif",
+    "texts": [
+      "Prasheel Soni",
+      "Engineer",
+      "Traveller",
+      "From India 🇮🇳",
+      "Living in Estonia 🇪🇪"
+    ],
+    "ctaLabel": "Resume",
+    "ctaUrl": "https://res.cloudinary.com/designu/image/upload/v1617438926/docs/Prasheel_Soni_CV.pdf",
+    "downloadable": true
+  },
+  "name": "Prasheel"
+}
