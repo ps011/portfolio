@@ -21,6 +21,16 @@ export interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
   const t = useTranslations("common");
+  const tNav = useTranslations("nav");
+
+  const navKeyMap: Record<string, string> = {
+    "#about": "about",
+    "#experience": "experience",
+    "#interests": "interests",
+    "#blog-posts": "blogs",
+    "/photo-gallery": "photography",
+  };
+
   const getHref = (href: string) => {
     if (href.startsWith("/")) return href;
     return `/${href}`;
@@ -32,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
         navMap.map((item) => (
           <Button key={item.href} variant="neutral" size="default" asChild>
             <Link href={getHref(item.href)} className="no-underline">
-              {item.label}
+              {navKeyMap[item.href] ? tNav(navKeyMap[item.href]) : item.label}
             </Link>
           </Button>
         ))}
@@ -83,7 +93,7 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
                         className="w-full justify-start text-left"
                         asChild
                       >
-                        <Link href={getHref(item.href)}>{item.label}</Link>
+                        <Link href={getHref(item.href)}>{navKeyMap[item.href] ? tNav(navKeyMap[item.href]) : item.label}</Link>
                       </Button>
                     </li>
                   ))}

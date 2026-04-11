@@ -27,6 +27,14 @@ const Banner = ({
   downloadable,
 }: BannerProps) => {
   const t = useTranslations("banner");
+  const bannerTexts = [
+    t("text0"),
+    t("text1"),
+    t("text2"),
+    t("text3"),
+    t("text4"),
+  ];
+  const translatedCtaLabel = t("ctaLabel");
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReduced = useReducedMotion();
@@ -137,7 +145,7 @@ const Banner = ({
         >
           <h1
             className="text-2xl font-bold leading-tight text-foreground md:text-4xl lg:text-5xl"
-            aria-label={`${t("greeting")} ${texts[0]}`}
+            aria-label={`${t("greeting")} ${bannerTexts[0]}`}
           >
             {t("greeting")}{" "}
             <span className="relative inline-block" aria-hidden="true">
@@ -149,7 +157,7 @@ const Banner = ({
                   id="typewrite"
                   className="text-main-foreground"
                   data-period="2000"
-                  data-type={JSON.stringify(texts)}
+                  data-type={JSON.stringify(bannerTexts)}
                 />
               </span>
             </span>
@@ -162,7 +170,7 @@ const Banner = ({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.4 }}
         >
-          {ctaLabel && (
+          {translatedCtaLabel && (
             <Button variant="default" size="lg" asChild>
               <Link
                 href={ctaUrl}
@@ -171,7 +179,7 @@ const Banner = ({
                 rel="noopener noreferrer"
                 className="no-underline"
               >
-                {ctaLabel}
+                {translatedCtaLabel}
                 <ArrowUpRight className="size-4 shrink-0" aria-hidden />
               </Link>
             </Button>

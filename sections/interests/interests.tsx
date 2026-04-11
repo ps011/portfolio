@@ -32,6 +32,7 @@ const item = {
 const Interests = ({ illustration, interests }: InterestsProps) => {
   const t = useTranslations("interests");
   const tc = useTranslations("common");
+  const tAbout = useTranslations("about");
   const getInterestType = (
     title: string,
   ): "blogging" | "photography" | "coding" | "other" => {
@@ -105,16 +106,16 @@ const Interests = ({ illustration, interests }: InterestsProps) => {
           viewport={{ once: true, margin: "-40px" }}
         >
           {interests.length > 0 &&
-            interests.map((interest) => (
+            interests.map((interest, index) => (
               <motion.div key={interest.title} variants={item}>
                 <Card className="transition-shadow hover:shadow-none hover:translate-x-boxShadowX hover:translate-y-boxShadowY">
                   <CardHeader>
                     <CardTitle className="text-xl font-bold">
-                      {interest.title}
+                      {tAbout(`interest${index}Title`) || interest.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <p className="text-foreground">{interest.description}</p>
+                    <p className="text-foreground">{tAbout(`interest${index}Desc`) || interest.description}</p>
                     <div className="mt-4">{getCTA(interest)}</div>
                   </CardContent>
                 </Card>

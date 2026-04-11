@@ -2,6 +2,7 @@
 
 import { Briefcase, MapPin, GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Section from "../../components/tailwind/section";
 import Profile from "../../components/profile/profile";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -28,6 +29,7 @@ const About = ({
   stats,
   profiles,
 }: AboutProps) => {
+  const t = useTranslations("about");
   return (
     <Section container id="about">
       <motion.div
@@ -40,14 +42,14 @@ const About = ({
         {/* Top stripe: avatar + identity + social */}
         <div className="flex flex-col items-center gap-3 border-b-2 border-border px-6 py-5 sm:flex-row sm:gap-5">
           <Avatar className="h-48 w-48 shrink-0 border-2 border-border shadow-[2px_2px_0px_0px_#000000]">
-            <AvatarImage src={imageUrl} alt={name} />
+            <AvatarImage src={imageUrl} alt={t("name")} />
             <AvatarFallback className="text-xl font-bold">
-              {name?.charAt(0)}
+              {t("name")?.charAt(0)}
             </AvatarFallback>
           </Avatar>
 
           <div className="flex min-w-0 flex-1 flex-col items-center gap-2 sm:items-start">
-            <h2 className="text-xl font-bold text-foreground">{name}</h2>
+            <h2 className="text-xl font-bold text-foreground">{t("name")}</h2>
             <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs text-muted-foreground sm:justify-start">
               {designation && (
                 <span className="flex items-center gap-1">
@@ -80,7 +82,7 @@ const About = ({
           {/* Stats */}
           {stats?.length > 0 && (
             <div className="flex shrink-0 gap-2">
-              {stats.map((stat) => (
+              {stats.map((stat, index) => (
                 <div
                   key={stat.label}
                   className="rounded-base border-2 border-border bg-main px-3 py-2 text-center shadow-[2px_2px_0px_0px_#000000]"
@@ -89,7 +91,7 @@ const About = ({
                     {stat.count}
                   </div>
                   <div className="mt-0.5 text-[10px] text-main-foreground opacity-80">
-                    {stat.label}
+                    {t(`stat${index}Label`) || stat.label}
                   </div>
                 </div>
               ))}
@@ -101,7 +103,7 @@ const About = ({
         {about && (
           <div
             className="prose prose-sm max-w-none px-6 py-5 text-foreground"
-            dangerouslySetInnerHTML={{ __html: about }}
+            dangerouslySetInnerHTML={{ __html: t("bio") }}
           />
         )}
       </motion.div>

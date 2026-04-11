@@ -6,8 +6,38 @@
     "openNav": "Open navigation menu",
     "comingSoon": "Coming Soon"
   },
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "interests": "Interests",
+    "blogs": "Blogs",
+    "photography": "Photography"
+  },
+  "meta": {
+    "title": "Prasheel - Full Stack Engineer",
+    "desc": "Full Stack Engineer"
+  },
   "banner": {
-    "greeting": "Hi, I'm"
+    "greeting": "Hi, I'm",
+    "text0": "Prasheel Soni",
+    "text1": "Engineer",
+    "text2": "Traveller",
+    "text3": "From India 🇮🇳",
+    "text4": "Living in Estonia 🇪🇪",
+    "ctaLabel": "Resume"
+  },
+  "about": {
+    "name": "Prasheel",
+    "bio": "<b>Hey there! Welcome to my world!! </b>  <p>I'm Prasheel. I'm a Software Engineer by profession and a Traveller & Photographer by passion. </p> <p>I've worked with many multi-national companies and currently I'm working with Bolt, which is headquartered in Tallinn, Estonia, which is where I live. Since I have this job and the privilege to live in Europe for an extended period of time, I often take advantage of this and travel across Europe in different countries. Until now, I have travelled to 21 countries in total and I plan to do more of it. I like photography as well, but I've started to learn it.</p>",
+    "interest0Title": "Travelling & Photography",
+    "interest0Desc": "Travelling is something that I am fond of since I was a child. I believe that travelling allows an individual to expand it's horizon. Travelling allows me to explore different cultures, meet new people, visit new places and above all this, it helps me to become a better human being.",
+    "interest1Title": "Coding",
+    "interest1Desc": "Obviously, I love it. That's why I opted for this profession😉. I was introduced to programming in the early days of my college. Since then I've been switching and hopping between different frameworks and languages be it Android, C#, Java and what not; but now It's all around Javascript.",
+    "interest2Title": "Blogging",
+    "interest2Desc": "Not much to elaborate on this. I'm an avid blogger and still learning to nurture my writing skills",
+    "stat0Label": "Years of Experience",
+    "stat1Label": "Countries travelled",
+    "stat2Label": "Projects delivered"
   },
   "experience": {
     "title": "Experience"

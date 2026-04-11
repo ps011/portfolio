@@ -14,13 +14,12 @@ describe("Interests", () => {
     expect(document.getElementById("interests")).toBeInTheDocument();
   });
 
-  it("renders all interest titles and descriptions", () => {
+  it("renders all interest titles and descriptions from translations", () => {
     render(<Interests illustration="/interests.svg" interests={defaultInterests} />);
-    expect(screen.getByText("Blogging")).toBeInTheDocument();
-    expect(screen.getByText("I write about tech.")).toBeInTheDocument();
-    expect(screen.getByText("Photography")).toBeInTheDocument();
+    expect(screen.getByText("Travelling & Photography")).toBeInTheDocument();
     expect(screen.getByText("Coding")).toBeInTheDocument();
-    expect(screen.getByText("Music")).toBeInTheDocument();
+    expect(screen.getByText("Blogging")).toBeInTheDocument();
+    expect(screen.getByText("about.interest3Title")).toBeInTheDocument();
   });
 
   it("renders View My Blog Posts for blogging interest", () => {

@@ -40,7 +40,7 @@ describe("About", () => {
 
   it("renders name, location, designation, and education", () => {
     render(<About {...defaultProps} />);
-    expect(screen.getByText("John Doe")).toBeInTheDocument();
+    expect(screen.getByText("Prasheel")).toBeInTheDocument();
     expect(screen.getByText("San Francisco")).toBeInTheDocument();
     expect(screen.getByText("Software Engineer")).toBeInTheDocument();
     expect(screen.getByText("MIT")).toBeInTheDocument();
@@ -49,9 +49,9 @@ describe("About", () => {
   it("renders stats", () => {
     render(<About {...defaultProps} />);
     expect(screen.getByText("5")).toBeInTheDocument();
-    expect(screen.getByText("Years")).toBeInTheDocument();
+    expect(screen.getByText("Years of Experience")).toBeInTheDocument();
     expect(screen.getByText("10")).toBeInTheDocument();
-    expect(screen.getByText("Projects")).toBeInTheDocument();
+    expect(screen.getByText("Countries travelled")).toBeInTheDocument();
   });
 
   it("renders profile links", () => {
@@ -62,6 +62,6 @@ describe("About", () => {
 
   it("renders about text directly without interaction", () => {
     render(<About {...defaultProps} />);
-    expect(screen.getByText("I am a software engineer.")).toBeInTheDocument();
+    expect(screen.getByText(/Hey there! Welcome to my world/)).toBeInTheDocument();
   });
 });

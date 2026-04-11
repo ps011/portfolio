@@ -19,6 +19,8 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, data, about }) => {
   const t = useTranslations("common");
+  const tAbout = useTranslations("about");
+  const tMeta = useTranslations("meta");
   const meta = data?.meta;
   const header = data?.header;
   const profiles = about?.profiles;
@@ -41,7 +43,9 @@ const Layout: React.FC<LayoutProps> = ({ children, data, about }) => {
       {meta && (
         <Meta
           {...meta}
-          author={about?.name}
+          title={tMeta("title")}
+          desc={tMeta("desc")}
+          author={tAbout("name")}
           twitterHandle={twitterHandle}
         />
       )}

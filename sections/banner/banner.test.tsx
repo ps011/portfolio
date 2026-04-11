@@ -28,27 +28,25 @@ describe("Banner", () => {
     expect(screen.getByText(/Hi, I'm/i)).toBeInTheDocument();
   });
 
-  it("renders CTA button when ctaLabel is provided", () => {
+  it("renders CTA button with translated label", () => {
     render(<Banner {...defaultProps} />);
-    expect(screen.getByRole("link", { name: /Download CV/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Resume/i })).toBeInTheDocument();
   });
 
   it("CTA link has correct href and download attribute", () => {
     render(<Banner {...defaultProps} />);
-    const link = screen.getByRole("link", { name: /Download CV/i });
+    const link = screen.getByRole("link", { name: /Resume/i });
     expect(link).toHaveAttribute("href", "/cv.pdf");
     expect(link).toHaveAttribute("download");
   });
 
-  it("does not render CTA when ctaLabel is empty", () => {
-    render(<Banner {...defaultProps} ctaLabel="" />);
-    expect(screen.queryByRole("link")).not.toBeInTheDocument();
-  });
-
-  it("renders typewriter element with data attributes", () => {
+  it("renders typewriter element with translated texts", () => {
     render(<Banner {...defaultProps} />);
     const typewrite = document.getElementById("typewrite");
     expect(typewrite).toBeInTheDocument();
-    expect(typewrite).toHaveAttribute("data-type", JSON.stringify(["Developer", "Designer"]));
+    expect(typewrite).toHaveAttribute(
+      "data-type",
+      JSON.stringify(["Prasheel Soni", "Engineer", "Traveller", "From India \ud83c\uddee\ud83c\uddf3", "Living in Estonia \ud83c\uddea\ud83c\uddea"]),
+    );
   });
 });
