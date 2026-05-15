@@ -3,7 +3,7 @@
     "logoUrl": "/images/logos/logo.png",
     "navMap": [
       {
-        "label": "About",
+        "label": "Abouts",
         "href": "#about"
       },
       {
@@ -46,6 +46,7 @@
       "Prasheel Soni",
       "Engineer",
       "Traveller",
+      "woking at Bolt",
       "From India 🇮🇳",
       "Living in Estonia 🇪🇪"
     ],

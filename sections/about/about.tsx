@@ -103,7 +103,7 @@ const About = ({
         {about && (
           <div
             className="prose prose-sm max-w-none px-6 py-5 text-foreground"
-            dangerouslySetInnerHTML={{ __html: t("bio") }}
+            dangerouslySetInnerHTML={{ __html: t.raw("bio") }}
           />
         )}
       </motion.div>
