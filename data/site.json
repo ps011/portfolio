@@ -3,7 +3,7 @@
     "logoUrl": "/images/logos/logo.png",
     "navMap": [
       {
-        "label": "Abouts",
+        "label": "About",
         "href": "#about"
       },
       {
