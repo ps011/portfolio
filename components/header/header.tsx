@@ -16,7 +16,7 @@ import {
 
 export interface HeaderProps {
   logoUrl: string;
-  navMap?: Array<{ href: string; label: string }>;
+  navMap?: Array<{ href: string }>;
 }
 
 export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
@@ -42,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
         navMap.map((item) => (
           <Button key={item.href} variant="neutral" size="default" asChild>
             <Link href={getHref(item.href)} className="no-underline">
-              {navKeyMap[item.href] ? tNav(navKeyMap[item.href]) : item.label}
+              {navKeyMap[item.href] ? tNav(navKeyMap[item.href]) : item.href}
             </Link>
           </Button>
         ))}
@@ -93,7 +93,7 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
                         className="w-full justify-start text-left"
                         asChild
                       >
-                        <Link href={getHref(item.href)}>{navKeyMap[item.href] ? tNav(navKeyMap[item.href]) : item.label}</Link>
+                        <Link href={getHref(item.href)}>{navKeyMap[item.href] ? tNav(navKeyMap[item.href]) : item.href}</Link>
                       </Button>
                     </li>
                   ))}

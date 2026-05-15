@@ -4,13 +4,14 @@ import messages from "../messages/en.json";
 type Messages = Record<string, Record<string, string>>;
 
 export function useTranslations(namespace?: string) {
-  return (key: string, values?: Record<string, unknown>) => {
-    let text: string;
+  const resolve = (key: string): string => {
     if (namespace) {
-      text = (messages as Messages)[namespace]?.[key] ?? `${namespace}.${key}`;
-    } else {
-      text = key;
+      return (messages as Messages)[namespace]?.[key] ?? `${namespace}.${key}`;
     }
+    return key;
+  };
+  const t = (key: string, values?: Record<string, unknown>) => {
+    const text = resolve(key);
     if (values) {
       return Object.entries(values).reduce(
         (str, [k, v]) => str.replace(`{${k}}`, String(v)),
@@ -19,6 +20,8 @@ export function useTranslations(namespace?: string) {
     }
     return text;
   };
+  t.raw = (key: string) => resolve(key);
+  return t;
 }
 
 export function useLocale() {

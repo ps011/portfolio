@@ -28,6 +28,7 @@ const Banner = ({
     t("text2"),
     t("text3"),
     t("text4"),
+    t("text5"),
   ];
   const translatedCtaLabel = t("ctaLabel");
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
