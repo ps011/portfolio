@@ -8,10 +8,8 @@ import Profile from "../../components/profile/profile";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface AboutProps {
-  about: string;
   skills: { logo: string; name: string }[];
   imageUrl: string;
-  name: string;
   location: string;
   designation: string;
   education: string;
@@ -20,8 +18,6 @@ interface AboutProps {
 }
 
 const About = ({
-  name,
-  about,
   imageUrl,
   location,
   designation,
@@ -100,12 +96,10 @@ const About = ({
         </div>
 
         {/* About text */}
-        {about && (
-          <div
-            className="prose prose-sm max-w-none px-6 py-5 text-foreground"
-            dangerouslySetInnerHTML={{ __html: t.raw("bio") }}
-          />
-        )}
+        <div
+          className="prose prose-sm max-w-none px-6 py-5 text-foreground"
+          dangerouslySetInnerHTML={{ __html: t.raw("bio") }}
+        />
       </motion.div>
     </Section>
   );

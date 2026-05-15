@@ -46,7 +46,7 @@ describe("Banner", () => {
     expect(typewrite).toBeInTheDocument();
     expect(typewrite).toHaveAttribute(
       "data-type",
-      JSON.stringify(["Prasheel Soni", "Engineer", "Traveller", "From India \ud83c\uddee\ud83c\uddf3", "Living in Estonia \ud83c\uddea\ud83c\uddea"]),
+      JSON.stringify(["Prasheel Soni", "Engineer", "Traveller", "From India \ud83c\uddee\ud83c\uddf3", "Living in Estonia \ud83c\uddea\ud83c\uddea", "Working at Bolt"]),
     );
   });
 });

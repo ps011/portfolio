@@ -16,7 +16,7 @@ describe("lib/data", () => {
     it("returns about data from data/about.json", async () => {
       const data = await getAboutData();
       expect(data).toBeDefined();
-      expect(data.name).toBe("Prasheel");
+      expect(data.imageUrl).toBeDefined();
       expect(data.skills).toBeDefined();
       expect(Array.isArray(data.skills)).toBe(true);
       expect(data.profiles).toBeDefined();

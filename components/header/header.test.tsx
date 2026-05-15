@@ -6,8 +6,8 @@ jest.mock("@/components/theme-switcher/theme-switcher", () => ({
 }));
 
 const navMap = [
-  { href: "/about", label: "About" },
-  { href: "/blog", label: "Blog" },
+  { href: "/about" },
+  { href: "/blog" },
 ];
 
 describe("Header", () => {
@@ -26,25 +26,32 @@ describe("Header", () => {
     expect(logoLink).toHaveAttribute("href", "/");
   });
 
-  it("renders desktop and mobile nav links", () => {
+  it("renders desktop and mobile nav links (falls back to href when not in navKeyMap)", () => {
     render(<Header logoUrl="/logo.png" navMap={navMap} />);
+    expect(screen.getAllByText("/about").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("/blog").length).toBeGreaterThanOrEqual(1);
+  });
+
+  it("uses navKeyMap translations for known hrefs", () => {
+    render(
+      <Header logoUrl="/logo.png" navMap={[{ href: "#about" }]} />,
+    );
     expect(screen.getAllByText("About").length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText("Blog").length).toBeGreaterThanOrEqual(1);
   });
 
   it("prefixes relative hrefs with a slash", () => {
-    const relativeNavMap = [{ href: "contact", label: "Contact" }];
+    const relativeNavMap = [{ href: "contact" }];
     render(<Header logoUrl="/logo.png" navMap={relativeNavMap} />);
-    const links = screen.getAllByRole("link", { name: "Contact" });
+    const links = screen.getAllByRole("link", { name: "contact" });
     links.forEach((link) => {
       expect(link).toHaveAttribute("href", "/contact");
     });
   });
 
   it("passes through already-absolute hrefs unchanged", () => {
-    const absoluteNavMap = [{ href: "/dev", label: "Dev" }];
+    const absoluteNavMap = [{ href: "/dev" }];
     render(<Header logoUrl="/logo.png" navMap={absoluteNavMap} />);
-    const links = screen.getAllByRole("link", { name: "Dev" });
+    const links = screen.getAllByRole("link", { name: "/dev" });
     links.forEach((link) => {
       expect(link).toHaveAttribute("href", "/dev");
     });
