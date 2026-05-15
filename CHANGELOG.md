@@ -1,4 +1,14 @@
 CHANGELOG
+### [0.5.15](https://github.com/ps011/portfolio/compare/v0.5.14...v0.5.15) (2026-05-15)
+
+
+### Chore
+
+* add CLAUDE.md and fix next-intl test mock ([cbc0d69](https://github.com/ps011/portfolio/commit/cbc0d6906ca60ae346d763b7a8bf5b650a463b36))
+* **data:** drop dead fields from site.json/about.json, add banner.text5 ([bf41482](https://github.com/ps011/portfolio/commit/bf414824c189e234708526f923ab61df5306d4cc))
+* **portfolio:** fix about, remove unnecessary docs ([fc2c55c](https://github.com/ps011/portfolio/commit/fc2c55ccdc26941f3116b8de93ac9113b29948d1))
+* **portfolio:** upgrade nextjs, upgrade node, fix vulns ([35a1fed](https://github.com/ps011/portfolio/commit/35a1fedcf3c85631389e2efaca1fa6adb0edd7dd))
+
 ### [0.5.14](https://github.com/ps011/portfolio/compare/v0.5.13...v0.5.14) (2026-04-11)
 
 
