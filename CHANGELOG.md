@@ -1,4 +1,12 @@
 CHANGELOG
+### [0.5.18](https://github.com/ps011/portfolio/compare/v0.5.17...v0.5.18) (2026-05-16)
+
+
+### Features
+
+* **gallery:** immersive lightbox, masonry layout, EXIF and thumb strip ([e774cdc](https://github.com/ps011/portfolio/commit/e774cdc3c29aa8c538fc09c9ede4617003879dca))
+* **gallery:** skeleton placeholders and lightbox spinner for image loads ([db4744f](https://github.com/ps011/portfolio/commit/db4744f06204ae69e7688ed3b4ecd8b14cdc4021))
+
 ### [0.5.17](https://github.com/ps011/portfolio/compare/v0.5.16...v0.5.17) (2026-05-16)
 
 
