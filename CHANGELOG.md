@@ -1,4 +1,27 @@
 CHANGELOG
+### [0.5.17](https://github.com/ps011/portfolio/compare/v0.5.16...v0.5.17) (2026-05-16)
+
+
+### Features
+
+* **about:** merge interests into about and remove nav link ([99b3b64](https://github.com/ps011/portfolio/commit/99b3b640fba5b116291348c2b1fb174b7c226300))
+* **layout:** add full-width dividers between sections ([87d2136](https://github.com/ps011/portfolio/commit/87d2136c3c56e944802c8d6805376176513da1f2))
+* **layout:** make sections fill viewport under sticky header ([a0c645d](https://github.com/ps011/portfolio/commit/a0c645da79e79e874aef4ec3601e7ef2c5ec3988))
+* **parallax:** add subtle scroll parallax to sections and blog hero ([ea2f3b8](https://github.com/ps011/portfolio/commit/ea2f3b8e34d1045f132513a1adfda2175efb0481))
+* **scroll:** mandatory snap to next section using Lenis Snap ([0969763](https://github.com/ps011/portfolio/commit/0969763546d5eec93dcdef08210600bd20e75b3d))
+
+
+### Bug Fixes
+
+* **parallax:** bump drift and use theme-aware dot color ([2f95db8](https://github.com/ps011/portfolio/commit/2f95db869bd011074303fce9d0144154d439e353))
+* **parallax:** bump section dot opacity to a middle ground ([f713812](https://github.com/ps011/portfolio/commit/f713812562abe248d4c9274321df91cd3118a34f))
+* **parallax:** tone down section dots to match banner grid color ([b76dbf0](https://github.com/ps011/portfolio/commit/b76dbf0fa57b028de18062e892803ee3684f2d4e))
+
+
+### Reverts
+
+* **scroll:** drop section-snap, keep smooth scrolling only ([50adad6](https://github.com/ps011/portfolio/commit/50adad691876e30cb0a904f3eab8184ed2e06806))
+
 ### [0.5.16](https://github.com/ps011/portfolio/compare/v0.5.15...v0.5.16) (2026-05-16)
 
 

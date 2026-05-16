@@ -4,7 +4,6 @@
     "navMap": [
       { "href": "#about" },
       { "href": "#experience" },
-      { "href": "#interests" },
       { "href": "/blog" },
       { "href": "/photo-gallery" }
     ]

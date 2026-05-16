@@ -1,9 +1,9 @@
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, CalendarDays } from "lucide-react";
 import Profile from "../../components/profile/profile";
+import BlogHero from "../../components/blog-hero/blog-hero";
 import { useRouter } from "next/router";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
@@ -123,20 +123,7 @@ const SingleBlogPage = ({ blogPost }: SingleBlogPageProps) => {
                 </div>
 
                 <article className="container mx-auto px-4 pt-6">
-                    {banner && (
-                        <div className="mx-auto mb-8 max-w-5xl overflow-hidden rounded-base border-3 border-border shadow-shadow">
-                            <div className="relative aspect-[16/9] w-full">
-                                <Image
-                                    src={banner}
-                                    alt={`Banner for ${title}`}
-                                    fill
-                                    priority
-                                    sizes="(max-width: 1024px) 100vw, 1024px"
-                                    className="object-cover"
-                                />
-                            </div>
-                        </div>
-                    )}
+                    {banner && <BlogHero src={banner} alt={`Banner for ${title}`} />}
 
                     <header className="mx-auto mb-8 max-w-3xl">
                         <h1 className="mb-5 text-3xl font-bold leading-tight tracking-tight text-foreground md:text-4xl lg:text-5xl">
