@@ -17,11 +17,6 @@ jest.mock("../../sections/experience/experience", () => ({
   default: () => <section data-testid="experience" />,
 }));
 
-jest.mock("../../sections/interests/interests", () => ({
-  __esModule: true,
-  default: () => <section data-testid="interests" />,
-}));
-
 jest.mock("../../sections/blog/blog", () => ({
   __esModule: true,
   default: () => <section data-testid="blog" />,
@@ -35,7 +30,7 @@ const mockBannerData = { headline: "Hello World" };
 
 const mockAboutData = {
   experience: [{ title: "Software Engineer", company: "Acme" }],
-  interests: ["Coding", "Music"],
+  interests: [{ title: "Coding", description: "I code" }],
   countriesVisited: ["US", "CA"],
 };
 
@@ -64,7 +59,6 @@ describe("IndexPage", () => {
     expect(screen.getByTestId("banner")).toBeInTheDocument();
     expect(screen.getByTestId("about")).toBeInTheDocument();
     expect(screen.getByTestId("experience")).toBeInTheDocument();
-    expect(screen.getByTestId("interests")).toBeInTheDocument();
     expect(screen.getByTestId("blog")).toBeInTheDocument();
     expect(screen.getByTestId("map")).toBeInTheDocument();
   });
@@ -89,17 +83,6 @@ describe("IndexPage", () => {
       />,
     );
     expect(screen.queryByTestId("experience")).not.toBeInTheDocument();
-  });
-
-  it("does not render interests section when interests is absent", () => {
-    render(
-      <IndexPage
-        bannerData={mockBannerData}
-        aboutData={{ ...mockAboutData, interests: undefined }}
-        blogs={mockBlogs}
-      />,
-    );
-    expect(screen.queryByTestId("interests")).not.toBeInTheDocument();
   });
 
   it("does not render map when countriesVisited is absent", () => {

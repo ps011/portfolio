@@ -1,11 +1,18 @@
 "use client";
 
-import { Briefcase, MapPin, GraduationCap } from "lucide-react";
+import Link from "next/link";
+import { Briefcase, MapPin, GraduationCap, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Section from "../../components/tailwind/section";
 import Profile from "../../components/profile/profile";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+
+interface Interest {
+  title: string;
+  description: string;
+}
 
 interface AboutProps {
   skills: { logo: string; name: string }[];
@@ -15,7 +22,34 @@ interface AboutProps {
   education: string;
   stats: { count: number; label: string }[];
   profiles: { name: string; url: string }[];
+  interests?: Interest[];
 }
+
+type InterestType = "blogging" | "photography" | "coding" | "other";
+
+const getInterestType = (title: string): InterestType => {
+  const t = title.toLowerCase();
+  if (t.includes("blog") || t.includes("writing")) return "blogging";
+  if (t.includes("photo") || t.includes("camera") || t.includes("image"))
+    return "photography";
+  if (
+    t.includes("coding") ||
+    t.includes("programming") ||
+    t.includes("development")
+  )
+    return "coding";
+  return "other";
+};
+
+const container = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.08 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0 },
+};
 
 const About = ({
   imageUrl,
@@ -24,8 +58,53 @@ const About = ({
   education,
   stats,
   profiles,
+  interests = [],
 }: AboutProps) => {
   const t = useTranslations("about");
+  const tInterests = useTranslations("interests");
+  const tc = useTranslations("common");
+
+  const renderInterestCTA = (interest: Interest) => {
+    const type = getInterestType(interest.title);
+    switch (type) {
+      case "blogging":
+        return (
+          <Button variant="default" size="sm" asChild>
+            <Link href="/blog" className="no-underline">
+              {tInterests("viewBlog")}
+            </Link>
+          </Button>
+        );
+      case "photography":
+        return (
+          <Button variant="default" size="sm" asChild>
+            <Link href="/photo-gallery" className="no-underline">
+              {tInterests("viewGallery")}
+            </Link>
+          </Button>
+        );
+      case "coding":
+        return (
+          <Button variant="default" size="sm" asChild>
+            <Link
+              href="https://github.com/ps011"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="no-underline"
+            >
+              {tInterests("viewGithub")}
+            </Link>
+          </Button>
+        );
+      default:
+        return (
+          <Button variant="neutral" size="sm" disabled>
+            {tc("comingSoon")}
+          </Button>
+        );
+    }
+  };
+
   return (
     <Section container id="about">
       <motion.div
@@ -100,6 +179,43 @@ const About = ({
           className="prose prose-sm max-w-none px-6 py-5 text-foreground"
           dangerouslySetInnerHTML={{ __html: t.raw("bio") }}
         />
+
+        {/* Interests */}
+        {interests.length > 0 && (
+          <div className="border-t-2 border-border px-6 py-5">
+            <div className="mb-4 flex items-center gap-2">
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-base border-2 border-border bg-main text-main-foreground shadow-[2px_2px_0px_0px_#000000]">
+                <Sparkles className="size-4" />
+              </span>
+              <h3 className="text-lg font-bold text-foreground">
+                {t("interestsHeading")}
+              </h3>
+            </div>
+            <motion.ul
+              className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+              variants={container}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-40px" }}
+            >
+              {interests.map((interest, index) => (
+                <motion.li
+                  key={interest.title}
+                  variants={item}
+                  className="flex h-full flex-col rounded-base border-2 border-border bg-secondary-background p-4 shadow-[2px_2px_0px_0px_#000000] transition-transform hover:-translate-x-boxShadowX hover:-translate-y-boxShadowY hover:shadow-[4px_4px_0px_0px_#000000]"
+                >
+                  <h4 className="text-base font-bold text-foreground">
+                    {t(`interest${index}Title`) || interest.title}
+                  </h4>
+                  <p className="mt-2 flex-1 text-sm text-foreground/90">
+                    {t(`interest${index}Desc`) || interest.description}
+                  </p>
+                  <div className="mt-4">{renderInterestCTA(interest)}</div>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </div>
+        )}
       </motion.div>
     </Section>
   );

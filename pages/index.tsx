@@ -1,7 +1,6 @@
 import Banner from "../sections/banner/banner";
 import About from "../sections/about/about";
 import Experience from "../sections/experience/experience";
-import Interests from "../sections/interests/interests";
 import BlogSection from "../sections/blog/blog";
 import { Map } from "../sections/map/map";
 import type { BlogCard } from "../interfaces/blog";
@@ -47,20 +46,18 @@ export default function IndexPage({
   aboutData,
   blogs,
 }: IndexPageProps) {
-  const interests = aboutData?.interests;
   const countriesVisited = aboutData?.countriesVisited;
 
   return (
     <>
       {bannerData && <Banner {...bannerData} />}
-      <div className="mt-12">
+      <div>
         {aboutData && <About {...aboutData} />}
-      {aboutData?.experience?.length > 0 && (
-        <Experience experience={aboutData.experience} />
-      )}
-      {interests && <Interests interests={interests} illustration={"/images/illustrations/interests.svg"} />}
-      {blogs && <BlogSection blogs={blogs} />}
-      {countriesVisited && <Map countriesVisited={countriesVisited} />}
+        {aboutData?.experience?.length > 0 && (
+          <Experience experience={aboutData.experience} />
+        )}
+        {blogs && <BlogSection blogs={blogs} />}
+        {countriesVisited && <Map countriesVisited={countriesVisited} />}
       </div>
     </>
   );
