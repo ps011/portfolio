@@ -1,4 +1,12 @@
 CHANGELOG
+### [0.5.16](https://github.com/ps011/portfolio/compare/v0.5.15...v0.5.16) (2026-05-16)
+
+
+### Features
+
+* **blog:** add /blog index page with search and tag filter ([44f5dd6](https://github.com/ps011/portfolio/commit/44f5dd6219a2705d247dd07bc8e493c5a7756022))
+* **blog:** redesign post detail page and overhaul markdown typography ([33f41aa](https://github.com/ps011/portfolio/commit/33f41aa87d21290d69625ea52f500c37b824144e))
+
 ### [0.5.15](https://github.com/ps011/portfolio/compare/v0.5.14...v0.5.15) (2026-05-15)
 
 

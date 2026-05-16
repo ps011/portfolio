@@ -27,7 +27,7 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
     "#about": "about",
     "#experience": "experience",
     "#interests": "interests",
-    "#blog-posts": "blogs",
+    "/blog": "blogs",
     "/photo-gallery": "photography",
   };
 
