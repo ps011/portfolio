@@ -107,7 +107,7 @@ const Banner = ({
     <motion.section
       ref={sectionRef}
       id="banner"
-      className="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden border-b-2 border-border py-16 md:py-24"
+      className="relative flex min-h-[calc(100svh-74px)] scroll-mt-[74px] flex-col items-center justify-center overflow-hidden border-b-2 border-border py-16 md:min-h-[calc(100svh-106px)] md:scroll-mt-[106px] md:py-24"
       style={{
         backgroundColor: "var(--banner-bg)",
       }}

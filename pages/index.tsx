@@ -51,7 +51,7 @@ export default function IndexPage({
   return (
     <>
       {bannerData && <Banner {...bannerData} />}
-      <div className="mt-12">
+      <div>
         {aboutData && <About {...aboutData} />}
         {aboutData?.experience?.length > 0 && (
           <Experience experience={aboutData.experience} />

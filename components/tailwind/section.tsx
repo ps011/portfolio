@@ -13,7 +13,7 @@ const Section = ({ children, id, background, container, heading }: SectionProps)
     <section
       id={id}
       className={[
-        "mb-16 p-4 md:p-8",
+        "flex min-h-[calc(100svh-74px)] scroll-mt-[74px] flex-col justify-center p-4 md:min-h-[calc(100svh-106px)] md:scroll-mt-[106px] md:p-8",
         background === "primary" ? "bg-secondary-background" : "bg-background",
         container ? "container" : "",
       ]
