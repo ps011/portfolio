@@ -5,7 +5,7 @@
       { "href": "#about" },
       { "href": "#experience" },
       { "href": "#interests" },
-      { "href": "#blog-posts" },
+      { "href": "/blog" },
       { "href": "/photo-gallery" }
     ]
   },
