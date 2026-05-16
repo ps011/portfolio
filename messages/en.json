@@ -30,6 +30,7 @@
   "about": {
     "name": "Prasheel",
     "bio": "<b>Hey there! Welcome to my world!! </b>  <p>I'm Prasheel. I'm a Software Engineer by profession and a Traveller & Photographer by passion. </p> <p>I've worked with many multi-national companies and currently I'm working with Bolt, which is headquartered in Tallinn, Estonia, which is where I live. Since I have this job and the privilege to live in Europe for an extended period of time, I often take advantage of this and travel across Europe in different countries. Until now, I have travelled to 21 countries in total and I plan to do more of it. I like photography as well, but I've started to learn it.</p>",
+    "interestsHeading": "What I'm into",
     "interest0Title": "Travelling & Photography",
     "interest0Desc": "Travelling is something that I am fond of since I was a child. I believe that travelling allows an individual to expand it's horizon. Travelling allows me to explore different cultures, meet new people, visit new places and above all this, it helps me to become a better human being.",
     "interest1Title": "Coding",
