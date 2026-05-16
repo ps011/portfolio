@@ -26,7 +26,7 @@ const BlogHero = ({ src, alt }: BlogHeroProps) => {
   const y = useTransform(
     scrollYProgress,
     [0, 1],
-    prefersReduced ? ["0%", "0%"] : ["-12%", "12%"],
+    prefersReduced ? ["0%", "0%"] : ["-20%", "20%"],
   );
 
   return (
@@ -35,7 +35,7 @@ const BlogHero = ({ src, alt }: BlogHeroProps) => {
       className="mx-auto mb-8 max-w-5xl overflow-hidden rounded-base border-3 border-border shadow-shadow"
     >
       <div className="relative aspect-[16/9] w-full">
-        <motion.div className="absolute inset-x-0 -inset-y-[12%]" style={{ y }}>
+        <motion.div className="absolute inset-x-0 -inset-y-[22%]" style={{ y }}>
           <Image
             src={src}
             alt={alt}

@@ -23,7 +23,7 @@ const Section = ({ children, id, background, container, heading }: SectionProps)
   const bgY = useTransform(
     scrollYProgress,
     [0, 1],
-    prefersReduced ? ["0%", "0%"] : ["-12%", "12%"],
+    prefersReduced ? ["0%", "0%"] : ["-22%", "22%"],
   );
 
   const inner = (
@@ -50,10 +50,10 @@ const Section = ({ children, id, background, container, heading }: SectionProps)
     >
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 -inset-y-1/4 opacity-40 dark:opacity-25"
+        className="pointer-events-none absolute inset-x-0 -inset-y-1/4 text-foreground/30 dark:text-foreground/40"
         style={{
           backgroundImage:
-            "radial-gradient(circle, var(--border) 1px, transparent 1.5px)",
+            "radial-gradient(circle, currentColor 1.25px, transparent 1.75px)",
           backgroundSize: "28px 28px",
           y: bgY,
         }}
