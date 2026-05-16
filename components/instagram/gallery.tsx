@@ -57,6 +57,8 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
     const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
     const [exif, setExif] = useState<ExifData | null>(null);
     const [exifLoading, setExifLoading] = useState(false);
+    const [tilesLoaded, setTilesLoaded] = useState<Record<string, boolean>>({});
+    const [lightboxImageLoaded, setLightboxImageLoaded] = useState(false);
     const touchStartX = useRef<number | null>(null);
     const thumbStripRef = useRef<HTMLDivElement | null>(null);
     const activeThumbRef = useRef<HTMLButtonElement | null>(null);
@@ -156,6 +158,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
 
     useEffect(() => {
         if (lightboxIndex === null) return;
+        setLightboxImageLoaded(false);
         activeThumbRef.current?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
     }, [lightboxIndex]);
 
@@ -174,31 +177,40 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
 
     const current = lightboxIndex !== null ? filteredImages[lightboxIndex] : null;
 
-    const renderTile = (image: GalleryImage, indexInFiltered: number) => (
-        <button
-            key={image.id}
-            type="button"
-            onClick={() => openLightbox(indexInFiltered)}
-            style={{ animationDelay: `${Math.min(indexInFiltered * 25, 600)}ms` }}
-            className="group relative mb-4 block w-full animate-fade-in-up overflow-hidden rounded-base border-2 border-border bg-secondary-background break-inside-avoid text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            aria-label={image.caption || image.location || image.category}
-        >
-            <Image
-                src={image.thumb}
-                alt={image.caption || image.location || image.category}
-                width={800}
-                height={1000}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className="block h-auto w-full transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-            />
-            {(image.caption || image.location) && (
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-black/75 via-black/30 to-transparent p-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                    {image.caption && <p className="text-sm font-medium text-white">{image.caption}</p>}
-                    {image.location && <p className="text-xs text-white/80">{image.location}</p>}
+    const renderTile = (image: GalleryImage, indexInFiltered: number) => {
+        const loaded = tilesLoaded[image.id];
+        return (
+            <button
+                key={image.id}
+                type="button"
+                onClick={() => openLightbox(indexInFiltered)}
+                style={{ animationDelay: `${Math.min(indexInFiltered * 25, 600)}ms` }}
+                className="group relative mb-4 block w-full animate-fade-in-up overflow-hidden rounded-base border-2 border-border bg-secondary-background break-inside-avoid text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                aria-label={image.caption || image.location || image.category}
+            >
+                <div className="relative">
+                    {!loaded && (
+                        <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-neutralGray-200 to-neutralGray-300 dark:from-neutralGray-700 dark:to-neutralGray-800" />
+                    )}
+                    <Image
+                        src={image.thumb}
+                        alt={image.caption || image.location || image.category}
+                        width={800}
+                        height={1000}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        onLoad={() => setTilesLoaded((prev) => (prev[image.id] ? prev : { ...prev, [image.id]: true }))}
+                        className={`block h-auto w-full transition-all duration-500 ease-out group-hover:scale-[1.03] ${loaded ? "opacity-100" : "opacity-0"}`}
+                    />
                 </div>
-            )}
-        </button>
-    );
+                {(image.caption || image.location) && (
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-black/75 via-black/30 to-transparent p-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                        {image.caption && <p className="text-sm font-medium text-white">{image.caption}</p>}
+                        {image.location && <p className="text-xs text-white/80">{image.location}</p>}
+                    </div>
+                )}
+            </button>
+        );
+    };
 
     return (
         <div className="bg-brandMutedYellow-100 dark:bg-brandMutedYellow-800 min-h-screen">
@@ -307,12 +319,18 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                         className="relative flex h-full w-full items-center justify-center px-4 pb-40 pt-24 sm:px-20"
                         onClick={(e) => e.stopPropagation()}
                     >
+                        {!lightboxImageLoaded && (
+                            <div className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                                <div className="size-12 animate-spin rounded-full border-4 border-white/30 border-t-white" />
+                            </div>
+                        )}
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                             key={current.id}
                             src={current.src}
                             alt={current.caption || current.location || current.category}
-                            className="max-h-full max-w-full object-contain animate-fade-in-up"
+                            onLoad={() => setLightboxImageLoaded(true)}
+                            className={`max-h-full max-w-full object-contain transition-opacity duration-300 ${lightboxImageLoaded ? "animate-fade-in-up opacity-100" : "opacity-0"}`}
                         />
                     </div>
 
