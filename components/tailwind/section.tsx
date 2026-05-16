@@ -53,7 +53,7 @@ const Section = ({ children, id, background, container, heading }: SectionProps)
         className="pointer-events-none absolute inset-x-0 -inset-y-1/4"
         style={{
           backgroundImage:
-            "radial-gradient(circle, var(--banner-grid) 1px, transparent 1.5px)",
+            "radial-gradient(circle, var(--section-dot) 1px, transparent 1.5px)",
           backgroundSize: "28px 28px",
           y: bgY,
         }}

@@ -20,6 +20,7 @@
     --muted-foreground: #333333;
     --banner-bg: #eff6ff;
     --banner-grid: rgba(0,0,0,0.06);
+    --section-dot: rgba(0,0,0,0.14);
   }
   html,
   body {
@@ -42,6 +43,7 @@
     --muted-foreground: #B8B8B8;
     --banner-bg: #1e3a8a;
     --banner-grid: rgba(255,255,255,0.08);
+    --section-dot: rgba(255,255,255,0.18);
   }
 }
 
