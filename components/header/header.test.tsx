@@ -7,7 +7,7 @@ jest.mock("@/components/theme-switcher/theme-switcher", () => ({
 
 const navMap = [
   { href: "/about" },
-  { href: "/blog" },
+  { href: "/random" },
 ];
 
 describe("Header", () => {
@@ -29,7 +29,7 @@ describe("Header", () => {
   it("renders desktop and mobile nav links (falls back to href when not in navKeyMap)", () => {
     render(<Header logoUrl="/logo.png" navMap={navMap} />);
     expect(screen.getAllByText("/about").length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText("/blog").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("/random").length).toBeGreaterThanOrEqual(1);
   });
 
   it("uses navKeyMap translations for known hrefs", () => {

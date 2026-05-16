@@ -53,7 +53,17 @@
     "loading": "ब्लॉग पोस्ट लोड हो रहा है...",
     "prevSlide": "पिछली स्लाइड",
     "nextSlide": "अगली स्लाइड",
-    "goToSlide": "स्लाइड {number} पर जाएं"
+    "goToSlide": "स्लाइड {number} पर जाएं",
+    "backToIndex": "सभी ब्लॉग पर वापस जाएं"
+  },
+  "blogIndex": {
+    "title": "ब्लॉग",
+    "subtitle": "यात्रा, तकनीक और बीच की हर चीज़ पर विचार।",
+    "searchPlaceholder": "ब्लॉग खोजें…",
+    "searchLabel": "ब्लॉग खोजें",
+    "allTag": "सभी",
+    "noResults": "आपकी खोज से मेल खाता कोई ब्लॉग नहीं है।",
+    "pageTitle": "ब्लॉग | प्रशील सोनी"
   },
   "footer": {
     "thanks": "आने के लिए धन्यवाद!",

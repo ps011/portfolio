@@ -53,7 +53,17 @@
     "loading": "Loading blog post...",
     "prevSlide": "Previous slide",
     "nextSlide": "Next slide",
-    "goToSlide": "Go to slide {number}"
+    "goToSlide": "Go to slide {number}",
+    "backToIndex": "Back to all blogs"
+  },
+  "blogIndex": {
+    "title": "Blog",
+    "subtitle": "Thoughts on travel, tech, and the in-between.",
+    "searchPlaceholder": "Search blogs…",
+    "searchLabel": "Search blogs",
+    "allTag": "All",
+    "noResults": "No blogs match your search.",
+    "pageTitle": "Blog | Prasheel Soni"
   },
   "footer": {
     "thanks": "Thank you for stopping by!",
