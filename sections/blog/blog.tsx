@@ -31,6 +31,25 @@ const groupBy = (xs: BlogCardData[], f: (blog: BlogCardData) => string) =>
     {} as Record<string, BlogCardData[]>,
   );
 
+const SECTION_ORDER = ["blogs", "experiments"];
+
+const sortSections = (keys: string[]) =>
+  [...keys].sort((a, b) => {
+    const ai = SECTION_ORDER.indexOf(a);
+    const bi = SECTION_ORDER.indexOf(b);
+    if (ai === -1 && bi === -1) return a.localeCompare(b);
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+  });
+
+const itemBasis = (count: number) => {
+  if (count >= 5) return "md:basis-1/2 lg:basis-1/5";
+  if (count === 4) return "md:basis-1/2 lg:basis-1/4";
+  if (count === 3) return "md:basis-1/2 lg:basis-1/3";
+  return "md:basis-1/2 lg:basis-1/3";
+};
+
 function BlogCarousel({ blogs }: { blogs: BlogCardData[] }) {
   const t = useTranslations("blog");
   const [api, setApi] = useState<CarouselApi>();
@@ -65,7 +84,7 @@ function BlogCarousel({ blogs }: { blogs: BlogCardData[] }) {
           {blogs.map((blog, index) => (
             <CarouselItem
               key={blog.link ?? index}
-              className="md:basis-1/2 lg:basis-1/5"
+              className={itemBasis(blogs.length)}
             >
               <BlogCard
                 {...blog}
@@ -129,7 +148,7 @@ const Blog = ({ blogs }: { blogs: BlogCardData[] }) => {
 
   return (
     <>
-      {Object.keys(result).map((sectionName) => (
+      {sortSections(Object.keys(result)).map((sectionName) => (
         <Section
           container
           key={sectionName}

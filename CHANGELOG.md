@@ -1,4 +1,16 @@
 CHANGELOG
+### [0.5.19](https://github.com/ps011/portfolio/compare/v0.5.18...v0.5.19) (2026-05-20)
+
+
+### Features
+
+* **experiments:** add buying decision maker to portfolio ([479a288](https://github.com/ps011/portfolio/commit/479a28892fbf0d113506815601c20b4a6aac695d))
+
+
+### Bug Fixes
+
+* **blog:** fix card width and section ordering for experiments ([cea4436](https://github.com/ps011/portfolio/commit/cea4436962d9d1f82c50965fd74ddb8e4ee832f2))
+
 ### [0.5.18](https://github.com/ps011/portfolio/compare/v0.5.17...v0.5.18) (2026-05-16)
 
 
