@@ -1,4 +1,11 @@
 CHANGELOG
+### [0.5.20](https://github.com/ps011/portfolio/compare/v0.5.19...v0.5.20) (2026-05-21)
+
+
+### Features
+
+* **experiments:** add meeting notes taker to experiments section ([f44cfaf](https://github.com/ps011/portfolio/commit/f44cfafbb662d4dd33edc0c0c7b5c78a639dac53))
+
 ### [0.5.19](https://github.com/ps011/portfolio/compare/v0.5.18...v0.5.19) (2026-05-20)
 
 
