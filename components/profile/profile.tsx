@@ -5,14 +5,33 @@ import X from "../icons/x";
 import Facebook from "../icons/facebook";
 import Instagram from "../icons/instagram";
 import Stackoverflow from "../icons/stackoverflow";
+import { trackClick } from "@/lib/gtag";
+
+type ProfileAnalytics =
+    | false
+    | {
+        section?: string;
+        contentType?: string;
+        itemId?: string;
+        itemName?: string;
+        linkText?: string;
+    };
 
 interface ProfileProps {
     url: string;
     name: string;
     className?: string;
+    analytics?: ProfileAnalytics;
+    onClick?: () => void;
 }
 
-const Profile = ({url, name, className}: ProfileProps) => {
+const Profile = ({
+    url,
+    name,
+    className,
+    analytics,
+    onClick,
+}: ProfileProps) => {
 
     const getProfileIcon = (name: string) => {
         switch (name) {
@@ -34,6 +53,20 @@ const Profile = ({url, name, className}: ProfileProps) => {
         }
     };
 
+    const handleClick = () => {
+        if (analytics !== false) {
+            trackClick({
+                section: analytics?.section || "profile",
+                content_type: analytics?.contentType || "profile",
+                item_id: analytics?.itemId || name,
+                item_name: analytics?.itemName || name,
+                link_url: url,
+                link_text: analytics?.linkText || `${name} profile`,
+            });
+        }
+        onClick?.();
+    };
+
     return (
         <span className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-base border-2 border-border bg-main p-2 shadow-shadow transition-shadow hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none">
         <Link
@@ -42,6 +75,7 @@ const Profile = ({url, name, className}: ProfileProps) => {
             rel="noopener noreferrer"
             aria-label={`${name} profile`}
             className={`${className || ""} text-main-foreground inline-block`}
+            onClick={handleClick}
         >
             <span className="block w-6 h-6" aria-hidden="true">
                 {getProfileIcon(name)}

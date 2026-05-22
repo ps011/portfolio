@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import BlogCard from "../../components/blog-card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { trackSearch, trackSelectItem } from "@/lib/gtag";
 import type { BlogCard as BlogCardData } from "../../interfaces/blog";
 
 const ALL_TAG = "all";
@@ -43,6 +44,24 @@ const BlogIndex = ({ blogs }: { blogs: BlogCardData[] }) => {
     });
   }, [blogs, deferredQuery, activeTag]);
 
+  const handleSearchChange = (nextQuery: string) => {
+    setQuery(nextQuery);
+    trackSearch({
+      section: "blog_index",
+      search_term: nextQuery.trim(),
+    });
+  };
+
+  const handleTagChange = (tag: string) => {
+    setActiveTag(tag);
+    trackSelectItem({
+      section: "blog_index",
+      content_type: "tag",
+      item_id: tag,
+      item_name: tag === ALL_TAG ? t("allTag") : tag,
+    });
+  };
+
   return (
     <div className="bg-brandMutedYellow-100 dark:bg-brandMutedYellow-800 min-h-screen">
       <main className="container mx-auto px-6 py-12">
@@ -68,7 +87,7 @@ const BlogIndex = ({ blogs }: { blogs: BlogCardData[] }) => {
               id="blog-search"
               type="search"
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => handleSearchChange(e.target.value)}
               placeholder={t("searchPlaceholder")}
               className="h-11 w-full rounded-base border-3 border-border bg-background pl-10 pr-4 text-base text-foreground shadow-shadow placeholder:text-foreground/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             />
@@ -81,7 +100,7 @@ const BlogIndex = ({ blogs }: { blogs: BlogCardData[] }) => {
               key={ALL_TAG}
               variant={activeTag === ALL_TAG ? "default" : "neutral"}
               size="sm"
-              onClick={() => setActiveTag(ALL_TAG)}
+              onClick={() => handleTagChange(ALL_TAG)}
             >
               {t("allTag")}
             </Button>
@@ -90,7 +109,7 @@ const BlogIndex = ({ blogs }: { blogs: BlogCardData[] }) => {
                 key={tag}
                 variant={activeTag === tag ? "default" : "neutral"}
                 size="sm"
-                onClick={() => setActiveTag(tag)}
+                onClick={() => handleTagChange(tag)}
               >
                 {tag}
               </Button>

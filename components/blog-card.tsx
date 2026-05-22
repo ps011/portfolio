@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { trackSelectContent } from "@/lib/gtag";
 
 interface BlogCardProps {
   thumbnail: string;
@@ -38,6 +39,8 @@ const BlogCard = ({
 
   const getLink = (href: string) =>
     href.startsWith("http") ? href : `/blog/${href}`;
+
+  const href = getLink(link);
 
   return (
     <motion.div
@@ -81,7 +84,22 @@ const BlogCard = ({
         </CardContent>
         <CardFooter className="pt-0">
           <Button variant="default" size="default" className="w-full" asChild>
-            <Link href={getLink(link)} target="_blank" rel="noopener noreferrer" className="no-underline">
+            <Link
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="no-underline"
+              onClick={() =>
+                trackSelectContent({
+                  section: "blog_card",
+                  content_type: "blog",
+                  item_id: link,
+                  item_name: title,
+                  link_url: href,
+                  link_text: t("readMore"),
+                })
+              }
+            >
               {t("readMore")}
             </Link>
           </Button>

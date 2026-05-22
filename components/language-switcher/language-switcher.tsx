@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { trackClick } from "@/lib/gtag";
 
 export const LanguageSwitcher = () => {
   const { locales, locale: currentLocale, asPath } = useRouter();
@@ -14,6 +15,16 @@ export const LanguageSwitcher = () => {
           href={asPath}
           locale={locale}
           aria-current={locale === currentLocale ? "true" : undefined}
+          onClick={() =>
+            trackClick({
+              section: "footer",
+              content_type: "language",
+              item_id: locale,
+              item_name: locale.toUpperCase(),
+              link_url: asPath,
+              link_text: locale.toUpperCase(),
+            })
+          }
           className={`text-sm font-medium transition-colors ${
             locale === currentLocale
               ? "text-foreground underline"

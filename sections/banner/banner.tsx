@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { trackClick } from "@/lib/gtag";
 import { useTranslations } from "next-intl";
 
 interface BannerProps {
@@ -174,6 +175,16 @@ const Banner = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="no-underline"
+                onClick={() =>
+                  trackClick({
+                    section: "banner",
+                    content_type: "cta",
+                    item_id: "banner_cta",
+                    item_name: translatedCtaLabel,
+                    link_url: ctaUrl,
+                    link_text: translatedCtaLabel,
+                  })
+                }
               >
                 {translatedCtaLabel}
                 <ArrowUpRight className="size-4 shrink-0" aria-hidden />
