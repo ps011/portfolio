@@ -4,7 +4,7 @@ import { useDeferredValue, useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { useTranslations } from "next-intl";
 import BlogCard from "../../components/blog-card";
-import { Button } from "@/components/ui/button";
+import { Button } from "@prasheel/ui";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import type { BlogCard as BlogCardData } from "../../interfaces/blog";

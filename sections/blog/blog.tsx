@@ -6,12 +6,12 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import BlogCard from "../../components/blog-card";
 import Section from "../../components/tailwind/section";
 import {
+  Button,
   Carousel,
   CarouselContent,
   CarouselItem,
   type CarouselApi,
-} from "@/components/ui/carousel";
-import { Button } from "@/components/ui/button";
+} from "@prasheel/ui";
 import { cn } from "@/lib/utils";
 import { BlogCard as BlogCardData } from "../../interfaces/blog";
 

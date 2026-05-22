@@ -6,10 +6,14 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Section from "../../components/tailwind/section";
 import Profile from "../../components/profile/profile";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Badge,
+  Button,
+  Card,
+} from "@prasheel/ui";
 
 interface Interest {
   title: string;

@@ -13,7 +13,7 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import Section from "../../components/tailwind/section";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@prasheel/ui";
 
 const ComposableMapComponent = ComposableMap as React.ComponentType<{
   projection?: string;

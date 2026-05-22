@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Button } from "@/components/ui/button";
+import { Button } from "@prasheel/ui";
 
 export const LanguageSwitcher = () => {
   const { locales, locale: currentLocale, asPath } = useRouter();

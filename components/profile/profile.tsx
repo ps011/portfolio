@@ -5,7 +5,7 @@ import X from "../icons/x";
 import Facebook from "../icons/facebook";
 import Instagram from "../icons/instagram";
 import Stackoverflow from "../icons/stackoverflow";
-import { Button } from "@/components/ui/button";
+import { Button } from "@prasheel/ui";
 import { cn } from "@/lib/utils";
 
 interface ProfileProps {

@@ -3,7 +3,7 @@ import Image from "next/image";
 import exifr from "exifr";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { GalleryImage } from "../../interfaces/photo-gallery";
-import { Button } from "@/components/ui/button";
+import { Button } from "@prasheel/ui";
 
 interface ExifData {
     camera?: string;

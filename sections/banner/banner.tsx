@@ -9,7 +9,7 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@prasheel/ui";
 import { useTranslations } from "next-intl";
 
 interface BannerProps {

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@prasheel/ui";
 
 export default function MarkdownRenderer({ content }: { content: string }) {
   const [markdown, setMarkdown] = useState<string>("");

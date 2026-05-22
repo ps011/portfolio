@@ -4,15 +4,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { ThemeSwitcher } from "@/components/theme-switcher/theme-switcher";
-import { Button } from "@/components/ui/button";
 import {
+  Button,
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
+  ThemeSwitcher,
+} from "@prasheel/ui";
 
 export interface HeaderProps {
   logoUrl: string;

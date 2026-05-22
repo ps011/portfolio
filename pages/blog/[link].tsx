@@ -6,8 +6,7 @@ import Profile from "../../components/profile/profile";
 import BlogHero from "../../components/blog-hero/blog-hero";
 import { useRouter } from "next/router";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Button, Card, CardContent } from "@prasheel/ui";
 import { getSiteData, getAboutData, getBlogs, getBlogByLink } from "../../lib/data";
 
 const MarkdownRenderer = dynamic(() => import("../../components/markdown-renderer/markdown-renderer"), { ssr: true });
