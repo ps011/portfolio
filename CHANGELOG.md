@@ -1,4 +1,11 @@
 CHANGELOG
+### [0.5.23](https://github.com/ps011/portfolio/compare/v0.5.22...v0.5.23) (2026-05-22)
+
+
+### Features
+
+* **analytics:** add GA4 event tracking ([46c7b1e](https://github.com/ps011/portfolio/commit/46c7b1e86ef9e7f6588a284bee6970d8ccab704e))
+
 ### [0.5.22](https://github.com/ps011/portfolio/compare/v0.5.21...v0.5.22) (2026-05-22)
 
 
