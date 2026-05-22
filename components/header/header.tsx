@@ -4,15 +4,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { ThemeSwitcher } from "@/components/theme-switcher/theme-switcher";
-import { Button } from "@/components/ui/button";
 import {
+  Button,
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
+  ThemeSwitcher,
+} from "@prasheel/ui";
 
 export interface HeaderProps {
   logoUrl: string;
@@ -70,14 +70,16 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
 
         <div className="flex lg:hidden">
           <Sheet>
-            <SheetTrigger
-              asChild
-              aria-label={t("openNav")}
-              className="min-h-[44px] min-w-[44px] rounded-base border-2 border-border bg-main-foreground p-2.5 text-main shadow-shadow hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
-            >
-              <button type="button">
+            <SheetTrigger asChild>
+              <Button
+                type="button"
+                variant="neutral"
+                size="icon"
+                aria-label={t("openNav")}
+                className="bg-main-foreground text-main"
+              >
                 <Menu className="size-6" />
-              </button>
+              </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[min(100vw-2rem,320px)]">
               <SheetHeader>

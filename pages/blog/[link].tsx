@@ -6,7 +6,7 @@ import Profile from "../../components/profile/profile";
 import BlogHero from "../../components/blog-hero/blog-hero";
 import { useRouter } from "next/router";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
+import { Button, Card, CardContent } from "@prasheel/ui";
 import { getSiteData, getAboutData, getBlogs, getBlogByLink } from "../../lib/data";
 
 const MarkdownRenderer = dynamic(() => import("../../components/markdown-renderer/markdown-renderer"), { ssr: true });
@@ -129,21 +129,23 @@ const SingleBlogPage = ({ blogPost }: SingleBlogPageProps) => {
                         <h1 className="mb-5 text-3xl font-bold leading-tight tracking-tight text-foreground md:text-4xl lg:text-5xl">
                             {title}
                         </h1>
-                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-base border-3 border-border bg-secondary-background px-4 py-3 shadow-shadow">
-                            <a
-                                href={profileLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-sm font-semibold text-foreground underline decoration-2 underline-offset-2 hover:opacity-70"
-                            >
-                                {author}
-                            </a>
-                            <span aria-hidden="true" className="text-muted-foreground">•</span>
-                            <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
-                                <CalendarDays className="size-4" />
-                                {formatDate(date, dateLocale)}
-                            </span>
-                        </div>
+                        <Card className="bg-secondary-background">
+                            <CardContent className="flex flex-wrap items-center gap-x-4 gap-y-2 p-4">
+                                <a
+                                    href={profileLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-sm font-semibold text-foreground underline decoration-2 underline-offset-2 hover:opacity-70"
+                                >
+                                    {author}
+                                </a>
+                                <span aria-hidden="true" className="text-muted-foreground">•</span>
+                                <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+                                    <CalendarDays className="size-4" />
+                                    {formatDate(date, dateLocale)}
+                                </span>
+                            </CardContent>
+                        </Card>
                     </header>
 
                     <div className="mx-auto max-w-3xl">
@@ -151,21 +153,23 @@ const SingleBlogPage = ({ blogPost }: SingleBlogPageProps) => {
                     </div>
 
                     <footer className="mx-auto mt-12 max-w-3xl">
-                        <div className="rounded-base border-3 border-border bg-secondary-background p-5 shadow-shadow">
-                            <p className="mb-3 text-sm font-bold uppercase tracking-wide text-foreground">
-                                {t("sharePost")}
-                            </p>
-                            <div className="flex items-center gap-3">
-                                {shareArticleList.map((share) => (
-                                    <Profile
-                                        key={share.name}
-                                        url={share.url}
-                                        name={share.name}
-                                        className="w-8"
-                                    />
-                                ))}
-                            </div>
-                        </div>
+                        <Card className="bg-secondary-background">
+                            <CardContent className="p-5">
+                                <p className="mb-3 text-sm font-bold uppercase tracking-wide text-foreground">
+                                    {t("sharePost")}
+                                </p>
+                                <div className="flex items-center gap-3">
+                                    {shareArticleList.map((share) => (
+                                        <Profile
+                                            key={share.name}
+                                            url={share.url}
+                                            name={share.name}
+                                            className="w-8"
+                                        />
+                                    ))}
+                                </div>
+                            </CardContent>
+                        </Card>
                     </footer>
                 </article>
             </div>

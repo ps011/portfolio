@@ -4,7 +4,8 @@ import { useDeferredValue, useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { useTranslations } from "next-intl";
 import BlogCard from "../../components/blog-card";
-import { Button } from "@/components/ui/button";
+import { Button } from "@prasheel/ui";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import type { BlogCard as BlogCardData } from "../../interfaces/blog";
 
@@ -44,7 +45,7 @@ const BlogIndex = ({ blogs }: { blogs: BlogCardData[] }) => {
   }, [blogs, deferredQuery, activeTag]);
 
   return (
-    <div className="bg-brandMutedYellow-100 dark:bg-brandMutedYellow-800 min-h-screen">
+    <div className="min-h-screen bg-background">
       <main className="container mx-auto px-6 py-12">
         <header className="mb-10 text-center">
           <h1 className="mb-4 text-2xl font-bold text-foreground md:text-4xl lg:text-5xl">
@@ -64,13 +65,13 @@ const BlogIndex = ({ blogs }: { blogs: BlogCardData[] }) => {
               aria-hidden="true"
               className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-foreground/70"
             />
-            <input
+            <Input
               id="blog-search"
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={t("searchPlaceholder")}
-              className="h-11 w-full rounded-base border-3 border-border bg-background pl-10 pr-4 text-base text-foreground shadow-shadow placeholder:text-foreground/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="pl-10"
             />
           </div>
         </div>
@@ -117,7 +118,7 @@ const BlogIndex = ({ blogs }: { blogs: BlogCardData[] }) => {
             ))}
           </div>
         ) : (
-          <p className="mt-12 text-center text-neutralGray-700 dark:text-neutralGray-300">
+          <p className="mt-12 text-center text-muted-foreground">
             {t("noResults")}
           </p>
         )}

@@ -13,6 +13,7 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import Section from "../../components/tailwind/section";
+import { Badge } from "@prasheel/ui";
 
 const ComposableMapComponent = ComposableMap as React.ComponentType<{
   projection?: string;
@@ -104,10 +105,10 @@ const Map = ({ countriesVisited }: { countriesVisited: string[] }) => {
           <h3 className="text-2xl font-bold text-foreground">
             How much of the World I&apos;ve seen?
           </h3>
-          <span className="inline-flex shrink-0 items-center rounded-base border-2 border-border bg-main px-3 py-1.5 text-sm font-bold text-main-foreground shadow-[2px_2px_0px_0px_#000000]">
+          <Badge className="shrink-0 px-3 py-1.5 text-sm font-bold shadow-shadow-sm">
             {countriesVisited.length}{" "}
             {countriesVisited.length === 1 ? "country" : "countries"}
-          </span>
+          </Badge>
         </div>
 
         {/* Map */}
@@ -166,12 +167,12 @@ const Map = ({ countriesVisited }: { countriesVisited: string[] }) => {
         {/* Legend */}
         <div className="mt-4 flex items-center justify-center gap-6">
           <div className="flex items-center gap-2">
-            <span className="block h-3.5 w-5 rounded-sm border-2 border-border bg-main shadow-[1px_1px_0px_0px_#000000]" />
+            <span className="block h-3.5 w-5 rounded-sm border-2 border-border bg-main shadow-shadow-sm" />
             <span className="text-sm font-medium text-foreground">Visited</span>
           </div>
           <div className="flex items-center gap-2">
             <span
-              className="block h-3.5 w-5 rounded-sm border-2 border-border shadow-[1px_1px_0px_0px_#000000]"
+              className="block h-3.5 w-5 rounded-sm border-2 border-border shadow-shadow-sm"
               style={{ backgroundColor: mapColors.unvisited }}
             />
             <span className="text-sm font-medium text-foreground">
@@ -184,7 +185,7 @@ const Map = ({ countriesVisited }: { countriesVisited: string[] }) => {
       {/* Tooltip */}
       {tooltip.visible && (
         <div
-          className="pointer-events-none fixed z-50 rounded-base border-2 border-border bg-main px-2.5 py-1 text-xs font-bold text-main-foreground shadow-[2px_2px_0px_0px_#000000]"
+          className="pointer-events-none fixed z-50 rounded-base border-2 border-border bg-main px-2.5 py-1 text-xs font-bold text-main-foreground shadow-shadow-sm"
           style={{ left: tooltip.x + 14, top: tooltip.y - 40 }}
         >
           {tooltip.name}

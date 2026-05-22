@@ -4,13 +4,13 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Section from "../../components/tailwind/section";
-import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
+  Badge,
+} from "@prasheel/ui";
 
 export interface ExperienceItem {
   logo: string;

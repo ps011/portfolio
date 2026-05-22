@@ -5,14 +5,14 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import {
+  Badge,
+  Button,
   Card as UICard,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+} from "@prasheel/ui";
 
 interface BlogCardProps {
   thumbnail: string;
