@@ -1,4 +1,17 @@
 CHANGELOG
+### [0.5.22](https://github.com/ps011/portfolio/compare/v0.5.21...v0.5.22) (2026-05-22)
+
+
+### Bug Fixes
+
+* **build:** preserve Vercel preview comments build ([c16497c](https://github.com/ps011/portfolio/commit/c16497cd38577e2eac541468c12e825709e04f6d))
+
+
+### Refactors
+
+* **ui:** import design system primitives directly ([9208484](https://github.com/ps011/portfolio/commit/92084843325596f398e0b438d4f4da85c18d8fff))
+* **ui:** migrate portfolio to design system primitives ([6489baf](https://github.com/ps011/portfolio/commit/6489baf1a8d33d3daea016d482ed5600627d8216))
+
 ### [0.5.21](https://github.com/ps011/portfolio/compare/v0.5.20...v0.5.21) (2026-05-22)
 
 ### [0.5.20](https://github.com/ps011/portfolio/compare/v0.5.19...v0.5.20) (2026-05-21)

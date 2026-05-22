@@ -6,12 +6,12 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import BlogCard from "../../components/blog-card";
 import Section from "../../components/tailwind/section";
 import {
+  Button,
   Carousel,
   CarouselContent,
   CarouselItem,
   type CarouselApi,
-} from "@/components/ui/carousel";
-import { Button } from "@/components/ui/button";
+} from "@prasheel/ui";
 import { cn } from "@/lib/utils";
 import { BlogCard as BlogCardData } from "../../interfaces/blog";
 
@@ -116,7 +116,7 @@ function BlogCarousel({ blogs }: { blogs: BlogCardData[] }) {
                 onClick={() => api?.scrollTo(i)}
                 aria-label={t("goToSlide", { number: i + 1 })}
                 className={cn(
-                  "h-2.5 rounded-full border-2 border-border shadow-[1px_1px_0px_0px_#000000] transition-all duration-200",
+                  "h-2.5 rounded-full border-2 border-border shadow-shadow-sm transition-all duration-200",
                   i === current ? "w-6 bg-main" : "w-2.5 bg-secondary-background",
                 )}
               />
