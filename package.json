@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
-    "@prasheel/ui": "github:ps011/prasheel-ui#v0.1.2",
+    "@prasheel/ui": "git+https://github.com/ps011/prasheel-ui.git#v0.1.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-dialog": "^1.1.15",
