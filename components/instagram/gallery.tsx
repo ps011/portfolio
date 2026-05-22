@@ -4,6 +4,7 @@ import exifr from "exifr";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { GalleryImage } from "../../interfaces/photo-gallery";
 import { Button } from "@prasheel/ui";
+import { trackSelectContent, trackSelectItem } from "@/lib/gtag";
 
 interface ExifData {
     camera?: string;
@@ -55,16 +56,57 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
         [galleryItems],
     );
 
-    const openLightbox = useCallback((index: number) => setLightboxIndex(index), []);
-    const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+    const trackPhotoAction = useCallback((action: string, image?: GalleryImage) => {
+        trackSelectItem({
+            section: "photo_gallery",
+            content_type: "photo",
+            item_id: image?.id || action,
+            item_name: image?.caption || image?.location || image?.category || action,
+            action,
+        });
+    }, []);
+
+    const handleFilterChange = useCallback((category: string) => {
+        setActiveFilter(category);
+        trackSelectItem({
+            section: "photo_gallery",
+            content_type: "category",
+            item_id: category,
+            item_name: category === "all" ? "All" : category,
+        });
+    }, []);
+
+    const openLightbox = useCallback((index: number) => {
+        const image = filteredImages[index];
+        trackSelectContent({
+            section: "photo_gallery",
+            content_type: "photo",
+            item_id: image?.id || `photo_${index + 1}`,
+            item_name: image?.caption || image?.location || image?.category || `Photo ${index + 1}`,
+        });
+        setLightboxIndex(index);
+    }, [filteredImages]);
+
+    const closeLightbox = useCallback(() => {
+        if (lightboxIndex !== null) {
+            trackPhotoAction("close_lightbox", filteredImages[lightboxIndex]);
+        }
+        setLightboxIndex(null);
+    }, [filteredImages, lightboxIndex, trackPhotoAction]);
 
     const showPrev = useCallback(() => {
-        setLightboxIndex((i) => (i === null ? null : (i - 1 + filteredImages.length) % filteredImages.length));
-    }, [filteredImages.length]);
+        if (lightboxIndex === null || filteredImages.length === 0) return;
+        const nextIndex = (lightboxIndex - 1 + filteredImages.length) % filteredImages.length;
+        trackPhotoAction("previous_lightbox_photo", filteredImages[nextIndex]);
+        setLightboxIndex(nextIndex);
+    }, [filteredImages, lightboxIndex, trackPhotoAction]);
 
     const showNext = useCallback(() => {
-        setLightboxIndex((i) => (i === null ? null : (i + 1) % filteredImages.length));
-    }, [filteredImages.length]);
+        if (lightboxIndex === null || filteredImages.length === 0) return;
+        const nextIndex = (lightboxIndex + 1) % filteredImages.length;
+        trackPhotoAction("next_lightbox_photo", filteredImages[nextIndex]);
+        setLightboxIndex(nextIndex);
+    }, [filteredImages, lightboxIndex, trackPhotoAction]);
 
     useEffect(() => {
         setLightboxIndex(null);
@@ -210,7 +252,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                             key={cat}
                             variant={activeFilter === cat ? "default" : "neutral"}
                             size="sm"
-                            onClick={() => setActiveFilter(cat)}
+                            onClick={() => handleFilterChange(cat)}
                         >
                             {cat === "all" ? "All" : cat}
                         </Button>
@@ -344,7 +386,11 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                                             key={img.id}
                                             ref={isActive ? activeThumbRef : undefined}
                                             type="button"
-                                            onClick={(e) => { e.stopPropagation(); setLightboxIndex(i); }}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                trackPhotoAction("thumbnail_select", img);
+                                                setLightboxIndex(i);
+                                            }}
                                             className={`relative h-14 w-20 shrink-0 overflow-hidden rounded transition-all duration-200 ${isActive ? "ring-2 ring-white opacity-100 scale-105" : "opacity-50 hover:opacity-90"}`}
                                             aria-label={`View image ${i + 1}`}
                                             aria-current={isActive}

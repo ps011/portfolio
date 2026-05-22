@@ -7,6 +7,7 @@ import BlogHero from "../../components/blog-hero/blog-hero";
 import { useRouter } from "next/router";
 import { useTranslations } from "next-intl";
 import { Button, Card, CardContent } from "@prasheel/ui";
+import { trackClick, trackShare } from "@/lib/gtag";
 import { getSiteData, getAboutData, getBlogs, getBlogByLink } from "../../lib/data";
 
 const MarkdownRenderer = dynamic(() => import("../../components/markdown-renderer/markdown-renderer"), { ssr: true });
@@ -136,6 +137,16 @@ const SingleBlogPage = ({ blogPost }: SingleBlogPageProps) => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-sm font-semibold text-foreground underline decoration-2 underline-offset-2 hover:opacity-70"
+                                    onClick={() =>
+                                        trackClick({
+                                            section: "blog_detail",
+                                            content_type: "profile",
+                                            item_id: author,
+                                            item_name: author,
+                                            link_url: profileLink,
+                                            link_text: author,
+                                        })
+                                    }
                                 >
                                     {author}
                                 </a>
@@ -165,6 +176,17 @@ const SingleBlogPage = ({ blogPost }: SingleBlogPageProps) => {
                                             url={share.url}
                                             name={share.name}
                                             className="w-8"
+                                            analytics={false}
+                                            onClick={() =>
+                                                trackShare({
+                                                    section: "blog_detail",
+                                                    content_type: "blog",
+                                                    item_id: router.query.link || title,
+                                                    item_name: title,
+                                                    method: share.name,
+                                                    link_url: share.url,
+                                                })
+                                            }
                                         />
                                     ))}
                                 </div>
