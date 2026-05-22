@@ -1,9 +1,9 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import { themePresets } from "@prasheel/ui";
 
 import { GA_TRACKING_ID } from "../lib/gtag";
 
-const themeConfig = require("../styles/theme-config.js");
-const themePresetsJson = JSON.stringify(themeConfig.themePresets);
+const themePresetsJson = JSON.stringify(themePresets);
 
 const isProduction = process.env.NODE_ENV === "production";
 
