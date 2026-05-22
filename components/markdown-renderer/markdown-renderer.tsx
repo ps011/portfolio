@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function MarkdownRenderer({ content }: { content: string }) {
   const [markdown, setMarkdown] = useState<string>("");
@@ -42,9 +43,9 @@ export default function MarkdownRenderer({ content }: { content: string }) {
   }
   if (error) {
     return (
-      <div className="rounded-base border-3 border-border bg-secondary-background p-6 text-center text-foreground shadow-shadow">
-        Failed to load content.
-      </div>
+      <Card className="bg-secondary-background text-center">
+        <CardContent className="p-6">Failed to load content.</CardContent>
+      </Card>
     );
   }
 

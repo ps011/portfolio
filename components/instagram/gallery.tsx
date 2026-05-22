@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import Image from "next/image";
 import exifr from "exifr";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { GalleryImage } from "../../interfaces/photo-gallery";
 import { Button } from "@/components/ui/button";
 
@@ -32,25 +33,6 @@ const formatDate = (d?: Date) => {
 interface PhotoGalleryProps {
     galleryItems: GalleryImage[];
 }
-
-const CloseIcon = () => (
-    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <line x1="18" y1="6" x2="6" y2="18" />
-        <line x1="6" y1="6" x2="18" y2="18" />
-    </svg>
-);
-
-const ChevronLeftIcon = () => (
-    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <polyline points="15 18 9 12 15 6" />
-    </svg>
-);
-
-const ChevronRightIcon = () => (
-    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <polyline points="9 18 15 12 9 6" />
-    </svg>
-);
 
 export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
     const [activeFilter, setActiveFilter] = useState("all");
@@ -190,7 +172,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
             >
                 <div className="relative">
                     {!loaded && (
-                        <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-neutralGray-200 to-neutralGray-300 dark:from-neutralGray-700 dark:to-neutralGray-800" />
+                        <div className="absolute inset-0 animate-pulse bg-secondary-background" />
                     )}
                     <Image
                         src={image.thumb}
@@ -213,7 +195,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
     };
 
     return (
-        <div className="bg-brandMutedYellow-100 dark:bg-brandMutedYellow-800 min-h-screen">
+        <div className="min-h-screen bg-background">
             <main className="container mx-auto px-4 py-12 sm:px-6">
                 <header className="mb-10 text-center">
                     <h1 className="mb-3 text-3xl font-bold text-foreground md:text-5xl">My Photo Book</h1>
@@ -236,7 +218,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                 </div>
 
                 {filteredImages.length === 0 ? (
-                    <p className="text-center text-neutralGray-700 dark:text-neutralGray-300">
+                    <p className="text-center text-muted-foreground">
                         No photos found for this category. More coming soon!
                     </p>
                 ) : (
@@ -283,35 +265,41 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                             <span className="pointer-events-auto rounded-full bg-white/10 px-3 py-1 text-sm font-medium text-white backdrop-blur">
                                 {lightboxIndex + 1} / {filteredImages.length}
                             </span>
-                            <button
+                            <Button
                                 type="button"
                                 onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
-                                className="pointer-events-auto rounded-full bg-white/10 p-2 text-white backdrop-blur transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                                variant="noShadow"
+                                size="icon"
+                                className="pointer-events-auto rounded-full border-white/20 bg-white/10 text-white backdrop-blur hover:bg-white/20 focus-visible:ring-white"
                                 aria-label="Close"
                             >
-                                <CloseIcon />
-                            </button>
+                                <X className="size-6" />
+                            </Button>
                         </div>
                     </div>
 
                     {filteredImages.length > 1 && (
                         <>
-                            <button
+                            <Button
                                 type="button"
                                 onClick={(e) => { e.stopPropagation(); showPrev(); }}
-                                className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white sm:left-6"
+                                variant="noShadow"
+                                size="icon"
+                                className="absolute left-2 top-1/2 z-20 h-12 w-12 -translate-y-1/2 rounded-full border-white/20 bg-white/10 text-white backdrop-blur hover:bg-white/20 focus-visible:ring-white sm:left-6"
                                 aria-label="Previous image"
                             >
-                                <ChevronLeftIcon />
-                            </button>
-                            <button
+                                <ChevronLeft className="size-6" />
+                            </Button>
+                            <Button
                                 type="button"
                                 onClick={(e) => { e.stopPropagation(); showNext(); }}
-                                className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white sm:right-6"
+                                variant="noShadow"
+                                size="icon"
+                                className="absolute right-2 top-1/2 z-20 h-12 w-12 -translate-y-1/2 rounded-full border-white/20 bg-white/10 text-white backdrop-blur hover:bg-white/20 focus-visible:ring-white sm:right-6"
                                 aria-label="Next image"
                             >
-                                <ChevronRightIcon />
-                            </button>
+                                <ChevronRight className="size-6" />
+                            </Button>
                         </>
                     )}
 

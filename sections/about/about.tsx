@@ -7,7 +7,9 @@ import { useTranslations } from "next-intl";
 import Section from "../../components/tailwind/section";
 import Profile from "../../components/profile/profile";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 interface Interest {
   title: string;
@@ -108,114 +110,118 @@ const About = ({
   return (
     <Section container id="about">
       <motion.div
-        className="rounded-base border-2 border-border bg-background shadow-shadow"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.4 }}
       >
-        {/* Top stripe: avatar + identity + social */}
-        <div className="flex flex-col items-center gap-3 border-b-2 border-border px-6 py-5 sm:flex-row sm:gap-5">
-          <Avatar className="h-48 w-48 shrink-0 border-2 border-border shadow-[2px_2px_0px_0px_#000000]">
-            <AvatarImage src={imageUrl} alt={t("name")} />
-            <AvatarFallback className="text-xl font-bold">
-              {t("name")?.charAt(0)}
-            </AvatarFallback>
-          </Avatar>
+        <Card className="overflow-hidden">
+          {/* Top stripe: avatar + identity + social */}
+          <div className="flex flex-col items-center gap-3 border-b-2 border-border px-6 py-5 sm:flex-row sm:gap-5">
+            <Avatar className="h-48 w-48 shrink-0 border-2 border-border shadow-shadow-sm">
+              <AvatarImage src={imageUrl} alt={t("name")} />
+              <AvatarFallback className="text-xl font-bold">
+                {t("name")?.charAt(0)}
+              </AvatarFallback>
+            </Avatar>
 
-          <div className="flex min-w-0 flex-1 flex-col items-center gap-2 sm:items-start">
-            <h2 className="text-xl font-bold text-foreground">{t("name")}</h2>
-            <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs text-muted-foreground sm:justify-start">
-              {designation && (
-                <span className="flex items-center gap-1">
-                  <Briefcase className="size-3 shrink-0" />
-                  {designation}
-                </span>
-              )}
-              {location && (
-                <span className="flex items-center gap-1">
-                  <MapPin className="size-3 shrink-0" />
-                  {location}
-                </span>
-              )}
-              {education && (
-                <span className="flex items-center gap-1">
-                  <GraduationCap className="size-3 shrink-0" />
-                  {education}
-                </span>
+            <div className="flex min-w-0 flex-1 flex-col items-center gap-2 sm:items-start">
+              <h2 className="text-xl font-bold text-foreground">{t("name")}</h2>
+              <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs text-muted-foreground sm:justify-start">
+                {designation && (
+                  <span className="flex items-center gap-1">
+                    <Briefcase className="size-3 shrink-0" />
+                    {designation}
+                  </span>
+                )}
+                {location && (
+                  <span className="flex items-center gap-1">
+                    <MapPin className="size-3 shrink-0" />
+                    {location}
+                  </span>
+                )}
+                {education && (
+                  <span className="flex items-center gap-1">
+                    <GraduationCap className="size-3 shrink-0" />
+                    {education}
+                  </span>
+                )}
+              </div>
+              {profiles?.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {profiles.map((profile) => (
+                    <Profile key={profile.name} url={profile.url} name={profile.name} />
+                  ))}
+                </div>
               )}
             </div>
-            {profiles?.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {profiles.map((profile) => (
-                  <Profile key={profile.name} url={profile.url} name={profile.name} />
+
+            {/* Stats */}
+            {stats?.length > 0 && (
+              <div className="flex shrink-0 gap-2">
+                {stats.map((stat, index) => (
+                  <Badge
+                    asChild
+                    key={stat.label}
+                    className="flex flex-col px-3 py-2 text-center shadow-shadow-sm"
+                  >
+                    <div>
+                      <div className="text-lg font-bold leading-none text-main-foreground">
+                        {stat.count}
+                      </div>
+                      <div className="mt-0.5 text-xs text-main-foreground opacity-80">
+                        {t(`stat${index}Label`) || stat.label}
+                      </div>
+                    </div>
+                  </Badge>
                 ))}
               </div>
             )}
           </div>
 
-          {/* Stats */}
-          {stats?.length > 0 && (
-            <div className="flex shrink-0 gap-2">
-              {stats.map((stat, index) => (
-                <div
-                  key={stat.label}
-                  className="rounded-base border-2 border-border bg-main px-3 py-2 text-center shadow-[2px_2px_0px_0px_#000000]"
-                >
-                  <div className="text-lg font-bold leading-none text-main-foreground">
-                    {stat.count}
-                  </div>
-                  <div className="mt-0.5 text-[10px] text-main-foreground opacity-80">
-                    {t(`stat${index}Label`) || stat.label}
-                  </div>
-                </div>
-              ))}
+          {/* About text */}
+          <div
+            className="prose prose-sm max-w-none px-6 py-5 text-foreground"
+            dangerouslySetInnerHTML={{ __html: t.raw("bio") }}
+          />
+
+          {/* Interests */}
+          {interests.length > 0 && (
+            <div className="border-t-2 border-border px-6 py-5">
+              <div className="mb-4 flex items-center gap-2">
+                <Badge className="h-7 w-7 p-0 shadow-shadow-sm [&_svg]:size-4">
+                  <Sparkles className="size-4" />
+                </Badge>
+                <h3 className="text-lg font-bold text-foreground">
+                  {t("interestsHeading")}
+                </h3>
+              </div>
+              <motion.ul
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+                variants={container}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-40px" }}
+              >
+                {interests.map((interest, index) => (
+                  <motion.li
+                    key={interest.title}
+                    variants={item}
+                    className="flex h-full flex-col rounded-base border-2 border-border bg-secondary-background p-4 shadow-shadow-sm transition-transform hover:-translate-x-boxShadowX hover:-translate-y-boxShadowY hover:shadow-shadow"
+                  >
+                    <h4 className="text-base font-bold text-foreground">
+                      {t(`interest${index}Title`) || interest.title}
+                    </h4>
+                    <p className="mt-2 flex-1 text-sm text-foreground/90">
+                      {t(`interest${index}Desc`) || interest.description}
+                    </p>
+                    <div className="mt-4">{renderInterestCTA(interest)}</div>
+                  </motion.li>
+                ))}
+              </motion.ul>
             </div>
           )}
-        </div>
-
-        {/* About text */}
-        <div
-          className="prose prose-sm max-w-none px-6 py-5 text-foreground"
-          dangerouslySetInnerHTML={{ __html: t.raw("bio") }}
-        />
-
-        {/* Interests */}
-        {interests.length > 0 && (
-          <div className="border-t-2 border-border px-6 py-5">
-            <div className="mb-4 flex items-center gap-2">
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-base border-2 border-border bg-main text-main-foreground shadow-[2px_2px_0px_0px_#000000]">
-                <Sparkles className="size-4" />
-              </span>
-              <h3 className="text-lg font-bold text-foreground">
-                {t("interestsHeading")}
-              </h3>
-            </div>
-            <motion.ul
-              className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
-              variants={container}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-40px" }}
-            >
-              {interests.map((interest, index) => (
-                <motion.li
-                  key={interest.title}
-                  variants={item}
-                  className="flex h-full flex-col rounded-base border-2 border-border bg-secondary-background p-4 shadow-[2px_2px_0px_0px_#000000] transition-transform hover:-translate-x-boxShadowX hover:-translate-y-boxShadowY hover:shadow-[4px_4px_0px_0px_#000000]"
-                >
-                  <h4 className="text-base font-bold text-foreground">
-                    {t(`interest${index}Title`) || interest.title}
-                  </h4>
-                  <p className="mt-2 flex-1 text-sm text-foreground/90">
-                    {t(`interest${index}Desc`) || interest.description}
-                  </p>
-                  <div className="mt-4">{renderInterestCTA(interest)}</div>
-                </motion.li>
-              ))}
-            </motion.ul>
-          </div>
-        )}
+        </Card>
       </motion.div>
     </Section>
   );
