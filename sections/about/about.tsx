@@ -14,6 +14,7 @@ import {
   Button,
   Card,
 } from "@prasheel/ui";
+import { trackClick } from "@/lib/gtag";
 
 interface Interest {
   title: string;
@@ -76,7 +77,20 @@ const About = ({
       case "blogging":
         return (
           <Button variant="default" size="sm" asChild>
-            <Link href="/blog" className="no-underline">
+            <Link
+              href="/blog"
+              className="no-underline"
+              onClick={() =>
+                trackClick({
+                  section: "interests",
+                  content_type: "cta",
+                  item_id: "view_blog",
+                  item_name: tInterests("viewBlog"),
+                  link_url: "/blog",
+                  link_text: tInterests("viewBlog"),
+                })
+              }
+            >
               {tInterests("viewBlog")}
             </Link>
           </Button>
@@ -84,7 +98,20 @@ const About = ({
       case "photography":
         return (
           <Button variant="default" size="sm" asChild>
-            <Link href="/photo-gallery" className="no-underline">
+            <Link
+              href="/photo-gallery"
+              className="no-underline"
+              onClick={() =>
+                trackClick({
+                  section: "interests",
+                  content_type: "cta",
+                  item_id: "view_gallery",
+                  item_name: tInterests("viewGallery"),
+                  link_url: "/photo-gallery",
+                  link_text: tInterests("viewGallery"),
+                })
+              }
+            >
               {tInterests("viewGallery")}
             </Link>
           </Button>
@@ -97,6 +124,16 @@ const About = ({
               target="_blank"
               rel="noopener noreferrer"
               className="no-underline"
+              onClick={() =>
+                trackClick({
+                  section: "interests",
+                  content_type: "profile",
+                  item_id: "github",
+                  item_name: "GitHub",
+                  link_url: "https://github.com/ps011",
+                  link_text: tInterests("viewGithub"),
+                })
+              }
             >
               {tInterests("viewGithub")}
             </Link>
