@@ -145,16 +145,16 @@
     "link": "https://javascript30ps11.netlify.app/"
   },
   {
-    "title": "Currency Converter",
-    "shortDescription": "This is a nextjs based application to convert one currency into another using the currencyapi.",
+    "title": "Exchange Rate Calculator",
+    "shortDescription": "An exchange rate calculator app built by me.",
     "banner": "https://res.cloudinary.com/designu/image/upload/v1624135868/thumbnails/Screenshot_2021-06-20_at_2.21.01_AM.png",
     "thumbnail": "https://res.cloudinary.com/designu/image/upload/v1624135868/thumbnails/Screenshot_2021-06-20_at_2.21.01_AM.png",
     "author": "Prasheel Soni",
     "profileLink": "https://github.com/ps011/exchange-rates",
-    "hidden": true,
+    "hidden": false,
     "tags": "currency-exchange, nextjs, nodejs",
     "date": "2021-06-19T06:30:00.000Z",
-    "type": "hobby-projects",
+    "type": "experiments",
     "link": "https://exchange-rates-delta.vercel.app/"
   },
   {
@@ -250,6 +250,32 @@
     "date": "2025-05-16T17:00:00.000Z",
     "type": "blogs",
     "link": "https://ps11.hashnode.dev/from-software-engineer-to-senior"
+  },
+  {
+    "title": "Meeting Notes Taker",
+    "shortDescription": "An AI-powered meeting notes taker that helps you capture, organize, and summarize your meeting notes effortlessly.",
+    "thumbnail": "/images/meeting-note-taker.png",
+    "banner": "/images/meeting-note-taker.png",
+    "author": "Prasheel Soni",
+    "profileLink": "https://github.com/ps011",
+    "hidden": false,
+    "tags": "tools, productivity, ai, meetings",
+    "date": "2026-05-21T00:00:00.000Z",
+    "type": "experiments",
+    "link": "https://ps011.github.io/meeting-note-taker/"
+  },
+  {
+    "title": "Buying Decision Maker",
+    "shortDescription": "A simple tool to help you decide whether you should buy something, by asking a few quick questions.",
+    "thumbnail": "/images/should-i-buy-it.png",
+    "banner": "/images/should-i-buy-it.png",
+    "author": "Prasheel Soni",
+    "profileLink": "https://github.com/ps011",
+    "hidden": false,
+    "tags": "tools, decision-making, productivity",
+    "date": "2026-05-21T00:00:00.000Z",
+    "type": "experiments",
+    "link": "https://ps011.github.io/buying-decision-maker/"
   },
   {
     "title": "Understand and Build Your Personal AI with 'RAG Builder'",

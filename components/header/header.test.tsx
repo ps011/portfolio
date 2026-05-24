@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { Header } from "./header";
 import { ThemeProvider } from "@prasheel/ui";
+import { Header } from "./header";
 
 function renderHeader(ui: React.ReactElement) {
   return render(<ThemeProvider>{ui}</ThemeProvider>);

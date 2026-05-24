@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { trackClick } from "@/lib/gtag";
 import {
   AppHeader,
   type AppHeaderLinkProps,
@@ -13,10 +14,6 @@ export interface HeaderProps {
   logoUrl: string;
   navMap?: Array<{ href: string }>;
 }
-
-const HeaderLink = ({ href, ...props }: AppHeaderLinkProps) => (
-  <Link href={href} {...props} />
-);
 
 export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
   const t = useTranslations("common");
@@ -35,10 +32,59 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
     return `/${href}`;
   };
 
+  const getLabel = (href: string) =>
+    navKeyMap[href] ? tNav(navKeyMap[href]) : href;
+
   const navItems: AppHeaderNavItem[] = navMap.map((item) => ({
     href: getHref(item.href),
-    label: navKeyMap[item.href] ? tNav(navKeyMap[item.href]) : item.href,
+    label: getLabel(item.href),
   }));
+
+  const navTrackingByHref = new Map(
+    navMap.map((item) => [
+      getHref(item.href),
+      {
+        itemId: item.href,
+        label: getLabel(item.href),
+      },
+    ]),
+  );
+
+  const HeaderLink = ({
+    href,
+    onClick,
+    children,
+    ...props
+  }: AppHeaderLinkProps) => {
+    const isLogo = href === "/" && props["aria-label"] === "Logo";
+    const trackedNav = navTrackingByHref.get(href);
+    const label =
+      (isLogo && "Logo") ||
+      trackedNav?.label ||
+      (typeof children === "string" ? children : href);
+
+    return (
+      <Link
+        href={href}
+        {...props}
+        onClick={(event) => {
+          onClick?.(event);
+          if (event.defaultPrevented) return;
+
+          trackClick({
+            section: "header",
+            content_type: "nav",
+            item_id: isLogo ? "logo" : (trackedNav?.itemId ?? href),
+            item_name: label,
+            link_url: href,
+            link_text: label,
+          });
+        }}
+      >
+        {children}
+      </Link>
+    );
+  };
 
   return (
     <AppHeader

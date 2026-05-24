@@ -6,13 +6,14 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import BlogCard from "../../components/blog-card";
 import Section from "../../components/tailwind/section";
 import {
+  Button,
   Carousel,
   CarouselContent,
   CarouselItem,
   type CarouselApi,
-} from "@/components/ui/carousel";
-import { Button } from "@/components/ui/button";
+} from "@prasheel/ui";
 import { cn } from "@/lib/utils";
+import { trackSelectItem } from "@/lib/gtag";
 import { BlogCard as BlogCardData } from "../../interfaces/blog";
 
 const kebabCaseToSentenceCase = (str: string) =>
@@ -30,6 +31,25 @@ const groupBy = (xs: BlogCardData[], f: (blog: BlogCardData) => string) =>
     },
     {} as Record<string, BlogCardData[]>,
   );
+
+const SECTION_ORDER = ["blogs", "experiments"];
+
+const sortSections = (keys: string[]) =>
+  [...keys].sort((a, b) => {
+    const ai = SECTION_ORDER.indexOf(a);
+    const bi = SECTION_ORDER.indexOf(b);
+    if (ai === -1 && bi === -1) return a.localeCompare(b);
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+  });
+
+const itemBasis = (count: number) => {
+  if (count >= 5) return "md:basis-1/2 lg:basis-1/5";
+  if (count === 4) return "md:basis-1/2 lg:basis-1/4";
+  if (count === 3) return "md:basis-1/2 lg:basis-1/3";
+  return "md:basis-1/2 lg:basis-1/3";
+};
 
 function BlogCarousel({ blogs }: { blogs: BlogCardData[] }) {
   const t = useTranslations("blog");
@@ -58,6 +78,15 @@ function BlogCarousel({ blogs }: { blogs: BlogCardData[] }) {
     };
   }, [api, onSelect]);
 
+  const trackCarouselControl = (action: string, index?: number) => {
+    trackSelectItem({
+      section: "home_blog_carousel",
+      content_type: "carousel",
+      item_id: index === undefined ? action : `${action}_${index + 1}`,
+      item_name: index === undefined ? action : `Slide ${index + 1}`,
+    });
+  };
+
   return (
     <div>
       <Carousel opts={{ align: "start", loop: true }} setApi={setApi}>
@@ -65,7 +94,7 @@ function BlogCarousel({ blogs }: { blogs: BlogCardData[] }) {
           {blogs.map((blog, index) => (
             <CarouselItem
               key={blog.link ?? index}
-              className="md:basis-1/2 lg:basis-1/5"
+              className={itemBasis(blogs.length)}
             >
               <BlogCard
                 {...blog}
@@ -82,7 +111,10 @@ function BlogCarousel({ blogs }: { blogs: BlogCardData[] }) {
           <Button
             variant="noShadow"
             size="icon"
-            onClick={() => api?.scrollPrev()}
+            onClick={() => {
+              trackCarouselControl("previous");
+              api?.scrollPrev();
+            }}
             disabled={!canScrollPrev}
             aria-label={t("prevSlide")}
             className="h-9 w-9 shrink-0 rounded-base border-2 border-border disabled:opacity-40"
@@ -94,10 +126,13 @@ function BlogCarousel({ blogs }: { blogs: BlogCardData[] }) {
             {Array.from({ length: count }).map((_, i) => (
               <button
                 key={i}
-                onClick={() => api?.scrollTo(i)}
+                onClick={() => {
+                  trackCarouselControl("dot", i);
+                  api?.scrollTo(i);
+                }}
                 aria-label={t("goToSlide", { number: i + 1 })}
                 className={cn(
-                  "h-2.5 rounded-full border-2 border-border shadow-[1px_1px_0px_0px_#000000] transition-all duration-200",
+                  "h-2.5 rounded-full border-2 border-border shadow-shadow-sm transition-all duration-200",
                   i === current ? "w-6 bg-main" : "w-2.5 bg-secondary-background",
                 )}
               />
@@ -107,7 +142,10 @@ function BlogCarousel({ blogs }: { blogs: BlogCardData[] }) {
           <Button
             variant="noShadow"
             size="icon"
-            onClick={() => api?.scrollNext()}
+            onClick={() => {
+              trackCarouselControl("next");
+              api?.scrollNext();
+            }}
             disabled={!canScrollNext}
             aria-label={t("nextSlide")}
             className="h-9 w-9 shrink-0 rounded-base border-2 border-border disabled:opacity-40"
@@ -129,7 +167,7 @@ const Blog = ({ blogs }: { blogs: BlogCardData[] }) => {
 
   return (
     <>
-      {Object.keys(result).map((sectionName) => (
+      {sortSections(Object.keys(result)).map((sectionName) => (
         <Section
           container
           key={sectionName}
