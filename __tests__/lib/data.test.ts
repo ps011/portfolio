@@ -34,6 +34,20 @@ describe("lib/data", () => {
       expect(first).toHaveProperty("link");
       expect(first).toHaveProperty("hidden");
     });
+
+    it("includes the exchange rate calculator as a visible experiment", async () => {
+      const blogs = await getBlogs();
+      const experiment = blogs.find(
+        (blog) => blog.link === "https://exchange-rates-delta.vercel.app/",
+      );
+
+      expect(experiment).toMatchObject({
+        title: "Exchange Rate Calculator",
+        shortDescription: "An exchange rate calculator app built by me.",
+        hidden: false,
+        type: "experiments",
+      });
+    });
   });
 
   describe("getBlogByLink", () => {

@@ -145,16 +145,16 @@
     "link": "https://javascript30ps11.netlify.app/"
   },
   {
-    "title": "Currency Converter",
-    "shortDescription": "This is a nextjs based application to convert one currency into another using the currencyapi.",
+    "title": "Exchange Rate Calculator",
+    "shortDescription": "An exchange rate calculator app built by me.",
     "banner": "https://res.cloudinary.com/designu/image/upload/v1624135868/thumbnails/Screenshot_2021-06-20_at_2.21.01_AM.png",
     "thumbnail": "https://res.cloudinary.com/designu/image/upload/v1624135868/thumbnails/Screenshot_2021-06-20_at_2.21.01_AM.png",
     "author": "Prasheel Soni",
     "profileLink": "https://github.com/ps011/exchange-rates",
-    "hidden": true,
+    "hidden": false,
     "tags": "currency-exchange, nextjs, nodejs",
     "date": "2021-06-19T06:30:00.000Z",
-    "type": "hobby-projects",
+    "type": "experiments",
     "link": "https://exchange-rates-delta.vercel.app/"
   },
   {
