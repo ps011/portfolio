@@ -2,17 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Menu } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { trackClick } from "@/lib/gtag";
 import {
-  Button,
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-  ThemeSwitcher,
+  AppHeader,
+  type AppHeaderLinkProps,
+  type AppHeaderNavItem,
 } from "@prasheel/ui";
 
 export interface HeaderProps {
@@ -40,111 +35,78 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
   const getLabel = (href: string) =>
     navKeyMap[href] ? tNav(navKeyMap[href]) : href;
 
-  const trackNavClick = (href: string) => {
-    const label = getLabel(href);
-    trackClick({
-      section: "header",
-      content_type: "nav",
-      item_id: href,
-      item_name: label,
-      link_url: getHref(href),
-      link_text: label,
-    });
-  };
+  const navItems: AppHeaderNavItem[] = navMap.map((item) => ({
+    href: getHref(item.href),
+    label: getLabel(item.href),
+  }));
 
-  const navLinks = (
-    <>
-      {navMap.length > 0 &&
-        navMap.map((item) => (
-          <Button key={item.href} variant="neutral" size="default" asChild>
-            <Link
-              href={getHref(item.href)}
-              className="no-underline"
-              onClick={() => trackNavClick(item.href)}
-            >
-              {getLabel(item.href)}
-            </Link>
-          </Button>
-        ))}
-    </>
+  const navTrackingByHref = new Map(
+    navMap.map((item) => [
+      getHref(item.href),
+      {
+        itemId: item.href,
+        label: getLabel(item.href),
+      },
+    ]),
   );
 
+  const HeaderLink = ({
+    href,
+    onClick,
+    children,
+    ...props
+  }: AppHeaderLinkProps) => {
+    const isLogo = href === "/" && props["aria-label"] === "Logo";
+    const trackedNav = navTrackingByHref.get(href);
+    const label =
+      (isLogo && "Logo") ||
+      trackedNav?.label ||
+      (typeof children === "string" ? children : href);
+
+    return (
+      <Link
+        href={href}
+        {...props}
+        onClick={(event) => {
+          onClick?.(event);
+          if (event.defaultPrevented) return;
+
+          trackClick({
+            section: "header",
+            content_type: "nav",
+            item_id: isLogo ? "logo" : (trackedNav?.itemId ?? href),
+            item_name: label,
+            link_url: href,
+            link_text: label,
+          });
+        }}
+      >
+        {children}
+      </Link>
+    );
+  };
+
   return (
-    <header className="sticky top-0 z-40 w-full border-b-2 border-border bg-main py-4 shadow-shadow md:py-6">
-      <div className="container flex justify-between items-center">
-        <Link
-          href="/"
-          className="flex-shrink-0"
-          onClick={() =>
-            trackClick({
-              section: "header",
-              content_type: "nav",
-              item_id: "logo",
-              item_name: "Logo",
-              link_url: "/",
-              link_text: "Logo",
-            })
-          }
-        >
-          <Image
-            height={56}
-            width={250}
-            src={logoUrl}
-            alt="Logo"
-            priority
-            className="h-10 w-auto md:h-14"
-          />
-        </Link>
-
-        <nav className="hidden lg:flex lg:items-center gap-2">
-          {navLinks}
-          <ThemeSwitcher />
-        </nav>
-
-        <div className="flex lg:hidden">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button
-                type="button"
-                variant="neutral"
-                size="icon"
-                aria-label={t("openNav")}
-                className="bg-main-foreground text-main"
-              >
-                <Menu className="size-6" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[min(100vw-2rem,320px)]">
-              <SheetHeader>
-                <SheetTitle className="text-left">{t("menu")}</SheetTitle>
-              </SheetHeader>
-              <ul className="mt-6 flex flex-col gap-2">
-                {navMap.length > 0 &&
-                  navMap.map((item) => (
-                    <li key={item.href}>
-                      <Button
-                        variant="neutral"
-                        size="default"
-                        className="w-full justify-start text-left"
-                        asChild
-                      >
-                        <Link
-                          href={getHref(item.href)}
-                          onClick={() => trackNavClick(item.href)}
-                        >
-                          {getLabel(item.href)}
-                        </Link>
-                      </Button>
-                    </li>
-                  ))}
-              </ul>
-              <div className="mt-4">
-                <ThemeSwitcher />
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </div>
-    </header>
+    <AppHeader
+      brand={
+        <Image
+          height={56}
+          width={250}
+          src={logoUrl}
+          alt="Logo"
+          priority
+          className="h-10 w-auto md:h-14"
+        />
+      }
+      brandHref="/"
+      brandLabel="Logo"
+      linkComponent={HeaderLink}
+      navItems={navItems}
+      openMenuLabel={t("openNav")}
+      menuLabel={t("menu")}
+      className="z-40 bg-main shadow-shadow"
+      containerClassName="py-4 md:py-6"
+      brandClassName="flex-shrink-0"
+    />
   );
 };

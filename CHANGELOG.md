@@ -1,4 +1,11 @@
 CHANGELOG
+### [0.5.25](https://github.com/ps011/portfolio/compare/v0.5.24...v0.5.25) (2026-05-24)
+
+
+### Features
+
+* use shared app header ([00a4cf2](https://github.com/ps011/portfolio/commit/00a4cf26147d80dff80497d4b7c2260b0c8346d7))
+
 ### [0.5.24](https://github.com/ps011/portfolio/compare/v0.5.23...v0.5.24) (2026-05-24)
 
 
