@@ -4,15 +4,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { ThemeSwitcher } from "@/components/theme-switcher/theme-switcher";
-import { Button } from "@/components/ui/button";
+import { trackClick } from "@/lib/gtag";
 import {
+  Button,
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
+  ThemeSwitcher,
+} from "@prasheel/ui";
 
 export interface HeaderProps {
   logoUrl: string;
@@ -36,13 +37,32 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
     return `/${href}`;
   };
 
+  const getLabel = (href: string) =>
+    navKeyMap[href] ? tNav(navKeyMap[href]) : href;
+
+  const trackNavClick = (href: string) => {
+    const label = getLabel(href);
+    trackClick({
+      section: "header",
+      content_type: "nav",
+      item_id: href,
+      item_name: label,
+      link_url: getHref(href),
+      link_text: label,
+    });
+  };
+
   const navLinks = (
     <>
       {navMap.length > 0 &&
         navMap.map((item) => (
           <Button key={item.href} variant="neutral" size="default" asChild>
-            <Link href={getHref(item.href)} className="no-underline">
-              {navKeyMap[item.href] ? tNav(navKeyMap[item.href]) : item.href}
+            <Link
+              href={getHref(item.href)}
+              className="no-underline"
+              onClick={() => trackNavClick(item.href)}
+            >
+              {getLabel(item.href)}
             </Link>
           </Button>
         ))}
@@ -52,7 +72,20 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
   return (
     <header className="sticky top-0 z-40 w-full border-b-2 border-border bg-main py-4 shadow-shadow md:py-6">
       <div className="container flex justify-between items-center">
-        <Link href="/" className="flex-shrink-0">
+        <Link
+          href="/"
+          className="flex-shrink-0"
+          onClick={() =>
+            trackClick({
+              section: "header",
+              content_type: "nav",
+              item_id: "logo",
+              item_name: "Logo",
+              link_url: "/",
+              link_text: "Logo",
+            })
+          }
+        >
           <Image
             height={56}
             width={250}
@@ -70,14 +103,16 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
 
         <div className="flex lg:hidden">
           <Sheet>
-            <SheetTrigger
-              asChild
-              aria-label={t("openNav")}
-              className="min-h-[44px] min-w-[44px] rounded-base border-2 border-border bg-main-foreground p-2.5 text-main shadow-shadow hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
-            >
-              <button type="button">
+            <SheetTrigger asChild>
+              <Button
+                type="button"
+                variant="neutral"
+                size="icon"
+                aria-label={t("openNav")}
+                className="bg-main-foreground text-main"
+              >
                 <Menu className="size-6" />
-              </button>
+              </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[min(100vw-2rem,320px)]">
               <SheetHeader>
@@ -93,7 +128,12 @@ export const Header: React.FC<HeaderProps> = ({ logoUrl, navMap = [] }) => {
                         className="w-full justify-start text-left"
                         asChild
                       >
-                        <Link href={getHref(item.href)}>{navKeyMap[item.href] ? tNav(navKeyMap[item.href]) : item.href}</Link>
+                        <Link
+                          href={getHref(item.href)}
+                          onClick={() => trackNavClick(item.href)}
+                        >
+                          {getLabel(item.href)}
+                        </Link>
                       </Button>
                     </li>
                   ))}

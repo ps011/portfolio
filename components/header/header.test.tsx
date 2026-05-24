@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { Header } from "./header";
 
-jest.mock("@/components/theme-switcher/theme-switcher", () => ({
+jest.mock("@prasheel/ui", () => ({
+  ...jest.requireActual("@prasheel/ui"),
   ThemeSwitcher: () => <div data-testid="theme-switcher" />,
 }));
 

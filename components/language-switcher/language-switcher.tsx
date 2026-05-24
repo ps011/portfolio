@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { Button } from "@prasheel/ui";
+import { trackClick } from "@/lib/gtag";
 
 export const LanguageSwitcher = () => {
   const { locales, locale: currentLocale, asPath } = useRouter();
@@ -9,19 +11,31 @@ export const LanguageSwitcher = () => {
   return (
     <div className="flex gap-2">
       {locales.map((locale) => (
-        <Link
+        <Button
           key={locale}
-          href={asPath}
-          locale={locale}
-          aria-current={locale === currentLocale ? "true" : undefined}
-          className={`text-sm font-medium transition-colors ${
-            locale === currentLocale
-              ? "text-foreground underline"
-              : "text-foreground/60 hover:text-foreground"
-          }`}
+          variant={locale === currentLocale ? "default" : "neutral"}
+          size="sm"
+          asChild
         >
-          {locale.toUpperCase()}
-        </Link>
+          <Link
+            href={asPath}
+            locale={locale}
+            aria-current={locale === currentLocale ? "true" : undefined}
+            className="no-underline"
+            onClick={() =>
+              trackClick({
+                section: "footer",
+                content_type: "language",
+                item_id: locale,
+                item_name: locale.toUpperCase(),
+                link_url: asPath,
+                link_text: locale.toUpperCase(),
+              })
+            }
+          >
+            {locale.toUpperCase()}
+          </Link>
+        </Button>
       ))}
     </div>
   );

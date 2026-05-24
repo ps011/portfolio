@@ -35,7 +35,7 @@ const DevPage = () => {
       <Head>
         <title>Dev | Prasheel Soni</title>
       </Head>
-      <div className="container mx-auto p-4 bg-white dark:bg-neutralGray-800 h-screen">
+      <div className="container h-screen bg-background p-4 text-foreground">
         <GitHubCalendar username="ps011" />
       </div>
     </>

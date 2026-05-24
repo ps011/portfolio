@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import Image from "next/image";
 import exifr from "exifr";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { GalleryImage } from "../../interfaces/photo-gallery";
-import { Button } from "@/components/ui/button";
+import { Button } from "@prasheel/ui";
+import { trackSelectContent, trackSelectItem } from "@/lib/gtag";
 
 interface ExifData {
     camera?: string;
@@ -33,25 +35,6 @@ interface PhotoGalleryProps {
     galleryItems: GalleryImage[];
 }
 
-const CloseIcon = () => (
-    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <line x1="18" y1="6" x2="6" y2="18" />
-        <line x1="6" y1="6" x2="18" y2="18" />
-    </svg>
-);
-
-const ChevronLeftIcon = () => (
-    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <polyline points="15 18 9 12 15 6" />
-    </svg>
-);
-
-const ChevronRightIcon = () => (
-    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <polyline points="9 18 15 12 9 6" />
-    </svg>
-);
-
 export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
     const [activeFilter, setActiveFilter] = useState("all");
     const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -73,16 +56,57 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
         [galleryItems],
     );
 
-    const openLightbox = useCallback((index: number) => setLightboxIndex(index), []);
-    const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+    const trackPhotoAction = useCallback((action: string, image?: GalleryImage) => {
+        trackSelectItem({
+            section: "photo_gallery",
+            content_type: "photo",
+            item_id: image?.id || action,
+            item_name: image?.caption || image?.location || image?.category || action,
+            action,
+        });
+    }, []);
+
+    const handleFilterChange = useCallback((category: string) => {
+        setActiveFilter(category);
+        trackSelectItem({
+            section: "photo_gallery",
+            content_type: "category",
+            item_id: category,
+            item_name: category === "all" ? "All" : category,
+        });
+    }, []);
+
+    const openLightbox = useCallback((index: number) => {
+        const image = filteredImages[index];
+        trackSelectContent({
+            section: "photo_gallery",
+            content_type: "photo",
+            item_id: image?.id || `photo_${index + 1}`,
+            item_name: image?.caption || image?.location || image?.category || `Photo ${index + 1}`,
+        });
+        setLightboxIndex(index);
+    }, [filteredImages]);
+
+    const closeLightbox = useCallback(() => {
+        if (lightboxIndex !== null) {
+            trackPhotoAction("close_lightbox", filteredImages[lightboxIndex]);
+        }
+        setLightboxIndex(null);
+    }, [filteredImages, lightboxIndex, trackPhotoAction]);
 
     const showPrev = useCallback(() => {
-        setLightboxIndex((i) => (i === null ? null : (i - 1 + filteredImages.length) % filteredImages.length));
-    }, [filteredImages.length]);
+        if (lightboxIndex === null || filteredImages.length === 0) return;
+        const nextIndex = (lightboxIndex - 1 + filteredImages.length) % filteredImages.length;
+        trackPhotoAction("previous_lightbox_photo", filteredImages[nextIndex]);
+        setLightboxIndex(nextIndex);
+    }, [filteredImages, lightboxIndex, trackPhotoAction]);
 
     const showNext = useCallback(() => {
-        setLightboxIndex((i) => (i === null ? null : (i + 1) % filteredImages.length));
-    }, [filteredImages.length]);
+        if (lightboxIndex === null || filteredImages.length === 0) return;
+        const nextIndex = (lightboxIndex + 1) % filteredImages.length;
+        trackPhotoAction("next_lightbox_photo", filteredImages[nextIndex]);
+        setLightboxIndex(nextIndex);
+    }, [filteredImages, lightboxIndex, trackPhotoAction]);
 
     useEffect(() => {
         setLightboxIndex(null);
@@ -190,7 +214,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
             >
                 <div className="relative">
                     {!loaded && (
-                        <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-neutralGray-200 to-neutralGray-300 dark:from-neutralGray-700 dark:to-neutralGray-800" />
+                        <div className="absolute inset-0 animate-pulse bg-secondary-background" />
                     )}
                     <Image
                         src={image.thumb}
@@ -213,7 +237,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
     };
 
     return (
-        <div className="bg-brandMutedYellow-100 dark:bg-brandMutedYellow-800 min-h-screen">
+        <div className="min-h-screen bg-background">
             <main className="container mx-auto px-4 py-12 sm:px-6">
                 <header className="mb-10 text-center">
                     <h1 className="mb-3 text-3xl font-bold text-foreground md:text-5xl">My Photo Book</h1>
@@ -228,7 +252,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                             key={cat}
                             variant={activeFilter === cat ? "default" : "neutral"}
                             size="sm"
-                            onClick={() => setActiveFilter(cat)}
+                            onClick={() => handleFilterChange(cat)}
                         >
                             {cat === "all" ? "All" : cat}
                         </Button>
@@ -236,7 +260,7 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                 </div>
 
                 {filteredImages.length === 0 ? (
-                    <p className="text-center text-neutralGray-700 dark:text-neutralGray-300">
+                    <p className="text-center text-muted-foreground">
                         No photos found for this category. More coming soon!
                     </p>
                 ) : (
@@ -283,35 +307,41 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                             <span className="pointer-events-auto rounded-full bg-white/10 px-3 py-1 text-sm font-medium text-white backdrop-blur">
                                 {lightboxIndex + 1} / {filteredImages.length}
                             </span>
-                            <button
+                            <Button
                                 type="button"
                                 onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
-                                className="pointer-events-auto rounded-full bg-white/10 p-2 text-white backdrop-blur transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                                variant="noShadow"
+                                size="icon"
+                                className="pointer-events-auto rounded-full border-white/20 bg-white/10 text-white backdrop-blur hover:bg-white/20 focus-visible:ring-white"
                                 aria-label="Close"
                             >
-                                <CloseIcon />
-                            </button>
+                                <X className="size-6" />
+                            </Button>
                         </div>
                     </div>
 
                     {filteredImages.length > 1 && (
                         <>
-                            <button
+                            <Button
                                 type="button"
                                 onClick={(e) => { e.stopPropagation(); showPrev(); }}
-                                className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white sm:left-6"
+                                variant="noShadow"
+                                size="icon"
+                                className="absolute left-2 top-1/2 z-20 h-12 w-12 -translate-y-1/2 rounded-full border-white/20 bg-white/10 text-white backdrop-blur hover:bg-white/20 focus-visible:ring-white sm:left-6"
                                 aria-label="Previous image"
                             >
-                                <ChevronLeftIcon />
-                            </button>
-                            <button
+                                <ChevronLeft className="size-6" />
+                            </Button>
+                            <Button
                                 type="button"
                                 onClick={(e) => { e.stopPropagation(); showNext(); }}
-                                className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white sm:right-6"
+                                variant="noShadow"
+                                size="icon"
+                                className="absolute right-2 top-1/2 z-20 h-12 w-12 -translate-y-1/2 rounded-full border-white/20 bg-white/10 text-white backdrop-blur hover:bg-white/20 focus-visible:ring-white sm:right-6"
                                 aria-label="Next image"
                             >
-                                <ChevronRightIcon />
-                            </button>
+                                <ChevronRight className="size-6" />
+                            </Button>
                         </>
                     )}
 
@@ -356,7 +386,11 @@ export default function PhotoGallery({ galleryItems }: PhotoGalleryProps) {
                                             key={img.id}
                                             ref={isActive ? activeThumbRef : undefined}
                                             type="button"
-                                            onClick={(e) => { e.stopPropagation(); setLightboxIndex(i); }}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                trackPhotoAction("thumbnail_select", img);
+                                                setLightboxIndex(i);
+                                            }}
                                             className={`relative h-14 w-20 shrink-0 overflow-hidden rounded transition-all duration-200 ${isActive ? "ring-2 ring-white opacity-100 scale-105" : "opacity-50 hover:opacity-90"}`}
                                             aria-label={`View image ${i + 1}`}
                                             aria-current={isActive}

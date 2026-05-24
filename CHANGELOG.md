@@ -1,4 +1,45 @@
 CHANGELOG
+### [0.5.23](https://github.com/ps011/portfolio/compare/v0.5.22...v0.5.23) (2026-05-22)
+
+
+### Features
+
+* **analytics:** add GA4 event tracking ([46c7b1e](https://github.com/ps011/portfolio/commit/46c7b1e86ef9e7f6588a284bee6970d8ccab704e))
+
+### [0.5.22](https://github.com/ps011/portfolio/compare/v0.5.21...v0.5.22) (2026-05-22)
+
+
+### Bug Fixes
+
+* **build:** preserve Vercel preview comments build ([c16497c](https://github.com/ps011/portfolio/commit/c16497cd38577e2eac541468c12e825709e04f6d))
+
+
+### Refactors
+
+* **ui:** import design system primitives directly ([9208484](https://github.com/ps011/portfolio/commit/92084843325596f398e0b438d4f4da85c18d8fff))
+* **ui:** migrate portfolio to design system primitives ([6489baf](https://github.com/ps011/portfolio/commit/6489baf1a8d33d3daea016d482ed5600627d8216))
+
+### [0.5.21](https://github.com/ps011/portfolio/compare/v0.5.20...v0.5.21) (2026-05-22)
+
+### [0.5.20](https://github.com/ps011/portfolio/compare/v0.5.19...v0.5.20) (2026-05-21)
+
+
+### Features
+
+* **experiments:** add meeting notes taker to experiments section ([f44cfaf](https://github.com/ps011/portfolio/commit/f44cfafbb662d4dd33edc0c0c7b5c78a639dac53))
+
+### [0.5.19](https://github.com/ps011/portfolio/compare/v0.5.18...v0.5.19) (2026-05-20)
+
+
+### Features
+
+* **experiments:** add buying decision maker to portfolio ([479a288](https://github.com/ps011/portfolio/commit/479a28892fbf0d113506815601c20b4a6aac695d))
+
+
+### Bug Fixes
+
+* **blog:** fix card width and section ordering for experiments ([cea4436](https://github.com/ps011/portfolio/commit/cea4436962d9d1f82c50965fd74ddb8e4ee832f2))
+
 ### [0.5.18](https://github.com/ps011/portfolio/compare/v0.5.17...v0.5.18) (2026-05-16)
 
 

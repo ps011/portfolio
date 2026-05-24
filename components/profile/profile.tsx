@@ -5,50 +5,86 @@ import X from "../icons/x";
 import Facebook from "../icons/facebook";
 import Instagram from "../icons/instagram";
 import Stackoverflow from "../icons/stackoverflow";
+import { Button } from "@prasheel/ui";
+import { cn } from "@/lib/utils";
+import { trackClick } from "@/lib/gtag";
 
-interface ProfileProps {
-    url: string;
-    name: string;
-    className?: string;
-}
-
-const Profile = ({url, name, className}: ProfileProps) => {
-
-    const getProfileIcon = (name: string) => {
-        switch (name) {
-            case "github":
-                return <Github />;
-            case "linkedin":
-                return <Linkedin />;
-            case "twitter":
-            case "x":
-                return <X />;
-            case "facebook":
-                return <Facebook />;
-            case "instagram":
-                return <Instagram />;
-            case "stackoverflow":
-                return <Stackoverflow />;
-            default:
-                return <Github />;
-        }
+type ProfileAnalytics =
+  | false
+  | {
+      section?: string;
+      contentType?: string;
+      itemId?: string;
+      itemName?: string;
+      linkText?: string;
     };
 
-    return (
-        <span className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-base border-2 border-border bg-main p-2 shadow-shadow transition-shadow hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none">
-        <Link
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${name} profile`}
-            className={`${className || ""} text-main-foreground inline-block`}
-        >
-            <span className="block w-6 h-6" aria-hidden="true">
-                {getProfileIcon(name)}
-            </span>
-        </Link>
+interface ProfileProps {
+  url: string;
+  name: string;
+  className?: string;
+  analytics?: ProfileAnalytics;
+  onClick?: () => void;
+}
+
+const Profile = ({
+  url,
+  name,
+  className,
+  analytics,
+  onClick,
+}: ProfileProps) => {
+
+  const getProfileIcon = (name: string) => {
+    switch (name) {
+      case "github":
+        return <Github />;
+      case "linkedin":
+        return <Linkedin />;
+      case "twitter":
+      case "x":
+        return <X />;
+      case "facebook":
+        return <Facebook />;
+      case "instagram":
+        return <Instagram />;
+      case "stackoverflow":
+        return <Stackoverflow />;
+      default:
+        return <Github />;
+    }
+  };
+
+  const handleClick = () => {
+    if (analytics !== false) {
+      trackClick({
+        section: analytics?.section || "profile",
+        content_type: analytics?.contentType || "profile",
+        item_id: analytics?.itemId || name,
+        item_name: analytics?.itemName || name,
+        link_url: url,
+        link_text: analytics?.linkText || `${name} profile`,
+      });
+    }
+    onClick?.();
+  };
+
+  return (
+    <Button variant="default" size="icon" className="[&_svg]:size-6" asChild>
+      <Link
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${name} profile`}
+        className="no-underline"
+        onClick={handleClick}
+      >
+        <span className={cn("block size-6 text-main-foreground", className)} aria-hidden="true">
+          {getProfileIcon(name)}
         </span>
-    );
+      </Link>
+    </Button>
+  );
 };
 
 export default Profile;

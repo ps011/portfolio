@@ -10,6 +10,7 @@ import {
 import Profile from "../../components/profile/profile";
 import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "../../components/language-switcher/language-switcher";
+import { trackClick } from "@/lib/gtag";
 
 const Footer = ({
   profiles,
@@ -64,6 +65,16 @@ const Footer = ({
             target="_blank"
             rel="noreferrer"
             className="underline hover:no-underline"
+            onClick={() =>
+              trackClick({
+                section: "footer",
+                content_type: "profile",
+                item_id: "linkedin",
+                item_name: "LinkedIn",
+                link_url: "https://linkedin.com/in/ps011",
+                link_text: "Prasheel",
+              })
+            }
           >
             Prasheel
           </a>
@@ -75,6 +86,16 @@ const Footer = ({
             target="_blank"
             rel="noreferrer"
             className="underline hover:no-underline"
+            onClick={() =>
+              trackClick({
+                section: "footer",
+                content_type: "legal",
+                item_id: "license",
+                item_name: t("license"),
+                link_url: "https://github.com/ps011/ps11/LICENSE.md",
+                link_text: t("license"),
+              })
+            }
           >
             {t("license")}
           </a>
