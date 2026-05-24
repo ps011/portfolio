@@ -1,4 +1,11 @@
 CHANGELOG
+### [0.5.24](https://github.com/ps011/portfolio/compare/v0.5.23...v0.5.24) (2026-05-24)
+
+
+### Features
+
+* add exchange rate calculator experiment ([d888377](https://github.com/ps011/portfolio/commit/d888377a2c555b83079e5ce9b1e67fc8f83ca248))
+
 ### [0.5.23](https://github.com/ps011/portfolio/compare/v0.5.22...v0.5.23) (2026-05-22)
 
 
