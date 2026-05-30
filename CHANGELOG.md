@@ -1,4 +1,11 @@
 CHANGELOG
+### [0.5.27](https://github.com/ps011/portfolio/compare/v0.5.26...v0.5.27) (2026-05-30)
+
+
+### Features
+
+* **gallery:** add Budapest photo album ([4491f56](https://github.com/ps011/portfolio/commit/4491f562fb9fb03e1aff47647998c0caa18d600f))
+
 ### [0.5.26](https://github.com/ps011/portfolio/compare/v0.5.25...v0.5.26) (2026-05-30)
 
 
