@@ -9,6 +9,7 @@ module.exports = [
       "public/**/*",
       "node_modules/**/*",
       ".next/**/*",
+      ".worktrees/**/*",
       ".vercel/**/*",
       "out/**/*",
       "build/**/*",

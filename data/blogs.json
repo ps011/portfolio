@@ -278,6 +278,19 @@
     "link": "https://ps011.github.io/buying-decision-maker/"
   },
   {
+    "title": "I Built a Robot Crab Named Keku",
+    "shortDescription": "Everything that went wrong and right while building Keku, a robot crab experiment.",
+    "thumbnail": "https://res.cloudinary.com/designu/image/upload/v1780126242/Banners/aa3797fd-674f-4225-b7ab-47e171791523.png",
+    "banner": "https://res.cloudinary.com/designu/image/upload/v1780126242/Banners/aa3797fd-674f-4225-b7ab-47e171791523.png",
+    "author": "Prasheel Soni",
+    "profileLink": "https://github.com/ps011",
+    "hidden": false,
+    "tags": "robotics, hardware, diy, experiments",
+    "date": "2026-05-30T00:00:00.000Z",
+    "type": "experiments",
+    "link": "https://ps11.hashnode.dev/i-built-a-robot-crab-named-keku-here-s-everything-that-went-wrong-and-right"
+  },
+  {
     "title": "Understand and Build Your Personal AI with 'RAG Builder'",
     "shortDescription": "RAG Builder, a simple, local-first system that turns your scattered thoughts into a powerful, queryable knowledge base.",
     "banner": "https://res.cloudinary.com/designu/image/upload/v1759265237/images/RAG-builder/Gemini_Generated_Image_h2r4y2h2r4y2h2r4.png",
