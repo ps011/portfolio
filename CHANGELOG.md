@@ -1,4 +1,11 @@
 CHANGELOG
+### [0.5.26](https://github.com/ps011/portfolio/compare/v0.5.25...v0.5.26) (2026-05-30)
+
+
+### Features
+
+* **experiments:** add Keku robot crab post ([8119bce](https://github.com/ps011/portfolio/commit/8119bce43a3de5dff50cfe388fc62ce8cd88b409))
+
 ### [0.5.25](https://github.com/ps011/portfolio/compare/v0.5.24...v0.5.25) (2026-05-24)
 
 
