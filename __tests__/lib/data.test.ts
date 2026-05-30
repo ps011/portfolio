@@ -1,5 +1,10 @@
 import { getSiteData, getAboutData, getBlogs, getBlogByLink, getGalleryItems } from "../../lib/data";
 
+const KEKU_POST_URL =
+  "https://ps11.hashnode.dev/i-built-a-robot-crab-named-keku-here-s-everything-that-went-wrong-and-right";
+const KEKU_BANNER_URL =
+  "https://res.cloudinary.com/designu/image/upload/v1780126242/Banners/aa3797fd-674f-4225-b7ab-47e171791523.png";
+
 describe("lib/data", () => {
   describe("getSiteData", () => {
     it("returns site data from data/site.json", async () => {
@@ -48,6 +53,20 @@ describe("lib/data", () => {
         type: "experiments",
       });
     });
+
+    it("includes the Keku robot crab post as a visible experiment", async () => {
+      const blogs = await getBlogs();
+      const experiment = blogs.find(
+        (blog) => blog.link === KEKU_POST_URL,
+      );
+
+      expect(experiment).toMatchObject({
+        title: "I Built a Robot Crab Named Keku",
+        thumbnail: KEKU_BANNER_URL,
+        hidden: false,
+        type: "experiments",
+      });
+    });
   });
 
   describe("getBlogByLink", () => {
@@ -61,6 +80,16 @@ describe("lib/data", () => {
     it("returns null for non-existent link", async () => {
       const blog = await getBlogByLink("does-not-exist");
       expect(blog).toBeNull();
+    });
+
+    it("includes banner metadata for the Keku robot crab post", async () => {
+      const blog = await getBlogByLink(KEKU_POST_URL);
+
+      expect(blog).toMatchObject({
+        title: "I Built a Robot Crab Named Keku",
+        banner: KEKU_BANNER_URL,
+        thumbnail: KEKU_BANNER_URL,
+      });
     });
   });
 
