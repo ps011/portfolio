@@ -206,5 +206,45 @@
     "caption": "",
     "category": "Croatia",
     "location": "Croatia"
+  },
+  {
+    "id": "Hungary-0",
+    "src": "https://res.cloudinary.com/designu/image/upload/v1780128476/Photo%20Gallery/Budapest/PXL_20260221_184503196.jpg",
+    "thumb": "https://res.cloudinary.com/designu/image/upload/v1780128476/Photo%20Gallery/Budapest/PXL_20260221_184503196.jpg",
+    "caption": "",
+    "category": "Hungary",
+    "location": "Budapest"
+  },
+  {
+    "id": "Hungary-1",
+    "src": "https://res.cloudinary.com/designu/image/upload/v1780128471/Photo%20Gallery/Budapest/PXL_20260220_152945079_2.jpg",
+    "thumb": "https://res.cloudinary.com/designu/image/upload/v1780128471/Photo%20Gallery/Budapest/PXL_20260220_152945079_2.jpg",
+    "caption": "",
+    "category": "Hungary",
+    "location": "Budapest"
+  },
+  {
+    "id": "Hungary-2",
+    "src": "https://res.cloudinary.com/designu/image/upload/v1780128471/Photo%20Gallery/Budapest/IMG_3182.jpg",
+    "thumb": "https://res.cloudinary.com/designu/image/upload/v1780128471/Photo%20Gallery/Budapest/IMG_3182.jpg",
+    "caption": "",
+    "category": "Hungary",
+    "location": "Budapest"
+  },
+  {
+    "id": "Hungary-3",
+    "src": "https://res.cloudinary.com/designu/image/upload/v1780128469/Photo%20Gallery/Budapest/PXL_20260222_113133273_2.jpg",
+    "thumb": "https://res.cloudinary.com/designu/image/upload/v1780128469/Photo%20Gallery/Budapest/PXL_20260222_113133273_2.jpg",
+    "caption": "",
+    "category": "Hungary",
+    "location": "Budapest"
+  },
+  {
+    "id": "Hungary-4",
+    "src": "https://res.cloudinary.com/designu/image/upload/v1780128468/Photo%20Gallery/Budapest/PXL_20260223_104933408.jpg",
+    "thumb": "https://res.cloudinary.com/designu/image/upload/v1780128468/Photo%20Gallery/Budapest/PXL_20260223_104933408.jpg",
+    "caption": "",
+    "category": "Hungary",
+    "location": "Budapest"
   }
 ]
