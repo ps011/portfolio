@@ -34,6 +34,21 @@ const FILE_LABELS: Record<ContentFile, string> = {
   "gallery.json": "Gallery",
 };
 
+const FIELD_LABEL_CLASS =
+  "grid min-w-0 gap-1.5 text-sm font-semibold text-foreground";
+const FIELD_INPUT_CLASS =
+  "w-full min-w-0 rounded-base border-2 border-border bg-background px-3 text-sm font-normal text-foreground shadow-shadow-sm outline-none focus:ring-2 focus:ring-ring";
+const FIELD_TEXTAREA_CLASS =
+  "w-full min-w-0 rounded-base border-2 border-border bg-background px-3 py-2 font-mono text-sm font-normal text-foreground shadow-shadow-sm outline-none focus:ring-2 focus:ring-ring";
+const TWO_COLUMN_GRID_CLASS =
+  "grid min-w-0 gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]";
+const COLLECTION_ROW_GRID_CLASS =
+  "grid min-w-0 gap-3 rounded-base border-2 border-border p-3 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)_auto]";
+const DETAILS_CARD_CLASS =
+  "min-w-0 overflow-hidden rounded-base border-2 border-border p-3";
+const DETAILS_GRID_CLASS =
+  "mt-4 grid min-w-0 gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]";
+
 export const getStaticProps: GetStaticProps = async (context) => ({
   props: {
     messages: (await import(`../../messages/${context.locale ?? "en"}.json`))
@@ -62,20 +77,20 @@ function Field({
   type?: string;
 }) {
   return (
-    <label className="grid gap-1.5 text-sm font-semibold text-foreground">
-      <span>{label}</span>
+    <label className={FIELD_LABEL_CLASS}>
+      <span className="min-w-0 break-words">{label}</span>
       {multiline ? (
         <textarea
           value={value ?? ""}
           onChange={(event) => onChange(event.target.value)}
-          className="min-h-28 rounded-base border-2 border-border bg-background px-3 py-2 font-mono text-sm font-normal text-foreground shadow-shadow-sm outline-none focus:ring-2 focus:ring-ring"
+          className={`min-h-28 ${FIELD_TEXTAREA_CLASS}`}
         />
       ) : (
         <input
           type={type}
           value={value ?? ""}
           onChange={(event) => onChange(event.target.value)}
-          className="h-10 rounded-base border-2 border-border bg-background px-3 text-sm font-normal text-foreground shadow-shadow-sm outline-none focus:ring-2 focus:ring-ring"
+          className={`h-10 ${FIELD_INPUT_CLASS}`}
         />
       )}
     </label>
@@ -92,14 +107,14 @@ function CheckboxField({
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <label className="inline-flex items-center gap-2 text-sm font-semibold text-foreground">
+    <label className="inline-flex min-w-0 items-center gap-2 text-sm font-semibold text-foreground">
       <input
         type="checkbox"
         checked={checked}
         onChange={(event) => onChange(event.target.checked)}
-        className="size-4 accent-main"
+        className="size-4 shrink-0 accent-main"
       />
-      {label}
+      <span className="min-w-0 break-words">{label}</span>
     </label>
   );
 }
@@ -112,9 +127,9 @@ function SectionHeader({
   action?: ReactNode;
 }) {
   return (
-    <div className="mb-4 flex items-center justify-between gap-3 border-b-2 border-border pb-3">
-      <h2 className="text-lg font-bold text-foreground">{title}</h2>
-      {action}
+    <div className="mb-4 flex min-w-0 items-center justify-between gap-3 border-b-2 border-border pb-3">
+      <h2 className="min-w-0 break-words text-lg font-bold text-foreground">{title}</h2>
+      {action && <div className="shrink-0">{action}</div>}
     </div>
   );
 }
@@ -144,7 +159,7 @@ function IconButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`inline-flex h-10 items-center justify-center gap-2 rounded-base border-2 border-border px-3 text-sm font-bold shadow-shadow-sm transition disabled:cursor-not-allowed disabled:opacity-60 ${variantClass}`}
+      className={`inline-flex h-10 max-w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-base border-2 border-border px-3 text-sm font-bold shadow-shadow-sm transition disabled:cursor-not-allowed disabled:opacity-60 ${variantClass}`}
     >
       {children}
     </button>
@@ -174,7 +189,7 @@ function SiteEditor({
     <div className="space-y-6">
       <section>
         <SectionHeader title="Header" />
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className={TWO_COLUMN_GRID_CLASS}>
           <Field
             label="Logo URL"
             value={header.logoUrl}
@@ -196,7 +211,7 @@ function SiteEditor({
 
       <section>
         <SectionHeader title="Meta" />
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className={TWO_COLUMN_GRID_CLASS}>
           <Field label="Name" value={meta.name} onChange={(next) => updateMeta("name", next)} />
           <Field label="URL" value={meta.url} onChange={(next) => updateMeta("url", next)} />
           <Field label="Image" value={meta.image} onChange={(next) => updateMeta("image", next)} />
@@ -216,7 +231,7 @@ function SiteEditor({
 
       <section>
         <SectionHeader title="Banner" />
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className={TWO_COLUMN_GRID_CLASS}>
           <Field
             label="CTA URL"
             value={banner.ctaUrl}
@@ -267,7 +282,7 @@ function AboutEditor({
     <div className="space-y-6">
       <section>
         <SectionHeader title="Profile" />
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className={TWO_COLUMN_GRID_CLASS}>
           <Field label="Name" value={about.name} onChange={(next) => setField("name", next)} />
           <Field label="Image URL" value={about.imageUrl} onChange={(next) => setField("imageUrl", next)} />
           <Field label="Location" value={about.location} onChange={(next) => setField("location", next)} />
@@ -289,7 +304,7 @@ function AboutEditor({
         />
         <div className="space-y-3">
           {(about.profiles ?? []).map((profile, index) => (
-            <div key={index} className="grid gap-3 rounded-base border-2 border-border p-3 md:grid-cols-[1fr_2fr_auto]">
+            <div key={index} className={COLLECTION_ROW_GRID_CLASS}>
               <Field label="Name" value={profile.name} onChange={(next) => updateArrayItem("profiles", index, "name", next)} />
               <Field label="URL" value={profile.url} onChange={(next) => updateArrayItem("profiles", index, "url", next)} />
               <div className="flex items-end">
@@ -328,11 +343,11 @@ function AboutEditor({
         />
         <div className="space-y-4">
           {(about.experience ?? []).map((item, index) => (
-            <details key={index} open={index === 0} className="rounded-base border-2 border-border p-3">
+            <details key={index} open={index === 0} className={DETAILS_CARD_CLASS}>
               <summary className="cursor-pointer text-sm font-bold text-foreground">
                 {item.company || item.designation || `Experience ${index + 1}`}
               </summary>
-              <div className="mt-4 grid gap-4 md:grid-cols-2">
+              <div className={DETAILS_GRID_CLASS}>
                 <Field label="Company" value={item.company} onChange={(next) => updateArrayItem("experience", index, "company", next)} />
                 <Field label="Logo URL" value={item.logo} onChange={(next) => updateArrayItem("experience", index, "logo", next)} />
                 <Field label="From" value={item.from} onChange={(next) => updateArrayItem("experience", index, "from", next)} />
@@ -369,7 +384,7 @@ function AboutEditor({
         />
         <div className="space-y-3">
           {(about.skills ?? []).map((skill, index) => (
-            <div key={index} className="grid gap-3 rounded-base border-2 border-border p-3 md:grid-cols-[1fr_2fr_auto]">
+            <div key={index} className={COLLECTION_ROW_GRID_CLASS}>
               <Field label="Name" value={skill.name} onChange={(next) => updateArrayItem("skills", index, "name", next)} />
               <Field label="Logo URL" value={skill.logo} onChange={(next) => updateArrayItem("skills", index, "logo", next)} />
               <div className="flex items-end">
@@ -443,11 +458,11 @@ function BlogsEditor({
         }
       />
       {blogs.map((blog, index) => (
-        <details key={index} open={index === 0} className="rounded-base border-2 border-border p-3">
+        <details key={index} open={index === 0} className={DETAILS_CARD_CLASS}>
           <summary className="cursor-pointer text-sm font-bold text-foreground">
             {blog.title || `Post ${index + 1}`}
           </summary>
-          <div className="mt-4 grid gap-4 md:grid-cols-2">
+          <div className={DETAILS_GRID_CLASS}>
             <Field label="Title" value={blog.title} onChange={(next) => updateBlog(index, "title", next)} />
             <Field label="Slug or URL" value={blog.link} onChange={(next) => updateBlog(index, "link", next)} />
             <Field label="Type" value={blog.type} onChange={(next) => updateBlog(index, "type", next)} />
@@ -514,11 +529,11 @@ function GalleryEditor({
         }
       />
       {items.map((item, index) => (
-        <details key={index} open={index === 0} className="rounded-base border-2 border-border p-3">
+        <details key={index} open={index === 0} className={DETAILS_CARD_CLASS}>
           <summary className="cursor-pointer text-sm font-bold text-foreground">
             {item.caption || item.id || `Photo ${index + 1}`}
           </summary>
-          <div className="mt-4 grid gap-4 md:grid-cols-2">
+          <div className={DETAILS_GRID_CLASS}>
             <Field label="ID" value={item.id} onChange={(next) => updateItem(index, "id", next)} />
             <Field label="Category" value={item.category} onChange={(next) => updateItem(index, "category", next)} />
             <Field label="Location" value={item.location} onChange={(next) => updateItem(index, "location", next)} />
@@ -671,7 +686,7 @@ export default function ContentAdminPage() {
         <title>Content Admin | Prasheel Soni</title>
       </Head>
       <div className="min-h-screen bg-background">
-        <main className="mx-auto grid w-full max-w-7xl gap-6 px-4 py-6 md:px-6 lg:grid-cols-[240px_1fr]">
+        <main className="mx-auto grid w-full max-w-7xl min-w-0 gap-6 overflow-x-clip px-4 py-6 md:px-6 lg:grid-cols-[240px_minmax(0,1fr)]">
           <aside className="rounded-base border-2 border-border bg-secondary-background p-4 shadow-shadow-sm lg:sticky lg:top-6 lg:h-[calc(100vh-48px)]">
             <div className="mb-5 flex items-center gap-2">
               <div className="flex size-9 items-center justify-center rounded-base border-2 border-border bg-main text-main-foreground shadow-shadow-sm">
@@ -716,7 +731,7 @@ export default function ContentAdminPage() {
             )}
           </aside>
 
-          <section className="min-w-0 rounded-base border-2 border-border bg-background p-4 shadow-shadow md:p-6">
+          <section className="min-w-0 overflow-hidden rounded-base border-2 border-border bg-background p-4 shadow-shadow md:p-6">
             {!authenticated ? (
               <form onSubmit={login} className="mx-auto grid max-w-md gap-4 py-16">
                 <div>
@@ -740,7 +755,7 @@ export default function ContentAdminPage() {
                 {status && <p className="text-sm font-semibold text-red-700">{status}</p>}
               </form>
             ) : (
-              <div className="grid gap-6">
+              <div className="grid min-w-0 gap-6">
                 <div className="flex flex-col gap-3 border-b-2 border-border pb-4 md:flex-row md:items-center md:justify-between">
                   <div>
                     <h2 className="text-2xl font-black text-foreground">{FILE_LABELS[selectedFile]}</h2>
