@@ -1,4 +1,6 @@
 export interface About {
+  name?: string;
+  bio?: string;
   imageUrl: string;
   location: string;
   designation: string;
