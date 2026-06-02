@@ -1,6 +1,60 @@
 import { render, screen } from "@testing-library/react";
 import ContentAdminPage from "../../../pages/admin/content";
 
+jest.mock("@prasheel/ui", () => {
+  const React = jest.requireActual<typeof import("react")>("react");
+
+  const Button = ({ children, ...props }: React.ComponentProps<"button">) => (
+    <button data-prasheel-ui="button" {...props}>
+      {children}
+    </button>
+  );
+  Button.displayName = "MockButton";
+
+  const Card = ({ children, ...props }: React.ComponentProps<"div">) => (
+    <div data-prasheel-ui="card" {...props}>
+      {children}
+    </div>
+  );
+  Card.displayName = "MockCard";
+
+  const CardContent = ({ children, ...props }: React.ComponentProps<"div">) => (
+    <div data-prasheel-ui="card-content" {...props}>
+      {children}
+    </div>
+  );
+  CardContent.displayName = "MockCardContent";
+
+  const Checkbox = React.forwardRef<
+    HTMLInputElement,
+    React.ComponentProps<"input">
+  >((props, ref) => <input ref={ref} data-prasheel-ui="checkbox" {...props} />);
+  Checkbox.displayName = "MockCheckbox";
+
+  const Input = React.forwardRef<
+    HTMLInputElement,
+    React.ComponentProps<"input">
+  >((props, ref) => <input ref={ref} data-prasheel-ui="input" {...props} />);
+  Input.displayName = "MockInput";
+
+  const Textarea = React.forwardRef<
+    HTMLTextAreaElement,
+    React.ComponentProps<"textarea">
+  >((props, ref) => (
+    <textarea ref={ref} data-prasheel-ui="textarea" {...props} />
+  ));
+  Textarea.displayName = "MockTextarea";
+
+  return {
+    Button,
+    Card,
+    CardContent,
+    Checkbox,
+    Input,
+    Textarea,
+  };
+});
+
 describe("/admin/content", () => {
   const originalFetch = global.fetch;
 
@@ -52,5 +106,7 @@ describe("/admin/content", () => {
     expect(imageUrl).toHaveClass("w-full");
     expect(bio).toHaveClass("min-w-0");
     expect(bio).toHaveClass("w-full");
+    expect(imageUrl).toHaveAttribute("data-prasheel-ui", "input");
+    expect(bio).toHaveAttribute("data-prasheel-ui", "textarea");
   });
 });

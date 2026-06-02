@@ -16,6 +16,14 @@ import {
   Save,
   Trash2,
 } from "lucide-react";
+import {
+  Button,
+  Card,
+  CardContent,
+  Checkbox,
+  Input,
+  Textarea,
+} from "@prasheel/ui";
 
 type ContentFile = "site.json" | "about.json" | "blogs.json" | "gallery.json";
 type ContentState = Partial<Record<ContentFile, any>>;
@@ -36,10 +44,6 @@ const FILE_LABELS: Record<ContentFile, string> = {
 
 const FIELD_LABEL_CLASS =
   "grid min-w-0 gap-1.5 text-sm font-semibold text-foreground";
-const FIELD_INPUT_CLASS =
-  "w-full min-w-0 rounded-base border-2 border-border bg-background px-3 text-sm font-normal text-foreground shadow-shadow-sm outline-none focus:ring-2 focus:ring-ring";
-const FIELD_TEXTAREA_CLASS =
-  "w-full min-w-0 rounded-base border-2 border-border bg-background px-3 py-2 font-mono text-sm font-normal text-foreground shadow-shadow-sm outline-none focus:ring-2 focus:ring-ring";
 const TWO_COLUMN_GRID_CLASS =
   "grid min-w-0 gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]";
 const COLLECTION_ROW_GRID_CLASS =
@@ -80,17 +84,17 @@ function Field({
     <label className={FIELD_LABEL_CLASS}>
       <span className="min-w-0 break-words">{label}</span>
       {multiline ? (
-        <textarea
+        <Textarea
           value={value ?? ""}
           onChange={(event) => onChange(event.target.value)}
-          className={`min-h-28 ${FIELD_TEXTAREA_CLASS}`}
+          className="min-h-28 w-full min-w-0 font-mono"
         />
       ) : (
-        <input
+        <Input
           type={type}
           value={value ?? ""}
           onChange={(event) => onChange(event.target.value)}
-          className={`h-10 ${FIELD_INPUT_CLASS}`}
+          className="h-10 w-full min-w-0"
         />
       )}
     </label>
@@ -108,11 +112,9 @@ function CheckboxField({
 }) {
   return (
     <label className="inline-flex min-w-0 items-center gap-2 text-sm font-semibold text-foreground">
-      <input
-        type="checkbox"
+      <Checkbox
         checked={checked}
         onChange={(event) => onChange(event.target.checked)}
-        className="size-4 shrink-0 accent-main"
       />
       <span className="min-w-0 break-words">{label}</span>
     </label>
@@ -134,35 +136,33 @@ function SectionHeader({
   );
 }
 
-function IconButton({
+function ActionButton({
   children,
   onClick,
   type = "button",
   variant = "default",
   disabled,
+  className = "",
 }: {
   children: ReactNode;
   onClick?: () => void;
   type?: "button" | "submit";
   variant?: "default" | "neutral" | "danger";
   disabled?: boolean;
+  className?: string;
 }) {
-  const variantClass =
-    variant === "danger"
-      ? "bg-red-100 text-red-900 hover:bg-red-200"
-      : variant === "neutral"
-        ? "bg-secondary-background text-foreground hover:bg-background"
-        : "bg-main text-main-foreground hover:opacity-90";
-
+  const buttonVariant = variant === "danger" ? "destructive" : variant;
   return (
-    <button
+    <Button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`inline-flex h-10 max-w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-base border-2 border-border px-3 text-sm font-bold shadow-shadow-sm transition disabled:cursor-not-allowed disabled:opacity-60 ${variantClass}`}
+      variant={buttonVariant}
+      size="sm"
+      className={`h-10 max-w-full shrink-0 px-3 text-sm shadow-shadow-sm ${className}`}
     >
       {children}
-    </button>
+    </Button>
   );
 }
 
@@ -296,10 +296,10 @@ function AboutEditor({
         <SectionHeader
           title="Social Links"
           action={
-            <IconButton onClick={() => addArrayItem("profiles", { name: "", url: "" })} variant="neutral">
+            <ActionButton onClick={() => addArrayItem("profiles", { name: "", url: "" })} variant="neutral">
               <Plus className="size-4" />
               Add
-            </IconButton>
+            </ActionButton>
           }
         />
         <div className="space-y-3">
@@ -308,10 +308,10 @@ function AboutEditor({
               <Field label="Name" value={profile.name} onChange={(next) => updateArrayItem("profiles", index, "name", next)} />
               <Field label="URL" value={profile.url} onChange={(next) => updateArrayItem("profiles", index, "url", next)} />
               <div className="flex items-end">
-                <IconButton onClick={() => removeArrayItem("profiles", index)} variant="danger">
+                <ActionButton onClick={() => removeArrayItem("profiles", index)} variant="danger">
                   <Trash2 className="size-4" />
                   Remove
-                </IconButton>
+                </ActionButton>
               </div>
             </div>
           ))}
@@ -322,7 +322,7 @@ function AboutEditor({
         <SectionHeader
           title="Experience"
           action={
-            <IconButton
+            <ActionButton
               onClick={() =>
                 addArrayItem("experience", {
                   company: "",
@@ -338,7 +338,7 @@ function AboutEditor({
             >
               <Plus className="size-4" />
               Add
-            </IconButton>
+            </ActionButton>
           }
         />
         <div className="space-y-4">
@@ -361,10 +361,10 @@ function AboutEditor({
                   onChange={(next) => updateArrayItem("experience", index, "technologies", splitLines(next))}
                 />
                 <div className="flex items-end justify-end">
-                  <IconButton onClick={() => removeArrayItem("experience", index)} variant="danger">
+                  <ActionButton onClick={() => removeArrayItem("experience", index)} variant="danger">
                     <Trash2 className="size-4" />
                     Remove
-                  </IconButton>
+                  </ActionButton>
                 </div>
               </div>
             </details>
@@ -376,10 +376,10 @@ function AboutEditor({
         <SectionHeader
           title="Skills"
           action={
-            <IconButton onClick={() => addArrayItem("skills", { name: "", logo: "" })} variant="neutral">
+            <ActionButton onClick={() => addArrayItem("skills", { name: "", logo: "" })} variant="neutral">
               <Plus className="size-4" />
               Add
-            </IconButton>
+            </ActionButton>
           }
         />
         <div className="space-y-3">
@@ -388,10 +388,10 @@ function AboutEditor({
               <Field label="Name" value={skill.name} onChange={(next) => updateArrayItem("skills", index, "name", next)} />
               <Field label="Logo URL" value={skill.logo} onChange={(next) => updateArrayItem("skills", index, "logo", next)} />
               <div className="flex items-end">
-                <IconButton onClick={() => removeArrayItem("skills", index)} variant="danger">
+                <ActionButton onClick={() => removeArrayItem("skills", index)} variant="danger">
                   <Trash2 className="size-4" />
                   Remove
-                </IconButton>
+                </ActionButton>
               </div>
             </div>
           ))}
@@ -430,7 +430,7 @@ function BlogsEditor({
       <SectionHeader
         title="Posts"
         action={
-          <IconButton
+          <ActionButton
             onClick={() =>
               onChange([
                 {
@@ -454,7 +454,7 @@ function BlogsEditor({
           >
             <Plus className="size-4" />
             Add
-          </IconButton>
+          </ActionButton>
         }
       />
       {blogs.map((blog, index) => (
@@ -476,10 +476,10 @@ function BlogsEditor({
             <Field label="Content URL or Markdown" value={blog.content} multiline onChange={(next) => updateBlog(index, "content", next)} />
             <div className="flex items-end justify-between gap-3">
               <CheckboxField label="Hidden" checked={Boolean(blog.hidden)} onChange={(next) => updateBlog(index, "hidden", next)} />
-              <IconButton onClick={() => onChange(blogs.filter((_, itemIndex) => itemIndex !== index))} variant="danger">
+              <ActionButton onClick={() => onChange(blogs.filter((_, itemIndex) => itemIndex !== index))} variant="danger">
                 <Trash2 className="size-4" />
                 Remove
-              </IconButton>
+              </ActionButton>
             </div>
           </div>
         </details>
@@ -507,7 +507,7 @@ function GalleryEditor({
       <SectionHeader
         title="Photos"
         action={
-          <IconButton
+          <ActionButton
             onClick={() =>
               onChange([
                 {
@@ -525,7 +525,7 @@ function GalleryEditor({
           >
             <Plus className="size-4" />
             Add
-          </IconButton>
+          </ActionButton>
         }
       />
       {items.map((item, index) => (
@@ -541,10 +541,10 @@ function GalleryEditor({
             <Field label="Image URL" value={item.src} onChange={(next) => updateItem(index, "src", next)} />
             <Field label="Thumb URL" value={item.thumb} onChange={(next) => updateItem(index, "thumb", next)} />
             <div className="flex items-end justify-end md:col-span-2">
-              <IconButton onClick={() => onChange(items.filter((_, itemIndex) => itemIndex !== index))} variant="danger">
+              <ActionButton onClick={() => onChange(items.filter((_, itemIndex) => itemIndex !== index))} variant="danger">
                 <Trash2 className="size-4" />
                 Remove
-              </IconButton>
+              </ActionButton>
             </div>
           </div>
         </details>
@@ -687,105 +687,111 @@ export default function ContentAdminPage() {
       </Head>
       <div className="min-h-screen bg-background">
         <main className="mx-auto grid w-full max-w-7xl min-w-0 gap-6 overflow-x-clip px-4 py-6 md:px-6 lg:grid-cols-[240px_minmax(0,1fr)]">
-          <aside className="rounded-base border-2 border-border bg-secondary-background p-4 shadow-shadow-sm lg:sticky lg:top-6 lg:h-[calc(100vh-48px)]">
-            <div className="mb-5 flex items-center gap-2">
-              <div className="flex size-9 items-center justify-center rounded-base border-2 border-border bg-main text-main-foreground shadow-shadow-sm">
-                <Lock className="size-4" />
-              </div>
-              <div>
-                <h1 className="text-lg font-black text-foreground">Content Admin</h1>
-                <p className="text-xs font-semibold text-muted-foreground">Cloudinary JSON</p>
-              </div>
-            </div>
-
-            {authenticated && (
-              <>
-                <nav className="grid gap-2">
-                  {files.map((file) => (
-                    <button
-                      key={file}
-                      type="button"
-                      onClick={() => setSelectedFile(file)}
-                      className={`rounded-base border-2 border-border px-3 py-2 text-left text-sm font-bold shadow-shadow-sm transition ${
-                        selectedFile === file
-                          ? "bg-main text-main-foreground"
-                          : "bg-background text-foreground hover:bg-secondary-background"
-                      }`}
-                    >
-                      {FILE_LABELS[file]}
-                    </button>
-                  ))}
-                </nav>
-
-                <div className="mt-5 grid gap-2">
-                  <IconButton onClick={loadContent} variant="neutral" disabled={loading}>
-                    <RefreshCw className="size-4" />
-                    Refresh
-                  </IconButton>
-                  <IconButton onClick={logout} variant="neutral">
-                    <LogOut className="size-4" />
-                    Sign out
-                  </IconButton>
-                </div>
-              </>
-            )}
-          </aside>
-
-          <section className="min-w-0 overflow-hidden rounded-base border-2 border-border bg-background p-4 shadow-shadow md:p-6">
-            {!authenticated ? (
-              <form onSubmit={login} className="mx-auto grid max-w-md gap-4 py-16">
-                <div>
-                  <h2 className="text-2xl font-black text-foreground">Sign in</h2>
-                  <p className="mt-1 text-sm text-muted-foreground">Sign in to edit portfolio content.</p>
-                </div>
-                <label htmlFor="admin-password" className="grid gap-1.5 text-sm font-bold text-foreground">
-                  Password
-                  <input
-                    id="admin-password"
-                    type="password"
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                    className="h-11 rounded-base border-2 border-border bg-background px-3 text-foreground shadow-shadow-sm outline-none focus:ring-2 focus:ring-ring"
-                  />
-                </label>
-                <IconButton type="submit" disabled={loading}>
-                  {loading ? <Loader2 className="size-4 animate-spin" /> : <Lock className="size-4" />}
-                  Sign in
-                </IconButton>
-                {status && <p className="text-sm font-semibold text-red-700">{status}</p>}
-              </form>
-            ) : (
-              <div className="grid min-w-0 gap-6">
-                <div className="flex flex-col gap-3 border-b-2 border-border pb-4 md:flex-row md:items-center md:justify-between">
+          <aside className="lg:sticky lg:top-6 lg:h-[calc(100vh-48px)]">
+            <Card className="h-full bg-secondary-background shadow-shadow-sm">
+              <CardContent className="p-4">
+                <div className="mb-5 flex items-center gap-2">
+                  <div className="flex size-9 items-center justify-center rounded-base border-2 border-border bg-main text-main-foreground shadow-shadow-sm">
+                    <Lock className="size-4" />
+                  </div>
                   <div>
-                    <h2 className="text-2xl font-black text-foreground">{FILE_LABELS[selectedFile]}</h2>
-                    <p className="text-sm text-muted-foreground">{selectedFile}</p>
+                    <h1 className="text-lg font-black text-foreground">Content Admin</h1>
+                    <p className="text-xs font-semibold text-muted-foreground">Cloudinary JSON</p>
                   </div>
-                  <IconButton onClick={saveSelectedFile} disabled={saving || loading}>
-                    {saving ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
-                    Save
-                  </IconButton>
                 </div>
 
-                {loading ? (
-                  <div className="flex min-h-80 items-center justify-center text-muted-foreground">
-                    <Loader2 className="mr-2 size-5 animate-spin" />
-                    Loading
-                  </div>
-                ) : (
+                {authenticated && (
                   <>
-                    {renderEditor()}
-                    <RawPreview value={selectedContent} />
+                    <nav className="grid gap-2">
+                      {files.map((file) => (
+                        <Button
+                          key={file}
+                          type="button"
+                          onClick={() => setSelectedFile(file)}
+                          variant={selectedFile === file ? "default" : "neutral"}
+                          size="sm"
+                          className="h-auto w-full justify-start px-3 py-2 text-left text-sm shadow-shadow-sm"
+                        >
+                          {FILE_LABELS[file]}
+                        </Button>
+                      ))}
+                    </nav>
+
+                    <div className="mt-5 grid gap-2">
+                      <ActionButton onClick={loadContent} variant="neutral" disabled={loading}>
+                        <RefreshCw className="size-4" />
+                        Refresh
+                      </ActionButton>
+                      <ActionButton onClick={logout} variant="neutral">
+                        <LogOut className="size-4" />
+                        Sign out
+                      </ActionButton>
+                    </div>
                   </>
                 )}
+              </CardContent>
+            </Card>
+          </aside>
 
-                {status && (
-                  <div className="rounded-base border-2 border-border bg-secondary-background px-3 py-2 text-sm font-bold text-foreground">
-                    {status}
+          <section className="min-w-0 overflow-hidden">
+            <Card className="overflow-hidden">
+              <CardContent className="p-4 md:p-6">
+                {!authenticated ? (
+                  <form onSubmit={login} className="mx-auto grid max-w-md gap-4 py-16">
+                    <div>
+                      <h2 className="text-2xl font-black text-foreground">Sign in</h2>
+                      <p className="mt-1 text-sm text-muted-foreground">Sign in to edit portfolio content.</p>
+                    </div>
+                    <label htmlFor="admin-password" className="grid gap-1.5 text-sm font-bold text-foreground">
+                      Password
+                      <Input
+                        id="admin-password"
+                        type="password"
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+                        className="w-full min-w-0"
+                      />
+                    </label>
+                    <ActionButton type="submit" disabled={loading}>
+                      {loading ? <Loader2 className="size-4 animate-spin" /> : <Lock className="size-4" />}
+                      Sign in
+                    </ActionButton>
+                    {status && <p className="text-sm font-semibold text-red-700">{status}</p>}
+                  </form>
+                ) : (
+                  <div className="grid min-w-0 gap-6">
+                    <div className="flex flex-col gap-3 border-b-2 border-border pb-4 md:flex-row md:items-center md:justify-between">
+                      <div>
+                        <h2 className="text-2xl font-black text-foreground">{FILE_LABELS[selectedFile]}</h2>
+                        <p className="text-sm text-muted-foreground">{selectedFile}</p>
+                      </div>
+                      <ActionButton onClick={saveSelectedFile} disabled={saving || loading}>
+                        {saving ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
+                        Save
+                      </ActionButton>
+                    </div>
+
+                    {loading ? (
+                      <div className="flex min-h-80 items-center justify-center text-muted-foreground">
+                        <Loader2 className="mr-2 size-5 animate-spin" />
+                        Loading
+                      </div>
+                    ) : (
+                      <>
+                        {renderEditor()}
+                        <RawPreview value={selectedContent} />
+                      </>
+                    )}
+
+                    {status && (
+                      <div className="rounded-base border-2 border-border bg-secondary-background px-3 py-2 text-sm font-bold text-foreground">
+                        {status}
+                      </div>
+                    )}
                   </div>
                 )}
-              </div>
-            )}
+              </CardContent>
+            </Card>
           </section>
         </main>
       </div>
