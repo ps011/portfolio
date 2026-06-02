@@ -51,13 +51,13 @@ export default function Portfolio({ Component, pageProps }) {
           </Script>
         </>
       )}
-      <NextIntlClientProvider locale={router.locale} messages={messages ?? defaultMessages}>
+      <NextIntlClientProvider locale={router.locale ?? "en"} messages={messages ?? defaultMessages}>
         <ThemeProvider
           defaultThemeId="blue"
           defaultDarkMode={false}
           storageKeys={themeStorageKeys}
         >
-          <Layout data={siteData} about={aboutData}>
+          <Layout data={siteData} about={aboutData} messages={messages ?? defaultMessages}>
             <Component {...restPageProps} aboutData={aboutData} />
           </Layout>
         </ThemeProvider>

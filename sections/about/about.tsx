@@ -22,6 +22,8 @@ interface Interest {
 }
 
 interface AboutProps {
+  name?: string;
+  bio?: string;
   skills: { logo: string; name: string }[];
   imageUrl: string;
   location: string;
@@ -59,6 +61,8 @@ const item = {
 };
 
 const About = ({
+  name,
+  bio,
   imageUrl,
   location,
   designation,
@@ -70,6 +74,8 @@ const About = ({
   const t = useTranslations("about");
   const tInterests = useTranslations("interests");
   const tc = useTranslations("common");
+  const displayName = name || t("name");
+  const aboutHtml = bio || t.raw("bio");
 
   const renderInterestCTA = (interest: Interest) => {
     const type = getInterestType(interest.title);
@@ -160,14 +166,14 @@ const About = ({
           {/* Top stripe: avatar + identity + social */}
           <div className="flex flex-col items-center gap-3 border-b-2 border-border px-6 py-5 sm:flex-row sm:gap-5">
             <Avatar className="h-48 w-48 shrink-0 border-2 border-border shadow-shadow-sm">
-              <AvatarImage src={imageUrl} alt={t("name")} />
+              <AvatarImage src={imageUrl} alt={displayName} />
               <AvatarFallback className="text-xl font-bold">
-                {t("name")?.charAt(0)}
+                {displayName?.charAt(0)}
               </AvatarFallback>
             </Avatar>
 
             <div className="flex min-w-0 flex-1 flex-col items-center gap-2 sm:items-start">
-              <h2 className="text-xl font-bold text-foreground">{t("name")}</h2>
+              <h2 className="text-xl font-bold text-foreground">{displayName}</h2>
               <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs text-muted-foreground sm:justify-start">
                 {designation && (
                   <span className="flex items-center gap-1">
@@ -223,7 +229,7 @@ const About = ({
           {/* About text */}
           <div
             className="prose prose-sm max-w-none px-6 py-5 text-foreground"
-            dangerouslySetInnerHTML={{ __html: t.raw("bio") }}
+            dangerouslySetInnerHTML={{ __html: aboutHtml }}
           />
 
           {/* Interests */}
