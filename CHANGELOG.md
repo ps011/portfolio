@@ -1,4 +1,16 @@
 CHANGELOG
+### [0.5.29](https://github.com/ps011/portfolio/compare/v0.5.28...v0.5.29) (2026-06-30)
+
+
+### Features
+
+* add youtube rss section ([9b01944](https://github.com/ps011/portfolio/commit/9b01944ac5b61c0b7756bc341186a4b199367cdc))
+
+
+### Bug Fixes
+
+* match youtube card hover behavior ([9a898a9](https://github.com/ps011/portfolio/commit/9a898a9fa1a780b054c40e185c88c52fac44a6ae))
+
 ### [0.5.28](https://github.com/ps011/portfolio/compare/v0.5.27...v0.5.28) (2026-06-02)
 
 
