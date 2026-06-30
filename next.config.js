@@ -18,6 +18,10 @@ module.exports = {
         protocol: "https",
         hostname: "cdn.hashnode.com",
       },
+      {
+        protocol: "https",
+        hostname: "**.ytimg.com",
+      },
     ],
   },
   compiler: {
