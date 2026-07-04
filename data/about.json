@@ -1,7 +1,7 @@
 {
   "imageUrl": "https://res.cloudinary.com/designu/image/upload/v1771310980/images/about/DP.jpg",
   "location": "Tallinn, Estonia",
-  "designation": "Senior Software Engineer",
+  "designation": "Engineering Manager",
   "education": "Bachelor of Engineering",
   "skills": [
     {
@@ -231,7 +231,7 @@
   ],
   "stats": [
     {
-      "count": "8+",
+      "count": "9+",
       "label": "Years of Experience"
     },
     {
@@ -239,7 +239,7 @@
       "label": "Countries travelled"
     },
     {
-      "count": "10+",
+      "count": "15+",
       "label": "Projects delivered"
     }
   ],
