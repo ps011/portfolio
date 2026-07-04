@@ -3,6 +3,48 @@ Welcome to Portfolio – a versatile and customizable personal website template 
 
 ## Deployment Process
 
+## Content Admin
+
+The site can load editable JSON content from Cloudinary raw assets instead of
+the repository `data/*.json` files. When remote content is configured,
+`getStaticProps` fetches the JSON at build/regeneration time, so published
+content can update through ISR without redeploying the app.
+
+Editable files:
+
+- `site.json`
+- `about.json`
+- `blogs.json`
+- `gallery.json`
+
+Admin editor:
+
+- URL: `/admin/content`
+- Login: `CONTENT_ADMIN_PASSWORD`
+- Saves: server-side API route uploads JSON to Cloudinary raw assets
+- Backups: each save attempts to write a timestamped copy under
+  `portfolio-content/backups/`
+
+Required environment variables:
+
+- `CONTENT_ADMIN_PASSWORD`
+- `CONTENT_ADMIN_SESSION_SECRET`
+- `CLOUDINARY_CLOUD_NAME`
+- `CLOUDINARY_API_KEY`
+- `CLOUDINARY_API_SECRET`
+- `CONTENT_CLOUDINARY_FOLDER`, defaults to `portfolio-content`
+
+Remote content URLs are resolved in this order:
+
+1. `CONTENT_REMOTE_BASE_URL/<filename>` when `CONTENT_REMOTE_BASE_URL` is set.
+2. `https://res.cloudinary.com/<cloud>/raw/upload/<folder>/<filename>` when
+   Cloudinary config is set.
+3. Local `data/*.json` files when no remote source is configured.
+
+Upload the current JSON files to Cloudinary raw assets with public IDs like
+`portfolio-content/about.json`, `portfolio-content/blogs.json`, and
+`portfolio-content/gallery.json` before switching production to remote content.
+
 The project uses GitHub Actions for automated deployment with a two-stage release process:
 
 ### Deployment Workflow Diagram

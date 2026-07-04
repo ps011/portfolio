@@ -1,4 +1,33 @@
 CHANGELOG
+### [0.5.29](https://github.com/ps011/portfolio/compare/v0.5.28...v0.5.29) (2026-06-30)
+
+
+### Features
+
+* add youtube rss section ([9b01944](https://github.com/ps011/portfolio/commit/9b01944ac5b61c0b7756bc341186a4b199367cdc))
+
+
+### Bug Fixes
+
+* match youtube card hover behavior ([9a898a9](https://github.com/ps011/portfolio/commit/9a898a9fa1a780b054c40e185c88c52fac44a6ae))
+
+### [0.5.28](https://github.com/ps011/portfolio/compare/v0.5.27...v0.5.28) (2026-06-02)
+
+
+### Features
+
+* add Cloudinary content admin ([ea672ad](https://github.com/ps011/portfolio/commit/ea672ad24095621fc35583ac92632fdd395f197f))
+
+
+### Bug Fixes
+
+* constrain admin editor fields ([b9d40a7](https://github.com/ps011/portfolio/commit/b9d40a750316c3ee3ccc7a5620cb29065f6fd7da))
+
+
+### Refactors
+
+* use design system in content admin ([d9edb15](https://github.com/ps011/portfolio/commit/d9edb15e63aa6d89d2d901770a5818075028d84a))
+
 ### [0.5.27](https://github.com/ps011/portfolio/compare/v0.5.26...v0.5.27) (2026-05-30)
 
 

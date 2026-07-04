@@ -46,7 +46,7 @@ describe("About", () => {
 
   it("renders name, location, designation, and education", () => {
     render(<About {...defaultProps} />);
-    expect(screen.getByText("Prasheel")).toBeInTheDocument();
+    expect(screen.getByText("John Doe")).toBeInTheDocument();
     expect(screen.getByText("San Francisco")).toBeInTheDocument();
     expect(screen.getByText("Software Engineer")).toBeInTheDocument();
     expect(screen.getByText("MIT")).toBeInTheDocument();
@@ -69,6 +69,19 @@ describe("About", () => {
   it("renders about text directly without interaction", () => {
     render(<About {...defaultProps} />);
     expect(screen.getByText(/Hey there! Welcome to my world/)).toBeInTheDocument();
+  });
+
+  it("uses editable name and bio values when provided", () => {
+    render(
+      <About
+        {...defaultProps}
+        name="Editable Name"
+        bio="<p>Editable bio from remote JSON.</p>"
+      />,
+    );
+
+    expect(screen.getByText("Editable Name")).toBeInTheDocument();
+    expect(screen.getByText("Editable bio from remote JSON.")).toBeInTheDocument();
   });
 
   it("renders interests inside about section", () => {
