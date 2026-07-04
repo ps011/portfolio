@@ -57,8 +57,22 @@
     {
       "company": "Bolt OÜ ",
       "logo": "https://res.cloudinary.com/designu/image/upload/v1630253408/logos/bolt.png",
-      "from": "November 2025",
+      "from": "July 2026",
       "to": "Present",
+      "technologies": [
+        "People Management",
+        "Leadership",
+        "Agile",
+        "Delivery optimisation"
+      ],
+      "designation": "Engineering Manager - New Bets",
+      "location": "Tallinn, Estonia"
+    },
+    {
+      "company": "Bolt OÜ ",
+      "logo": "https://res.cloudinary.com/designu/image/upload/v1630253408/logos/bolt.png",
+      "from": "November 2025",
+      "to": "June 2026",
       "technologies": [
         "People Management",
         "Leadership",
