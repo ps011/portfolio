@@ -57,7 +57,7 @@ export default function Portfolio({ Component, pageProps }) {
           defaultDarkMode={false}
           storageKeys={themeStorageKeys}
         >
-          <Layout data={siteData} about={aboutData} messages={messages ?? defaultMessages}>
+          <Layout data={siteData} about={aboutData} messages={messages ?? defaultMessages} blogPost={restPageProps.blogPost}>
             <Component {...restPageProps} aboutData={aboutData} />
           </Layout>
         </ThemeProvider>

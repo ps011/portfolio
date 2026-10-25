@@ -1,11 +1,11 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import NextDocument, { Html, Head, Main, NextScript, type DocumentContext } from "next/document";
 import { themePresets } from "@prasheel/ui";
 
 const themePresetsJson = JSON.stringify(themePresets);
 
-export default function Document() {
+export default function Document({ locale = "en" }: { locale?: string }) {
   return (
-    <Html lang="en">
+    <Html lang={locale}>
       <Head>
         <script
           dangerouslySetInnerHTML={{
@@ -34,3 +34,8 @@ export default function Document() {
     </Html>
   );
 }
+
+Document.getInitialProps = async (ctx: DocumentContext) => ({
+  ...(await NextDocument.getInitialProps(ctx)),
+  locale: ctx.locale ?? "en",
+});

@@ -3,6 +3,8 @@ import { Header } from "../header/header";
 import Footer from "../../sections/footer/footer";
 import Meta from "../meta/meta";
 import { SmoothScroll } from "../smooth-scroll";
+import { useRouter } from "next/router";
+import type { Blog } from "../../interfaces/blog";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -15,6 +17,7 @@ interface LayoutProps {
     profiles?: { name: string; url: string }[];
   };
   messages?: any;
+  blogPost?: Blog;
 }
 
 const ChromeLayout: React.FC<LayoutProps> = ({
@@ -22,13 +25,25 @@ const ChromeLayout: React.FC<LayoutProps> = ({
   data,
   about,
   messages,
+  blogPost,
 }) => {
+  const router = useRouter();
   const meta = data?.meta;
   const header = data?.header;
   const profiles = about?.profiles;
   const commonMessages = messages?.common ?? {};
   const aboutMessages = messages?.about ?? {};
   const metaMessages = messages?.meta ?? {};
+  const seoMessages = messages?.seo ?? {};
+  const pageSeo = router.pathname === "/blog/[link]" && blogPost
+    ? { title: `${blogPost.title} | Prasheel Soni`, desc: blogPost.shortDescription, image: blogPost.banner, author: blogPost.author, article: blogPost }
+    : router.pathname === "/blog"
+      ? { title: messages?.blogIndex?.pageTitle, desc: seoMessages.blog }
+      : router.pathname === "/photo-gallery"
+        ? { title: seoMessages.galleryTitle, desc: seoMessages.gallery }
+        : router.pathname === "/dev"
+          ? { title: seoMessages.devTitle, desc: seoMessages.dev }
+          : {};
 
   const twitterProfile = profiles?.find(
     (p) => p.name === "twitter" || p.name === "x",
@@ -52,6 +67,8 @@ const ChromeLayout: React.FC<LayoutProps> = ({
           desc={metaMessages.desc}
           author={about?.name ?? aboutMessages.name}
           twitterHandle={twitterHandle}
+          profiles={profiles?.map((profile) => profile.url)}
+          {...pageSeo}
         />
       )}
       {header && <Header {...header} />}
@@ -61,7 +78,7 @@ const ChromeLayout: React.FC<LayoutProps> = ({
   );
 };
 
-const Layout: React.FC<LayoutProps> = ({ children, data, about, messages }) => {
+const Layout: React.FC<LayoutProps> = ({ children, data, about, messages, blogPost }) => {
   const hasChrome = Boolean(data?.meta || data?.header || about?.profiles);
 
   if (!hasChrome) {
@@ -69,7 +86,7 @@ const Layout: React.FC<LayoutProps> = ({ children, data, about, messages }) => {
   }
 
   return (
-    <ChromeLayout data={data} about={about} messages={messages}>
+    <ChromeLayout data={data} about={about} messages={messages} blogPost={blogPost}>
       {children}
     </ChromeLayout>
   );
