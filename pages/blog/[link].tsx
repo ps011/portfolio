@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import Head from "next/head";
 import Link from "next/link";
 import { ArrowLeft, CalendarDays } from "lucide-react";
 import Profile from "../../components/profile/profile";
@@ -25,7 +24,7 @@ export async function getStaticProps(context) {
         getBlogByLink(link),
     ]);
 
-    if (!blogPost || Object.keys(blogPost).length === 0) {
+    if (!blogPost || blogPost.hidden || blogPost.type !== "blogs" || Object.keys(blogPost).length === 0) {
         console.error(`Blog [${link}]: Blog post not found or empty.`);
         return { notFound: true };
     }
@@ -54,7 +53,7 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
     const posts = await getBlogs();
     const validPaths = posts
-        .filter((post) => post.link && !post.link.startsWith("http"))
+        .filter((post) => post.type === "blogs" && !post.hidden && post.link && !post.link.startsWith("http"))
         .map((post) => ({ params: { link: post.link } }));
     return {
         paths: validPaths,
@@ -110,9 +109,6 @@ const SingleBlogPage = ({ blogPost }: SingleBlogPageProps) => {
 
     return (
         <>
-            <Head>
-                <title>{`${title} | Prasheel Soni`}</title>
-            </Head>
             <div className="bg-background min-h-screen pb-16">
                 <div className="container mx-auto px-4 pt-6">
                     <Button variant="neutral" size="sm" asChild>

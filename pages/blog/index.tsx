@@ -1,6 +1,4 @@
-import Head from "next/head";
 import { GetStaticProps } from "next";
-import { useTranslations } from "next-intl";
 import BlogIndex from "../../sections/blog-index/blog-index";
 import { getSiteData, getAboutData, getBlogs } from "../../lib/data";
 import type { BlogCard as BlogCardData } from "../../interfaces/blog";
@@ -42,12 +40,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 const BlogIndexPage = ({ blogs }: BlogIndexPageProps) => {
-  const t = useTranslations("blogIndex");
   return (
     <>
-      <Head>
-        <title>{t("pageTitle")}</title>
-      </Head>
       <BlogIndex blogs={blogs} />
     </>
   );

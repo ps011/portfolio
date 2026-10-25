@@ -14,8 +14,15 @@
     "photography": "Photography"
   },
   "meta": {
-    "title": "Prasheel - Full Stack Engineer",
-    "desc": "Full Stack Engineer"
+    "title": "Prasheel Soni | Software Engineer, Travel Writer & Photographer",
+    "desc": "Prasheel Soni is a software engineer at Bolt who writes about software and travel, shares photography, and documents his work across Europe."
+  },
+  "seo": {
+    "blog": "Read Prasheel Soni's articles about software engineering, travel, and life abroad, including practical guides and personal stories.",
+    "galleryTitle": "Travel Photography | Prasheel Soni",
+    "gallery": "Explore travel photography by Prasheel Soni from journeys across Europe and Asia.",
+    "devTitle": "Software Development | Prasheel Soni",
+    "dev": "Explore Prasheel Soni's open source development activity and software projects."
   },
   "banner": {
     "greeting": "Hi, I'm",

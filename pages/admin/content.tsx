@@ -684,6 +684,7 @@ export default function ContentAdminPage() {
     <>
       <Head>
         <title>Content Admin | Prasheel Soni</title>
+        <meta name="robots" content="noindex,nofollow" />
       </Head>
       <div className="min-h-screen bg-background">
         <main className="mx-auto grid w-full max-w-7xl min-w-0 gap-6 overflow-x-clip px-4 py-6 md:px-6 lg:grid-cols-[240px_minmax(0,1fr)]">

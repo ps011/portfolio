@@ -1,6 +1,5 @@
 import { GetStaticProps } from "next";
 import { GitHubCalendar } from "react-github-calendar";
-import Head from "next/head";
 import { getSiteData, getAboutData } from "../../lib/data";
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -32,9 +31,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 const DevPage = () => {
   return (
     <>
-      <Head>
-        <title>Dev | Prasheel Soni</title>
-      </Head>
       <div className="container h-screen bg-background p-4 text-foreground">
         <GitHubCalendar username="ps011" />
       </div>
