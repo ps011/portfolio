@@ -213,7 +213,6 @@ function SiteEditor({
         <SectionHeader title="Meta" />
         <div className={TWO_COLUMN_GRID_CLASS}>
           <Field label="Name" value={meta.name} onChange={(next) => updateMeta("name", next)} />
-          <Field label="URL" value={meta.url} onChange={(next) => updateMeta("url", next)} />
           <Field label="Image" value={meta.image} onChange={(next) => updateMeta("image", next)} />
           <Field
             label="Theme color"
