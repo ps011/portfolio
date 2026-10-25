@@ -1,13 +1,13 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import type { Blog } from "../../interfaces/blog";
+import { SITE_URL } from "../../lib/site-url";
 
 export interface MetaProps {
   title: string;
   desc: string;
   name: string;
   image?: string;
-  url?: string;
   twitterHandle?: string;
   manifest?: string;
   themeColor?: string;
@@ -16,9 +16,9 @@ export interface MetaProps {
   profiles?: string[];
 }
 
-const Meta = ({ title, desc, url, image, name, twitterHandle, manifest, themeColor, author, article, profiles }: MetaProps) => {
+const Meta = ({ title, desc, image, name, twitterHandle, manifest, themeColor, author, article, profiles }: MetaProps) => {
   const router = useRouter();
-  const origin = url?.replace(/\/+$/, "");
+  const origin = SITE_URL;
   const path = router.asPath.split(/[?#]/)[0].replace(/\/+$/, "") || "/";
   const localizedPath = router.locale === "hi" ? `/hi${path === "/" ? "" : path}` : path;
   // Posts have English content in both locales, so only the English URL is indexed.
